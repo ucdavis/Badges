@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Badges", "Badges\Badges.csproj", "{1C2303BE-FF36-4833-8B3E-567704E44218}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Badges.Tests", "Badges.Tests\Badges.Tests.csproj", "{59A8B203-CA41-45B3-8D3B-768730064C71}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1C2303BE-FF36-4833-8B3E-567704E44218}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C2303BE-FF36-4833-8B3E-567704E44218}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C2303BE-FF36-4833-8B3E-567704E44218}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C2303BE-FF36-4833-8B3E-567704E44218}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59A8B203-CA41-45B3-8D3B-768730064C71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59A8B203-CA41-45B3-8D3B-768730064C71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59A8B203-CA41-45B3-8D3B-768730064C71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59A8B203-CA41-45B3-8D3B-768730064C71}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
