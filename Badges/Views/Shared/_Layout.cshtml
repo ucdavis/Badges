@@ -10,7 +10,8 @@
     <title>Starter Template for Bootstrap</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+    @*<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">*@
+    <link href="//netdna.bootstrapcdn.com/bootswatch/3.0.0/united/bootstrap.min.css" rel="stylesheet">
     <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">  
     <style type="text/css">
         body
@@ -42,5 +43,16 @@
         @Scripts.Render("~/bundles/jqueryval")
 
         <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+        
+        <script type="text/javascript">
+            // array to consolidate controller under one header
+            var setupController = ['setup', 'template'];
+
+            $(function () {
+                //Choose the active link depending on your current controller
+                var controller = '@ViewContext.RouteData.Values["controller"].ToString().ToLower()';
+                $("#nav-" + controller).addClass("active");
+            });
+        </script>
     </body>
 </html>
