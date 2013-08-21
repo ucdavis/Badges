@@ -7,6 +7,7 @@ namespace Badges.Core
         public virtual string FirstName { get; set; }
         public virtual string LastName { get; set; }
         public virtual string LoginId { get; set; }
+        public virtual byte[] Image { get; set; }
     }
 
     public class ProfileMap : ClassMap<Profile>
@@ -18,6 +19,7 @@ namespace Badges.Core
             Map(x => x.FirstName);
             Map(x => x.LastName);
             Map(x => x.LoginId);
+            Map(x => x.Image).CustomType("BinaryBlob");
         }
     }
 }
