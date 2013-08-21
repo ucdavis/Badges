@@ -20,7 +20,7 @@ namespace Badges.App_Start
         {
             ModelBinders.Binders.DefaultBinder = new UCDArchModelBinder();
 
-            NHibernateSessionConfiguration.Mappings.UseFluentMappings(typeof(Class1).Assembly);
+            NHibernateSessionConfiguration.Mappings.UseFluentMappings(typeof (Profile).Assembly);
             
             IWindsorContainer container = InitializeServiceLocator();
         }
