@@ -22,12 +22,17 @@ namespace Badges.App_Start
             bundles.Add(new ScriptBundle("~/bundles/bootstrap")
                 .Include("~/Scripts/bootstrap.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/typeahead")
+                            .Include("~/Scripts/typeahead.js"));
+
             // Note: Including bootstrap responsive-- comment it out if you don't need responsive css
             //Also using custom theme build of bootstrap (bootstrap-custom).  Replace with bootstrap.css for default
             bundles.Add(new StyleBundle("~/Content/styles")
                             .Include("~/Content/bootstrap-united.css")
                             .Include("~/Content/font-awesome.css")
                             .Include("~/Content/custom.css"));
+
+            bundles.Add(new StyleBundle("~/Content/typeahead").Include("~/Content/typeahead-bootstrap.css"));
 
             // Note: Including datatables helper css for bootstrap (http://datatables.net/blog/Twitter_Bootstrap_2)
             bundles.Add(new StyleBundle(string.Format("~/Content/DataTables-{0}/media/css/dataTables", dataTablesVersion))
