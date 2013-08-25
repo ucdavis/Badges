@@ -193,6 +193,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Profile\ProfileEditModel.cs" />
+    <Compile Include="Models\Student\ExperienceEditModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\UserService.cs" />
   </ItemGroup>
@@ -409,6 +410,8 @@
     <Content Include="Views\Profile\Create.cshtml" />
     <Content Include="Views\Student\Index.cshtml" />
     <Content Include="Views\Student\AddExperience.cshtml" />
+    <Content Include="Views\Student\ViewExperience.cshtml" />
+    <Content Include="Views\Student\Portfolio.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,17 @@
+﻿@model System.Linq.IQueryable<Badges.Core.Domain.Experience>
+
+@{
+    ViewBag.Title = "My Portfolio";
+}
+
+<h2>My Portfolio</h2>
+
+@foreach (var experience in Model)
+{
+    <div class="col-md-4 well well-sm">
+        <fieldset>
+            <legend><a href="">@experience.Name</a></legend>
+            <p>@experience.Description</p>
+        </fieldset>
+    </div>
+}

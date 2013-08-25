@@ -2,6 +2,7 @@ using Badges.Core.Domain;
 using FluentNHibernate.Cfg;
 using Badges.App_Start;
 using NHibernate.Tool.hbm2ddl;
+using System;
 
 [assembly: WebActivator.PreApplicationStartMethod(typeof(DbInitializer), "PreStart")]
 namespace Badges.App_Start
@@ -41,8 +42,21 @@ namespace Badges.App_Start
 
                     session.SaveOrUpdate(user);
 
-                    session.SaveOrUpdate(new ExperienceType {Name = "Awesome Experience"});
+                    var etype = new ExperienceType {Name = "Awesome Experience"};
+                    session.SaveOrUpdate(etype);
                     session.SaveOrUpdate(new ExperienceType {Name = "Decent Experience"});
+
+                    var experience = new Experience
+                        {
+                            Creator = user,
+                            ExperienceType = etype,
+                            Name = "Sample Experience",
+                            Description = "This is a bit of text about exactly what I did in this experience",
+                            Start = DateTime.Now,
+                            Location = "UC Davis"
+                        };
+
+                    session.SaveOrUpdate(experience);
 
                     tx.Commit();
                 }

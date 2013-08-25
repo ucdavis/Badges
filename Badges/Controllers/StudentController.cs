@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 using Badges.Core.Repositories;
 using Badges.Core.Domain;
 using System;
+using Badges.Models.Student;
 using Badges.Services;
 
 namespace Badges.Controllers
@@ -22,6 +24,15 @@ namespace Badges.Controllers
         public ActionResult Index()
         {
             return View();
+        }
+
+        public ActionResult Portfolio()
+        {
+            var experiences =
+                RepositoryFactory.ExperienceRepository.Queryable.Where(
+                    x => x.Creator.Identifier == CurrentUser.Identity.Name);
+
+            return View(experiences);
         }
 
         public ActionResult AddExperience()
@@ -56,12 +67,19 @@ namespace Badges.Controllers
 
             return View(model);
         }
-    }
 
-    public class ExperienceEditModel
-    {
-        public Experience Experience { get; set; }
-        public SelectList ExperienceTypes { get; set; }
-        public User User { get; set; }
+        public ActionResult ViewExperience(Guid id)
+        {
+            var experience =
+                RepositoryFactory.ExperienceRepository.Queryable.SingleOrDefault(
+                    x => x.Id == id && x.Creator.Identifier == CurrentUser.Identity.Name);
+
+            if (experience == null)
+            {
+                return new HttpNotFoundResult("Could not find the requested experience");
+            }
+
+            return View(experience);
+        }
     }
 }
