@@ -7,20 +7,23 @@
 <h2>View Experience</h2>
 
 <div class="row">
-    <div class="col-sm-6 well">
-        <fieldset>
-            <legend>@Model.Name <a href="@Url.Action("EditExperience", "Student", new { id = Model.Id })" class="pull-right"><i class="icon-pencil"></i></a></legend>
-            <p>@Model.Description</p>
-            <hr/>
-        </fieldset>
-        
+    <div class="col-sm-6">
+        <div class="well">
+            <fieldset>
+                <legend>@Model.Name <a href="@Url.Action("EditExperience", "Student", new { id = Model.Id })" class="pull-right"><i class="icon-pencil"></i></a></legend>
+                <p>@Model.Description</p>
+                <hr/>
+            </fieldset>
+        </div>
     </div>
 
-    <div class="col-sm-3 well">
-        <a href="#supporting-work" data-toggle="modal" class="btn img-rounded span2">
-            <i class="icon-plus icon-4x"></i>
-            <h4>Add Supporting Work</h4>
-        </a>
+    <div class="col-sm-3">
+        <div class="well">
+            <a href="#supporting-work" data-toggle="modal" class="btn img-rounded span2">
+                <i class="icon-plus icon-4x"></i>
+                <h4>Add Supporting Work</h4>
+            </a>
+        </div>
     </div>
 </div>
 <div class="row">
