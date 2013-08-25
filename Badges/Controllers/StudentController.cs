@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 using Badges.Core.Repositories;
 using Badges.Core.Domain;
@@ -133,6 +135,39 @@ namespace Badges.Controllers
             }
 
             return View(experience);
+        }
+
+        /// <summary>
+        /// Add supporting work to experience given by id
+        /// TODO: allow adding links as well as files
+        /// TODO: maybe figure out a better place to store files
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="description">description of work</param>
+        /// <param name="workFile">file given along with work</param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult AddSupportingWork(Guid id, string description, HttpPostedFileBase workFile)
+        {
+            var experience =
+                RepositoryFactory.ExperienceRepository.Queryable.SingleOrDefault(
+                    x => x.Id == id && x.Creator.Identifier == CurrentUser.Identity.Name);
+
+            if (experience == null)
+            {
+                return new HttpNotFoundResult("Could not find the requested experience");
+            }
+
+            var work = new SupportingFile { Experience = experience, Description = description, Name = workFile.FileName, ContentType = workFile.ContentType};
+
+            using (var binaryReader = new BinaryReader(workFile.InputStream))
+            {
+                work.Content = binaryReader.ReadBytes((int) workFile.InputStream.Length);
+            }
+
+            RepositoryFactory.SupportingFileRepository.EnsurePersistent(work);
+
+            return RedirectToAction("ViewExperience", "Student", new {id});
         }
     }
 }
