@@ -23,6 +23,17 @@
         </a>
     </div>
 </div>
+<div class="row">
+    @foreach (var work in @Model.SupportingWorks)
+    {
+        <div class="col-sm-3">
+            <div class="well well-sm">
+                <p>@work.Description</p>
+                <img src="@Url.Action("ViewWork", "Student", new { id = work.Id })" class="img-thumbnail" />
+            </div>
+        </div>   
+    }
+</div>
 
 <!-- Modal -->
 <div id="supporting-work" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="supporting-work-label" aria-hidden="true">

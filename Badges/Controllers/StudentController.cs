@@ -8,6 +8,7 @@ using Badges.Core.Domain;
 using System;
 using Badges.Models.Student;
 using Badges.Services;
+using UCDArch.Core.PersistanceSupport;
 
 namespace Badges.Controllers
 { 
@@ -128,11 +129,13 @@ namespace Badges.Controllers
             var experience =
                 RepositoryFactory.ExperienceRepository.Queryable.SingleOrDefault(
                     x => x.Id == id && x.Creator.Identifier == CurrentUser.Identity.Name);
-
+            
             if (experience == null)
             {
                 return new HttpNotFoundResult("Could not find the requested experience");
             }
+
+            experience.SupportingWorks.ToList();
 
             return View(experience);
         }
@@ -158,16 +161,35 @@ namespace Badges.Controllers
                 return new HttpNotFoundResult("Could not find the requested experience");
             }
 
-            var work = new SupportingFile { Experience = experience, Description = description, Name = workFile.FileName, ContentType = workFile.ContentType};
+            var work = new SupportingWork { Experience = experience, Description = description, Name = workFile.FileName, ContentType = workFile.ContentType};
 
             using (var binaryReader = new BinaryReader(workFile.InputStream))
             {
                 work.Content = binaryReader.ReadBytes((int) workFile.InputStream.Length);
             }
 
-            RepositoryFactory.SupportingFileRepository.EnsurePersistent(work);
+            RepositoryFactory.SupportingWorkRepository.EnsurePersistent(work);
 
             return RedirectToAction("ViewExperience", "Student", new {id});
+        }
+
+        /// <summary>
+        /// Allows student to view their work, for now just pictures
+        /// TODO: allow more than just pictures
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public ActionResult ViewWork(Guid id)
+        {
+            var work = RepositoryFactory.SupportingWorkRepository.Queryable.SingleOrDefault(
+                x => x.Id == id && x.Experience.Creator.Identifier == CurrentUser.Identity.Name);
+
+            if (work == null)
+            {
+                return new HttpNotFoundResult();
+            }
+
+            return File(work.Content, work.ContentType);
         }
     }
 }

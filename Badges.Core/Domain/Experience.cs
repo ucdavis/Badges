@@ -42,7 +42,7 @@ namespace Badges.Core.Domain
         [Required]
         public virtual User Creator { get; set; }
 
-        public virtual IList<SupportingFile> SupportingFiles { get; set; }
+        public virtual IList<SupportingWork> SupportingWorks { get; set; }
     }
 
     public class ExperienceMap : ClassMap<Experience>
@@ -63,7 +63,7 @@ namespace Badges.Core.Domain
             References(x => x.ExperienceType).Not.Nullable();
             References(x => x.Creator).Not.Nullable();
 
-            HasMany(x => x.SupportingFiles).Cascade.AllDeleteOrphan().Inverse();
+            HasMany(x => x.SupportingWorks).Cascade.AllDeleteOrphan().Inverse();
         }
     }
 }

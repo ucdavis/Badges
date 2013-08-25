@@ -7,32 +7,27 @@ namespace Badges.Core.Domain
     /// Supporting work for an experience
     /// Can be photo or file (in the future, audio & video as well)
     /// </summary>
-    public class SupportingFile : DomainObjectGuid
+    public class SupportingWork : DomainObjectGuid
     {
         [Required]
         public virtual string Description { get; set; }
 
-        [Required]
         public virtual string Name { get; set; }
-
-        [Required]
         public virtual string ContentType { get; set; }
-
-        [Required]
         public virtual byte[] Content { get; set; }
 
         [Required]
         public virtual Experience Experience { get; set; }
     }
 
-    public class SupportingFileMap : ClassMap<SupportingFile>
+    public class SupportingWorkMap : ClassMap<SupportingWork>
     {
-        public SupportingFileMap()
+        public SupportingWorkMap()
         {
             Id(x => x.Id).GeneratedBy.GuidComb();
 
-            Map(x => x.Name).Not.Nullable();
-            Map(x => x.ContentType).Not.Nullable();
+            Map(x => x.Name);
+            Map(x => x.ContentType);
             Map(x => x.Description).Not.Nullable();
             Map(x => x.Content).CustomType("BinaryBlob");
 
