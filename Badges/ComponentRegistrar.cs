@@ -5,6 +5,7 @@ using UCDArch.Core.PersistanceSupport;
 using UCDArch.Data.NHibernate;
 using Castle.MicroKernel.Registration;
 using Badges.Core.Repositories;
+using Badges.Services;
 
 namespace Badges
 {
@@ -13,6 +14,8 @@ namespace Badges
         public static void AddComponentsTo(IWindsorContainer container)
         {
             AddGenericRepositoriesTo(container);
+
+            container.Register(Component.For<IUserService>().ImplementedBy<UserService>().Named("userService"));
 
             container.Register(Component.For<IValidator>().ImplementedBy<Validator>().Named("validator"));
             container.Register(Component.For<IDbContext>().ImplementedBy<DbContext>().Named("dbContext"));

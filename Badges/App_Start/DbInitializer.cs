@@ -13,7 +13,12 @@ namespace Badges.App_Start
         /// </summary>
         public static void PreStart()
         {
-            var config = Fluently.Configure().Mappings(m => m.FluentMappings.AddFromAssemblyOf<Profile>());
+            var config =
+                Fluently.Configure()
+                        .Mappings(
+                            m =>
+                            m.FluentMappings.AddFromAssemblyOf<Profile>()
+                             .Conventions.AddFromAssemblyOf<UCDArch.Data.NHibernate.Fluent.HasManyConvention>());
 
             config.ExposeConfiguration(c => new SchemaExport(c).Execute(true, true, false)).BuildConfiguration();
 

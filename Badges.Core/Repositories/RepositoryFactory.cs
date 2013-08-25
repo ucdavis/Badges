@@ -11,6 +11,7 @@ namespace Badges.Core.Repositories
         IRepositoryWithTypedId<Profile, Guid> ProfileRepository { get; set; }
         IRepositoryWithTypedId<Role, string> RoleRepository { get; set; }
         IRepositoryWithTypedId<ExperienceType, Guid> ExperienceTypeRepository { get; set; }
+        IRepositoryWithTypedId<Experience, Guid> ExperienceRepository { get; set; }
         void Flush();
     }
 
@@ -19,6 +20,7 @@ namespace Badges.Core.Repositories
         public IRepositoryWithTypedId<User, Guid> UserRepository { get; set; }
         public IRepositoryWithTypedId<Profile, Guid> ProfileRepository { get; set; }
         public IRepositoryWithTypedId<Role, string> RoleRepository { get; set; }
+        public IRepositoryWithTypedId<Experience, Guid> ExperienceRepository { get; set; }
         public IRepositoryWithTypedId<ExperienceType, Guid> ExperienceTypeRepository { get; set; }
 
         public void Flush()

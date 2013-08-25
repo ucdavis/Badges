@@ -10,7 +10,7 @@ namespace Badges.Core.Domain
         public Experience()
         {
             Public = true;
-            ExperienceTypes = new List<ExperienceType>();
+            Created = DateTime.Now;
         }
 
         [Required]
@@ -32,9 +32,15 @@ namespace Badges.Core.Domain
 
         public virtual string Notes { get; set; }
 
+        public virtual DateTime Created { get; set; }
+
         public virtual bool Public { get; set; }
 
-        public virtual IList<ExperienceType> ExperienceTypes { get; set; }
+        [Required]
+        public virtual ExperienceType ExperienceType { get; set; }
+
+        [Required]
+        public virtual User Creator { get; set; }
     }
 
     public class ExperienceMap : ClassMap<Experience>
@@ -50,8 +56,10 @@ namespace Badges.Core.Domain
             Map(x => x.End).Column("`End`");
             Map(x => x.Location);
             Map(x => x.Notes);
+            Map(x => x.Created);
 
-            HasMany(x => x.ExperienceTypes).Cascade.None();
+            References(x => x.ExperienceType).Not.Nullable();
+            References(x => x.Creator).Not.Nullable();
         }
     }
 }
