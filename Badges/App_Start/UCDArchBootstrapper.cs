@@ -1,5 +1,6 @@
 using System.Web.Mvc;
 using Badges.Core;
+using Badges.Core.Domain;
 using Castle.Windsor;
 using Microsoft.Practices.ServiceLocation;
 using Badges.App_Start;

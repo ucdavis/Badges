@@ -1,12 +1,13 @@
 ﻿using FluentNHibernate.Mapping;
 
-namespace Badges.Core
+namespace Badges.Core.Domain
 {
     public class Profile : DomainObjectGuid
     {
+        public virtual User User { get; set; }
+
         public virtual string FirstName { get; set; }
         public virtual string LastName { get; set; }
-        public virtual string LoginId { get; set; }
         public virtual byte[] Image { get; set; }
     }
 
@@ -14,11 +15,12 @@ namespace Badges.Core
     {
         public ProfileMap()
         {
-            Id(x => x.Id).GeneratedBy.GuidComb();
+            Id(x => x.Id).GeneratedBy.Assigned();
+
+            HasOne(x => x.User);
 
             Map(x => x.FirstName);
             Map(x => x.LastName);
-            Map(x => x.LoginId);
             Map(x => x.Image).CustomType("BinaryBlob");
         }
     }
