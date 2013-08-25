@@ -55,7 +55,7 @@ namespace Badges.Controllers
                 RepositoryFactory.ExperienceRepository.EnsurePersistent(experience);
 
                 Message = "Experience Added!";
-                return RedirectToAction("Index");
+                return RedirectToAction("ViewExperience", "Student", new {id = experience.Id});
             }
 
             var model = new ExperienceEditModel
@@ -64,6 +64,59 @@ namespace Badges.Controllers
                     Experience = experience,
                     ExperienceTypes = new SelectList(RepositoryFactory.ExperienceTypeRepository.GetAll(), "Id", "Name")
                 };
+
+            return View(model);
+        }
+
+        public ActionResult EditExperience(Guid id)
+        {
+            var experience =
+                RepositoryFactory.ExperienceRepository.Queryable.SingleOrDefault(
+                    x => x.Id == id && x.Creator.Identifier == CurrentUser.Identity.Name);
+
+            if (experience == null)
+            {
+                return new HttpNotFoundResult("Could not find the requested experience");
+            }
+
+            var model = new ExperienceEditModel
+            {
+                User = _userService.GetCurrent(),
+                Experience = experience,
+                ExperienceTypes = new SelectList(RepositoryFactory.ExperienceTypeRepository.GetAll(), "Id", "Name", experience.ExperienceType)
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult EditExperience(Guid id, Experience experience)
+        {
+            var experienceToEdit =
+                RepositoryFactory.ExperienceRepository.Queryable.SingleOrDefault(
+                    x => x.Id == id && x.Creator.Identifier == CurrentUser.Identity.Name);
+
+            if (experienceToEdit == null)
+            {
+                return new HttpNotFoundResult("Could not find the requested experience");
+            }
+
+            UpdateModel(experienceToEdit, "Experience");
+                
+            if (ModelState.IsValid)
+            {
+                RepositoryFactory.ExperienceRepository.EnsurePersistent(experienceToEdit);
+
+                Message = "Experience Updated!";
+                return RedirectToAction("ViewExperience", "Student", new {id});
+            }
+
+            var model = new ExperienceEditModel
+            {
+                User = _userService.GetCurrent(),
+                Experience = experience,
+                ExperienceTypes = new SelectList(RepositoryFactory.ExperienceTypeRepository.GetAll(), "Id", "Name")
+            };
 
             return View(model);
         }
