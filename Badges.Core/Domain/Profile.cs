@@ -1,12 +1,28 @@
-﻿using FluentNHibernate.Mapping;
+﻿using System.ComponentModel.DataAnnotations;
+using FluentNHibernate;
+using FluentNHibernate.Mapping;
+using System;
 
 namespace Badges.Core.Domain
 {
     public class Profile : DomainObjectGuid
     {
+        public Profile()
+        {
+            
+        }
+
+        public Profile(User user)
+        {
+            User = user;
+        }
+
         public virtual User User { get; set; }
 
+        [Required]
         public virtual string FirstName { get; set; }
+        
+        [Required]
         public virtual string LastName { get; set; }
         public virtual byte[] Image { get; set; }
     }
@@ -15,10 +31,11 @@ namespace Badges.Core.Domain
     {
         public ProfileMap()
         {
-            Id(x => x.Id).GeneratedBy.Assigned();
+            Table("Profiles");
+            Id(x => x.Id).GeneratedBy.Foreign("User");
 
-            HasOne(x => x.User);
-
+            HasOne(x => x.User).Class<User>().Cascade.All();
+            
             Map(x => x.FirstName);
             Map(x => x.LastName);
             Map(x => x.Image).CustomType("BinaryBlob");

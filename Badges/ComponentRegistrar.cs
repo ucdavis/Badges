@@ -4,6 +4,7 @@ using UCDArch.Core.DataAnnotationsValidator.CommonValidatorAdapter;
 using UCDArch.Core.PersistanceSupport;
 using UCDArch.Data.NHibernate;
 using Castle.MicroKernel.Registration;
+using Badges.Core.Repositories;
 
 namespace Badges
 {
@@ -19,6 +20,11 @@ namespace Badges
 
         private static void AddGenericRepositoriesTo(IWindsorContainer container)
         {
+            container.Register(
+                Component.For<IRepositoryFactory>()
+                         .ImplementedBy<RepositoryFactory>()
+                         .Named("repositoryFactory")
+                         .LifestyleSingleton());
             container.Register(Component.For(typeof(IRepositoryWithTypedId<,>)).ImplementedBy(typeof(RepositoryWithTypedId<,>)).Named("repositoryWithTypedId"));
             container.Register(Component.For(typeof(IRepository<>)).ImplementedBy(typeof(Repository<>)).Named("repositoryType"));
             container.Register(Component.For<IRepository>().ImplementedBy<Repository>().Named("repository"));

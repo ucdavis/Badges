@@ -1,4 +1,3 @@
-using Badges.Core;
 using Badges.Core.Domain;
 using FluentNHibernate.Cfg;
 using Badges.App_Start;

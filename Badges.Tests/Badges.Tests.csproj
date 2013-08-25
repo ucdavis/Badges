@@ -113,6 +113,10 @@
       <Private>True</Private>
       <HintPath>..\packages\System.Spatial.5.2.0\lib\net40\System.Spatial.dll</HintPath>
     </Reference>
+    <Reference Include="UCDArch, Version=4.0.111.0, Culture=neutral, PublicKeyToken=667f3cb07abadf4b, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Badges\bin\UCDArch.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -125,6 +129,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Badges.Core\Badges.Core.csproj">
+      <Project>{2BDFC212-F37B-405D-9E7A-86B90FF1F4DA}</Project>
+      <Name>Badges.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Badges\Badges.csproj">
       <Project>{1C2303BE-FF36-4833-8B3E-567704E44218}</Project>
       <Name>Badges</Name>
