@@ -43,7 +43,26 @@ namespace Badges.Controllers
                 return RedirectToAction("Create", "Profile");
             }
 
-            Message = string.Format("Welcome {0}", user.Profile.FirstName);
+            var roles = user.Roles.ToList();
+
+            if (roles.Any(x => x.Id == Roles.Student))
+            {
+                return RedirectToAction("Index", "Student");
+            }
+            
+            if (roles.Any(x=>x.Id == Roles.Instructor))
+            {
+                //redirect to instructor
+            }
+            else if (roles.Any(x=>x.Id == Roles.Administrator))
+            {
+                //redirect to admin
+            }
+            else
+            {
+                return new HttpUnauthorizedResult();
+            }
+
             return View("Index");
         }
     }

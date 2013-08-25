@@ -26,9 +26,16 @@ namespace Badges.App_Start
             {
                 using (var tx = session.BeginTransaction())
                 {
-                    session.SaveOrUpdate(new Role("S") {Name = "Student"});
+                    var studentRole = new Role("S") {Name = "Student"};
+                    session.SaveOrUpdate(studentRole);
                     session.SaveOrUpdate(new Role("I") {Name = "Instructor"});
-                    
+
+                    var user = new User {Identifier = "postit"};
+                    user.Profile = new Profile(user) {FirstName = "Scott", LastName = "Kirkland"};
+                    user.Roles.Add(studentRole);
+
+                    session.SaveOrUpdate(user);
+
                     tx.Commit();
                 }
                    
