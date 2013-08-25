@@ -21,7 +21,6 @@ namespace Badges.Controllers
 
         public ActionResult Index()
         {
-            Message = "Welcome Student";   
             return View();
         }
 
