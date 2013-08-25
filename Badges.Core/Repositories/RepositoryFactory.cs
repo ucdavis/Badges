@@ -9,6 +9,7 @@ namespace Badges.Core.Repositories
     {
         IRepositoryWithTypedId<User, Guid> UserRepository { get; set; }
         IRepositoryWithTypedId<Profile, Guid> ProfileRepository { get; set; }
+        IRepositoryWithTypedId<Role, string> RoleRepository { get; set; }
         void Flush();
     }
 
@@ -16,6 +17,7 @@ namespace Badges.Core.Repositories
     {
         public IRepositoryWithTypedId<User, Guid> UserRepository { get; set; }
         public IRepositoryWithTypedId<Profile, Guid> ProfileRepository { get; set; }
+        public IRepositoryWithTypedId<Role, string> RoleRepository { get; set; }
 
         public void Flush()
         {

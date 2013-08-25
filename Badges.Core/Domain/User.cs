@@ -1,12 +1,20 @@
+using System.Collections.Generic;
 using FluentNHibernate.Mapping;
 
 namespace Badges.Core.Domain
 {
     public class User : DomainObjectGuid
     {
+        public User()
+        {
+            Roles = new List<Role>();
+        }
+
         public virtual string Identifier { get; set; } //Login identifier via kerberos, openid, etc
 
         public virtual Profile Profile { get; set; }
+
+        public virtual IList<Role> Roles { get; set; }
 
         public virtual void AssociateProfile(Profile profile)
         {
@@ -28,6 +36,8 @@ namespace Badges.Core.Domain
                 .Class<Profile>().Constrained()
                 .Cascade.All()
                 .Fetch.Join();
+
+            HasManyToMany(x => x.Roles).Table("Permissions").ParentKeyColumn("User_id").ChildKeyColumn("Role_id");
         }
     }
 }

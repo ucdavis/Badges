@@ -1,4 +1,4 @@
-﻿@model Badges.Core.Domain.Profile
+﻿@model Badges.Controllers.ProfileEditModel
 
 @{
     ViewBag.Title = "Create You Profile";
@@ -15,17 +15,23 @@
     </fieldset>
 
     <div class="form-group">
-        @Html.LabelFor(x => x.FirstName)
-        @Html.TextBoxFor(x => x.FirstName, new { @class="form-control", placeholder="First Name"})
-        @Html.ValidationMessageFor(x => x.FirstName)
+        @Html.LabelFor(x => x.Profile.FirstName)
+        @Html.TextBoxFor(x => x.Profile.FirstName, new { @class="form-control", placeholder="First Name"})
+        @Html.ValidationMessageFor(x => x.Profile.FirstName)
         
     </div>
     <div class="form-group">
     
-        @Html.LabelFor(x => x.LastName)
-        @Html.TextBoxFor(x => x.LastName, new { @class="form-control", placeholder="Last Name"})
-        @Html.ValidationMessageFor(x => x.LastName)
+        @Html.LabelFor(x => x.Profile.LastName)
+        @Html.TextBoxFor(x => x.Profile.LastName, new { @class="form-control", placeholder="Last Name"})
+        @Html.ValidationMessageFor(x => x.Profile.LastName)
     
+    </div>
+    
+    <div class="form-group">
+        @Html.LabelFor(x=>x.Roles)
+        @Html.DropDownListFor(x=>x.Roles, Model.Roles.Select(r => new SelectListItem { Value = r.Id, Text = r.Name}), new { @class="form-control"})
+        @Html.ValidationMessageFor(x => x.Roles)
     </div>
     
     <div class="form-actions">

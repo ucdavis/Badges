@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 using Badges.Core.Domain;
 using Badges.Core.Repositories;
@@ -20,13 +21,17 @@ namespace Badges.Controllers
                 RedirectToAction("Landing", "Home");
             }
 
-            var profile = new Profile();
+            var model = new ProfileEditModel
+                {
+                    Profile = new Profile(),
+                    Roles = RepositoryFactory.RoleRepository.GetAll()
+                };
 
-            return View(profile);
+            return View(model);
         }
 
         [HttpPost]
-        public ActionResult Create(Profile profile)
+        public ActionResult Create(Profile profile, string roles)
         {
             if (RepositoryFactory.UserRepository.Queryable.Any(x => x.Identifier == CurrentUser.Identity.Name))
             {
@@ -34,12 +39,20 @@ namespace Badges.Controllers
                 RedirectToAction("Index", "Home");
             }
 
-            profile.User = new User {Identifier = CurrentUser.Identity.Name, Profile = profile};
+            var user = new User {Identifier = CurrentUser.Identity.Name, Profile = profile};
+            profile.User = user;
 
-            RepositoryFactory.ProfileRepository.EnsurePersistent(profile);
+            user.Roles.Add(RepositoryFactory.RoleRepository.GetById(roles));
 
+            RepositoryFactory.UserRepository.EnsurePersistent(user);
 
             return RedirectToAction("Landing", "Home");
         }
+    }
+
+    public class ProfileEditModel
+    {
+        public Profile Profile { get; set; }
+        public IList<Role> Roles { get; set; }
     }
 }
