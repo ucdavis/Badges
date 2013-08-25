@@ -3,6 +3,7 @@ using System.Linq;
 using System.Web.Mvc;
 using Badges.Core.Domain;
 using Badges.Core.Repositories;
+using Badges.Models.Profile;
 
 namespace Badges.Controllers
 {
@@ -48,11 +49,5 @@ namespace Badges.Controllers
 
             return RedirectToAction("Landing", "Home");
         }
-    }
-
-    public class ProfileEditModel
-    {
-        public Profile Profile { get; set; }
-        public IList<Role> Roles { get; set; }
     }
 }

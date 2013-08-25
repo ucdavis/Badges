@@ -1,0 +1,68 @@
+﻿@model Badges.Controllers.ExperienceEditModel
+
+@{
+    ViewBag.Title = "Add Experience";
+}
+
+<h2>Add Experience</h2>
+
+@using (Html.BeginForm("AddExperience"))
+{
+    @Html.AntiForgeryToken()
+    <fieldset>
+        <legend>Add New Experience</legend>
+        
+        <div class="form-group">
+            @Html.LabelFor(x => x.Experience.Name)
+            @Html.TextBoxFor(x => x.Experience.Name, new { @class="form-control", placeholder="Experience Name/Title"})
+            @Html.ValidationMessageFor(x => x.Experience.Name)   
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(x => x.Experience.Description)
+            @Html.TextBoxFor(x => x.Experience.Description, new { @class="form-control", placeholder="Brief Description", maxlength="140" })
+            @Html.ValidationMessageFor(x => x.Experience.Description)
+        </div>
+            
+        <div class="form-group">
+            @Html.LabelFor(x => x.ExperienceTypes)
+            @Html.DropDownListFor(x=>x.ExperienceTypes, Model.ExperienceTypes, new { @class="form-control"})   
+        </div>
+            
+          <div class="form-group">
+            @Html.LabelFor(x => x.Experience.Organization)
+            @Html.TextBoxFor(x => x.Experience.Organization, new { @class="form-control", placeholder="Organization"})
+            @Html.ValidationMessageFor(x => x.Experience.Organization)   
+          </div>    
+        <div class="form-group">
+            @Html.LabelFor(x => x.Experience.Start)
+            @Html.TextBoxFor(x => x.Experience.Start, new { @class="form-control"})
+            @Html.ValidationMessageFor(x => x.Experience.Start)   
+        </div>
+           <div class="form-group">
+            @Html.LabelFor(x => x.Experience.End)
+            @Html.TextBoxFor(x => x.Experience.End, new { @class="form-control"})
+            @Html.ValidationMessageFor(x => x.Experience.End)   
+           </div>    
+        <div class="form-group">
+            @Html.LabelFor(x => x.Experience.Location)
+            @Html.TextBoxFor(x => x.Experience.Location, new { @class="form-control", placeholder="Location"})
+            @Html.ValidationMessageFor(x => x.Experience.Location)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(x => x.Experience.Notes)
+            @Html.TextAreaFor(x => x.Experience.Notes, new { @class="form-control", placeholder="Describe your experience"})
+            @Html.ValidationMessageFor(x => x.Experience.Notes)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(x => x.Experience.Public)
+            @Html.CheckBoxFor(x => x.Experience.Public)
+            @Html.ValidationMessageFor(x => x.Experience.Public)
+        </div>
+        
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+
+    </fieldset>
+}

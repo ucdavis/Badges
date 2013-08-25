@@ -36,6 +36,9 @@ namespace Badges.App_Start
 
                     session.SaveOrUpdate(user);
 
+                    session.SaveOrUpdate(new ExperienceType {Name = "Awesome Experience"});
+                    session.SaveOrUpdate(new ExperienceType {Name = "Decent Experience"});
+
                     tx.Commit();
                 }
                    

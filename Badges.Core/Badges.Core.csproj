@@ -67,6 +67,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DomainObjectGuid.cs" />
+    <Compile Include="Domain\Experience.cs" />
+    <Compile Include="Domain\ExperienceType.cs" />
     <Compile Include="Domain\Profile.cs" />
     <Compile Include="Domain\Role.cs" />
     <Compile Include="Domain\User.cs" />
