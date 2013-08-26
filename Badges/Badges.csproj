@@ -416,6 +416,7 @@
     <Content Include="Views\Student\EditExperience.cshtml" />
     <Content Include="Views\Student\_ExperienceForm.cshtml" />
     <Content Include="Views\Profile\Edit.cshtml" />
+    <Content Include="Views\Profile\_ProfileForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
