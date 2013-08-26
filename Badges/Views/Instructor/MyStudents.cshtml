@@ -1,0 +1,39 @@
+﻿@model List<Badges.Core.Domain.Experience>
+
+@{
+    ViewBag.Title = "My Students";
+}
+
+@{
+    var students = Model.Select(x => x.Creator).Distinct().OrderBy(x => x.Profile.LastName).ToList();    
+}
+
+<h2>My Students</h2>
+
+@foreach (var student in students)
+{
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="well">
+                <div class="thumbnail">
+                    <img src="@Url.Action("ViewProfileImage", "Profile", new { id = student.Profile.Id })" alt="Profile Picture" />
+                    <div class="caption">
+                        <h4>@student.Profile.DisplayName</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @foreach (var experience in Model.Where(x=> Equals(x.Creator.Id, student.Id)).ToArray())
+        {
+            <div class="col-md-4">
+                <div class="well">
+                    <fieldset>
+                        <legend>@Html.ActionLink(experience.Name, "ViewExperience", "Student", new { id = experience.Id}, null)</legend>
+                        <p>@experience.Description</p>
+                    </fieldset>
+                </div>
+            </div>
+        }
+    </div>
+    <hr/>
+}

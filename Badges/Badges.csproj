@@ -187,6 +187,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ApplicationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InstructorController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Global.asax.cs">
@@ -417,6 +418,8 @@
     <Content Include="Views\Student\_ExperienceForm.cshtml" />
     <Content Include="Views\Profile\Edit.cshtml" />
     <Content Include="Views\Profile\_ProfileForm.cshtml" />
+    <Content Include="Views\Instructor\Index.cshtml" />
+    <Content Include="Views\Instructor\MyStudents.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

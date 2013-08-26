@@ -52,9 +52,10 @@ namespace Badges.Controllers
             
             if (roles.Any(x=>x.Id == Roles.Instructor))
             {
-                //redirect to instructor
+                return RedirectToAction("Index", "Instructor");
             }
-            else if (roles.Any(x=>x.Id == Roles.Administrator))
+            
+            if (roles.Any(x=>x.Id == Roles.Administrator))
             {
                 //redirect to admin
             }

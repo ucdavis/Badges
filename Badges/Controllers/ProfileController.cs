@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -122,10 +123,26 @@ namespace Badges.Controllers
             return RedirectToAction("Edit");
         }
 
-        public FileResult ViewProfileImage()
+        /// <summary>
+        /// View either your own profile image, or another user's if you pass their profile id
+        /// </summary>
+        /// <param name="id">profileID, optional</param>
+        /// <returns></returns>
+        public FileResult ViewProfileImage(Guid? id)
         {
-            var profile =
-                RepositoryFactory.ProfileRepository.Queryable.SingleOrDefault(x => x.User.Identifier == CurrentUser.Identity.Name);
+            Profile profile;
+
+            if (id.HasValue)
+            {
+                profile =
+                    RepositoryFactory.ProfileRepository.Queryable.SingleOrDefault(x => x.Id == id.Value);
+            }
+            else
+            {
+                profile =
+                    RepositoryFactory.ProfileRepository.Queryable.SingleOrDefault(
+                        x => x.User.Identifier == CurrentUser.Identity.Name);
+            }
 
             if (profile == null || profile.Image == null)
             {
