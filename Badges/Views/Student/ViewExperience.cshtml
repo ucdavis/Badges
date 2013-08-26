@@ -1,4 +1,4 @@
-﻿@model Badges.Core.Domain.Experience
+﻿@model Badges.Models.Student.ExperienceViewModel
 
 @{
     ViewBag.Title = "View Experience";
@@ -10,9 +10,15 @@
     <div class="col-sm-6">
         <div class="well">
             <fieldset>
-                <legend>@Model.Name <a href="@Url.Action("EditExperience", "Student", new { id = Model.Id })" class="pull-right"><i class="icon-pencil"></i></a></legend>
-                <p>@Model.Description</p>
+                <legend>@Model.Experience.Name <a href="@Url.Action("EditExperience", "Student", new { id = Model.Experience.Id })" class="pull-right"><i class="icon-pencil"></i></a></legend>
+                <p>@Model.Experience.Description</p>
                 <hr/>
+                <div class="container">
+                    @foreach (var outcome in Model.ExperienceOutcomes)
+                    {
+                        <div class="col-sm-3">@outcome.Notes</div>
+                    }
+                </div>
             </fieldset>
         </div>
     </div>
@@ -24,9 +30,9 @@
         </a>
     </div>
     <div class="col-sm-2">
-        <a href="#supporting-work" data-toggle="modal" class="btn img-rounded well well-lg">
+        <a href="#outcome" data-toggle="modal" class="btn img-rounded well well-lg">
             <i class="icon-ok-sign icon-2x"></i>
-            <h4>My Outcomes</h4>
+            <h4>Add Outcome</h4>
         </a>
     </div>
     <div class="col-sm-2">
@@ -57,7 +63,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 <h3 id="supporting-work-label">Add Supporting Work</h3>
             </div>
-            @using (Html.BeginForm("AddSupportingWork", "Student", new { id = Model.Id }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+            @using (Html.BeginForm("AddSupportingWork", "Student", new { id = Model.Experience.Id }, FormMethod.Post, new { enctype = "multipart/form-data" }))
             {
                 <div class="modal-body">
                     @Html.AntiForgeryToken()
@@ -75,6 +81,39 @@
                 </div>
                 <div class="modal-footer">
                     <input type="submit" class="btn btn-danger" value="Add Work" />
+                    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div id="outcome" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="outcome-label" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3 id="outcome-label">Add Outcome</h3>
+            </div>
+            @using (Html.BeginForm("AddOutcome", "Student", new { id = Model.Experience.Id }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <div class="modal-body">
+                    @Html.AntiForgeryToken()
+                    <fieldset>
+                        <div class="form-group">
+                            <label>Choose an outcome</label>
+                            @Html.DropDownList("outcomeid", Model.Outcomes)
+                        </div>
+                        <div class="form-group">
+                            <label>Feel free to enter some notes</label>
+                            <textarea name="notes" class="form-control" placeholder="Outcome Notes" data-val="true" data-val-required="Notes are required"></textarea>
+                            <span class="field-validation-valid" data-valmsg-for="notes" data-valmsg-replace="true"></span>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="modal-footer">
+                    <input type="submit" class="btn btn-danger" value="Add Outcome" />
                     <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
                 </div>
             }

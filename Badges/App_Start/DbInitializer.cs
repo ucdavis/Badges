@@ -46,6 +46,10 @@ namespace Badges.App_Start
                     session.SaveOrUpdate(etype);
                     session.SaveOrUpdate(new ExperienceType {Name = "Decent Experience"});
 
+                    var outcome = new Outcome {Name = "Outcome 1"};
+                    session.SaveOrUpdate(outcome);
+                    session.SaveOrUpdate(new Outcome { Name = "Super Skills"});
+
                     var experience = new Experience
                         {
                             Creator = user,

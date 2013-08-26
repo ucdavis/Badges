@@ -11,6 +11,8 @@ namespace Badges.Core.Domain
         {
             Public = true;
             Created = DateTime.Now;
+            SupportingWorks = new List<SupportingWork>();
+            ExperienceOutcomes = new List<ExperienceOutcome>();
         }
 
         [Required]
@@ -43,6 +45,19 @@ namespace Badges.Core.Domain
         public virtual User Creator { get; set; }
 
         public virtual IList<SupportingWork> SupportingWorks { get; set; }
+        public virtual IList<ExperienceOutcome> ExperienceOutcomes { get; set; }
+
+        public virtual void AddSupportingWork(SupportingWork work)
+        {
+            work.Experience = this;
+            SupportingWorks.Add(work);
+        }
+
+        public virtual void AddOutcome(ExperienceOutcome outcome)
+        {
+            outcome.Experience = this;
+            ExperienceOutcomes.Add(outcome);
+        }
     }
 
     public class ExperienceMap : ClassMap<Experience>
@@ -64,6 +79,7 @@ namespace Badges.Core.Domain
             References(x => x.Creator).Not.Nullable();
 
             HasMany(x => x.SupportingWorks).Cascade.AllDeleteOrphan().Inverse();
+            HasMany(x => x.ExperienceOutcomes).Cascade.AllDeleteOrphan().Inverse();
         }
     }
 }

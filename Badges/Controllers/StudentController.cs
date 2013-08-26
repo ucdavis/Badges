@@ -135,9 +135,15 @@ namespace Badges.Controllers
                 return new HttpNotFoundResult("Could not find the requested experience");
             }
 
-            experience.SupportingWorks.ToList();
+            var model = new ExperienceViewModel
+                {
+                    Experience = experience,
+                    SupportingWorks = experience.SupportingWorks.ToList(),
+                    ExperienceOutcomes = experience.ExperienceOutcomes,
+                    Outcomes = new SelectList(RepositoryFactory.OutcomeRepository.GetAll(), "Id", "Name")
+                };
 
-            return View(experience);
+            return View(model);
         }
 
         /// <summary>
@@ -168,7 +174,39 @@ namespace Badges.Controllers
                 work.Content = binaryReader.ReadBytes((int) workFile.InputStream.Length);
             }
 
-            RepositoryFactory.SupportingWorkRepository.EnsurePersistent(work);
+            experience.AddSupportingWork(work);
+
+            RepositoryFactory.ExperienceRepository.EnsurePersistent(experience);
+
+            return RedirectToAction("ViewExperience", "Student", new {id});
+        }
+
+        /// <summary>
+        /// Out the outcome with given notes to the experience
+        /// </summary>
+        /// <param name="id">Experience ID</param>
+        /// <param name="outcomeId">Outcome ID</param>
+        /// <param name="notes">Notes</param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult AddOutcome(Guid id, Guid outcomeId, string notes)
+        {
+            var experience =
+                RepositoryFactory.ExperienceRepository.Queryable.SingleOrDefault(
+                    x => x.Id == id && x.Creator.Identifier == CurrentUser.Identity.Name);
+
+            if (experience == null)
+            {
+                return new HttpNotFoundResult("Could not find the requested experience");
+            }
+
+            experience.AddOutcome(new ExperienceOutcome
+                {
+                    Outcome = RepositoryFactory.OutcomeRepository.GetById(outcomeId),
+                    Notes = notes
+                });
+
+            RepositoryFactory.ExperienceRepository.EnsurePersistent(experience);
 
             return RedirectToAction("ViewExperience", "Student", new {id});
         }
