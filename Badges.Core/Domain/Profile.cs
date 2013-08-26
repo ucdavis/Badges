@@ -27,6 +27,8 @@ namespace Badges.Core.Domain
 
         public virtual string ContentType { get; set; }
         public virtual byte[] Image { get; set; }
+
+        public virtual string DisplayName { get { return string.Format("{0} {1}", FirstName, LastName); } }
     }
 
     public class ProfileMap : ClassMap<Profile>

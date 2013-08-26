@@ -6,9 +6,23 @@
 
 <h2>Student Dashboard</h2>
 
-<div class="span4">
-    @Html.ActionLink("Add New Experience", "AddExperience")
+<div class="row">
+    <div class="col-md-4">
+        <a href="@Url.Action("AddExperience")" class="btn img-rounded well well-lg">
+            <i class="icon-plus icon-4x"></i>
+            <h5>Add Experience</h5>
+        </a>
+    </div>
+    <div class="col-md-4">
+        <a href="@Url.Action("Portfolio")" class="btn img-rounded well well-lg">
+            <i class="icon-user icon-4x"></i>
+            <h5>My Portfolio</h5>
+        </a>
+    </div>
+    <div class="col-md-4">
+        <a href="#" class="btn img-rounded well well-lg">
+            <i class="icon-minus icon-4x"></i>
+            <h5>View Feedback</h5>
+        </a>
+    </div>
 </div>
-<div class="span4"></div>
-<div class="span4"></div>
-    

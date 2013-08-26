@@ -34,6 +34,8 @@ namespace Badges.Controllers
             var experiences =
                 RepositoryFactory.ExperienceRepository.Queryable.Where(
                     x => x.Creator.Identifier == CurrentUser.Identity.Name);
+            
+            ViewBag.Name = _userService.GetCurrent().Profile.DisplayName;
 
             return View(experiences);
         }
