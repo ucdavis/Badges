@@ -11,6 +11,7 @@ namespace Badges.Core.Domain
         {
             Public = true;
             Created = DateTime.Now;
+            Instructors = new List<Instructor>();
             SupportingWorks = new List<SupportingWork>();
             ExperienceOutcomes = new List<ExperienceOutcome>();
         }
@@ -44,8 +45,16 @@ namespace Badges.Core.Domain
         [Required]
         public virtual User Creator { get; set; }
 
+        [Required] //TODO: forms do not actually require instructor is selected
+        public virtual IList<Instructor> Instructors { get; set; }
+        
         public virtual IList<SupportingWork> SupportingWorks { get; set; }
         public virtual IList<ExperienceOutcome> ExperienceOutcomes { get; set; }
+
+        public virtual void AddInstructor(Instructor instructor)
+        {
+            Instructors.Add(instructor);
+        }
 
         public virtual void AddSupportingWork(SupportingWork work)
         {
@@ -80,6 +89,8 @@ namespace Badges.Core.Domain
 
             HasMany(x => x.SupportingWorks).Cascade.AllDeleteOrphan().Inverse();
             HasMany(x => x.ExperienceOutcomes).Cascade.AllDeleteOrphan().Inverse();
+            
+            HasManyToMany(x => x.Instructors).ParentKeyColumn("Experience_id").ChildKeyColumn("Instructor_id");
         }
     }
 }

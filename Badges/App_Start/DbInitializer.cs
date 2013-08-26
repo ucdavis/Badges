@@ -42,6 +42,25 @@ namespace Badges.App_Start
 
                     session.SaveOrUpdate(user);
 
+                    var instructor = new Instructor
+                        {
+                            FirstName = "Hubert",
+                            LastName = "Farnsworth",
+                            Email = "hubert@planex.com",
+                            Identifier = "hfarnworth"
+                        };
+
+                    var instructor2 = new Instructor
+                    {
+                        FirstName = "Hermes",
+                        LastName = "Conrad",
+                        Email = "hconrad@planex.com",
+                        Identifier = "hconrad"
+                    };
+
+                    session.SaveOrUpdate(instructor);
+                    session.SaveOrUpdate(instructor2);
+
                     var etype = new ExperienceType {Name = "Awesome Experience"};
                     session.SaveOrUpdate(etype);
                     session.SaveOrUpdate(new ExperienceType {Name = "Decent Experience"});
@@ -59,6 +78,9 @@ namespace Badges.App_Start
                             Start = DateTime.Now,
                             Location = "UC Davis"
                         };
+
+                    experience.AddInstructor(instructor);
+                    experience.AddInstructor(instructor2);
 
                     session.SaveOrUpdate(experience);
 

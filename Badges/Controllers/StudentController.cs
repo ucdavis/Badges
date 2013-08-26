@@ -40,12 +40,7 @@ namespace Badges.Controllers
 
         public ActionResult AddExperience()
         {
-            var model = new ExperienceEditModel
-                {
-                    User = _userService.GetCurrent(),
-                    Experience = new Experience { Start = DateTime.Now },
-                    ExperienceTypes = new SelectList(RepositoryFactory.ExperienceTypeRepository.GetAll(), "Id", "Name")
-                };
+            var model = GetEditModel(new Experience {Start = DateTime.Now});
 
             return View(model);
         }
@@ -61,12 +56,7 @@ namespace Badges.Controllers
                 return RedirectToAction("ViewExperience", "Student", new {id = experience.Id});
             }
 
-            var model = new ExperienceEditModel
-                {
-                    User = _userService.GetCurrent(),
-                    Experience = experience,
-                    ExperienceTypes = new SelectList(RepositoryFactory.ExperienceTypeRepository.GetAll(), "Id", "Name")
-                };
+            var model = GetEditModel(experience);
 
             return View(model);
         }
@@ -82,12 +72,7 @@ namespace Badges.Controllers
                 return new HttpNotFoundResult("Could not find the requested experience");
             }
 
-            var model = new ExperienceEditModel
-            {
-                User = _userService.GetCurrent(),
-                Experience = experience,
-                ExperienceTypes = new SelectList(RepositoryFactory.ExperienceTypeRepository.GetAll(), "Id", "Name", experience.ExperienceType)
-            };
+            var model = GetEditModel(experience);
 
             return View(model);
         }
@@ -114,12 +99,7 @@ namespace Badges.Controllers
                 return RedirectToAction("ViewExperience", "Student", new {id});
             }
 
-            var model = new ExperienceEditModel
-            {
-                User = _userService.GetCurrent(),
-                Experience = experience,
-                ExperienceTypes = new SelectList(RepositoryFactory.ExperienceTypeRepository.GetAll(), "Id", "Name")
-            };
+            var model = GetEditModel(experience);
 
             return View(model);
         }
@@ -228,6 +208,17 @@ namespace Badges.Controllers
             }
 
             return File(work.Content, work.ContentType);
+        }
+
+        private ExperienceEditModel GetEditModel(Experience experience)
+        {
+            return new ExperienceEditModel
+            {
+                User = _userService.GetCurrent(),
+                Experience = experience,
+                Instructors = new MultiSelectList(RepositoryFactory.InstructorRepository.GetAll(), "Id", "DisplayName"),
+                ExperienceTypes = new SelectList(RepositoryFactory.ExperienceTypeRepository.GetAll(), "Id", "Name")
+            };
         }
     }
 }
