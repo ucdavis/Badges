@@ -38,8 +38,8 @@ namespace Badges.Controllers
         {
             if (RepositoryFactory.UserRepository.Queryable.Any(x => x.Identifier == CurrentUser.Identity.Name))
             {
-                Message = "You already have a profile"; //TODO: redirect to existing profile
-                RedirectToAction("Index", "Home");
+                Message = "You already have a profile";
+                RedirectToAction("Edit");
             }
 
             if (image != null)
@@ -117,7 +117,9 @@ namespace Badges.Controllers
 
             RepositoryFactory.UserRepository.EnsurePersistent(userProfileToEdit);
 
-            return RedirectToAction("Landing", "Home");
+            Message = "Your profile changes were successful";
+
+            return RedirectToAction("Edit");
         }
 
         public FileResult ViewProfileImage()

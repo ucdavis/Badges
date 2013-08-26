@@ -8,7 +8,7 @@ namespace Badges.Controllers
     {
         public ActionResult Login(string returnUrl)
         {
-            FormsAuthentication.RedirectFromLoginPage("dbunn", false);
+            FormsAuthentication.RedirectFromLoginPage("postit", false);
 
             string resultUrl = CASHelper.Login(); //Do the CAS Login
 
