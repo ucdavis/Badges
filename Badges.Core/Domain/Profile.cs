@@ -24,6 +24,8 @@ namespace Badges.Core.Domain
         
         [Required]
         public virtual string LastName { get; set; }
+
+        public virtual string ContentType { get; set; }
         public virtual byte[] Image { get; set; }
     }
 
@@ -38,6 +40,7 @@ namespace Badges.Core.Domain
             
             Map(x => x.FirstName);
             Map(x => x.LastName);
+            Map(x => x.ContentType);
             Map(x => x.Image).CustomType("BinaryBlob");
         }
     }

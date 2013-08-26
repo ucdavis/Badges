@@ -1,17 +1,16 @@
 ﻿@model Badges.Models.Profile.ProfileEditModel
 
 @{
-    ViewBag.Title = "Create You Profile";
+    ViewBag.Title = "Your Profile";
 }
 
-<h2>Welcome to Badges</h2>
+<h2>Edit Your Profile</h2>
 
-@using (Html.BeginForm("Create", "Profile", FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm("Edit", "Profile", FormMethod.Post, new {enctype = "multipart/form-data"}))
 {
     @Html.AntiForgeryToken()
-
     <fieldset>
-        <legend>Create your profile</legend>
+        <legend>Edit your profile</legend>
     </fieldset>
 
     <div class="row">
@@ -19,7 +18,7 @@
             <div class="form-group well">
                 <label>Profile Picture</label>
                 <div class="thumbnail">
-                    <img alt="200x150" style="width:150px; height: 200px;" />
+                    <img src="@Url.Action("ViewProfileImage")" alt="200x150" style="width: 150px; height: 200px;" />
                     <div class="caption">
                         <p>
                             <label for="image">Replace Profile Picture</label>
@@ -32,21 +31,21 @@
         <div class="col-lg-8">
             <div class="form-group">
                 @Html.LabelFor(x => x.Profile.FirstName)
-                @Html.TextBoxFor(x => x.Profile.FirstName, new { @class="form-control", placeholder="First Name"})
+                @Html.TextBoxFor(x => x.Profile.FirstName, new {@class = "form-control", placeholder = "First Name"})
                 @Html.ValidationMessageFor(x => x.Profile.FirstName)
         
             </div>
             <div class="form-group">
     
                 @Html.LabelFor(x => x.Profile.LastName)
-                @Html.TextBoxFor(x => x.Profile.LastName, new { @class="form-control", placeholder="Last Name"})
+                @Html.TextBoxFor(x => x.Profile.LastName, new {@class = "form-control", placeholder = "Last Name"})
                 @Html.ValidationMessageFor(x => x.Profile.LastName)
     
             </div>
     
             <div class="form-group">
-                @Html.LabelFor(x=>x.Roles)
-                @Html.DropDownListFor(x=>x.Roles, Model.Roles.Select(r => new SelectListItem { Value = r.Id, Text = r.Name}), new { @class="form-control"})
+                @Html.LabelFor(x => x.Roles)
+                @Html.DropDownListFor(x => x.Roles, Model.Roles.Select(r => new SelectListItem {Value = r.Id, Text = r.Name}), new {@class = "form-control"})
                 @Html.ValidationMessageFor(x => x.Roles)
             </div>
             
