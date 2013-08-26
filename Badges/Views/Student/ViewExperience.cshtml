@@ -36,7 +36,7 @@
         </a>
     </div>
     <div class="col-sm-2">
-        <a href="#supporting-work" data-toggle="modal" class="btn img-rounded well well-lg">
+        <a href="#feedback" data-toggle="modal" class="btn img-rounded well well-lg">
             <i class="icon-lightbulb icon-2x"></i>
             <h4>Request Feedback</h4>
         </a>
@@ -96,7 +96,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 <h3 id="outcome-label">Add Outcome</h3>
             </div>
-            @using (Html.BeginForm("AddOutcome", "Student", new { id = Model.Experience.Id }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+            @using (Html.BeginForm("AddOutcome", "Student", new { id = Model.Experience.Id }, FormMethod.Post))
             {
                 <div class="modal-body">
                     @Html.AntiForgeryToken()
@@ -114,6 +114,39 @@
                 </div>
                 <div class="modal-footer">
                     <input type="submit" class="btn btn-danger" value="Add Outcome" />
+                    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div id="feedback" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="feedback-label" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3 id="feedback-label">Request Feedback</h3>
+            </div>
+            @using (Html.BeginForm("RequestFeedback", "Student", new { id = Model.Experience.Id }, FormMethod.Post))
+            {
+                <div class="modal-body">
+                    @Html.AntiForgeryToken()
+                    <fieldset>
+                        <div class="form-group">
+                            <label>Message</label>
+                            <textarea name="message" class="form-control" placeholder="Feedback Request Message" data-val="true" data-val-required="Message is required"></textarea>
+                            <span class="field-validation-valid" data-valmsg-for="message" data-valmsg-replace="true"></span>
+                        </div>
+                        <div class="form-group">
+                            <label>Recipients</label>
+                            @Html.DropDownList("Instructors", Model.Instructors, new { @class = "form-control", multiple = "multiple"})
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="modal-footer">
+                    <input type="submit" class="btn btn-danger" value="Request Feedback" />
                     <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
                 </div>
             }

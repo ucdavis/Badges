@@ -13,5 +13,7 @@ namespace Badges.Models.Student
         public List<SupportingWork> SupportingWorks { get; set; }
 
         public IList<ExperienceOutcome> ExperienceOutcomes { get; set; }
+
+        public MultiSelectList Instructors { get; set; }
     }
 }

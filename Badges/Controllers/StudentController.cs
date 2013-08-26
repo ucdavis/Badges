@@ -120,6 +120,7 @@ namespace Badges.Controllers
                     Experience = experience,
                     SupportingWorks = experience.SupportingWorks.ToList(),
                     ExperienceOutcomes = experience.ExperienceOutcomes,
+                    Instructors = new MultiSelectList(RepositoryFactory.InstructorRepository.GetAll(), "Id", "DisplayName"),
                     Outcomes = new SelectList(RepositoryFactory.OutcomeRepository.GetAll(), "Id", "Name")
                 };
 
@@ -187,6 +188,36 @@ namespace Badges.Controllers
                 });
 
             RepositoryFactory.ExperienceRepository.EnsurePersistent(experience);
+
+            return RedirectToAction("ViewExperience", "Student", new {id});
+        }
+
+        /// <summary>
+        /// Request feedback via email from instructors
+        /// </summary>
+        /// <param name="id">experienceID</param>
+        /// <param name="message">feedback request message</param>
+        /// <param name="instructors">instructors to send feedback request to</param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult RequestFeedback(Guid id, string message, Guid[] instructors)
+        {
+            var experience =
+                RepositoryFactory.ExperienceRepository.Queryable.SingleOrDefault(
+                    x => x.Id == id && x.Creator.Identifier == CurrentUser.Identity.Name);
+
+            if (experience == null)
+            {
+                return new HttpNotFoundResult("Could not find the requested experience");
+            }
+
+            var instructorsToNotify =
+                RepositoryFactory.InstructorRepository.Queryable.Where(x => instructors.Contains(x.Id)).ToList();
+
+            Message = string.Format("FAKE Notification Sent to {0} with message {1}",
+                                    string.Join(", ",
+                                                instructorsToNotify.Select(
+                                                    x => string.Format("{0} [{1}]", x.DisplayName, x.Email))), message);
 
             return RedirectToAction("ViewExperience", "Student", new {id});
         }
