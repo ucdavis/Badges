@@ -25,11 +25,15 @@ namespace Badges.App_Start
             bundles.Add(new ScriptBundle("~/bundles/typeahead")
                             .Include("~/Scripts/typeahead.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/chosen")
+                            .Include("~/Scripts/Chosen/chosen.jquery.js"));
+
             // Note: Including bootstrap responsive-- comment it out if you don't need responsive css
             //Also using custom theme build of bootstrap (bootstrap-custom).  Replace with bootstrap.css for default
             bundles.Add(new StyleBundle("~/Content/styles")
                             .Include("~/Content/bootstrap-united.css")
                             .Include("~/Content/font-awesome.css")
+                            .Include("~/Content/chosen.css")
                             .Include("~/Content/custom.css"));
 
             bundles.Add(new StyleBundle("~/Content/typeahead").Include("~/Content/typeahead-bootstrap.css"));
