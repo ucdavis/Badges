@@ -91,6 +91,7 @@ namespace Badges.Controllers
                 return new HttpNotFoundResult("Could not find the requested experience");
             }
 
+            experienceToEdit.Instructors.Clear(); //"reset" with given instructor list
             UpdateModel(experienceToEdit, "Experience");
                 
             if (ModelState.IsValid)
@@ -249,8 +250,8 @@ namespace Badges.Controllers
             {
                 User = _userService.GetCurrent(),
                 Experience = experience,
-                Instructors = new MultiSelectList(RepositoryFactory.InstructorRepository.GetAll(), "Id", "DisplayName"),
-                ExperienceTypes = new SelectList(RepositoryFactory.ExperienceTypeRepository.GetAll(), "Id", "Name")
+                Instructors = RepositoryFactory.InstructorRepository.GetAll(),
+                ExperienceTypes = RepositoryFactory.ExperienceTypeRepository.GetAll()
             };
         }
     }

@@ -1,4 +1,4 @@
-using System.Web.Mvc;
+using System.Collections.Generic;
 using Badges.Core.Domain;
 
 namespace Badges.Models.Student
@@ -7,7 +7,7 @@ namespace Badges.Models.Student
     {
         public User User { get; set; }
         public Experience Experience { get; set; }
-        public SelectList ExperienceTypes { get; set; }
-        public MultiSelectList Instructors { get; set; }
+        public IList<ExperienceType> ExperienceTypes { get; set; }
+        public IList<Instructor> Instructors { get; set; }
     }
 }
