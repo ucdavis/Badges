@@ -20,7 +20,7 @@
     </div>
     <div class="form-group">
         @Html.Label("Experience_Instructors", "Instructors")
-        @this.MultiSelect("Experience.Instructors").Id("Experience_Instructors").Class("form-control").Options(Model.Instructors, x=>x.Id, x=>x.DisplayName).Selected(Model.Experience.Instructors.Any() ? Model.Experience.Instructors.Select(x=>x.Id) : null)
+        @this.MultiSelect("Experience.Instructors").Id("Experience_Instructors").Class("form-control").Attr("data-placeholder", "Choose Your Instructors").Options(Model.Instructors, x=>x.Id, x=>x.DisplayName).Selected(Model.Experience.Instructors.Any() ? Model.Experience.Instructors.Select(x=>x.Id) : null)
     </div>
     <div class="form-group">
         @Html.LabelFor(x => x.Experience.Organization)
