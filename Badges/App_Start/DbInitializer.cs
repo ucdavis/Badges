@@ -38,7 +38,7 @@ namespace Badges.App_Start
                     session.SaveOrUpdate(new Role("I") {Name = "Instructor"});
 
                     var user = new User {Identifier = "postit"};
-                    user.Profile = new Profile(user) {FirstName = "Scott", LastName = "Kirkland"};
+                    user.Profile = new Profile(user) {FirstName = "Scott", LastName = "Kirkland", Email = "srkirkland@ucdavis.edu"};
                     user.Roles.Add(studentRole);
 
                     session.SaveOrUpdate(user);
