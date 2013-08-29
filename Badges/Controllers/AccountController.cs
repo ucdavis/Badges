@@ -8,8 +8,6 @@ namespace Badges.Controllers
     {
         public ActionResult Login(string returnUrl)
         {
-            FormsAuthentication.RedirectFromLoginPage("hconrad", false);
-
             string resultUrl = CASHelper.Login(); //Do the CAS Login
 
             if (resultUrl != null)

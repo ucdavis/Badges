@@ -9,7 +9,7 @@ namespace Badges.Core.Domain
     {
         public Experience()
         {
-            Public = true;
+            InstructorViewable = true;
             Created = DateTime.Now;
             Instructors = new List<Instructor>();
             SupportingWorks = new List<SupportingWork>();
@@ -37,7 +37,9 @@ namespace Badges.Core.Domain
 
         public virtual DateTime Created { get; set; }
 
-        public virtual bool Public { get; set; }
+        //True if associated instructors can view this experience
+        [Display(Name = "Instructor Viewable")]
+        public virtual bool InstructorViewable { get; set; }
 
         [Required]
         public virtual ExperienceType ExperienceType { get; set; }
