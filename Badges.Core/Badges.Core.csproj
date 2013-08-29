@@ -70,6 +70,7 @@
     <Compile Include="Domain\Experience.cs" />
     <Compile Include="Domain\ExperienceOutcome.cs" />
     <Compile Include="Domain\ExperienceType.cs" />
+    <Compile Include="Domain\FeedbackRequest.cs" />
     <Compile Include="Domain\Instructor.cs" />
     <Compile Include="Domain\Outcome.cs" />
     <Compile Include="Domain\Profile.cs" />

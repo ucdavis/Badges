@@ -1,0 +1,30 @@
+﻿@model System.Collections.Generic.List<Badges.Core.Domain.FeedbackRequest>
+
+@{
+    ViewBag.Title = "My Notifications";
+}
+
+<h2>My Notifications</h2>
+
+<table class="table table-striped table-hover">
+    <thead>
+        <tr>
+            <th>Student</th>
+            <th>Experience</th>
+            <th>Message</th>
+            <th>Request Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var request in Model)
+        {
+            <tr>
+                <td>@request.Experience.Creator.Profile.DisplayName</td>
+                <td>@Html.ActionLink(request.Experience.Name, "ViewExperience", "Student", new { id = request.Experience.Id }, null)</td>
+                <td>@request.Experience.Name</td>
+                <td>@request.Message</td>
+                <td>@request.Created.ToLocalTime()</td>
+            </tr>
+        }
+    </tbody>
+</table>

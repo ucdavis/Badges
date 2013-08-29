@@ -213,14 +213,23 @@ namespace Badges.Controllers
             {
                 return new HttpNotFoundResult("Could not find the requested experience");
             }
-
+            
             var instructorsToNotify =
                 RepositoryFactory.InstructorRepository.Queryable.Where(x => instructors.Contains(x.Id)).ToList();
 
-            Message = string.Format("FAKE Notification Sent to {0} with message {1}",
-                                    string.Join(", ",
-                                                instructorsToNotify.Select(
-                                                    x => string.Format("{0} [{1}]", x.DisplayName, x.Email))), message);
+            foreach (var instructor in instructorsToNotify)
+            {
+                experience.AddFeedbackRequest(new FeedbackRequest {Message = message, Instructor = instructor});
+            }
+
+            if (experience.InstructorViewable == false)
+            {
+                experience.InstructorViewable = true;
+            }
+
+            RepositoryFactory.ExperienceRepository.EnsurePersistent(experience);
+
+            Message = string.Format("Feedback Requests sent successfully");
 
             return RedirectToAction("ViewExperience", "Student", new {id});
         }

@@ -25,5 +25,35 @@ namespace Badges.Controllers
             FormsAuthentication.SignOut();
             return Redirect("https://cas.ucdavis.edu/cas/logout");
         }
+
+        public ActionResult Emulate(string id /* Login ID*/)
+        {
+            //TODO: either remove emulate or update with roles
+            if (ControllerContext.HttpContext.User.Identity.Name != "postit")
+            {
+                return RedirectToAction("Index", "Home"); 
+            }
+            if (!string.IsNullOrEmpty(id))
+            {
+                FormsAuthentication.RedirectFromLoginPage(id, false);
+            }
+            else
+            {
+                return Content("Login ID not provided.  Use /Emulate/login");
+            }
+
+            return RedirectToAction("Index", "Home");
+        }
+
+        /// <summary>
+        /// Just a signout, without the hassle of signing out of CAS.  Ends emulated credentials.
+        /// </summary>
+        /// <returns></returns>
+        public RedirectToRouteResult EndEmulate()
+        {
+            FormsAuthentication.SignOut();
+
+            return RedirectToAction("Index", "Home");
+        }
     }
 }
