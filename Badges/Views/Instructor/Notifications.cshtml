@@ -20,7 +20,7 @@
         {
             <tr>
                 <td>@request.Experience.Creator.Profile.DisplayName</td>
-                <td>@Html.ActionLink(request.Experience.Name, "ViewExperience", "Student", new { id = request.Experience.Id }, null)</td>
+                <td>@Html.ActionLink(request.Experience.Name, "ViewExperience", "Instructor", new { id = request.Experience.Id }, null)</td>
                 <td>@request.Experience.Name</td>
                 <td>@request.Message</td>
                 <td>@request.Created.ToLocalTime()</td>

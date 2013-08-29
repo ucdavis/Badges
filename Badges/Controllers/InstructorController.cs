@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Badges.Core.Repositories;
+using Badges.Models.Shared;
 using NHibernate.Linq;
 
 namespace Badges.Controllers
@@ -45,6 +46,37 @@ namespace Badges.Controllers
                                  .ToList();
 
             return View(myNotifications);
+        }
+
+        /// <summary>
+        /// View an experience as an instructor
+        /// NOTE: Instructor must have acccess to the experience AND the experience must have instructorViewable = true
+        /// </summary>
+        /// <param name="id">Experience Id</param>
+        /// <returns></returns>
+        public ActionResult ViewExperience(Guid id)
+        {
+            var experience =
+                RepositoryFactory.ExperienceRepository.Queryable.SingleOrDefault(x => x.Id == id &&
+                                                                                      x.Instructors.Any(i => i.Identifier == CurrentUser.Identity.Name));
+
+            if (experience == null)
+            {
+                return new HttpNotFoundResult();
+            }
+            if (experience.InstructorViewable == false)
+            {
+                return new HttpUnauthorizedResult();
+            }
+
+            var model = new ExperienceViewModel
+                {
+                    Experience = experience,
+                    SupportingWorks = experience.SupportingWorks.ToList(),
+                    ExperienceOutcomes = experience.ExperienceOutcomes.ToList()
+                };
+
+            return View(model);
         }
     }
 }

@@ -1,0 +1,32 @@
+﻿@model Badges.Models.Shared.ExperienceViewModel
+
+<div class="row">
+    <div>
+        <div class="well">
+            <fieldset>
+                <legend>@Model.Experience.Name <a href="@Url.Action("EditExperience", "Student", new { id = Model.Experience.Id })" class="pull-right"><i class="icon-pencil"></i></a></legend>
+                <p>@Model.Experience.Description</p>
+                <hr/>
+                <div class="container">
+                    @foreach (var outcome in Model.ExperienceOutcomes)
+                    {
+                        <div class="col-sm-3">@outcome.Notes</div>
+                    }
+                </div>
+            </fieldset>
+        </div>
+    </div>
+</div>
+<div class="row">
+    @foreach (var work in @Model.SupportingWorks)
+    {
+        <div>
+            <div class="col-md-3">
+                <div class="well well-sm">
+                    <p>@work.Description</p>
+                    <img src="@Url.Action("ViewWork", "Student", new { id = work.Id })" class="img-thumbnail" />
+                </div>
+            </div>
+        </div>   
+    }
+</div>

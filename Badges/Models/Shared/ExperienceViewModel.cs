@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Web.Mvc;
 using Badges.Core.Domain;
 
-namespace Badges.Models.Student
+namespace Badges.Models.Shared
 {
     public class ExperienceViewModel
     {

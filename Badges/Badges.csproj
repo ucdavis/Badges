@@ -195,7 +195,7 @@
     </Compile>
     <Compile Include="Models\Profile\ProfileEditModel.cs" />
     <Compile Include="Models\Student\ExperienceEditModel.cs" />
-    <Compile Include="Models\Student\ExperienceViewModel.cs" />
+    <Compile Include="Models\Shared\ExperienceViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\UserService.cs" />
   </ItemGroup>
@@ -427,6 +427,8 @@
     <Content Include="Views\Instructor\Index.cshtml" />
     <Content Include="Views\Instructor\MyStudents.cshtml" />
     <Content Include="Views\Instructor\Notifications.cshtml" />
+    <Content Include="Views\Shared\_ExperienceDashboard.cshtml" />
+    <Content Include="Views\Instructor\ViewExperience.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

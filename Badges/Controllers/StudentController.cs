@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using Badges.Core.Repositories;
 using Badges.Core.Domain;
 using System;
+using Badges.Models.Shared;
 using Badges.Models.Student;
 using Badges.Services;
 using UCDArch.Core.PersistanceSupport;
@@ -122,7 +123,7 @@ namespace Badges.Controllers
                 {
                     Experience = experience,
                     SupportingWorks = experience.SupportingWorks.ToList(),
-                    ExperienceOutcomes = experience.ExperienceOutcomes,
+                    ExperienceOutcomes = experience.ExperienceOutcomes.ToList(),
                     Instructors = new MultiSelectList(RepositoryFactory.InstructorRepository.GetAll(), "Id", "DisplayName"),
                     Outcomes = new SelectList(RepositoryFactory.OutcomeRepository.GetAll(), "Id", "Name")
                 };

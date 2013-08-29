@@ -1,4 +1,4 @@
-﻿@model Badges.Models.Student.ExperienceViewModel
+﻿@model Badges.Models.Shared.ExperienceViewModel
 
 @{
     ViewBag.Title = "View Experience";
@@ -14,7 +14,7 @@
                 <img src="@Url.Action("ViewProfileImage", "Profile")" />
             </div>
         </div>
-        <div class="collapse navbar-collapse col-sm-11">
+        <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav btn-toolbar">
                 <li>
                     <a href="#" class="btn btn-default">
@@ -35,56 +35,25 @@
                     </a>
                 </li>
             </ul>
+            <ul class="nav navbar-nav pull-right">
+                <li>
+                    <a href="#outcome" data-toggle="modal" class="btn img-rounded">
+                        <i class="icon-ok-sign"></i>
+                        <small>Add Outcome</small>
+                    </a>
+                </li>
+                <li>
+                    <a href="#feedback" data-toggle="modal" class="btn img-rounded">
+                        <i class="icon-lightbulb"></i>
+                        <small>Request Feedback</small>
+                    </a>
+                </li>
+            </ul>
         </div><!-- /.navbar-collapse -->
     </nav>
 </div>
-<div class="row">
-    <div class="col-sm-6">
-        <div class="well">
-            <fieldset>
-                <legend>@Model.Experience.Name <a href="@Url.Action("EditExperience", "Student", new { id = Model.Experience.Id })" class="pull-right"><i class="icon-pencil"></i></a></legend>
-                <p>@Model.Experience.Description</p>
-                <hr/>
-                <div class="container">
-                    @foreach (var outcome in Model.ExperienceOutcomes)
-                    {
-                        <div class="col-sm-3">@outcome.Notes</div>
-                    }
-                </div>
-            </fieldset>
-        </div>
-    </div>
 
-    <div class="col-sm-2">
-        <a href="#supporting-work" data-toggle="modal" class="btn img-rounded well well-lg">
-            <i class="icon-plus icon-2x"></i>
-            <h5>Add Supporting Work</h5>
-        </a>
-    </div>
-    <div class="col-sm-2">
-        <a href="#outcome" data-toggle="modal" class="btn img-rounded well well-lg">
-            <i class="icon-ok-sign icon-2x"></i>
-            <h4>Add Outcome</h4>
-        </a>
-    </div>
-    <div class="col-sm-2">
-        <a href="#feedback" data-toggle="modal" class="btn img-rounded well well-lg">
-            <i class="icon-lightbulb icon-2x"></i>
-            <h4>Request Feedback</h4>
-        </a>
-    </div>
-</div>
-<div class="row">
-    @foreach (var work in @Model.SupportingWorks)
-    {
-        <div class="col-sm-3">
-            <div class="well well-sm">
-                <p>@work.Description</p>
-                <img src="@Url.Action("ViewWork", "Student", new { id = work.Id })" class="img-thumbnail" />
-            </div>
-        </div>   
-    }
-</div>
+@Html.Partial("_ExperienceDashboard")
 
 <!-- Modal -->
 <div id="supporting-work" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="supporting-work-label" aria-hidden="true">
