@@ -78,5 +78,28 @@ namespace Badges.Controllers
 
             return View(model);
         }
+
+        /// <summary>
+        /// Allows instructor to view a student's work
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public ActionResult ViewWork(Guid id)
+        {
+            var work = RepositoryFactory.SupportingWorkRepository.Queryable.SingleOrDefault(
+                x => x.Id == id && x.Experience.Instructors.Any(i => i.Identifier == CurrentUser.Identity.Name));
+            
+            if (work == null)
+            {
+                return new HttpNotFoundResult();
+            }
+
+            if (work.Experience.InstructorViewable == false)
+            {
+                return new HttpUnauthorizedResult();
+            }
+
+            return File(work.Content, work.ContentType);
+        }
     }
 }
