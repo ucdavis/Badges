@@ -48,7 +48,7 @@ namespace Badges.Core.Domain
         public virtual User Creator { get; set; }
 
         [Required] //TODO: forms do not actually require instructor is selected
-        public virtual IList<Instructor> Instructors { get; set; }
+        public virtual ICollection<Instructor> Instructors { get; set; }
         public virtual IList<SupportingWork> SupportingWorks { get; set; }
         public virtual IList<ExperienceOutcome> ExperienceOutcomes { get; set; }
         public virtual IList<FeedbackRequest> FeedbackRequests { get; set; }
@@ -99,7 +99,7 @@ namespace Badges.Core.Domain
             HasMany(x => x.ExperienceOutcomes).Cascade.AllDeleteOrphan().Inverse();
             HasMany(x => x.FeedbackRequests).Cascade.AllDeleteOrphan().Inverse();
             
-            HasManyToMany(x => x.Instructors).ParentKeyColumn("Experience_id").ChildKeyColumn("Instructor_id");
+            HasManyToMany(x => x.Instructors).AsSet().ParentKeyColumn("Experience_id").ChildKeyColumn("Instructor_id");
         }
     }
 }

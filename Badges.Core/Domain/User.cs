@@ -14,7 +14,7 @@ namespace Badges.Core.Domain
 
         public virtual Profile Profile { get; set; }
 
-        public virtual IList<Role> Roles { get; set; }
+        public virtual ICollection<Role> Roles { get; set; }
 
         public virtual void AssociateProfile(Profile profile)
         {
@@ -37,7 +37,7 @@ namespace Badges.Core.Domain
                 .Cascade.All()
                 .Fetch.Join();
 
-            HasManyToMany(x => x.Roles).Table("Permissions").ParentKeyColumn("User_id").ChildKeyColumn("Role_id");
+            HasManyToMany(x => x.Roles).AsSet().Table("Permissions").ParentKeyColumn("User_id").ChildKeyColumn("Role_id");
         }
     }
 }
