@@ -14,7 +14,7 @@ namespace Badges.App_Start
         /// </summary>
         public static void PreStart()
         {
-            //return;
+            return;
             var config =
                 Fluently.Configure()
                         .Mappings(

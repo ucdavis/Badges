@@ -53,8 +53,9 @@ namespace Badges.Controllers
         /// NOTE: Instructor must have acccess to the experience AND the experience must have instructorViewable = true
         /// </summary>
         /// <param name="id">Experience Id</param>
+        /// <param name="notificationId">Notification to show along with experience</param>
         /// <returns></returns>
-        public ActionResult ViewExperience(Guid id)
+        public ActionResult ViewExperience(Guid id, Guid? notificationId)
         {
             var experience =
                 RepositoryFactory.ExperienceRepository.Queryable.SingleOrDefault(x => x.Id == id &&
@@ -69,9 +70,17 @@ namespace Badges.Controllers
                 return new HttpUnauthorizedResult();
             }
 
+            var notification = notificationId.HasValue == false
+                                   ? null
+                                   : RepositoryFactory.FeedbackRequestRepository.Queryable.SingleOrDefault(
+                                       x =>
+                                       x.Id == notificationId.Value &&
+                                       x.Instructor.Identifier == CurrentUser.Identity.Name);
+
             var model = new ExperienceViewModel
                 {
                     Experience = experience,
+                    Notification = notification,
                     SupportingWorks = experience.SupportingWorks.ToList(),
                     ExperienceOutcomes = experience.ExperienceOutcomes.ToList()
                 };

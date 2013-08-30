@@ -6,4 +6,17 @@
 
 <h2>View Experience</h2>
 
+@if (Model.Notification != null)
+{
+    <div class="row">
+        <div class="alert alert-info">
+            <h3>Request for Feedback</h3>
+            <blockquote>
+                <p>@Model.Notification.Message</p>
+                <small>@Model.Experience.Creator.Profile.DisplayName</small>
+            </blockquote>
+        </div>
+    </div>
+}
+
 @Html.Partial("_ExperienceDashboard")

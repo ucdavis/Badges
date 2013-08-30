@@ -15,5 +15,7 @@ namespace Badges.Models.Shared
         public IList<ExperienceOutcome> ExperienceOutcomes { get; set; }
 
         public MultiSelectList Instructors { get; set; }
+
+        public FeedbackRequest Notification { get; set; }
     }
 }
