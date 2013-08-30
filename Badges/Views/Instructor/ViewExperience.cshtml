@@ -15,8 +15,42 @@
                 <p>@Model.Notification.Message</p>
                 <small>@Model.Experience.Creator.Profile.DisplayName</small>
             </blockquote>
+            <a href="#feedback" class="btn btn-primary" data-toggle="modal">Give Feedback</a>
         </div>
     </div>
 }
 
 @Html.Partial("_ExperienceDashboard")
+
+@if (Model.Notification != null)
+{
+    <!-- Modal -->
+    <div id="feedback" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="feedback-label" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h3 id="feedback-label">Give Feedback</h3>
+                </div>
+                @using (Html.BeginForm("GiveFeedback", "Instructor", new {id = Model.Notification.Id}, FormMethod.Post))
+                {
+                    <div class="modal-body">
+                        @Html.AntiForgeryToken()
+                        <p>Please give your feedback here</p>
+                        <fieldset>
+                            <div class="form-group">
+                                <label>Message</label>
+                                <textarea name="message" class="form-control" placeholder="Your Feedback Message" data-val="true" data-val-required="Message is required"></textarea>
+                                <span class="field-validation-valid" data-valmsg-for="message" data-valmsg-replace="true"></span>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="submit" class="btn btn-danger" value="Give Feedback" />
+                        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+}
