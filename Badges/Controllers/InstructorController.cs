@@ -40,7 +40,7 @@ namespace Badges.Controllers
         {
             var myNotifications =
                 RepositoryFactory.FeedbackRequestRepository.Queryable.Where(
-                    x => x.Instructor.Identifier == CurrentUser.Identity.Name)
+                    x => x.Instructor.Identifier == CurrentUser.Identity.Name && x.ResponseDate == null)
                                  .Fetch(x => x.Experience)
                                  .ThenFetch(x=>x.Creator)
                                  .ToList();
@@ -109,6 +109,33 @@ namespace Badges.Controllers
             }
 
             return File(work.Content, work.ContentType);
+        }
+
+        /// <summary>
+        /// Respond to some feedback
+        /// </summary>
+        /// <param name="id">FeedbackRequestId</param>
+        /// <param name="message">The feedback message</param>
+        /// <returns></returns>
+        public ActionResult GiveFeedback(Guid id, string message)
+        {
+            var request =
+                RepositoryFactory.FeedbackRequestRepository.Queryable.SingleOrDefault(
+                    x => x.Id == id && x.Instructor.Identifier == CurrentUser.Identity.Name);
+
+            if (request == null)
+            {
+                return HttpNotFound();
+            }
+
+            request.Response = message;
+            request.ResponseDate = DateTime.UtcNow;
+
+            RepositoryFactory.FeedbackRequestRepository.EnsurePersistent(request);
+
+            Message = "Thanks for your feedback!";
+
+            return RedirectToAction("Notifications");
         }
     }
 }

@@ -14,6 +14,7 @@ namespace Badges.App_Start
         /// </summary>
         public static void PreStart()
         {
+
             return;
             var config =
                 Fluently.Configure()
@@ -34,14 +35,21 @@ namespace Badges.App_Start
                 using (var tx = session.BeginTransaction())
                 {
                     var studentRole = new Role("S") {Name = "Student"};
+                    var instructorRole = new Role("I") {Name = "Instructor"};
                     session.SaveOrUpdate(studentRole);
-                    session.SaveOrUpdate(new Role("I") {Name = "Instructor"});
+                    session.SaveOrUpdate(instructorRole);
 
                     var user = new User {Identifier = "postit"};
                     user.Profile = new Profile(user) {FirstName = "Scott", LastName = "Kirkland", Email = "srkirkland@ucdavis.edu"};
                     user.Roles.Add(studentRole);
 
                     session.SaveOrUpdate(user);
+
+                    var hermes = new User {Identifier = "hconrad"};
+                    hermes.AssociateProfile(new Profile(hermes) { FirstName = "Hermes", LastName = "Conrad", Email = "hconrad@ucdavis.edu" });
+                    hermes.Roles.Add(instructorRole);
+
+                    session.SaveOrUpdate(hermes);
 
                     var instructor = new Instructor
                         {
