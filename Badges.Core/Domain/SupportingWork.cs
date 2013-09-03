@@ -24,6 +24,26 @@ namespace Badges.Core.Domain
 
         [Required]
         public virtual Experience Experience { get; set; }
+
+        public virtual string GetEmbedCode()
+        {
+            if (string.IsNullOrWhiteSpace(Url))
+            {
+                return string.Empty;
+            }
+
+            if (Url.Contains("youtu.be") || Url.Contains("youtube.com"))
+            {
+                //Url is either /watch?v=[code] or /[code] 
+                return
+                    Url.Substring(Url.Contains("watch?")
+                                      ? Url.LastIndexOf("v=", System.StringComparison.Ordinal) + 2
+                                      : Url.LastIndexOf("/", System.StringComparison.Ordinal) + 1
+                        );
+            }
+
+            return string.Empty; //TODO: include vimeo
+        }
     }
 
     public static class SupportingWorkTypes
