@@ -32,6 +32,5 @@ namespace Badges.Controllers
             
             return File(work.Content, work.ContentType, work.Name);
         }
-
     }
 }

@@ -33,4 +33,10 @@
     case SupportingWorkTypes.File:
         <a href="@Url.Action("ViewWorkFile", "Experience", new {id = Model.Id})">View File</a>
         break;
+    case SupportingWorkTypes.Audio:
+        <audio controls>
+            <source src="@Url.Action("ViewWorkFile", "Experience", new {id = Model.Id})" type="@Model.ContentType">
+            <embed height="50" width="100" src="@Url.Action("ViewWorkFile", "Experience", new {id = Model.Id})">
+        </audio>
+        break;
 }
