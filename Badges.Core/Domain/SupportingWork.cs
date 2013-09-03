@@ -25,7 +25,7 @@ namespace Badges.Core.Domain
         [Required]
         public virtual Experience Experience { get; set; }
 
-        public virtual string GetEmbedCode()
+        public virtual string GetEmbedUrl()
         {
             if (string.IsNullOrWhiteSpace(Url))
             {
@@ -35,11 +35,17 @@ namespace Badges.Core.Domain
             if (Url.Contains("youtu.be") || Url.Contains("youtube.com"))
             {
                 //Url is either /watch?v=[code] or /[code] 
-                return
-                    Url.Substring(Url.Contains("watch?")
-                                      ? Url.LastIndexOf("v=", System.StringComparison.Ordinal) + 2
-                                      : Url.LastIndexOf("/", System.StringComparison.Ordinal) + 1
-                        );
+                return "//www.youtube.com/embed/" +
+                       Url.Substring(Url.Contains("watch?")
+                                         ? Url.LastIndexOf("v=", System.StringComparison.Ordinal) + 2
+                                         : Url.LastIndexOf("/", System.StringComparison.Ordinal) + 1
+                           );
+            }
+
+            if (Url.Contains("vimeo.com"))
+            {
+                return "//player.vimeo.com/video/" +
+                       Url.Substring(Url.LastIndexOf("/", System.StringComparison.Ordinal) + 1);
             }
 
             return string.Empty; //TODO: include vimeo

@@ -19,6 +19,10 @@
         </blockquote>
         break;
     case SupportingWorkTypes.Video:
-        <iframe width="560" height="315" src="//www.youtube.com/embed/@Model.GetEmbedCode()" frameborder="0" allowfullscreen></iframe>
+        var embedUrl = Model.GetEmbedUrl();
+        if (!string.IsNullOrWhiteSpace(embedUrl))
+        {
+            <iframe src="@Model.GetEmbedUrl()" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+        }
         break;
 }
