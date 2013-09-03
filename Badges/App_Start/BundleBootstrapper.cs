@@ -42,6 +42,13 @@ namespace Badges.App_Start
             bundles.Add(new StyleBundle(string.Format("~/Content/DataTables-{0}/media/css/dataTables", dataTablesVersion))
                             .Include(string.Format("~/Content/DataTables-{0}/media/css/jquery.dataTables.css", dataTablesVersion))
                             .Include(string.Format("~/Content/DataTables-{0}/media/css/datatables-bootstrap.css", dataTablesVersion)));
+
+            ConfigurePageBundles(bundles);
+        }
+
+        private static void ConfigurePageBundles(BundleCollection bundles)
+        {
+            bundles.Add(new ScriptBundle("~/bundles/studentexperience").Include("~/Scripts/public/studentexperience.js"));
         }
     }
 }
