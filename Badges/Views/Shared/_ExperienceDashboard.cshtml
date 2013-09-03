@@ -22,23 +22,41 @@
                 </div>
             </fieldset>
         </div>
-    </div>
-    <div class="col-md-4">
-        <div class="well well-sm">
-            asdsad
+        <div class="row">
+            @foreach (var work in @Model.SupportingWorks)
+            {
+                <div>
+                    <div class="col-md-3">
+                        <div class="well well-sm">
+                            <p>@work.Description</p>
+                            <img src="@Url.Action("ViewWork", new { id = work.Id })" class="img-thumbnail" />
+                        </div>
+                    </div>
+                </div>   
+            }
         </div>
     </div>
-</div>
-<div class="row">
-    @foreach (var work in @Model.SupportingWorks)
+    @if (Model.Feedback.Any())
     {
-        <div>
-            <div class="col-md-3">
-                <div class="well well-sm">
-                    <p>@work.Description</p>
-                    <img src="@Url.Action("ViewWork", new { id = work.Id })" class="img-thumbnail" />
+        <div class="col-md-4">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Comments</h3>
                 </div>
+                @*<div class="panel-body">Panel content</div>*@
+                <ul class="list-group">
+                    @foreach (var feedback in Model.Feedback)
+                    {
+                        <li class="list-group-item">
+                            <blockquote>
+                                <p>@feedback.Response</p>
+                                <small>@string.Format("{0} on {1:d}", feedback.Instructor.DisplayName, feedback.ResponseDate)
+                                </small>
+                            </blockquote>
+                        </li>
+                    }
+                </ul>
             </div>
-        </div>   
+        </div>
     }
 </div>
