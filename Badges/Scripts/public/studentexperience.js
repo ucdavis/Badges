@@ -2,9 +2,12 @@
     "use strict";
 
     var workFields = {
+        "text": ["notes"],
         "photo": ["url", "file"],
+        "link": ["url"],
         "video": ["url"],
-        "text": ["notes"]
+        "audio": ["file"],
+        "file": ["file"]
     };
 
     var options = {};
@@ -25,6 +28,7 @@
             }
 
             $("#work-type").val(worktype);
+            $("#work-helptext").html(this.getAttribute("data-helptext"));
         });
     };
 

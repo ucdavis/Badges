@@ -56,7 +56,10 @@ namespace Badges.Core.Domain
     {
         public const string Text = "text"; 
         public const string Photo = "photo";
+        public const string Link = "link";
         public const string Video = "video";
+        public const string Audio = "audio";
+        public const string File = "file";
     }
 
     public class SupportingWorkMap : ClassMap<SupportingWork>

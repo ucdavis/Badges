@@ -17,21 +17,40 @@
         <div class="collapse navbar-collapse">
             <ul id="add-work" class="nav navbar-nav btn-toolbar">
                 <li>
-                    <a href="#supporting-work" data-work="text" data-toggle="modal" class="btn btn-default">
+                    <a href="#supporting-work" data-work="text" data-helptext="Enter some text related to your experience" data-toggle="modal" class="btn btn-default">
                         <i class="icon-font icon-2x"></i>
                         <span>Text</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#supporting-work" data-work="photo" data-toggle="modal" class="btn btn-default">
+                    <a href="#supporting-work" data-work="photo" data-helptext="Please choose a URL to an image OR upload your own image" data-toggle="modal" class="btn btn-default">
                         <i class="icon-camera icon-2x"></i>
                         <span>Photo</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#supporting-work" data-work="video" data-toggle="modal" class="btn btn-default">
+                    <a href="#supporting-work" data-work="link" data-helptext="Add a link related to this experience" data-toggle="modal" class="btn btn-default">
+                        <i class="icon-link icon-2x"></i>
+                        <span>Link</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#supporting-work" data-work="video" data-helptext="Youtube and Vimeo are supported" data-toggle="modal" class="btn btn-default">
                         <i class="icon-facetime-video icon-2x"></i>
                         <span>Video</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#supporting-work" data-work="audio" data-helptext="Upload an audio file related to this experience" data-toggle="modal" class="btn btn-default">
+                        <i class="icon-music icon-2x"></i>
+                        <span>Audio</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#supporting-work" data-work="file" data-helptext="Upload a file related to your experience. If it is a photo, video, or audio file, please use those buttons instead." 
+                        data-toggle="modal" class="btn btn-default">
+                        <i class="icon-file icon-2x"></i>
+                        <span>File</span>
                     </a>
                 </li>
             </ul>
@@ -137,6 +156,7 @@
                     @Html.AntiForgeryToken()
                     <input type="hidden" id="work-type" name="type" value="photo"/>
                     <fieldset id="supporting-work-fields">
+                        <p id="work-helptext" class="well"></p>
                         <div id="work-description" class="form-group">
                             <label>Please enter a short description of this work</label>
                             <input type="text" name="description" class="form-control" placeholder="Work Description" maxlength="140" data-val="true" data-val-required="Work Description Is Required"></input>
@@ -147,7 +167,7 @@
                             <input type="text" name="url" class="form-control" placeholder="Enter Url"/>
                         </div>
                         <div id="work-file" class="form-group work-optional">
-                            <label>Upload File (if you don't have a URL)</label>
+                            <label>Upload File</label>
                             <input type="file" name="workFile" class="form-control" />
                         </div>
                         <div id="work-notes" class="form-group work-optional">
