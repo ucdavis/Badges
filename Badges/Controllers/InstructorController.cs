@@ -20,6 +20,9 @@ namespace Badges.Controllers
 
         public ActionResult Index()
         {
+            ViewBag.NotificationCount = RepositoryFactory.FeedbackRequestRepository.Queryable.Count(
+                x => x.Instructor.Identifier == CurrentUser.Identity.Name && x.ResponseDate == null);
+
             return View();
         }
 
