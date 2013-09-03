@@ -4,10 +4,10 @@
 {
     if (string.IsNullOrWhiteSpace(Model.Url))
     {
-        <img src="@Url.Action("ViewWork", new {id = Model.Id})" class="img-thumbnail" />
+        <img src="@Url.Action("ViewWorkFile", "Experience", new {id = Model.Id})" alt="@Model.Description" class="img-thumbnail" />
     }
     else
     {
-        <img src="@Model.Url" class="img-thumbnail" />
+        <img src="@Model.Url" alt="@Model.Description" class="img-thumbnail" />
     }
 }

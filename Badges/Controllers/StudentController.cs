@@ -254,25 +254,6 @@ namespace Badges.Controllers
             return RedirectToAction("ViewExperience", "Student", new {id});
         }
 
-        /// <summary>
-        /// Allows student to view their work, for now just pictures
-        /// TODO: allow more than just pictures
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public ActionResult ViewWork(Guid id)
-        {
-            var work = RepositoryFactory.SupportingWorkRepository.Queryable.SingleOrDefault(
-                x => x.Id == id && x.Experience.Creator.Identifier == CurrentUser.Identity.Name);
-
-            if (work == null)
-            {
-                return new HttpNotFoundResult();
-            }
-
-            return File(work.Content, work.ContentType);
-        }
-
         private ExperienceEditModel GetEditModel(Experience experience)
         {
             return new ExperienceEditModel
