@@ -15,7 +15,7 @@
         break;
     case SupportingWorkTypes.Text:
         <blockquote>
-            <object>@Model.Notes</object>
+            <object>@(Model.Notes.Length > 256 ? Model.Notes.Substring(250) + "..." : Model.Notes)</object>
         </blockquote>
         break;
     case SupportingWorkTypes.Video:
@@ -31,7 +31,7 @@
         </a>
         break;
     case SupportingWorkTypes.File:
-        <a href="@Url.Action("ViewWorkFile", "Experience", new {id = Model.Id})">View File</a>
+        <a href="@Url.Action("ViewWorkFile", "Experience", new {id = Model.Id})">View @Model.Name</a>
         break;
     case SupportingWorkTypes.Audio:
         <audio controls>

@@ -75,7 +75,7 @@ namespace Badges.Core.Domain
             Map(x => x.Content).CustomType("BinaryBlob");
 
             Map(x => x.Url);
-            Map(x => x.Notes);
+            Map(x => x.Notes).StringMaxLength();
 
             Map(x => x.Type);
 

@@ -72,6 +72,7 @@
     <Compile Include="Domain\ExperienceType.cs" />
     <Compile Include="Domain\FeedbackRequest.cs" />
     <Compile Include="Domain\Instructor.cs" />
+    <Compile Include="MappingExtensions.cs" />
     <Compile Include="Domain\Organization.cs" />
     <Compile Include="Domain\Outcome.cs" />
     <Compile Include="Domain\Profile.cs" />
