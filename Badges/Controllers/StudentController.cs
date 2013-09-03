@@ -157,6 +157,7 @@ namespace Badges.Controllers
                 {
                     Experience = experience,
                     Description = model.Description,
+                    Notes = model.Notes,
                     Type = model.Type
                 };
 

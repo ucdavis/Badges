@@ -17,7 +17,7 @@
         <div class="collapse navbar-collapse">
             <ul id="add-work" class="nav navbar-nav btn-toolbar">
                 <li>
-                    <a href="#" class="btn btn-default">
+                    <a href="#supporting-work" data-work="text" data-toggle="modal" class="btn btn-default">
                         <i class="icon-font icon-2x"></i>
                         <span>Text</span>
                     </a>
@@ -29,7 +29,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="btn btn-default">
+                    <a href="#supporting-work" data-work="video" data-toggle="modal" class="btn btn-default">
                         <i class="icon-facetime-video icon-2x"></i>
                         <span>Video</span>
                     </a>
@@ -136,22 +136,21 @@
                 <div class="modal-body">
                     @Html.AntiForgeryToken()
                     <input type="hidden" id="work-type" name="type" value="photo"/>
-                    <fieldset>
+                    <fieldset id="supporting-work-fields">
                         <div id="work-description" class="form-group">
                             <label>Please enter a short description of this work</label>
                             <input type="text" name="description" class="form-control" placeholder="Work Description" maxlength="140" data-val="true" data-val-required="Work Description Is Required"></input>
                             <span class="field-validation-valid" data-valmsg-for="description" data-valmsg-replace="true"></span>
                         </div>
-                        <div id="work-url" class="form-group">
+                        <div id="work-url" class="form-group work-optional">
                             <label>Enter URL</label>
                             <input type="text" name="url" class="form-control" placeholder="Enter Url"/>
                         </div>
-                        OR
-                        <div id="work-file" class="form-group">
-                            <label>Upload File</label>
+                        <div id="work-file" class="form-group work-optional">
+                            <label>Upload File (if you don't have a URL)</label>
                             <input type="file" name="workFile" class="form-control" />
                         </div>
-                        <div id="work-notes" class="form-group">
+                        <div id="work-notes" class="form-group work-optional">
                             <label>Notes</label>
                             <textarea name="notes" class="form-control"></textarea>
                         </div>

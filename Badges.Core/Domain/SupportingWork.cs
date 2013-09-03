@@ -28,7 +28,9 @@ namespace Badges.Core.Domain
 
     public static class SupportingWorkTypes
     {
-        public static string Photo = "photo";
+        public const string Text = "text"; 
+        public const string Photo = "photo";
+        public const string Video = "video";
     }
 
     public class SupportingWorkMap : ClassMap<SupportingWork>

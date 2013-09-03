@@ -1,13 +1,21 @@
-﻿@model Badges.Core.Domain.SupportingWork
+﻿@using Badges.Core.Domain
+@model SupportingWork
 
-@if (Model.Type == Badges.Core.Domain.SupportingWorkTypes.Photo)
+@switch (Model.Type)
 {
-    if (string.IsNullOrWhiteSpace(Model.Url))
-    {
-        <img src="@Url.Action("ViewWorkFile", "Experience", new {id = Model.Id})" alt="@Model.Description" class="img-thumbnail" />
-    }
-    else
-    {
-        <img src="@Model.Url" alt="@Model.Description" class="img-thumbnail" />
-    }
+    case SupportingWorkTypes.Photo:
+        if (string.IsNullOrWhiteSpace(Model.Url))
+        {
+            <img src="@Url.Action("ViewWorkFile", "Experience", new {id = Model.Id})" alt="@Model.Description" class="img-thumbnail" />
+        }
+        else
+        {
+            <img src="@Model.Url" alt="@Model.Description" class="img-thumbnail" />
+        }
+        break;
+    case SupportingWorkTypes.Text:
+        <blockquote>
+            <object>@Model.Notes</object>
+        </blockquote>
+        break;
 }
