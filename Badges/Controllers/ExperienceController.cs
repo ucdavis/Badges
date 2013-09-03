@@ -29,8 +29,8 @@ namespace Badges.Controllers
             {
                 return new HttpNotFoundResult();
             }
-
-            return File(work.Content, work.ContentType);
+            
+            return File(work.Content, work.ContentType, work.Name);
         }
 
     }

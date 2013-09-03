@@ -25,4 +25,12 @@
             <iframe src="@Model.GetEmbedUrl()" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
         }
         break;
+    case SupportingWorkTypes.Link:
+        <a href="@Model.Url" target="_blank">
+            @Model.Url <i class="icon-external-link pull-right"></i>
+        </a>
+        break;
+    case SupportingWorkTypes.File:
+        <a href="@Url.Action("ViewWorkFile", "Experience", new {id = Model.Id})">View File</a>
+        break;
 }
