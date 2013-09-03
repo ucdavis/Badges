@@ -68,12 +68,18 @@
             {
                 <div class="modal-body">
                     @Html.AntiForgeryToken()
+                    <input type="hidden" id="work-type" name="type" value="photo"/>
                     <fieldset>
                         <div class="form-group">
-                            <label>Please enter a description of this work</label>
-                            <textarea name="Description" class="form-control" placeholder="Work Description" data-val="true" data-val-required="Work Description Is Required"></textarea>
+                            <label>Please enter a short description of this work</label>
+                            <input type="text" name="description" class="form-control" placeholder="Work Description" maxlength="140" data-val="true" data-val-required="Work Description Is Required"></input>
                             <span class="field-validation-valid" data-valmsg-for="Description" data-valmsg-replace="true"></span>
                         </div>
+                        <div class="form-group">
+                            <label>Enter URL</label>
+                            <input type="text" name="url" class="form-control" placeholder="Enter Url"/>
+                        </div>
+                        OR
                         <div class="form-group">
                             <label>Upload File</label>
                             <input type="file" name="workFile" class="form-control" />

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Badges.Core.Repositories;
@@ -137,12 +138,11 @@ namespace Badges.Controllers
         /// TODO: allow adding links as well as files
         /// TODO: maybe figure out a better place to store files
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="description">description of work</param>
-        /// <param name="workFile">file given along with work</param>
+        /// <param name="id">Experience to link to this work</param>
+        /// <param name="model">Information about the supporting work, links/files/etc</param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult AddSupportingWork(Guid id, string description, HttpPostedFileBase workFile)
+        public ActionResult AddSupportingWork(Guid id, SupportingWorkModel model)
         {
             var experience =
                 RepositoryFactory.ExperienceRepository.Queryable.SingleOrDefault(
@@ -153,11 +153,29 @@ namespace Badges.Controllers
                 return new HttpNotFoundResult("Could not find the requested experience");
             }
 
-            var work = new SupportingWork { Experience = experience, Description = description, Name = workFile.FileName, ContentType = workFile.ContentType};
+            var work = new SupportingWork
+                {
+                    Experience = experience,
+                    Description = model.Description,
+                    Type = model.Type
+                };
 
-            using (var binaryReader = new BinaryReader(workFile.InputStream))
+            if (string.IsNullOrWhiteSpace(model.Url))
             {
-                work.Content = binaryReader.ReadBytes((int) workFile.InputStream.Length);
+                if (model.WorkFile != null)
+                {
+                    work.Name = model.WorkFile.FileName;
+                    work.ContentType = model.WorkFile.ContentType;
+
+                    using (var binaryReader = new BinaryReader(model.WorkFile.InputStream))
+                    {
+                        work.Content = binaryReader.ReadBytes((int) model.WorkFile.InputStream.Length);
+                    }
+                }
+            }
+            else
+            {
+                work.Url = model.Url;
             }
 
             experience.AddSupportingWork(work);

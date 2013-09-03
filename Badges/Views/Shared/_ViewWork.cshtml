@@ -1,0 +1,13 @@
+﻿@model Badges.Core.Domain.SupportingWork
+
+@if (Model.Type == Badges.Core.Domain.SupportingWorkTypes.Photo)
+{
+    if (string.IsNullOrWhiteSpace(Model.Url))
+    {
+        <img src="@Url.Action("ViewWork", new {id = Model.Id})" class="img-thumbnail" />
+    }
+    else
+    {
+        <img src="@Model.Url" class="img-thumbnail" />
+    }
+}

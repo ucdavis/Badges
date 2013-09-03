@@ -22,17 +22,15 @@
                 </div>
             </fieldset>
         </div>
-        <div class="row">
+        <div>
             @foreach (var work in @Model.SupportingWorks)
             {
-                <div>
-                    <div class="col-md-3">
-                        <div class="well well-sm">
-                            <p>@work.Description</p>
-                            <img src="@Url.Action("ViewWork", new { id = work.Id })" class="img-thumbnail" />
-                        </div>
+                <div class="col-md-3">
+                    <div class="well well-sm">
+                        <p>@work.Description</p>
+                        @Html.Partial("_ViewWork", work)
                     </div>
-                </div>   
+                </div>
             }
         </div>
     </div>

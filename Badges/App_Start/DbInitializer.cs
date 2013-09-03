@@ -15,7 +15,6 @@ namespace Badges.App_Start
         /// </summary>
         public static void PreStart()
         {
-
             return;
             var config =
                 Fluently.Configure()
