@@ -125,7 +125,8 @@ namespace Badges.Controllers
                     SupportingWorks = experience.SupportingWorks.ToList(),
                     ExperienceOutcomes = experience.ExperienceOutcomes.ToList(),
                     Instructors = new MultiSelectList(RepositoryFactory.InstructorRepository.GetAll(), "Id", "DisplayName"),
-                    Outcomes = new SelectList(RepositoryFactory.OutcomeRepository.GetAll(), "Id", "Name")
+                    Outcomes = new SelectList(RepositoryFactory.OutcomeRepository.GetAll(), "Id", "Name"),
+                    Feedback = experience.FeedbackRequests.Where(x=>x.ResponseDate != null).ToList()
                 };
 
             return View(model);

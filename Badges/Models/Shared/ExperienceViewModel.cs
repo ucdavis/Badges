@@ -6,6 +6,13 @@ namespace Badges.Models.Shared
 {
     public class ExperienceViewModel
     {
+        public ExperienceViewModel()
+        {
+            SupportingWorks = new List<SupportingWork>();
+            ExperienceOutcomes = new List<ExperienceOutcome>();
+            Feedback = new List<FeedbackRequest>();
+        }
+
         public Experience Experience { get; set; }
 
         public SelectList Outcomes { get; set; }
@@ -17,5 +24,7 @@ namespace Badges.Models.Shared
         public MultiSelectList Instructors { get; set; }
 
         public FeedbackRequest Notification { get; set; }
+
+        public List<FeedbackRequest> Feedback { get; set; }
     }
 }
