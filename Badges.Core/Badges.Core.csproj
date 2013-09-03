@@ -72,10 +72,12 @@
     <Compile Include="Domain\ExperienceType.cs" />
     <Compile Include="Domain\FeedbackRequest.cs" />
     <Compile Include="Domain\Instructor.cs" />
+    <Compile Include="Domain\Organization.cs" />
     <Compile Include="Domain\Outcome.cs" />
     <Compile Include="Domain\Profile.cs" />
     <Compile Include="Domain\Role.cs" />
     <Compile Include="Domain\SupportingWork.cs" />
+    <Compile Include="Domain\Title.cs" />
     <Compile Include="Domain\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\RepositoryFactory.cs" />

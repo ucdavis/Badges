@@ -3,6 +3,7 @@ using FluentNHibernate.Cfg;
 using Badges.App_Start;
 using NHibernate.Tool.hbm2ddl;
 using System;
+using NHibernate;
 
 [assembly: WebActivator.PreApplicationStartMethod(typeof(DbInitializer), "PreStart")]
 namespace Badges.App_Start
@@ -34,6 +35,8 @@ namespace Badges.App_Start
             {
                 using (var tx = session.BeginTransaction())
                 {
+                    PopulateLookups(session);
+   
                     var studentRole = new Role("S") {Name = "Student"};
                     var instructorRole = new Role("I") {Name = "Instructor"};
                     session.SaveOrUpdate(studentRole);
@@ -92,11 +95,21 @@ namespace Badges.App_Start
                     experience.AddInstructor(instructor2);
 
                     session.SaveOrUpdate(experience);
-
+                    
                     tx.Commit();
                 }
                    
             }
+        }
+
+        private static void PopulateLookups(ISession session)
+        {
+            session.SaveOrUpdate(new Title {Name = "MATH 128"});
+            session.SaveOrUpdate(new Title {Name = "MATH 127"});
+            session.SaveOrUpdate(new Title {Name = "MATH 101"});
+
+            session.SaveOrUpdate(new Organization {Name = "University of California, Davis"});
+            session.SaveOrUpdate(new Organization {Name = "Davis Community Gardens"});
         }
     }
 }
