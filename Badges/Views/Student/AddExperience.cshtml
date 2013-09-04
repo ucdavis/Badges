@@ -16,12 +16,14 @@
 
 @section AdditionalStyles
 {
+    @Styles.Render("~/Content/datepicker")
     @Styles.Render("~/Content/typeahead")
 }
 
 @section AdditionalScripts
 {
     @Scripts.Render("~/bundles/typeahead")
+    @Scripts.Render("~/bundles/datepicker")
     <script>
         $(function() {
             $("#Experience_Name").typeahead({
@@ -35,6 +37,8 @@
                 prefetch: '@Url.Action("Organizations", "Json")',
                 limit: 10
             });
+
+            $(".datepicker").datepicker();
         });
     </script>
 }
