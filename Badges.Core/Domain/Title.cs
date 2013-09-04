@@ -1,9 +1,12 @@
-﻿using FluentNHibernate.Mapping;
+﻿using System.ComponentModel.DataAnnotations;
+using FluentNHibernate.Mapping;
 
 namespace Badges.Core.Domain
 {
     public class Title : DomainObjectGuid
     {
+        [Required]
+        [StringLength(256)]
         public virtual string Name { get; set; }    
     }
 
@@ -13,7 +16,7 @@ namespace Badges.Core.Domain
         {
             Id(x => x.Id).GeneratedBy.GuidComb();
 
-            Map(x => x.Name);
+            Map(x => x.Name).Not.Nullable().Length(256);
         }
     }
 }

@@ -13,7 +13,11 @@
                 <li id="nav-home">@Html.ActionLink("Home", "Index", "Home")</li>
                 @if (User.Identity.IsAuthenticated && User.IsInRole(Badges.Core.Domain.RoleNames.Student))
                 {
-                    <li id="nav-about">@Html.ActionLink("Portfolio", "Portfolio", "Student")</li>
+                    <li id="nav-portfolio">@Html.ActionLink("Portfolio", "Portfolio", "Student")</li>
+                }
+                @if (User.Identity.IsAuthenticated && User.IsInRole(Badges.Core.Domain.RoleNames.Administrator))
+                {
+                    <li id="nav-admin">@Html.ActionLink("Admin", "Index","Landing")</li>
                 }
             </ul>
             @if (User.Identity.IsAuthenticated)

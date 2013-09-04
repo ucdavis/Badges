@@ -1,0 +1,33 @@
+﻿@model Badges.Areas.Admin.Controllers.TitleViewModel
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create Title</h2>
+
+
+@section SubNav
+{
+	<li>@Html.ActionLink("Back to List", "Index")</li>
+}
+
+<form method="POST" class="form-horizontal well-small">
+	@Html.AntiForgeryToken()
+	@Html.ValidationSummary(true)
+
+	<fieldset>
+        <div class="form-group">
+		    @Html.LabelFor(model => model.Title.Name)
+			@Html.TextBoxFor(model => model.Title.Name, new { @class = "form-control"})
+			@Html.ValidationMessageFor(model => model.Title.Name)
+            
+        </div>
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Save changes</button>
+            @Html.ActionLink("Cancel", "Index", null, new {@class="btn btn-link"})
+        </div>
+    </fieldset>
+</form>
+
+
