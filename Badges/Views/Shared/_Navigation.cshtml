@@ -17,7 +17,7 @@
                 }
                 @if (User.Identity.IsAuthenticated && User.IsInRole(Badges.Core.Domain.RoleNames.Administrator))
                 {
-                    <li id="nav-admin">@Html.ActionLink("Admin", "Index","Landing")</li>
+                    <li id="nav-admin">@Html.ActionLink("Admin", "Index","Landing", new { area = "admin"}, null)</li>
                 }
             </ul>
             @if (User.Identity.IsAuthenticated)
