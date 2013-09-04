@@ -11,7 +11,10 @@
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-left">
                 <li id="nav-home">@Html.ActionLink("Home", "Index", "Home")</li>
-                <li id="nav-about">@Html.ActionLink("Portfolio", "Portfolio", "Student")</li>
+                @if (User.Identity.IsAuthenticated && User.IsInRole(Badges.Core.Domain.RoleNames.Student))
+                {
+                    <li id="nav-about">@Html.ActionLink("Portfolio", "Portfolio", "Student")</li>
+                }
             </ul>
             @if (User.Identity.IsAuthenticated)
             {
