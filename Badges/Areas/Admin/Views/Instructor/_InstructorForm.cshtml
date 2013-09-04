@@ -1,0 +1,41 @@
+﻿@model Badges.Areas.Admin.Controllers.InstructorViewModel
+
+<form method="POST" class="form-horizontal well-small">
+	@Html.AntiForgeryToken()
+	@Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Instructor</legend>
+	    <div class="form-group">
+	        @Html.LabelFor(x=>x.Instructor.FirstName)
+	        @Html.EditorFor(model => model.Instructor.FirstName)
+	        @Html.ValidationMessageFor(model => model.Instructor.FirstName)
+	    </div>
+	    <div class="form-group">
+	        @Html.LabelFor(x=>x.Instructor.LastName, new { @class = "required"})
+	        @Html.EditorFor(model => model.Instructor.LastName)
+	        @Html.ValidationMessageFor(model => model.Instructor.LastName)
+	    </div>
+	    <div class="form-group">
+	        @Html.LabelFor(x=>x.Instructor.Identifier, new { @class = "required"})
+	        @if (String.Equals((string) Context.Request.RequestContext.RouteData.Values["Action"], "Edit", StringComparison.CurrentCultureIgnoreCase))
+	        {
+                @Html.HiddenFor(x=>x.Instructor.Identifier)
+	            @Html.TextBox("Identifier", Model.Instructor.Identifier, new { @class = "form-control", disabled = "disabled" })
+	        }
+	        else
+	        {
+	            @Html.EditorFor(model => model.Instructor.Identifier)
+                @Html.ValidationMessageFor(model => model.Instructor.Identifier)
+	        }
+	    </div>
+	    <div class="form-group">
+	        @Html.LabelFor(x=>x.Instructor.Email)
+	        @Html.EditorFor(model => model.Instructor.Email)
+	        @Html.ValidationMessageFor(model => model.Instructor.Email)
+	    </div>
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Save</button>
+            @Html.ActionLink("Cancel", "Index", null, new {@class="btn btn-link"})
+        </div>
+    </fieldset>
+</form>

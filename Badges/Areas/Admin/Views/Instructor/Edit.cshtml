@@ -1,0 +1,14 @@
+﻿@model Badges.Areas.Admin.Controllers.InstructorViewModel
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+@section SubNav
+{
+	<li>@Html.ActionLink("Back to List", "Index")</li>
+}
+
+<h2>Edit</h2>
+
+@Html.Partial("_InstructorForm")
