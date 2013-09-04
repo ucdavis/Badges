@@ -6,6 +6,7 @@ using Badges.Core.Domain;
 using Badges.Core.Repositories;
 using UCDArch.Core.PersistanceSupport;
 using UCDArch.Core.Utils;
+using System.Web.Security;
 
 namespace Badges.Areas.Admin.Controllers
 {
@@ -56,6 +57,25 @@ namespace Badges.Areas.Admin.Controllers
 
             if (ModelState.IsValid)
             {
+                //if the instructor doesn't exist as a user account, create them an account and profile
+                var existingUser =
+                    RepositoryFactory.UserRepository.Queryable.SingleOrDefault(
+                        x => x.Identifier == instructorToCreate.Identifier);
+
+                if (existingUser == null)
+                {
+                    var profile = new Profile
+                        {
+                            FirstName = instructorToCreate.FirstName,
+                            LastName = instructorToCreate.LastName,
+                            Email = instructorToCreate.Identifier
+                        };
+                    var user = new User {Identifier = instructorToCreate.Identifier};
+                    user.AssociateProfile(profile);
+                    user.Roles.Add(RepositoryFactory.RoleRepository.GetById(RoleNames.Instructor));
+                    RepositoryFactory.UserRepository.EnsurePersistent(user);
+                }
+
                 RepositoryFactory.InstructorRepository.EnsurePersistent(instructorToCreate);
 
                 Message = "Instructor Created Successfully";
