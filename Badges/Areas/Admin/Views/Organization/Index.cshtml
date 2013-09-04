@@ -1,10 +1,11 @@
-﻿@model IEnumerable<Badges.Core.Domain.Title>
+﻿@model IEnumerable<Badges.Core.Domain.Organization>
 
 @{
-	ViewBag.Title = "Titles";
+	ViewBag.Title = "Index";
 }
 
 <h2>Index</h2>
+
 
 @section SubNav
 {
@@ -28,14 +29,14 @@
 			<td>
 				@item.Name
 			</td>
-		    <td>
-		        @using (Html.BeginForm("Delete", "Title"))
+			<td>
+		        @using (Html.BeginForm("Delete", "Organization"))
 		        {
                     @Html.AntiForgeryToken()
                     @Html.Hidden("id", item.Id)
                     <button type="submit" class="btn btn-danger"><i class="icon-remove"></i></button>
 		        }
-		    </td>
+			</td>
 		</tr>
 }
 	</tbody>
