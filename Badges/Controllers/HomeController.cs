@@ -45,17 +45,17 @@ namespace Badges.Controllers
 
             var roles = user.Roles.ToList();
 
-            if (roles.Any(x => x.Id == Roles.Student))
+            if (roles.Any(x => x.Id == RoleNames.Student))
             {
                 return RedirectToAction("Index", "Student");
             }
             
-            if (roles.Any(x=>x.Id == Roles.Instructor))
+            if (roles.Any(x=>x.Id == RoleNames.Instructor))
             {
                 return RedirectToAction("Index", "Instructor");
             }
             
-            if (roles.Any(x=>x.Id == Roles.Administrator))
+            if (roles.Any(x=>x.Id == RoleNames.Administrator))
             {
                 //redirect to admin
             }

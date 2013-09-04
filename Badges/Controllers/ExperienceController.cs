@@ -5,6 +5,7 @@ using Badges.Core.Repositories;
 
 namespace Badges.Controllers
 {
+    [Authorize]
     public class ExperienceController : ApplicationController
     {
         public ExperienceController(IRepositoryFactory repositoryFactory) : base(repositoryFactory)

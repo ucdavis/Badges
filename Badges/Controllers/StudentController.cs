@@ -14,7 +14,7 @@ using UCDArch.Core.PersistanceSupport;
 
 namespace Badges.Controllers
 { 
-    [Authorize] //TODO: Implement roles, restrict to student role
+    [Authorize(Roles=RoleNames.Student)]
     public class StudentController : ApplicationController
     {
         private readonly IUserService _userService;

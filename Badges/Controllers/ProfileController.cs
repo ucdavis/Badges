@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using Badges.Core.Domain;
 using Badges.Core.Repositories;
 using Badges.Models.Profile;
@@ -56,7 +57,10 @@ namespace Badges.Controllers
             var user = new User {Identifier = CurrentUser.Identity.Name, Profile = profile};
             profile.User = user;
 
-            user.Roles.Add(RepositoryFactory.RoleRepository.GetById(roles));
+            //TODO: A bit hacky, it'd be good to manage add/remove as one action
+            Roles.RemoveUsersFromRoles(new string[] {CurrentUser.Identity.Name},
+                                       new string[] {RoleNames.Student, RoleNames.Instructor});
+            Roles.AddUserToRole(CurrentUser.Identity.Name, roles);
 
             RepositoryFactory.UserRepository.EnsurePersistent(user);
 

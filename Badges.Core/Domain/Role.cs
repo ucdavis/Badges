@@ -20,11 +20,11 @@ namespace Badges.Core.Domain
         public virtual string Name { get; set; }
     }
 
-    public static class Roles
+    public static class RoleNames
     {
-        public static string Student = "S";
-        public static string Instructor = "I";
-        public static string Administrator = "A";
+        public const string Student = "S";
+        public const string Instructor = "I";
+        public const string Administrator = "A";
     }
 
     public class RoleMap : ClassMap<Role>
