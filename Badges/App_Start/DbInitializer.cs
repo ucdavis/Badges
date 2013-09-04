@@ -36,8 +36,9 @@ namespace Badges.App_Start
                 {
                     PopulateLookups(session);
    
-                    var studentRole = new Role("S") {Name = "Student"};
-                    var instructorRole = new Role("I") {Name = "Instructor"};
+                    var studentRole = new Role(RoleNames.Student) {Name = "Student"};
+                    var instructorRole = new Role(RoleNames.Instructor) {Name = "Instructor"};
+                    var adminRole = new Role(RoleNames.Administrator) {Name = "Administrator"};
                     session.SaveOrUpdate(studentRole);
                     session.SaveOrUpdate(instructorRole);
 

@@ -186,8 +186,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\UCDArchBootstrapper.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="ComponentRegistrar.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
     <Compile Include="Controllers\ApplicationController.cs" />
     <Compile Include="Controllers\ExperienceController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -374,6 +376,9 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Areas\Admin\Views\Web.config" />
+    <Content Include="Areas\Admin\Views\Landing\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <None Include="Properties\PublishProfiles\badges.pubxml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
@@ -443,6 +448,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Areas\Admin\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
