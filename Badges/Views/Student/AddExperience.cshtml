@@ -13,3 +13,28 @@
 
     @Html.Partial("_ExperienceForm")
 }
+
+@section AdditionalStyles
+{
+    @Styles.Render("~/Content/typeahead")
+}
+
+@section AdditionalScripts
+{
+    @Scripts.Render("~/bundles/typeahead")
+    <script>
+        $(function() {
+            $("#Experience_Name").typeahead({
+                name: 'countries',
+                local: ['test', '123', 'trying', 'tasty'],
+                limit: 10
+            });
+            
+            $("#Experience_Organization").typeahead({
+                name: 'orgs',
+                local: ['ucd', 'davis', 'uc davis', 'farmers'],
+                limit: 10
+            });
+        });
+    </script>
+}
