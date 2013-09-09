@@ -16,7 +16,7 @@
         <div class="col-lg-4">
             <div class="well">
                 <div class="thumbnail">
-                    <img src="@Url.Action("ViewProfileImage", "Profile", new { id = student.Profile.Id })" alt="Profile Picture" />
+                    @Html.Action("ViewProfileImage", "Profile", new { profileId = student.Profile.Id })
                     <div class="caption">
                         <h4>@student.Profile.DisplayName</h4>
                     </div>

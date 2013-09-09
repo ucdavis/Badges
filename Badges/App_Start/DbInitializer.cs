@@ -41,6 +41,7 @@ namespace Badges.App_Start
                     var adminRole = new Role(RoleNames.Administrator) {Name = "Administrator"};
                     session.SaveOrUpdate(studentRole);
                     session.SaveOrUpdate(instructorRole);
+                    session.SaveOrUpdate(adminRole);
 
                     var user = new User {Identifier = "postit"};
                     user.Profile = new Profile(user) {FirstName = "Scott", LastName = "Kirkland", Email = "srkirkland@ucdavis.edu"};

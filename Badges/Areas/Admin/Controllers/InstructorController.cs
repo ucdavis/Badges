@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 using System.Web.Mvc;
 using Badges.Controllers;
@@ -7,6 +8,7 @@ using Badges.Core.Repositories;
 using UCDArch.Core.PersistanceSupport;
 using UCDArch.Core.Utils;
 using System.Web.Security;
+using UCDArch.Testing.Fakes;
 
 namespace Badges.Areas.Admin.Controllers
 {
@@ -68,8 +70,11 @@ namespace Badges.Areas.Admin.Controllers
                         {
                             FirstName = instructorToCreate.FirstName,
                             LastName = instructorToCreate.LastName,
-                            Email = instructorToCreate.Identifier
+                            Email = instructorToCreate.Identifier,
+                            ContentType = "application/jpg",
+                            Image = System.IO.File.ReadAllBytes(Server.MapPath("~/Content/images/profile-default.jpg"))
                         };
+
                     var user = new User {Identifier = instructorToCreate.Identifier};
                     user.AssociateProfile(profile);
                     user.Roles.Add(RepositoryFactory.RoleRepository.GetById(RoleNames.Instructor));
