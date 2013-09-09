@@ -324,6 +324,7 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\images\debut_light.png" />
     <Content Include="Content\images\logo.png" />
+    <Content Include="Content\Jcrop.gif" />
     <Content Include="Content\jquery.Jcrop.css" />
     <Content Include="Content\jquery.Jcrop.min.css" />
     <Content Include="Content\typeahead-bootstrap.css" />

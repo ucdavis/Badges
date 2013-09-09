@@ -11,6 +11,7 @@ using Badges.Models.Profile;
 using Badges.Models.Shared;
 using SoundInTheory.DynamicImage.Fluent;
 using UCDArch.Testing.Fakes;
+using UCDArch.Web.Attributes;
 
 namespace Badges.Controllers
 {
@@ -27,14 +28,13 @@ namespace Badges.Controllers
         }
 
         [HttpPost]
-        [UCDArch.Web.Attributes.BypassAntiForgeryToken]
+        [BypassAntiForgeryToken]
         public ActionResult Crop(int x1, int x2, int y1, int y2, int w, int h)
         {
             var img = new CompositionBuilder()
-                //.WithLayer(LayerBuilder.RectangleShape.Width(w).Height(h))
                 .WithLayer(LayerBuilder.Image.SourceFile("~/Content/images/profile-default.jpg")
                                        .WithFilter(FilterBuilder.Crop.X(x1).Y(y1).To(w, h)));
-
+            
             return Content(img.Url);
         }
 
