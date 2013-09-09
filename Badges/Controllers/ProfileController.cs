@@ -8,6 +8,9 @@ using System.Web.Security;
 using Badges.Core.Domain;
 using Badges.Core.Repositories;
 using Badges.Models.Profile;
+using Badges.Models.Shared;
+using SoundInTheory.DynamicImage.Fluent;
+using UCDArch.Testing.Fakes;
 
 namespace Badges.Controllers
 {
@@ -44,14 +47,18 @@ namespace Badges.Controllers
                 RedirectToAction("Edit");
             }
 
-            if (image != null)
+            if (image == null)
             {
-                profile.ContentType = image.ContentType;
+                image = new FakeHttpPostedFileBase("default.jpg", "application/jpg",
+                                                   System.IO.File.ReadAllBytes(
+                                                       Server.MapPath("~/Content/images/profile-default.jpg")));
+            }
 
-                using (var binaryReader = new BinaryReader(image.InputStream))
-                {
-                    profile.Image = binaryReader.ReadBytes((int) image.InputStream.Length);
-                }
+            profile.ContentType = image.ContentType;
+
+            using (var binaryReader = new BinaryReader(image.InputStream))
+            {
+                profile.Image = binaryReader.ReadBytes((int) image.InputStream.Length);
             }
 
             var user = new User {Identifier = CurrentUser.Identity.Name, Profile = profile};
@@ -130,16 +137,16 @@ namespace Badges.Controllers
         /// <summary>
         /// View either your own profile image, or another user's if you pass their profile id
         /// </summary>
-        /// <param name="id">profileID, optional</param>
+        /// <param name="profileId">profileID, optional</param>
         /// <returns></returns>
-        public FileResult ViewProfileImage(Guid? id)
+        public ActionResult ViewProfileImage(Guid? profileId)
         {
             Profile profile;
 
-            if (id.HasValue)
+            if (profileId.HasValue)
             {
                 profile =
-                    RepositoryFactory.ProfileRepository.Queryable.SingleOrDefault(x => x.Id == id.Value);
+                    RepositoryFactory.ProfileRepository.Queryable.SingleOrDefault(x => x.Id == profileId.Value);
             }
             else
             {
@@ -154,7 +161,15 @@ namespace Badges.Controllers
                 return null;
             }
 
-            return File(profile.Image, profile.ContentType);
+            var model = new ImageModel {Alt = "Profile Image", Width = 120, Height = 120};
+
+            model.Url =
+                new CompositionBuilder().WithLayer(
+                    LayerBuilder.Image.SourceBytes(profile.Image)
+                                .WithFilter(FilterBuilder.Resize.To(model.Width, model.Height)))
+                                .Url;
+
+            return PartialView(model);
         }
     }
 }

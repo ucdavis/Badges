@@ -81,6 +81,9 @@ publish
 # NuGet Packages Directory
 packages
 
+#Dynamic Images
+[Dd]ynamic[Ii]mage
+
 # Windows Azure Build Output
 csx
 *.build.csdef
