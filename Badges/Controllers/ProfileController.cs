@@ -21,6 +21,23 @@ namespace Badges.Controllers
         {
         }
 
+        public ActionResult Crop()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [UCDArch.Web.Attributes.BypassAntiForgeryToken]
+        public ActionResult Crop(int x1, int x2, int y1, int y2, int w, int h)
+        {
+            var img = new CompositionBuilder()
+                //.WithLayer(LayerBuilder.RectangleShape.Width(w).Height(h))
+                .WithLayer(LayerBuilder.Image.SourceFile("~/Content/images/profile-default.jpg")
+                                       .WithFilter(FilterBuilder.Crop.X(x1).Y(y1).To(w, h)));
+
+            return Content(img.Url);
+        }
+
         public ActionResult Create()
         {
             if (RepositoryFactory.UserRepository.Queryable.Any(x => x.Identifier == CurrentUser.Identity.Name))
