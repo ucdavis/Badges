@@ -54,3 +54,18 @@
         </div>
     </div>
 }
+
+@section AdditionalScripts
+{
+    @Scripts.Render("~/bundles/isotope")
+
+    <script>
+        $(function() {            
+            $('#work-container').isotope({
+                // options
+                itemSelector: '.work-item',
+                layoutMode: 'masonry'
+            });
+        });
+    </script>
+}

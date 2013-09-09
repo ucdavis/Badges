@@ -31,6 +31,9 @@ namespace Badges.App_Start
             bundles.Add(new ScriptBundle("~/bundles/datepicker")
                             .Include("~/Scripts/bootstrap-datepicker.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/isotope")
+                            .Include("~/Scripts/jquery.isotope.js"));
+
             // Note: Including bootstrap responsive-- comment it out if you don't need responsive css
             //Also using custom theme build of bootstrap (bootstrap-custom).  Replace with bootstrap.css for default
             bundles.Add(new StyleBundle("~/Content/styles")
