@@ -42,6 +42,15 @@ namespace Badges.Controllers
             return View(experiences);
         }
 
+        public ActionResult Feedback()
+        {
+            var feedback =
+                RepositoryFactory.FeedbackRequestRepository.Queryable.Where(
+                    x => x.Experience.Creator.Identifier == CurrentUser.Identity.Name).Fetch(x => x.Experience);
+
+            return View(feedback.ToList());
+        }
+
         public ActionResult AddExperience()
         {
             var model = GetEditModel(new Experience {Start = DateTime.Now});

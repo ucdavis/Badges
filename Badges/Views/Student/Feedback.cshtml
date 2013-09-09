@@ -1,0 +1,55 @@
+﻿@model IEnumerable<Badges.Core.Domain.FeedbackRequest>
+
+@{
+	ViewBag.Title = "Feedback";
+}
+
+<h2>Feedback</h2>
+
+<table class="table table-striped table-hover">
+	<thead>
+		<tr>
+			<th></th>
+			<th>
+				Experience
+			</th>
+			<th>
+				Message
+			</th>
+			<th>
+				Created
+			</th>
+			<th>
+				Response
+			</th>
+			<th>
+				ResponseDate
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+@foreach (var item in Model) {
+		<tr>
+		    <td>
+		        <a href='@Url.Action("ViewExperience", new {id=item.Experience.Id})' class="btn" title="Details">View Experience</a>
+		    </td>
+		    <td>
+		        @item.Experience.Name
+		    </td>
+			<td>
+				@item.Message
+			</td>
+			<td>
+				@String.Format("{0:g}", item.Created)
+			</td>
+			<td>
+				@item.Response
+			</td>
+			<td>
+				@String.Format("{0:g}", item.ResponseDate)
+			</td>
+		</tr>
+}
+	</tbody>
+</table>
+

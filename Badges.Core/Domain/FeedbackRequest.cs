@@ -12,6 +12,7 @@ namespace Badges.Core.Domain
 
         public virtual string Message { get; set; }
         public virtual DateTime Created { get; set; }
+        public virtual DateTime? Viewed { get; set; }
 
         public virtual string Response { get; set; }
         public virtual DateTime? ResponseDate { get; set; }
@@ -27,7 +28,8 @@ namespace Badges.Core.Domain
             Id(x => x.Id).GeneratedBy.GuidComb();
 
             Map(x => x.Message);
-            Map(x => x.Created);
+            Map(x => x.Created).Not.Nullable();
+            Map(x => x.Viewed).Nullable();
 
             Map(x => x.Response);
             Map(x => x.ResponseDate);

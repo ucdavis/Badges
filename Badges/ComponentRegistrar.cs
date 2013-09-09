@@ -17,6 +17,7 @@ namespace Badges
 
             container.Register(Component.For<IUserService>().ImplementedBy<UserService>().Named("userService"));
 
+            container.Register(Component.For<IQueryExtensionProvider>().ImplementedBy<NHibernateQueryExtensionProvider>().Named("queryExtensions"));
             container.Register(Component.For<IValidator>().ImplementedBy<Validator>().Named("validator"));
             container.Register(Component.For<IDbContext>().ImplementedBy<DbContext>().Named("dbContext"));
         }
