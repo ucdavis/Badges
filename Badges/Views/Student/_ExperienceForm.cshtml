@@ -40,6 +40,7 @@
     <div class="form-group">
         @Html.LabelFor(x => x.Experience.Location)
         @Html.TextBoxFor(x => x.Experience.Location, new { @class="form-control", placeholder="Location"})
+        <div id="map-canvas" style="width:200px; height: 200px;"></div>
         @Html.ValidationMessageFor(x => x.Experience.Location)
     </div>
     <div class="form-group">

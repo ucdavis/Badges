@@ -53,8 +53,8 @@ namespace Badges.Controllers
 
         public ActionResult AddExperience()
         {
-            var model = GetEditModel(new Experience {Start = DateTime.Now});
-
+            var model = GetEditModel(new Experience {Start = DateTime.Now, Location = "Davis, CA"});
+            
             return View(model);
         }
 
