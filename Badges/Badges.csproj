@@ -214,6 +214,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Badge\BadgeAddModel.cs" />
     <Compile Include="Models\Profile\ProfileEditModel.cs" />
     <Compile Include="Models\Shared\Class1.cs" />
     <Compile Include="Models\Student\ExperienceEditModel.cs" />
@@ -419,7 +420,8 @@
     <Content Include="Areas\Admin\Views\Organization\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Instructor\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Instructor\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\Shared\EditorTemplates\String.cshtml" />
+    <Content Include="Scripts\public\badgecreate.js" />
+    <Content Include="Views\Shared\EditorTemplates\String.cshtml" />
     <Content Include="Areas\Admin\Views\Instructor\_InstructorForm.cshtml" />
     <Content Include="Areas\Admin\Views\Instructor\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\BadgeCategory\Index.cshtml" />
@@ -541,10 +543,12 @@
     <Content Include="Views\Profile\Crop.cshtml" />
     <Content Include="Views\Profile\Picture.cshtml" />
     <Content Include="Views\Badge\Index.cshtml" />
+    <Content Include="Views\Badge\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Areas\Admin\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

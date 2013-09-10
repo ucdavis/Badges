@@ -26,6 +26,9 @@ namespace Badges.Core.Domain
         public virtual string ImageUrl { get; set; }
 
         [Required]
+        public virtual BadgeCategory Category { get; set; }
+
+        [Required]
         public virtual User Creator { get; set; }
         
         [Required]
@@ -52,6 +55,7 @@ namespace Badges.Core.Domain
             Map(x => x.Approved).Not.Nullable();
 
             References(x => x.Creator).Not.Nullable();
+            References(x => x.Category).Not.Nullable();
 
             HasMany(x => x.BadgeCriterias).Inverse().Cascade.AllDeleteOrphan();
         }

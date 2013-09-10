@@ -1,8 +1,11 @@
-﻿using Badges.Core.Domain;
+﻿using System.Collections.Generic;
+using Badges.Areas.Admin.Controllers;
+using Badges.Core.Domain;
 using System;
 using System.Linq;
 using System.Web.Mvc;
 using Badges.Core.Repositories;
+using Badges.Models.Badge;
 using UCDArch.Core.PersistanceSupport;
 using UCDArch.Core.Utils;
 
@@ -29,12 +32,18 @@ namespace Badges.Controllers
         /// <returns></returns>
         public ActionResult Create()
         {
-            return View();
+            var model = GetBadgeAddModel();
+
+            return View(model);
         }
-    }
 
-    public class BadgeAddModel
-    {
-
+        private BadgeAddModel GetBadgeAddModel()
+        {
+            return new BadgeAddModel
+                {
+                    Badge = new Badge(),
+                    BadgeCategories = RepositoryFactory.BadgeCategoryRepository.GetAll()
+                };
+        }
     }
 }

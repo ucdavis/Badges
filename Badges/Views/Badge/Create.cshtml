@@ -1,0 +1,71 @@
+﻿@model Badges.Models.Badge.BadgeAddModel
+
+@{
+	ViewBag.Title = "Design New Badgte";
+}
+
+<h2>Design a New Badge</h2>
+
+
+@section SubNav
+{
+	<li>@Html.ActionLink("Back to List", "Index")</li>
+}
+
+<form method="POST" class="form-horizontal well-small" novalidate="novalidate">
+	@Html.AntiForgeryToken()
+	@Html.ValidationSummary(true)
+
+	<fieldset>
+        <legend>New Badge Designer</legend>
+	    <div class="well">
+	        <p>Be specific so the user understands what exactly you are looking for.  Example: After Dinosaur 1 moves out of his/her parents' den what will Dinosaur 1 do?  We need to know his employment plan, feeding area, as well as living situation.  This information will not be sold or given to carnivores.</p>			
+	    </div>
+	    <div class="form-group">
+	        @Html.LabelFor(x=>x.Badge.Name)
+	        @Html.EditorFor(x=>x.Badge.Name)
+	        @Html.ValidationMessageFor(x=>x.Badge.Name)
+	    </div>
+	    <div class="form-group">
+	        @Html.LabelFor(x=>x.Badge.Description)
+	        @Html.EditorFor(x=>x.Badge.Description)
+	        @Html.ValidationMessageFor(x=>x.Badge.Description)
+	    </div>
+	    <div class="form-group">
+	        @Html.LabelFor(x=>x.Badge.Category)
+	        @this.Select("Badge_Category").Class("form-control").Options(Model.BadgeCategories, x=>x.Id, x=>x.Name)
+	        @Html.ValidationMessageFor(x=>x.Badge.Category)
+	    </div>
+	    <div class="form-group">
+	        <table class="table">
+	            <thead>
+	                <th>Criteria</th>
+	            </thead>
+	            <tbody data-bind="foreach: criteria">
+	                <tr>
+	                    <td>
+	                        <label>Criterion <span data-bind="html: $index() + 1"></span></label>
+	                        <input type="text" class="form-control" maxlength="140" data-bind="value: description, executeOnEnter: $root.addCriterion, attr: { name: 'criterion['+ $index() +']' }"/>
+	                    </td>
+	                </tr>
+	            </tbody>
+	        </table>
+	    </div>
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary" data-bind="enable: valid">Save changes</button>
+			@Html.ActionLink("Cancel", "Index", null, new {@class="btn btn-link"})
+        </div>
+    </fieldset>
+</form>
+
+@section AdditionalScripts
+{
+    @Scripts.Render("~/bundles/knockout")
+    @Scripts.Render("~/bundles/badgecreate")
+
+    <script>
+        $(function() {
+            Badges.init();
+        })
+    </script>
+}

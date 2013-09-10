@@ -22,6 +22,9 @@ namespace Badges.App_Start
             bundles.Add(new ScriptBundle("~/bundles/bootstrap")
                 .Include("~/Scripts/bootstrap.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/knockout")
+                .Include("~/Scripts/knockout-{version}.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/typeahead")
                             .Include("~/Scripts/typeahead.js"));
 
@@ -57,6 +60,7 @@ namespace Badges.App_Start
         private static void ConfigurePageBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/studentexperience").Include("~/Scripts/public/studentexperience.js"));
+            bundles.Add(new ScriptBundle("~/bundles/badgecreate").Include("~/Scripts/public/badgecreate.js"));
         }
     }
 }
