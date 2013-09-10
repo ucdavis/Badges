@@ -108,23 +108,12 @@ namespace Badges.Areas.Admin.Controllers
         }
         
         //
-        // GET: /Admin/BadgeCategory/Delete/5 
-        public ActionResult Delete(Guid id)
-        {
-			var badgeCategory = RepositoryFactory.BadgeCategoryRepository.GetNullableById(id);
-
-            if (badgeCategory == null) return RedirectToAction("Index");
-
-            return View(badgeCategory);
-        }
-
-        //
         // POST: /Admin/BadgeCategory/Delete/5
         [HttpPost]
         public ActionResult Delete(Guid id, BadgeCategory badgeCategory)
         {
 			var badgeCategoryToDelete = RepositoryFactory.BadgeCategoryRepository.GetNullableById(id);
-
+            
             if (badgeCategoryToDelete == null) return RedirectToAction("Index");
 
             RepositoryFactory.BadgeCategoryRepository.Remove(badgeCategoryToDelete);

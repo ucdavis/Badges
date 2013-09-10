@@ -43,9 +43,14 @@
 			<td>
 				@item.ImageUrl
 			</td>
-			<td>
-				<a href='@Url.Action("Delete", new {id=item.Id})' class="btn" title="Remove"><i class="icon-remove"></i></a>
-			</td>
+		    <td>
+		        @using (Html.BeginForm("Delete", "BadgeCategory"))
+		        {
+                    @Html.AntiForgeryToken()
+                    @Html.Hidden("id", item.Id)
+                    <button type="submit" class="btn btn-danger"><i class="icon-remove"></i></button>
+		        }
+		    </td>
 		</tr>
 }
 	</tbody>

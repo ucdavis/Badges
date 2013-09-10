@@ -424,6 +424,8 @@
     <Content Include="Areas\Admin\Views\Instructor\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\BadgeCategory\Index.cshtml" />
     <Content Include="Areas\Admin\Views\BadgeCategory\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\BadgeCategory\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\BadgeCategory\_BadgeCategoryForm.cshtml" />
     <None Include="Properties\PublishProfiles\badges.pubxml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
