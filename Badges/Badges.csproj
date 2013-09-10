@@ -324,6 +324,9 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\images\debut_light.png" />
     <Content Include="Content\images\logo.png" />
+    <Content Include="Content\Jcrop.gif" />
+    <Content Include="Content\jquery.Jcrop.css" />
+    <Content Include="Content\jquery.Jcrop.min.css" />
     <Content Include="Content\typeahead-bootstrap.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -423,6 +426,8 @@
     <Content Include="Scripts\jquery-1.9.1.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.isotope.js" />
+    <Content Include="Scripts\jquery.Jcrop.js" />
+    <Content Include="Scripts\jquery.Jcrop.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
@@ -526,6 +531,8 @@
     <Content Include="Views\Shared\_ViewWork.cshtml" />
     <Content Include="Views\Student\Feedback.cshtml" />
     <Content Include="Views\Profile\ViewProfileImage.cshtml" />
+    <Content Include="Views\Profile\Crop.cshtml" />
+    <Content Include="Views\Profile\Picture.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

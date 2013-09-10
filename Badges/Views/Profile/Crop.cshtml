@@ -1,0 +1,64 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "Crop Image";
+}
+
+@section AdditionalStyles
+{
+    <link href="~/Content/jquery.Jcrop.css" rel="stylesheet" />
+}
+
+<h2>Crop Image</h2>
+
+<!-- This is the image we're attaching Jcrop to -->
+<img src="@Url.Content("~/Content/images/profile-default.jpg")" id="cropbox" />
+
+		<!-- This is the form that our event handler fills -->
+<form method="POST" class="coords">
+    <label>X1 <input type="text" size="4" id="x1" name="x1" /></label>
+    <label>Y1 <input type="text" size="4" id="y1" name="y1" /></label>
+    <label>X2 <input type="text" size="4" id="x2" name="x2" /></label>
+    <label>Y2 <input type="text" size="4" id="y2" name="y2" /></label>
+    <label>W <input type="text" size="4" id="w" name="w" /></label>
+    <label>H <input type="text" size="4" id="h" name="h" /></label>
+    
+    <button type="submit">Crop it!</button>
+</form>
+
+@section AdditionalScripts
+{
+    <script src="~/Scripts/jquery.Jcrop.js"></script>
+    <script>
+        jQuery(document).ready(function() {
+
+            var cropper;
+            jQuery('#cropbox').Jcrop({
+                    aspectRatio: 1,
+                    allowSelect: false,
+                    allowResize: false, //Maybe we allow resize and then shrink the img?
+                    onChange: showCoords,
+                    onSelect: showCoords
+                }, function() {
+                    cropper = this;
+                });
+
+            cropper.animateTo([0, 0, 120, 120]);
+
+        });
+
+        // Simple event handler, called from onChange and onSelect
+        // event handlers, as per the Jcrop invocation above
+
+        function showCoords(c) {
+            jQuery('#x1').val(c.x);
+            jQuery('#y1').val(c.y);
+            jQuery('#x2').val(c.x2);
+            jQuery('#y2').val(c.y2);
+            jQuery('#w').val(c.w);
+            jQuery('#h').val(c.h);
+        }
+
+        ;
+    </script>
+}
