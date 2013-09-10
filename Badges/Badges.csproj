@@ -196,6 +196,7 @@
     <Compile Include="App_Start\UCDArchBootstrapper.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\BadgeCategoryController.cs" />
     <Compile Include="Areas\Admin\Controllers\InstructorController.cs" />
     <Compile Include="Areas\Admin\Controllers\OrganizationController.cs" />
     <Compile Include="Areas\Admin\Controllers\TitleController.cs" />
@@ -323,6 +324,7 @@
     <Content Include="Content\DataTables-1.9.4\media\images\sort_desc_disabled.png" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\images\climbingbadge.png" />
     <Content Include="Content\images\debut_light.png" />
     <Content Include="Content\images\logo.png" />
     <Content Include="Content\Jcrop.gif" />
@@ -420,6 +422,8 @@
     <Content Include="Areas\Admin\Views\Shared\EditorTemplates\String.cshtml" />
     <Content Include="Areas\Admin\Views\Instructor\_InstructorForm.cshtml" />
     <Content Include="Areas\Admin\Views\Instructor\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\BadgeCategory\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\BadgeCategory\Create.cshtml" />
     <None Include="Properties\PublishProfiles\badges.pubxml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />

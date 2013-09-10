@@ -35,5 +35,6 @@ namespace Badges.Controllers
 
     public class BadgeAddModel
     {
+
     }
 }

@@ -18,11 +18,17 @@ namespace Badges.Core.Repositories
         IRepositoryWithTypedId<FeedbackRequest, Guid> FeedbackRequestRepository { get; set; }
         IRepositoryWithTypedId<Organization, Guid> OrganizationRepository { get; set; }
         IRepositoryWithTypedId<Title, Guid> TitleRepository { get; set; }
+        IRepositoryWithTypedId<Badge, Guid> BadgeRepository { get; set; }
+        IRepositoryWithTypedId<BadgeCategory, Guid> BadgeCategoryRepository { get; set; }
+        IRepositoryWithTypedId<BadgeCriteria, Guid> BadgeCriteriaRepository { get; set; }
         void Flush();
     }
 
     public class RepositoryFactory : IRepositoryFactory
     {
+        public IRepositoryWithTypedId<Badge, Guid> BadgeRepository { get; set; }
+        public IRepositoryWithTypedId<BadgeCategory, Guid> BadgeCategoryRepository { get; set; }
+        public IRepositoryWithTypedId<BadgeCriteria, Guid> BadgeCriteriaRepository { get; set; }
         public IRepositoryWithTypedId<User, Guid> UserRepository { get; set; }
         public IRepositoryWithTypedId<Profile, Guid> ProfileRepository { get; set; }
         public IRepositoryWithTypedId<Role, string> RoleRepository { get; set; }
