@@ -88,7 +88,8 @@ namespace Badges.Controllers
 
             //TODO: A bit hacky, it'd be good to manage add/remove as one action
             Roles.RemoveUsersFromRoles(new string[] {CurrentUser.Identity.Name},
-                                       new string[] {RoleNames.Student, RoleNames.Instructor});
+                                       new string[] {RoleNames.Student, RoleNames.Instructor, RoleNames.Administrator});
+
             Roles.AddUserToRole(CurrentUser.Identity.Name, roles);
 
             RepositoryFactory.UserRepository.EnsurePersistent(user);

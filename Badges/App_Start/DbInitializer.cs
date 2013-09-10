@@ -15,7 +15,12 @@ namespace Badges.App_Start
         /// </summary>
         public static void PreStart()
         {
-            return;
+            return; //TODO: Comment out if you want to auto-wipe the DB
+            ResetDb();
+        }
+
+        public static void ResetDb()
+        {
             var config =
                 Fluently.Configure()
                         .Mappings(

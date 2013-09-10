@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
+using Badges.App_Start;
 using Badges.Core.Domain;
 using Badges.Core.Repositories;
 using UCDArch.Web.Attributes;
@@ -18,6 +19,15 @@ namespace Badges.Controllers
             ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
 
             return View();
+        }
+
+        [HandleTransactionsManually]
+        public ActionResult Reset()
+        {
+            DbInitializer.ResetDb();
+            ViewBag.Message = "The database has been reset";
+
+            return RedirectToAction("Index");
         }
 
         [HandleTransactionsManually]
