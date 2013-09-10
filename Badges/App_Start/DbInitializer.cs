@@ -102,6 +102,15 @@ namespace Badges.App_Start
 
                     session.SaveOrUpdate(experience);
                     
+                    //Badges
+                    var category = new BadgeCategory
+                        {
+                            Name = "SampleCategory",
+                            ImageUrl = "http://localhost:59374//Content/images/climbingbadge.png"
+                        };
+
+                    session.SaveOrUpdate(category);
+
                     tx.Commit();
                 }
                    

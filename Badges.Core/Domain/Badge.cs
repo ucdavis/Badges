@@ -12,6 +12,7 @@ namespace Badges.Core.Domain
     {
         public Badge()
         {
+            BadgeCriterias = new List<BadgeCriteria>();
             Approved = false;
         }
 
@@ -40,6 +41,11 @@ namespace Badges.Core.Domain
         /// True if the badge has been approved by an admin and can be earned by others
         /// </summary>
         public virtual bool Approved { get; set; }
+
+        public virtual void AddCriteria(string criteria)
+        {
+            BadgeCriterias.Add(new BadgeCriteria {Badge = this, Details = criteria});
+        }
     }
 
     public class BadgeMap : ClassMap<Badge>

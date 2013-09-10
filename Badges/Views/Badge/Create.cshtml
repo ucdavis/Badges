@@ -22,19 +22,19 @@
 	        <p>Be specific so the user understands what exactly you are looking for.  Example: After Dinosaur 1 moves out of his/her parents' den what will Dinosaur 1 do?  We need to know his employment plan, feeding area, as well as living situation.  This information will not be sold or given to carnivores.</p>			
 	    </div>
 	    <div class="form-group">
-	        @Html.LabelFor(x=>x.Badge.Name)
-	        @Html.EditorFor(x=>x.Badge.Name)
-	        @Html.ValidationMessageFor(x=>x.Badge.Name)
+	        @Html.LabelFor(x=>x.Name)
+	        @Html.EditorFor(x=>x.Name)
+	        @Html.ValidationMessageFor(x=>x.Name)
 	    </div>
 	    <div class="form-group">
-	        @Html.LabelFor(x=>x.Badge.Description)
-	        @Html.EditorFor(x=>x.Badge.Description)
-	        @Html.ValidationMessageFor(x=>x.Badge.Description)
+	        @Html.LabelFor(x=>x.Description)
+	        @Html.EditorFor(x=>x.Description)
+	        @Html.ValidationMessageFor(x=>x.Description)
 	    </div>
 	    <div class="form-group">
-	        @Html.LabelFor(x=>x.Badge.Category)
-	        @this.Select("Badge_Category").Class("form-control").Options(Model.BadgeCategories, x=>x.Id, x=>x.Name)
-	        @Html.ValidationMessageFor(x=>x.Badge.Category)
+	        @Html.LabelFor(x=>x.Category)
+	        @this.Select("Category").Class("form-control").Options(Model.BadgeCategories, x=>x.Id, x=>x.Name)
+	        @Html.ValidationMessageFor(x=>x.Category)
 	    </div>
 	    <div class="form-group">
 	        <table class="table">
@@ -45,7 +45,7 @@
 	                <tr>
 	                    <td>
 	                        <label>Criterion <span data-bind="html: $index() + 1"></span></label>
-	                        <input type="text" class="form-control" maxlength="140" data-bind="value: description, executeOnEnter: $root.addCriterion, attr: { name: 'criterion['+ $index() +']' }"/>
+	                        <input type="text" class="form-control" maxlength="140" data-bind="value: description, valueUpdate: 'afterkeydown', executeOnEnter: $root.addCriterion, attr: { name: 'criteria['+ $index() +']' }"/>
 	                    </td>
 	                </tr>
 	            </tbody>
