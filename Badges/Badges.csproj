@@ -534,6 +534,7 @@
     <Content Include="Views\Profile\ViewProfileImage.cshtml" />
     <Content Include="Views\Profile\Crop.cshtml" />
     <Content Include="Views\Profile\Picture.cshtml" />
+    <Content Include="Views\Badge\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

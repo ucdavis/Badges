@@ -1,0 +1,13 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "Badge Center";
+}
+
+<h2>Badge Center</h2>
+
+<ul class="nav">
+    <li>@Html.ActionLink("Design A Badge", "Create")</li>
+    <li class="disabled">@Html.ActionLink("Earn A Badge", "Earn")</li>
+    <li class="disabled">@Html.ActionLink("My Badges", "MyBadges")</li>
+</ul>

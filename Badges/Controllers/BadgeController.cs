@@ -16,7 +16,24 @@ namespace Badges.Controllers
     {
         public BadgeController(IRepositoryFactory repositoryFactory) : base(repositoryFactory)
         {
-
         }
+
+        public ActionResult Index()
+        {
+            return View();
+        }
+
+        /// <summary>
+        /// Create a new badge!
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult Create()
+        {
+            return View();
+        }
+    }
+
+    public class BadgeAddModel
+    {
     }
 }

@@ -67,6 +67,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DomainObjectGuid.cs" />
+    <Compile Include="Domain\Badge.cs" />
+    <Compile Include="Domain\BadgeCategory.cs" />
+    <Compile Include="Domain\BadgeCriteria.cs" />
     <Compile Include="Domain\Experience.cs" />
     <Compile Include="Domain\ExperienceOutcome.cs" />
     <Compile Include="Domain\ExperienceType.cs" />
