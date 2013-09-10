@@ -532,6 +532,7 @@
     <Content Include="Views\Student\Feedback.cshtml" />
     <Content Include="Views\Profile\ViewProfileImage.cshtml" />
     <Content Include="Views\Profile\Crop.cshtml" />
+    <Content Include="Views\Profile\Picture.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

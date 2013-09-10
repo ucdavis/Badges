@@ -22,6 +22,11 @@ namespace Badges.Controllers
         {
         }
 
+        public ActionResult Picture()
+        {
+            return View();
+        }
+
         public ActionResult Crop()
         {
             return View();
