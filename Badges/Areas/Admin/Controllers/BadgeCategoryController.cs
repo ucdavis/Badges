@@ -1,9 +1,12 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 using Badges.Controllers;
 using Badges.Core.Domain;
 using Badges.Core.Repositories;
+using Badges.Services;
 using UCDArch.Core.PersistanceSupport;
 using UCDArch.Core.Utils;
 
@@ -14,10 +17,12 @@ namespace Badges.Areas.Admin.Controllers
     /// </summary>
     public class BadgeCategoryController : ApplicationController
     {
+        private readonly IFileService _fileService;
         //
         // GET: /Admin/BadgeCategory/
-        public BadgeCategoryController(IRepositoryFactory repositoryFactory) : base(repositoryFactory)
+        public BadgeCategoryController(IRepositoryFactory repositoryFactory, IFileService fileService) : base(repositoryFactory)
         {
+            _fileService = fileService;
         }
 
         public ActionResult Index()
@@ -33,20 +38,18 @@ namespace Badges.Areas.Admin.Controllers
         {
 			var viewModel = BadgeCategoryViewModel.Create(Repository);
 
-            //TODO: Remove hacky way of getting image and use file upload
-            viewModel.BadgeCategory.ImageUrl = Url.Action("Index", "Home", new { area = string.Empty }, "http") + Url.Content("~/Content/images/climbingbadge.png");
-
             return View(viewModel);
         } 
 
         //
         // POST: /Admin/BadgeCategory/Create
         [HttpPost]
-        public ActionResult Create(BadgeCategory badgeCategory)
+        public ActionResult Create(BadgeCategoryViewModel model)
         {
-            var badgeCategoryToCreate = new BadgeCategory();
+            var badgeCategoryToCreate = new BadgeCategory {Name = model.Name};
 
-            TransferValues(badgeCategory, badgeCategoryToCreate);
+            var badgeImage = _fileService.Save(model.File, publicAccess: true);
+            badgeCategoryToCreate.ImageUrl = badgeImage.Uri.AbsoluteUri;
 
             if (ModelState.IsValid)
             {
@@ -59,7 +62,7 @@ namespace Badges.Areas.Admin.Controllers
             else
             {
 				var viewModel = BadgeCategoryViewModel.Create(Repository);
-                viewModel.BadgeCategory = badgeCategory;
+                viewModel.Name = model.Name;
 
                 return View(viewModel);
             }
@@ -74,7 +77,8 @@ namespace Badges.Areas.Admin.Controllers
             if (badgeCategory == null) return RedirectToAction("Index");
 
 			var viewModel = BadgeCategoryViewModel.Create(Repository);
-			viewModel.BadgeCategory = badgeCategory;
+            viewModel.Name = badgeCategory.Name;
+            viewModel.ImageUrl = badgeCategory.ImageUrl;
 
 			return View(viewModel);
         }
@@ -82,16 +86,22 @@ namespace Badges.Areas.Admin.Controllers
         //
         // POST: /Admin/BadgeCategory/Edit/5
         [HttpPost]
-        public ActionResult Edit(Guid id, BadgeCategory badgeCategory)
+        public ActionResult Edit(Guid id, BadgeCategoryViewModel model)
         {
             var badgeCategoryToEdit = RepositoryFactory.BadgeCategoryRepository.GetNullableById(id);
 
             if (badgeCategoryToEdit == null) return RedirectToAction("Index");
 
-            TransferValues(badgeCategory, badgeCategoryToEdit);
-
+            badgeCategoryToEdit.Name = model.Name;
+            
             if (ModelState.IsValid)
             {
+                if (model.File != null) //replace file if we have a new one
+                {
+                    var badgeImage = _fileService.Save(model.File, publicAccess: true);
+                    badgeCategoryToEdit.ImageUrl = badgeImage.Uri.AbsoluteUri;
+                }
+
                 RepositoryFactory.BadgeCategoryRepository.EnsurePersistent(badgeCategoryToEdit);
 
                 Message = "BadgeCategory Edited Successfully";
@@ -101,7 +111,7 @@ namespace Badges.Areas.Admin.Controllers
             else
             {
 				var viewModel = BadgeCategoryViewModel.Create(Repository);
-                viewModel.BadgeCategory = badgeCategory;
+                viewModel.Name = model.Name;
 
                 return View(viewModel);
             }
@@ -139,13 +149,18 @@ namespace Badges.Areas.Admin.Controllers
     /// </summary>
     public class BadgeCategoryViewModel
 	{
-		public BadgeCategory BadgeCategory { get; set; }
- 
+        [Required]
+        [StringLength(140)]
+        public string Name { get; set; }
+        [Required]
+        public HttpPostedFileBase File { get; set; }
+	    public string ImageUrl { get; set; }
+
 		public static BadgeCategoryViewModel Create(IRepository repository)
 		{
 			Check.Require(repository != null, "Repository must be supplied");
-			
-			var viewModel = new BadgeCategoryViewModel {BadgeCategory = new BadgeCategory()};
+
+		    var viewModel = new BadgeCategoryViewModel();
  
 			return viewModel;
 		}

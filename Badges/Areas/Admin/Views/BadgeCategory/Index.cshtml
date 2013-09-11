@@ -20,9 +20,6 @@
 		        Name
 		    </th>
             <th>Image</th>
-			<th>
-				ImageUrl
-			</th>
 			<th></th>
 		</tr>
 	</thead>
@@ -40,9 +37,6 @@
 		            <img src="@item.ImageUrl" alt="Badge Icon" height="120" width="120"/>
 		        </div>
 		    </td>
-			<td>
-				@item.ImageUrl
-			</td>
 		    <td>
 		        @using (Html.BeginForm("Delete", "BadgeCategory"))
 		        {
