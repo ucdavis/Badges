@@ -168,8 +168,7 @@ namespace Badges.Controllers
 
             if (profile == null || string.IsNullOrWhiteSpace(profile.ImageUrl))
             {
-                //TODO: Default image?
-                return null;
+                return PartialView(null);
             }
 
             var model = new ImageModel {Alt = "Profile Image", Width = 120, Height = 120};

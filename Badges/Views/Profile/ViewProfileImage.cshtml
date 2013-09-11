@@ -1,3 +1,9 @@
 ﻿@model Badges.Models.Shared.ImageModel
-
-<img id="profile-picture" src="@Model.Url" height="@Model.Height" width="@Model.Width" alt="@Model.Alt"></img>
+@if (Model == null)
+{
+    <img id="profile-picture" />
+}
+else
+{
+    <img id="profile-picture" src="@Model.Url" height="@Model.Height" width="@Model.Width" alt="@Model.Alt"></img>
+}
