@@ -15,21 +15,22 @@ namespace Badges.Services
         /// Save a file and return the URL for that file
         /// </summary>
         /// <returns></returns>
-        Guid Save(HttpPostedFileBase file);
+        BlobIdentity Save(HttpPostedFileBase file, bool publicAccess = false);
 
-        BlobResult Get(Guid id);
+        void Delete(Guid id, bool publicAccess = false);
 
         /// <summary>
         /// We'd like to have a new ID generated after updating, so just delete and save
         /// </summary>
-        /// <param name="imageId"></param>
-        /// <param name="file"></param>
-        Guid Update(Guid imageId, HttpPostedFileBase file);
+        BlobIdentity Update(Guid imageId, HttpPostedFileBase file, bool publicAccess = false);
+
+        BlobResult Get(Guid id, bool publicAccess = false);
     }
 
     public class FileService : IFileService
     {
         private readonly CloudBlobContainer _container;
+        private readonly CloudBlobContainer _publicContainer;
 
         public FileService()
         {
@@ -40,43 +41,52 @@ namespace Badges.Services
 
             _container = blobClient.GetContainerReference("imagesdev");
             _container.CreateIfNotExists();
+            _container.SetPermissions(new BlobContainerPermissions { PublicAccess = BlobContainerPublicAccessType.Off });
+            
+            _publicContainer = blobClient.GetContainerReference("publicimagesdev");
+            _publicContainer.CreateIfNotExists();
+            _publicContainer.SetPermissions(new BlobContainerPermissions { PublicAccess = BlobContainerPublicAccessType.Container });
         }
 
         /// <summary>
         /// Save a file and return the URL for that file
         /// </summary>
         /// <returns></returns>
-        public Guid Save(HttpPostedFileBase file)
+        public BlobIdentity Save(HttpPostedFileBase file, bool publicAccess = false)
         {
-            var blobUri = Guid.NewGuid();
+            var container = publicAccess ? _publicContainer : _container;
+
+            var blobId = Guid.NewGuid();
             
-            var blob = _container.GetBlockBlobReference(blobUri.ToString());
+            var blob = container.GetBlockBlobReference(blobId.ToString());
             blob.UploadFromStream(file.InputStream);
             SetContentType(blob, file.ContentType);
             
-            return blobUri;
+            return new BlobIdentity {Id = blobId, Uri = blob.Uri};
         }
 
-        public void Delete(Guid id)
+        public void Delete(Guid id, bool publicAccess = false)
         {
-            var blob = _container.GetBlockBlobReference(id.ToString());
+            var container = publicAccess ? _publicContainer : _container;
+
+            var blob = container.GetBlockBlobReference(id.ToString());
             blob.Delete();
         }
 
         /// <summary>
         /// We'd like to have a new ID generated after updating, so just delete and save
         /// </summary>
-        /// <param name="imageId"></param>
-        /// <param name="file"></param>
-        public Guid Update(Guid imageId, HttpPostedFileBase file)
+        public BlobIdentity Update(Guid imageId, HttpPostedFileBase file, bool publicAccess = false)
         {
-            Delete(imageId);
-            return Save(file);
+            Delete(imageId, publicAccess);
+            return Save(file, publicAccess);
         }
 
-        public BlobResult Get(Guid id)
+        public BlobResult Get(Guid id, bool publicAccess = false)
         {
-            var blob = _container.GetBlockBlobReference(id.ToString());
+            var container = publicAccess ? _publicContainer : _container;
+
+            var blob = container.GetBlockBlobReference(id.ToString());
             
             var result = new BlobResult {ContentType = blob.Properties.ContentType};
 

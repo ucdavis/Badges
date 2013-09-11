@@ -80,7 +80,7 @@ namespace Badges.Controllers
                                                        Server.MapPath("~/Content/images/profile-default.jpg")));
             }
 
-            profile.ImageId = _fileService.Save(image);
+            profile.ImageUrl = _fileService.Save(image, publicAccess: true).Uri.AbsoluteUri;
             var user = new User {Identifier = CurrentUser.Identity.Name, Profile = profile};
             profile.User = user;
 
@@ -137,7 +137,7 @@ namespace Badges.Controllers
             
             if (image != null)
             {
-                userProfileToEdit.Profile.ImageId = _fileService.Save(image);
+                userProfileToEdit.Profile.ImageUrl = _fileService.Save(image, publicAccess: true).Uri.AbsoluteUri;
             }
 
             userProfileToEdit.Roles.Clear();
@@ -171,7 +171,7 @@ namespace Badges.Controllers
                         x => x.User.Identifier == CurrentUser.Identity.Name);
             }
 
-            if (profile == null || profile.ImageId == null)
+            if (profile == null || string.IsNullOrWhiteSpace(profile.ImageUrl))
             {
                 //TODO: Default image?
                 return null;
@@ -181,9 +181,9 @@ namespace Badges.Controllers
 
             model.Url =
                 new CompositionBuilder().WithLayer(
-                    LayerBuilder.Image.SourceBytes(_fileService.Get(profile.ImageId.Value).Content)
+                    LayerBuilder.Image.SourceUrl(profile.ImageUrl)
                                 .WithFilter(FilterBuilder.Resize.To(model.Width, model.Height)))
-                                .Url;
+                                        .Url;
 
             return PartialView(model);
         }

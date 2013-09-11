@@ -69,7 +69,7 @@ namespace Badges.Areas.Admin.Controllers
                             FirstName = instructorToCreate.FirstName,
                             LastName = instructorToCreate.LastName,
                             Email = instructorToCreate.Identifier,
-                            ImageId = new Guid(WebConfigurationManager.AppSettings["DefaultProfilePictureId"])
+                            ImageUrl = WebConfigurationManager.AppSettings["DefaultProfilePictureUrl"]
                         };
 
                     var user = new User {Identifier = instructorToCreate.Identifier};

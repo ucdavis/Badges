@@ -1,7 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using FluentNHibernate;
 using FluentNHibernate.Mapping;
-using System;
 
 namespace Badges.Core.Domain
 {
@@ -30,7 +28,7 @@ namespace Badges.Core.Domain
 
         public virtual string DisplayName { get { return string.Format("{0} {1}", FirstName, LastName); } }
 
-        public virtual Guid? ImageId { get; set; }
+        public virtual string ImageUrl { get; set; }
     }
 
     public class ProfileMap : ClassMap<Profile>
@@ -45,7 +43,7 @@ namespace Badges.Core.Domain
             Map(x => x.FirstName).Not.Nullable();
             Map(x => x.LastName).Not.Nullable();
             Map(x => x.Email).Not.Nullable();
-            Map(x => x.ImageId).Nullable();
+            Map(x => x.ImageUrl).Nullable();
         }
     }
 }
