@@ -67,7 +67,7 @@ namespace Badges.Controllers
             
             if (roles.Any(x=>x.Id == RoleNames.Administrator))
             {
-                //redirect to admin
+                return RedirectToAction("Index", "Landing", new {area = "Admin"});
             }
             else
             {
