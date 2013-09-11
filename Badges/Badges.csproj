@@ -206,6 +206,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\BadgeCategoryController.cs" />
+    <Compile Include="Areas\Admin\Controllers\BadgeRequestController.cs" />
     <Compile Include="Areas\Admin\Controllers\InstructorController.cs" />
     <Compile Include="Areas\Admin\Controllers\OrganizationController.cs" />
     <Compile Include="Areas\Admin\Controllers\TitleController.cs" />
@@ -439,6 +440,7 @@
     <Content Include="Areas\Admin\Views\BadgeCategory\Create.cshtml" />
     <Content Include="Areas\Admin\Views\BadgeCategory\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\BadgeCategory\_BadgeCategoryForm.cshtml" />
+    <Content Include="Areas\Admin\Views\BadgeRequest\Index.cshtml" />
     <None Include="Properties\PublishProfiles\badges.pubxml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
