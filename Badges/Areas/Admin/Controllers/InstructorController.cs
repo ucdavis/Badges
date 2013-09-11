@@ -1,14 +1,12 @@
 ﻿using System;
-using System.IO;
 using System.Linq;
+using System.Web.Configuration;
 using System.Web.Mvc;
 using Badges.Controllers;
 using Badges.Core.Domain;
 using Badges.Core.Repositories;
 using UCDArch.Core.PersistanceSupport;
 using UCDArch.Core.Utils;
-using System.Web.Security;
-using UCDArch.Testing.Fakes;
 
 namespace Badges.Areas.Admin.Controllers
 {
@@ -71,8 +69,7 @@ namespace Badges.Areas.Admin.Controllers
                             FirstName = instructorToCreate.FirstName,
                             LastName = instructorToCreate.LastName,
                             Email = instructorToCreate.Identifier,
-                            ContentType = "application/jpg",
-                            Image = System.IO.File.ReadAllBytes(Server.MapPath("~/Content/images/profile-default.jpg"))
+                            ImageId = new Guid(WebConfigurationManager.AppSettings["DefaultProfilePictureId"])
                         };
 
                     var user = new User {Identifier = instructorToCreate.Identifier};

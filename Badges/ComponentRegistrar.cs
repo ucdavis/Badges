@@ -16,6 +16,7 @@ namespace Badges
             AddGenericRepositoriesTo(container);
 
             container.Register(Component.For<IUserService>().ImplementedBy<UserService>().Named("userService"));
+            container.Register(Component.For<IFileService>().ImplementedBy<FileService>().Named("fileService").LifestyleSingleton());
 
             container.Register(Component.For<IQueryExtensionProvider>().ImplementedBy<NHibernateQueryExtensionProvider>().Named("queryExtensions"));
             container.Register(Component.For<IValidator>().ImplementedBy<Validator>().Named("validator"));

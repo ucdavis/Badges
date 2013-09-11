@@ -12,14 +12,18 @@ using Badges.Models.Shared;
 using SoundInTheory.DynamicImage.Fluent;
 using UCDArch.Testing.Fakes;
 using UCDArch.Web.Attributes;
+using Badges.Services;
 
 namespace Badges.Controllers
 {
     [Authorize]
     public class ProfileController : ApplicationController
     {
-        public ProfileController(IRepositoryFactory repositoryFactory) : base(repositoryFactory)
+        private readonly IFileService _fileService;
+
+        public ProfileController(IRepositoryFactory repositoryFactory, IFileService fileService) : base(repositoryFactory)
         {
+            _fileService = fileService;
         }
 
         public ActionResult Picture()
@@ -76,13 +80,7 @@ namespace Badges.Controllers
                                                        Server.MapPath("~/Content/images/profile-default.jpg")));
             }
 
-            profile.ContentType = image.ContentType;
-
-            using (var binaryReader = new BinaryReader(image.InputStream))
-            {
-                profile.Image = binaryReader.ReadBytes((int) image.InputStream.Length);
-            }
-
+            profile.ImageId = _fileService.Save(image);
             var user = new User {Identifier = CurrentUser.Identity.Name, Profile = profile};
             profile.User = user;
 
@@ -139,12 +137,7 @@ namespace Badges.Controllers
             
             if (image != null)
             {
-                userProfileToEdit.Profile.ContentType = image.ContentType;
-
-                using (var binaryReader = new BinaryReader(image.InputStream))
-                {
-                    userProfileToEdit.Profile.Image = binaryReader.ReadBytes((int)image.InputStream.Length);
-                }
+                userProfileToEdit.Profile.ImageId = _fileService.Save(image);
             }
 
             userProfileToEdit.Roles.Clear();
@@ -178,7 +171,7 @@ namespace Badges.Controllers
                         x => x.User.Identifier == CurrentUser.Identity.Name);
             }
 
-            if (profile == null || profile.Image == null)
+            if (profile == null || profile.ImageId == null)
             {
                 //TODO: Default image?
                 return null;
@@ -188,7 +181,7 @@ namespace Badges.Controllers
 
             model.Url =
                 new CompositionBuilder().WithLayer(
-                    LayerBuilder.Image.SourceBytes(profile.Image)
+                    LayerBuilder.Image.SourceBytes(_fileService.Get(profile.ImageId.Value).Content)
                                 .WithFilter(FilterBuilder.Resize.To(model.Width, model.Height)))
                                 .Url;
 

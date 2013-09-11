@@ -28,10 +28,9 @@ namespace Badges.Core.Domain
         [Required]
         public virtual string Email { get; set; }
 
-        public virtual string ContentType { get; set; }
-        public virtual byte[] Image { get; set; }
-
         public virtual string DisplayName { get { return string.Format("{0} {1}", FirstName, LastName); } }
+
+        public virtual Guid? ImageId { get; set; }
     }
 
     public class ProfileMap : ClassMap<Profile>
@@ -46,8 +45,7 @@ namespace Badges.Core.Domain
             Map(x => x.FirstName).Not.Nullable();
             Map(x => x.LastName).Not.Nullable();
             Map(x => x.Email).Not.Nullable();
-            Map(x => x.ContentType);
-            Map(x => x.Image).CustomType("BinaryBlob");
+            Map(x => x.ImageId).Nullable();
         }
     }
 }
