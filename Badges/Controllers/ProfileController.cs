@@ -84,14 +84,9 @@ namespace Badges.Controllers
             var user = new User {Identifier = CurrentUser.Identity.Name, Profile = profile};
             profile.User = user;
 
-            //TODO: A bit hacky, it'd be good to manage add/remove as one action
-            Roles.RemoveUsersFromRoles(new string[] {CurrentUser.Identity.Name},
-                                       new string[] {RoleNames.Student, RoleNames.Instructor, RoleNames.Administrator});
-
-            Roles.AddUserToRole(CurrentUser.Identity.Name, roles);
-
+            user.Roles.Add(RepositoryFactory.RoleRepository.GetById(roles));
             RepositoryFactory.UserRepository.EnsurePersistent(user);
-
+            
             return RedirectToAction("Landing", "Home");
         }
     
