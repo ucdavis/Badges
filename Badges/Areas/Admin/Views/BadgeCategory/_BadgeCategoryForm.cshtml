@@ -14,11 +14,11 @@
         <div class="form-group">
             @if (string.IsNullOrWhiteSpace(Model.ImageUrl))
             {
-                <img id="badge-preview"></img>
+                <img id="badge-preview" height="120" width="120"></img>
             }
             else
             {
-                <img id="badge-preview" src="@Model.ImageUrl" alt="Badge Image"></img>
+                <img id="badge-preview" src="@Model.ImageUrl" alt="Badge Image" height="120" width="120"></img>
             }
             <label for="badge-image">Badge Image</label>
             <input id="badge-image" name="file" type="file" accept="image/*" required="required"/>
