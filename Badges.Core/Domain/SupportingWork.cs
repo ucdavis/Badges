@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using FluentNHibernate.Mapping;
 
 namespace Badges.Core.Domain
@@ -13,8 +14,8 @@ namespace Badges.Core.Domain
         public virtual string Description { get; set; }
         
         public virtual string Name { get; set; }
+        public virtual Guid? ContentId { get; set; }
         public virtual string ContentType { get; set; }
-        public virtual byte[] Content { get; set; }
 
         public virtual string Notes { get; set; }
         public virtual string Url { get; set; }
@@ -71,8 +72,8 @@ namespace Badges.Core.Domain
             Map(x => x.Description).Not.Nullable();
             
             Map(x => x.Name);
-            Map(x => x.ContentType);
-            Map(x => x.Content).CustomType("BinaryBlob");
+            Map(x => x.ContentId).Nullable();
+            Map(x => x.ContentType).Nullable();
 
             Map(x => x.Url);
             Map(x => x.Notes).StringMaxLength();

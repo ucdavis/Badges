@@ -2,14 +2,18 @@
 using System.Linq;
 using System.Web.Mvc;
 using Badges.Core.Repositories;
+using Badges.Services;
 
 namespace Badges.Controllers
 {
     [Authorize]
     public class ExperienceController : ApplicationController
     {
-        public ExperienceController(IRepositoryFactory repositoryFactory) : base(repositoryFactory)
+        private readonly IFileService _fileService;
+
+        public ExperienceController(IRepositoryFactory repositoryFactory, IFileService fileService) : base(repositoryFactory)
         {
+            _fileService = fileService;
         }
 
         /// <summary>
@@ -26,12 +30,14 @@ namespace Badges.Controllers
             // x.Experience.Instructors.Any(i => i.Identifier == CurrentUser.Identity.Name)
             var work = RepositoryFactory.SupportingWorkRepository.Queryable.SingleOrDefault(x => x.Id == id);
 
-            if (work == null || work.Content == null)
+            if (work == null || work.ContentId == null)
             {
                 return new HttpNotFoundResult();
             }
-            
-            return File(work.Content, work.ContentType, work.Name);
+
+            var file = _fileService.Get(work.ContentId.Value);
+
+            return File(file.Content, work.ContentType, work.Name);
         }
     }
 }

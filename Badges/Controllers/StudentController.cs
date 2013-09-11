@@ -18,12 +18,14 @@ namespace Badges.Controllers
     public class StudentController : ApplicationController
     {
         private readonly IUserService _userService;
+        private readonly IFileService _fileService;
         //
         // GET: /Student/
 
-        public StudentController(IRepositoryFactory repositoryFactory, IUserService userService) : base(repositoryFactory)
+        public StudentController(IRepositoryFactory repositoryFactory, IUserService userService, IFileService fileService) : base(repositoryFactory)
         {
             _userService = userService;
+            _fileService = fileService;
         }
 
         public ActionResult Index()
@@ -175,12 +177,8 @@ namespace Badges.Controllers
                 if (model.WorkFile != null)
                 {
                     work.Name = model.WorkFile.FileName;
+                    work.ContentId = _fileService.Save(model.WorkFile).Id;
                     work.ContentType = model.WorkFile.ContentType;
-
-                    using (var binaryReader = new BinaryReader(model.WorkFile.InputStream))
-                    {
-                        work.Content = binaryReader.ReadBytes((int) model.WorkFile.InputStream.Length);
-                    }
                 }
             }
             else
