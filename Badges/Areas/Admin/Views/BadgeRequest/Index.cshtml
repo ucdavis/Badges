@@ -27,7 +27,7 @@
         {
             <tr>
                 <td>
-                    <a href="@Url.Action("Review", "BadgeRequest", new {area="Admin"})"><i class="icon-check"></i> Review</a>
+                    <a href="@Url.Action("Review", "BadgeRequest", new {area="Admin", id=badge.Id})"><i class="icon-check"></i> Review</a>
                 </td>
                 <td>@badge.Name</td>
                 <td><img class="img-thumbnail" src="@badge.ImageUrl" height="120" width="120"/></td>

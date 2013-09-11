@@ -26,5 +26,52 @@ namespace Badges.Areas.Admin.Controllers
 
             return View(pendingRequests);
         }
+
+        public ActionResult Review(Guid id)
+        {
+            var badge = RepositoryFactory.BadgeRepository.GetNullableById(id);
+
+            if (badge == null)
+            {
+                return HttpNotFound();
+            }
+            
+            badge.BadgeCriterias.ToList();
+
+            return View(badge);
+        }
+
+        [HttpPost]
+        public ActionResult Approve(Guid id)
+        {
+            var badge = RepositoryFactory.BadgeRepository.GetNullableById(id);
+
+            if (badge == null)
+            {
+                return HttpNotFound();
+            }
+
+            badge.Approved = true;
+
+            Message = "The badge was successfully approved and can now be earned by students";
+            RepositoryFactory.BadgeRepository.EnsurePersistent(badge);
+
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Deny(Guid id)
+        {
+            var badge = RepositoryFactory.BadgeRepository.GetNullableById(id);
+
+            if (badge == null)
+            {
+                return HttpNotFound();
+            }
+            
+            Message = "The badge has been denied and deleted from the system";
+            RepositoryFactory.BadgeRepository.Remove(badge);
+
+            return RedirectToAction("Index");
+        }
     }
 }

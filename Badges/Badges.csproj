@@ -441,6 +441,7 @@
     <Content Include="Areas\Admin\Views\BadgeCategory\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\BadgeCategory\_BadgeCategoryForm.cshtml" />
     <Content Include="Areas\Admin\Views\BadgeRequest\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\BadgeRequest\Review.cshtml" />
     <None Include="Properties\PublishProfiles\badges.pubxml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
