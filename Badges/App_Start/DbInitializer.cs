@@ -111,6 +111,22 @@ namespace Badges.App_Start
 
                     session.SaveOrUpdate(category);
 
+                    var badge = new Badge
+                        {
+                            Approved = true,
+                            Category = category,
+                            CreatedOn = DateTime.UtcNow,
+                            Name = "First Badge",
+                            Description = "Really interesting badge for being awesome",
+                            Creator = user,
+                            ImageUrl = "http://localhost:59374//Content/images/climbingbadge.png"
+                        };
+
+                    badge.AddCriteria("You need to do a, b, c");
+                    badge.AddCriteria("Also you need to be a human");
+
+                    session.SaveOrUpdate(badge);
+
                     tx.Commit();
                 }
                    
