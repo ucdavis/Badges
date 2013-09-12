@@ -433,6 +433,7 @@
     <Content Include="Areas\Admin\Views\Instructor\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Instructor\Create.cshtml" />
     <Content Include="Scripts\public\badgecreate.js" />
+    <Content Include="Scripts\public\earn.js" />
     <Content Include="Views\Shared\EditorTemplates\String.cshtml" />
     <Content Include="Areas\Admin\Views\Instructor\_InstructorForm.cshtml" />
     <Content Include="Areas\Admin\Views\Instructor\Edit.cshtml" />

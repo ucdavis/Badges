@@ -34,7 +34,7 @@
                             <li>Work2</li>
                         </ul>
                         <div class="form-actions">
-                            <button class="btn"><i class="icon-plus-sign icon-2x"></i> Associate</button>
+                            <a href="#associate-work" data-toggle="modal" class="btn btn-info"><i class="icon-plus-sign icon-2x"></i> Associate</a>
                         </div>
                     </div>
                 </div>
@@ -53,3 +53,36 @@
         </form>
     </div>
 </div>
+
+<!-- Modal -->
+<div id="associate-work" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="associate-work-label" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+          
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3 id="associate-work-label">Associate Work</h3>
+            </div>
+            <div class="modal-body">
+                
+            </div>
+            <div class="modal-footer">
+                <input type="submit" class="btn btn-danger" value="Add Work" />
+                <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+            </div>
+            }
+        </div>
+    </div>
+</div>
+
+@section AdditionalScripts
+{
+    @Scripts.Render("~/bundles/knockout")
+@*    @Scripts.Render("~/bundles/earn")
+
+    <script>
+        $(function() {
+            Badges.init();
+        })
+    </script>*@
+}

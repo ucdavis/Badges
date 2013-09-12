@@ -61,6 +61,7 @@ namespace Badges.App_Start
         {
             bundles.Add(new ScriptBundle("~/bundles/studentexperience").Include("~/Scripts/public/studentexperience.js"));
             bundles.Add(new ScriptBundle("~/bundles/badgecreate").Include("~/Scripts/public/badgecreate.js"));
+            bundles.Add(new ScriptBundle("~/bundles/earn").Include("~/Scripts/public/earn.js"));
         }
     }
 }
