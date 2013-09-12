@@ -23,6 +23,8 @@ namespace Badges.Core.Domain
         [MaxLength(140)]
         public virtual string Description { get; set; }
 
+        public virtual string Details { get; set; }
+
         public virtual string Organization { get; set; }
 
         [Required]
@@ -34,6 +36,8 @@ namespace Badges.Core.Domain
         public virtual string Location { get; set; }
 
         public virtual string Notes { get; set; }
+
+        public virtual string CoverImageUrl { get; set; }
 
         public virtual DateTime Created { get; set; }
 
@@ -89,7 +93,9 @@ namespace Badges.Core.Domain
             Map(x => x.Start).Not.Nullable();
             Map(x => x.End).Column("`End`");
             Map(x => x.Location);
-            Map(x => x.Notes);
+            Map(x => x.CoverImageUrl);
+            Map(x => x.Details).StringMaxLength();
+            Map(x => x.Notes).StringMaxLength();
             Map(x => x.Created);
 
             References(x => x.ExperienceType).Not.Nullable();

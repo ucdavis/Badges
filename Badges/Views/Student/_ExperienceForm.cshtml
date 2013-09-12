@@ -13,10 +13,19 @@
         @Html.TextBoxFor(x => x.Experience.Description, new { @class="form-control", placeholder="Brief Description", maxlength="140" })
         @Html.ValidationMessageFor(x => x.Experience.Description)
     </div>
-            
     <div class="form-group">
         @Html.Label("Experience_ExperienceType", "Experience Type")
         @this.Select("Experience.ExperienceType").Id("Experience_ExperienceType").Class("form-control").Options(Model.ExperienceTypes, x=>x.Id, x=>x.Name).Selected(Model.Experience.ExperienceType != null ? Model.Experience.ExperienceType.Id : default(Guid))
+    </div>
+    <div class="form-group">
+        <img id="cover-preview" src="http://placehold.it/1200x300" style="with:1200px; height: 300px; display: block;" />
+        @Html.Label("Experience_CoverImageUrl", "Upload Cover Photo")
+        <input type="file" class="form-control" name="CoverImage" placeholder="Upload Cover Photo"/>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(x => x.Experience.Details)
+        @Html.TextAreaFor(x => x.Experience.Details, new { @class="form-control", placeholder="Details about your experience"})
+        @Html.ValidationMessageFor(x => x.Experience.Details)   
     </div>
     <div class="form-group">
         @Html.Label("Experience_Instructors", "Instructors")

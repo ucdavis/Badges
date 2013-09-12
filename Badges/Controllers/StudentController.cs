@@ -61,10 +61,16 @@ namespace Badges.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddExperience(Experience experience)
+        public ActionResult AddExperience(Experience experience, HttpPostedFileBase coverImage)
         {
             if (ModelState.IsValid)
             {
+                if (coverImage != null)
+                {
+                    var image = _fileService.Save(coverImage, publicAccess: true);
+                    experience.CoverImageUrl = image.Uri.AbsoluteUri;
+                }
+
                 RepositoryFactory.ExperienceRepository.EnsurePersistent(experience);
 
                 Message = "Experience Added!";

@@ -6,7 +6,7 @@
 
 <h2>Edit Experience</h2>
 
-@using (Html.BeginForm("EditExperience", "Student", FormMethod.Post))
+@using (Html.BeginForm("EditExperience", "Student", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     @Html.Hidden("Experience.Creator", Model.User.Id)
