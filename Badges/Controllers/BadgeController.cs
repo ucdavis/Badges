@@ -8,6 +8,7 @@ using Badges.Core.Repositories;
 using Badges.Models.Badge;
 using UCDArch.Core.PersistanceSupport;
 using UCDArch.Core.Utils;
+using UCDArch.Web.ActionResults;
 
 namespace Badges.Controllers
 {
@@ -101,6 +102,39 @@ namespace Badges.Controllers
             badge.BadgeCriterias.ToList(); //preload the criteria
 
             return View(badge);
+        }
+
+        /// <summary>
+        /// Returns work associated with this student, optionally filtered by a 'search' string
+        /// </summary>
+        /// <param name="filter">Filters work, currently filters by name of work/experience</param>
+        /// <returns>Top 5 matching results</returns>
+        public ActionResult MyWork(string filter)
+        {
+            var experiences = RepositoryFactory.ExperienceRepository.Queryable
+                             .Where(x => x.Creator.Identifier == CurrentUser.Identity.Name)
+                             .OrderByDescending(x => x.Created).Take(5)
+                             .Select(exp => new {exp.Id, exp.Name, exp.Description, exp.CoverImageUrl})
+                             .ToList();
+
+            var experienceIds = experiences.Select(x => x.Id).ToArray();
+            var work =
+                RepositoryFactory.SupportingWorkRepository.Queryable.Where(x => experienceIds.Contains(x.Experience.Id))
+                                 .Select(w => new {w.Id, w.Description, experienceId = w.Experience.Id})
+                                 .ToList();
+
+            var experiencesWithWork = from experience in experiences
+                                      select
+                                          new
+                                              {
+                                                  experience.Id,
+                                                  experience.Name,
+                                                  experience.Description,
+                                                  experience.CoverImageUrl,
+                                                  Work = work.Where(x => x.experienceId == experience.Id)
+                                              };
+
+            return new JsonNetResult(experiencesWithWork);
         }
 
         private BadgeAddModel GetBadgeAddModel()

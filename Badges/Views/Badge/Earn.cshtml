@@ -67,6 +67,8 @@
                 <form>
                     <input type="search" class="form-control" placeholder="Search Your Experiences & Work"/>
                 </form>
+                <i class="icon-spinner icon-spin"></i>
+                <div id="experience-container"></div>
             </div>
             <div class="modal-footer">
                 <input type="submit" class="btn btn-danger" value="Add Work" />
@@ -80,11 +82,13 @@
 @section AdditionalScripts
 {
     @Scripts.Render("~/bundles/knockout")
-@*    @Scripts.Render("~/bundles/earn")
+    @Scripts.Render("~/bundles/earn")
 
     <script>
+        Badges.options({ MyWorkUrl: '@Html.Raw(Url.Action("MyWork"))' });
+
         $(function() {
             Badges.init();
-        })
-    </script>*@
+        });
+    </script>
 }
