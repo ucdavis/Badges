@@ -20,21 +20,21 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-md-12">
+    <div id="badge-criteria" class="col-md-12">
         @for (var i = 0; i < Model.BadgeCriterias.Count; i++)
         {
             var criterion = Model.BadgeCriterias[i];
             <div class="row">
                 <div class="col-md-12">
-                    <div class="well">
+                    <div class="well associated-work-container">
                         <h4>Criteria @(i+1)</h4> 
                         <blockquote><p>@criterion.Details</p></blockquote>
-                        <ul>
+                        <ul class="associated-work">
                             <li>Work1</li>
                             <li>Work2</li>
                         </ul>
                         <div class="form-actions">
-                            <a href="#associate-work" data-toggle="modal" class="btn btn-info"><i class="icon-plus-sign icon-2x"></i> Associate</a>
+                            <a href="#associate-work" data-toggle="modal" data-criterion="@criterion.Details" class="btn btn-info associate-modal"><i class="icon-plus-sign icon-2x"></i> Associate</a>
                         </div>
                     </div>
                 </div>
@@ -64,11 +64,49 @@
                 <h3 id="associate-work-label">Associate Work</h3>
             </div>
             <div class="modal-body">
+                <div class="well well-sm">
+                    <h4>Selected Criteria</h4>
+                    <blockquote><p id="current-criterion"></p></blockquote>
+                </div>
                 <form>
                     <input type="search" class="form-control" placeholder="Search Your Experiences & Work"/>
                 </form>
-                <i class="icon-spinner icon-spin"></i>
-                <div id="experience-container"></div>
+                <hr/>
+                <i id="work-loading-indicator" class="icon-spinner icon-spin"></i>
+                <div class="panel-group" id="accordion">
+                    <div class="panel panel-default" data-bind="foreach: experiences">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-bind="html: name, attr: { href: '#collapse' + $index() }"></a>
+                                <a href="#" target="_blank" class="pull-right"><i class="icon-external-link"></i></a>
+                            </h4>
+                        </div>
+                        <div class="panel-collapse collapse" data-bind="attr: { id: 'collapse' + $index() }, css: { 'in': $index() === 0 }">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-12 well well-sm">
+                                        <img alt="Experience Picture" data-bind="attr: { src: coverImageUrl }" style="width: 500px; height: 100px; display: block;"/>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <ul class="nav nav-pills" data-bind="foreach: work">
+                                        <li>
+                                            <a href="#">
+                                                <strong data-bind="html: Type"></strong> <span data-bind="html: Description"></span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="experience-container">
+                    <div data-bind="foreach: experiences">
+                        
+                        <hr/>
+                    </div>
+                </div>
             </div>
             <div class="modal-footer">
                 <input type="submit" class="btn btn-danger" value="Add Work" />

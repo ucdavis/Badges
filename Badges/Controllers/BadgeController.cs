@@ -120,7 +120,7 @@ namespace Badges.Controllers
             var experienceIds = experiences.Select(x => x.Id).ToArray();
             var work =
                 RepositoryFactory.SupportingWorkRepository.Queryable.Where(x => experienceIds.Contains(x.Experience.Id))
-                                 .Select(w => new {w.Id, w.Description, experienceId = w.Experience.Id})
+                                 .Select(w => new {w.Id, w.Description, experienceId = w.Experience.Id, w.Type})
                                  .ToList();
 
             var experiencesWithWork = from experience in experiences
