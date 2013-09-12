@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Badges.Core.Domain.Badge>
+
+@{
+	ViewBag.Title = "Browse";
+}
+
+<h2>Browse</h2>
+
+
+@section SubNav
+{
+	<li>@Html.ActionLink("Create New", "Create")</li>
+}
+
+<div class="row">
+    <div class="col-md-2">
+        <div class="row well">
+            <label>Filter by Category</label>
+            <ul>
+                <li>Category1</li>
+                <li>Category2</li>
+                <li>Category3</li>
+            </ul>
+        </div>
+        <div class="row well">
+            <form>
+                <div class="form-group">
+                    <input type="search" class="form-control" placeholder="Search"/>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="col-md-10">
+            @foreach (var item in Model)
+            {
+                <div class="media">
+                    <span class="pull-left" >
+                        <img class="media-object" alt="Badge Icon" src="@item.ImageUrl" style="width: 120px; height: 120px;">
+                    </span>
+                    <div class="media-body">
+                        <h4 class="media-heading"><a href="@Url.Action("Earn", "Badge", new { area = string.Empty, id = item.Id })">@item.Name</a></h4>
+                        @item.Description
+                    </div>
+                </div>
+                <hr/>
+            }
+    </div>
+</div>

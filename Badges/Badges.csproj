@@ -558,6 +558,7 @@
     <Content Include="Views\Profile\Picture.cshtml" />
     <Content Include="Views\Badge\Index.cshtml" />
     <Content Include="Views\Badge\Create.cshtml" />
+    <Content Include="Views\Badge\Browse.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\files\" />

@@ -27,6 +27,17 @@ namespace Badges.Controllers
         }
 
         /// <summary>
+        /// Browse all badges in the system
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult Browse()
+        {
+            var badges = RepositoryFactory.BadgeRepository.Queryable.Fetch(x=>x.Category);
+
+            return View(badges.ToList());
+        }
+
+        /// <summary>
         /// Create a new badge!
         /// </summary>
         /// <returns></returns>
