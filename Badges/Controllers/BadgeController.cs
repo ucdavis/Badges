@@ -84,6 +84,25 @@ namespace Badges.Controllers
             return RedirectToAction("Index");
         }
 
+        /// <summary>
+        /// Earn a badge by associating experiences and work
+        /// </summary>
+        /// <param name="id">Badge Id</param>
+        /// <returns></returns>
+        public ActionResult Earn(Guid id)
+        {
+            var badge = RepositoryFactory.BadgeRepository.GetNullableById(id);
+
+            if (badge == null)
+            {
+                return HttpNotFound();
+            }
+
+            badge.BadgeCriterias.ToList(); //preload the criteria
+
+            return View(badge);
+        }
+
         private BadgeAddModel GetBadgeAddModel()
         {
             return new BadgeAddModel

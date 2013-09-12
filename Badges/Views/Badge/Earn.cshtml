@@ -1,0 +1,55 @@
+﻿@model Badges.Core.Domain.Badge
+
+@{
+    ViewBag.Title = "Earn";
+}
+
+<h2>Earn</h2>
+
+<div class="row">
+    <div class="col-md-12 well well-sm">
+        <div class="media">
+            <span class="pull-left" >
+                <img class="media-object" alt="Badge Icon" src="@Model.ImageUrl" style="width: 120px; height: 120px;">
+            </span>
+            <div class="media-body">
+                <h4 class="media-heading">@Model.Name</h4>
+                @Model.Description
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        @for (var i = 0; i < Model.BadgeCriterias.Count; i++)
+        {
+            var criterion = Model.BadgeCriterias[i];
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="well">
+                        <h4>Criteria @(i+1)</h4> 
+                        <blockquote><p>@criterion.Details</p></blockquote>
+                        <ul>
+                            <li>Work1</li>
+                            <li>Work2</li>
+                        </ul>
+                        <div class="form-actions">
+                            <button class="btn"><i class="icon-plus-sign icon-2x"></i> Associate</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<hr/>
+<div class="row">
+    <div class="col-md-12">
+        <form>
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Save</button>
+                <a href="#" class="btn btn-link">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
