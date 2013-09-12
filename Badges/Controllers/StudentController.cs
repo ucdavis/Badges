@@ -99,7 +99,7 @@ namespace Badges.Controllers
         }
 
         [HttpPost]
-        public ActionResult EditExperience(Guid id, Experience experience)
+        public ActionResult EditExperience(Guid id, Experience experience, HttpPostedFileBase coverImage)
         {
             var experienceToEdit =
                 RepositoryFactory.ExperienceRepository.Queryable.SingleOrDefault(
@@ -115,6 +115,12 @@ namespace Badges.Controllers
                 
             if (ModelState.IsValid)
             {
+                if (coverImage != null)
+                {
+                    var image = _fileService.Save(coverImage, publicAccess: true);
+                    experienceToEdit.CoverImageUrl = image.Uri.AbsoluteUri;
+                }
+                
                 RepositoryFactory.ExperienceRepository.EnsurePersistent(experienceToEdit);
 
                 Message = "Experience Updated!";
