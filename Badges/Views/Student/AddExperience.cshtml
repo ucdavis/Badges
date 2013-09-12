@@ -24,60 +24,14 @@
 {
     @Scripts.Render("~/bundles/typeahead")
     @Scripts.Render("~/bundles/datepicker")
+    @Scripts.Render("~/bundles/modifyexperience")
     <script type="text/javascript"
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCNUxAy26HeRg-YRsD541p5M-5xgh4vOJA&sensor=true">
     </script>
 
     <script>
         $(function() {
-            var geocoder, map, marker;
-            
-            $("#Experience_Name").typeahead({
-                name: 'title',
-                prefetch: '@Url.Action("Titles", "Json")',
-                limit: 10
-            });
-            
-            $("#Experience_Organization").typeahead({
-                name: 'orgs',
-                prefetch: '@Url.Action("Organizations", "Json")',
-                limit: 10
-            });
-
-            $(".datepicker").datepicker();
-
-            var davisLatLng = new google.maps.LatLng(38.5449065, -121.7405167);
-            geocoder = new google.maps.Geocoder();
-            var mapOptions = {
-                center: davisLatLng,
-                zoom: 10,
-                mapTypeId: google.maps.MapTypeId.ROADMAP
-            };
-
-            map = new google.maps.Map(document.getElementById("map-canvas"),
-                mapOptions);
-            marker = new google.maps.Marker({
-                map: map,
-                position: davisLatLng
-            });
-
-            $("#Experience_Location").blur(function() {
-                var address = this.value;
-                geocoder.geocode({ 'address': address }, function(results, status) {
-                    if (status == google.maps.GeocoderStatus.OK) {
-                        if (marker) marker.setMap(null); //clear existing marker
-                        map.setCenter(results[0].geometry.location);
-                        marker = new google.maps.Marker({
-                            map: map,
-                            position: results[0].geometry.location
-                        });
-                        if (results[0].geometry.viewport)
-                            map.fitBounds(results[0].geometry.viewport);
-                    } else {
-                        alert('Geocode was not successful for the following reason: ' + status);
-                    }
-                });
-            });
+            Badges.init();
         });
     </script>
 }

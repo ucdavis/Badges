@@ -60,6 +60,7 @@ namespace Badges.App_Start
         private static void ConfigurePageBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/studentexperience").Include("~/Scripts/public/studentexperience.js"));
+            bundles.Add(new ScriptBundle("~/bundles/modifyexperience").Include("~/Scripts/public/modifyexperience.js"));
             bundles.Add(new ScriptBundle("~/bundles/badgecreate").Include("~/Scripts/public/badgecreate.js"));
             bundles.Add(new ScriptBundle("~/bundles/earn").Include("~/Scripts/public/earn.js"));
         }
