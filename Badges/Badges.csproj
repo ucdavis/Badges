@@ -225,6 +225,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Badge\BadgeAddModel.cs" />
+    <Compile Include="Models\Badge\BadgeApplicationModel.cs" />
+    <Compile Include="Models\Badge\BadgeAssociatedWorkModel.cs" />
+    <Compile Include="Models\Badge\BadgeFulfillmentViewModel.cs" />
     <Compile Include="Models\Profile\ProfileEditModel.cs" />
     <Compile Include="Models\Services\BlobResult.cs" />
     <Compile Include="Models\Shared\Class1.cs" />

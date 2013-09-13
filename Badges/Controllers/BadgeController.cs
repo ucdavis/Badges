@@ -92,7 +92,6 @@ namespace Badges.Controllers
         /// <returns></returns>
         public ActionResult Earn(Guid id)
         {
-            //TODO: check to make sure they aren't already trying to earn this badge (badge application exists)
             var badge = RepositoryFactory.BadgeRepository.GetNullableById(id);
 
             if (badge == null)
@@ -100,9 +99,40 @@ namespace Badges.Controllers
                 return HttpNotFound();
             }
 
-            badge.BadgeCriterias.ToList(); //preload the criteria
+            var model = new BadgeApplicationModel
+                {
+                    Badge = badge,
+                    BadgeCriterias = badge.BadgeCriterias.ToList(),
+                    Fulfillments = new List<BadgeFulfillmentViewModel>()
+                };
 
-            return View(badge);
+            var existingBadgeApplication =
+                RepositoryFactory.BadgeApplicationRepository.Queryable.SingleOrDefault(
+                    x => x.Badge.Id == badge.Id && x.Creator.Identifier == CurrentUser.Identity.Name);
+
+            if (existingBadgeApplication != null)
+            {
+                Message = "Existing badge progress found-- you can continue associating work and experiences below";
+
+                model.Fulfillments =
+                    RepositoryFactory.BadgeFulfillmentRepository.Queryable.Where(
+                        x => x.BadgeApplication.Id == existingBadgeApplication.Id)
+                                     .Select(
+                                         x =>
+                                         new BadgeFulfillmentViewModel
+                                             {
+                                                 CriteriaId = x.BadgeCriteria.Id,
+                                                 Details =
+                                                     x.Experience == null
+                                                         ? x.SupportingWork.Description
+                                                         : x.Experience.Name,
+                                                 WorkId = x.Experience == null ? x.SupportingWork.Id : x.Experience.Id,
+                                                 WorkType = x.Experience == null ? "work" : "experience"
+                                             })
+                                     .ToList();
+            }
+
+            return View(model);
         }
 
         [HttpPost]
@@ -113,7 +143,19 @@ namespace Badges.Controllers
             if (badge == null) return HttpNotFound();
 
             var user = RepositoryFactory.UserRepository.Queryable.Single(x => x.Identifier == CurrentUser.Identity.Name);
-            var application = new BadgeApplication {Badge = badge, Creator = user, Approved = false};
+
+            var application =
+                RepositoryFactory.BadgeApplicationRepository.Queryable.SingleOrDefault(
+                    x => x.Badge.Id == badge.Id && x.Creator.Identifier == CurrentUser.Identity.Name);
+
+            if (application == null)
+            {
+                application = new BadgeApplication {Badge = badge, Creator = user, Approved = false};
+            }
+            else
+            {
+                application.BadgeFulfillments.Clear();
+            }
 
             foreach (var criterionAssocaition in criterion)
             {
@@ -121,7 +163,7 @@ namespace Badges.Controllers
 
                 if (criterionAssocaition.Experience != null)
                 {
-                    foreach (var experience in criterionAssocaition.Experience)
+                    foreach (var experience in criterionAssocaition.Experience.Distinct())
                     {
                         application.AddFulfillment(new BadgeFulfillment
                             {
@@ -133,7 +175,7 @@ namespace Badges.Controllers
 
                 if (criterionAssocaition.Work != null)
                 {
-                    foreach (var work in criterionAssocaition.Work)
+                    foreach (var work in criterionAssocaition.Work.Distinct())
                     {
                         application.AddFulfillment(new BadgeFulfillment
                             {
@@ -190,13 +232,5 @@ namespace Badges.Controllers
                     BadgeCategories = RepositoryFactory.BadgeCategoryRepository.GetAll()
                 };
         }
-    }
-
-    public class BadgeAssociatedWorkModel
-    {
-
-        public Guid Id { get; set; }
-        public Guid[] Work { get; set; }
-        public Guid[] Experience { get; set; }
     }
 }
