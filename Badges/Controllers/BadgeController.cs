@@ -92,6 +92,7 @@ namespace Badges.Controllers
         /// <returns></returns>
         public ActionResult Earn(Guid id)
         {
+            //TODO: check to make sure they aren't already trying to earn this badge (badge application exists)
             var badge = RepositoryFactory.BadgeRepository.GetNullableById(id);
 
             if (badge == null)
@@ -107,6 +108,45 @@ namespace Badges.Controllers
         [HttpPost]
         public ActionResult Earn(Guid id, BadgeAssociatedWorkModel[] criterion)
         {
+            var badge = RepositoryFactory.BadgeRepository.GetNullableById(id);
+
+            if (badge == null) return HttpNotFound();
+
+            var user = RepositoryFactory.UserRepository.Queryable.Single(x => x.Identifier == CurrentUser.Identity.Name);
+            var application = new BadgeApplication {Badge = badge, Creator = user, Approved = false};
+
+            foreach (var criterionAssocaition in criterion)
+            {
+                var criteria = RepositoryFactory.BadgeCriteriaRepository.GetById(criterionAssocaition.Id);
+
+                if (criterionAssocaition.Experience != null)
+                {
+                    foreach (var experience in criterionAssocaition.Experience)
+                    {
+                        application.AddFulfillment(new BadgeFulfillment
+                            {
+                                BadgeCriteria = criteria,
+                                Experience = RepositoryFactory.ExperienceRepository.GetById(experience)
+                            });
+                    }
+                }
+
+                if (criterionAssocaition.Work != null)
+                {
+                    foreach (var work in criterionAssocaition.Work)
+                    {
+                        application.AddFulfillment(new BadgeFulfillment
+                            {
+                                BadgeCriteria = criteria,
+                                SupportingWork = RepositoryFactory.SupportingWorkRepository.GetById(work)
+                            });
+                    }
+                }
+            }
+
+            Message = "Your badge progress has been saved";
+            RepositoryFactory.BadgeApplicationRepository.EnsurePersistent(application);
+
             return RedirectToAction("Earn");
         }
 
@@ -154,7 +194,9 @@ namespace Badges.Controllers
 
     public class BadgeAssociatedWorkModel
     {
+
         public Guid Id { get; set; }
         public Guid[] Work { get; set; }
+        public Guid[] Experience { get; set; }
     }
 }

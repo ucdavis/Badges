@@ -63,7 +63,7 @@
             var id = this.id;
 
             var associatedWork = currentCriteriaContainer.find(".associated-work");
-            var name = 'criterion[' + associatedWork.attr("data-index") + '].work';
+            var name = 'criterion[' + associatedWork.attr("data-index") + '].' + type; //Either .work or .experience
 
             //Add this work to the proper container, then close the modal
             var workItem = $("<li>", { text: text })

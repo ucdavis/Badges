@@ -21,11 +21,15 @@ namespace Badges.Core.Repositories
         IRepositoryWithTypedId<Badge, Guid> BadgeRepository { get; set; }
         IRepositoryWithTypedId<BadgeCategory, Guid> BadgeCategoryRepository { get; set; }
         IRepositoryWithTypedId<BadgeCriteria, Guid> BadgeCriteriaRepository { get; set; }
+        IRepositoryWithTypedId<BadgeApplication, Guid> BadgeApplicationRepository { get; set; }
+        IRepositoryWithTypedId<BadgeFulfillment, Guid> BadgeFulfillmentRepository { get; set; }
         void Flush();
     }
 
     public class RepositoryFactory : IRepositoryFactory
     {
+        public IRepositoryWithTypedId<BadgeApplication, Guid> BadgeApplicationRepository { get; set; }
+        public IRepositoryWithTypedId<BadgeFulfillment, Guid> BadgeFulfillmentRepository { get; set; }
         public IRepositoryWithTypedId<Badge, Guid> BadgeRepository { get; set; }
         public IRepositoryWithTypedId<BadgeCategory, Guid> BadgeCategoryRepository { get; set; }
         public IRepositoryWithTypedId<BadgeCriteria, Guid> BadgeCriteriaRepository { get; set; }
