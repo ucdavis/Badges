@@ -195,32 +195,70 @@ namespace Badges.Controllers
         /// <summary>
         /// Returns work associated with this student, optionally filtered by a 'search' string
         /// </summary>
-        /// <param name="filter">Filters work, currently filters by name of work/experience</param>
+        /// <param name="filter">Currently filters by name of experience</param>
         /// <returns>Top 5 matching results</returns>
+        public ActionResult MyExperiences(string filter)
+        {
+            var experienceQuery = RepositoryFactory.ExperienceRepository.Queryable
+                             .Where(x => x.Creator.Identifier == CurrentUser.Identity.Name);
+            
+            if (!string.IsNullOrWhiteSpace(filter))
+            {
+                experienceQuery = experienceQuery.Where(x => x.Name == filter);
+            }
+
+            var experiences = experienceQuery
+                .OrderByDescending(x => x.Created)
+                .Take(5);
+
+            return GetWorkForExperiences(experiences);
+        }
+
+        /// <summary>
+        /// Returns experinces that match the work name passed in as a filter
+        /// </summary>
+        /// <param name="filter">Name of a specific work (or set of works)</param>
+        /// <returns></returns>
         public ActionResult MyWork(string filter)
         {
+            var experienceIds = RepositoryFactory.SupportingWorkRepository.Queryable
+                                                 .Where(
+                                                     x => x.Experience.Creator.Identifier == CurrentUser.Identity.Name)
+                                                 .Where(x => x.Description == filter)
+                                                 .Select(x => x.Experience.Id)
+                                                 .Distinct()
+                                                 .ToArray();
+
             var experiences = RepositoryFactory.ExperienceRepository.Queryable
-                             .Where(x => x.Creator.Identifier == CurrentUser.Identity.Name)
-                             .OrderByDescending(x => x.Created).Take(5)
-                             .Select(exp => new {exp.Id, exp.Name, exp.Description, exp.CoverImageUrl})
-                             .ToList();
+                                               .Where(x => experienceIds.Contains(x.Id))
+                                               .OrderByDescending(x => x.Created)
+                                               .Take(5);
+
+            return GetWorkForExperiences(experiences);
+        }
+
+        private JsonNetResult GetWorkForExperiences(IQueryable<Experience> experiencesQuery)
+        {
+            var experiences = experiencesQuery.Select(exp => new {exp.Id, exp.Name, exp.Description, exp.CoverImageUrl})
+                                              .ToList();
 
             var experienceIds = experiences.Select(x => x.Id).ToArray();
+           
             var work =
                 RepositoryFactory.SupportingWorkRepository.Queryable.Where(x => experienceIds.Contains(x.Experience.Id))
-                                 .Select(w => new {w.Id, w.Description, experienceId = w.Experience.Id, w.Type})
+                                 .Select(w => new { w.Id, w.Description, experienceId = w.Experience.Id, w.Type })
                                  .ToList();
 
             var experiencesWithWork = from experience in experiences
                                       select
                                           new
-                                              {
-                                                  experience.Id,
-                                                  experience.Name,
-                                                  experience.Description,
-                                                  experience.CoverImageUrl,
-                                                  Work = work.Where(x => x.experienceId == experience.Id)
-                                              };
+                                          {
+                                              experience.Id,
+                                              experience.Name,
+                                              experience.Description,
+                                              experience.CoverImageUrl,
+                                              Work = work.Where(x => x.experienceId == experience.Id)
+                                          };
 
             return new JsonNetResult(experiencesWithWork);
         }

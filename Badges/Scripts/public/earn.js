@@ -11,7 +11,7 @@
         bindModalEvents();
         createModels();
         ko.applyBindings(badges.Support);
-        getMyWork('', function () { });
+        getExperiences(options.MyExperiencesUrl, {});
         bindAssociationEvents();
     };
 
@@ -21,15 +21,32 @@
             
             $("#current-criterion").html(this.getAttribute("data-criterion"));
         });
+
+        var ttl = 10000; //cache results for 1 minute
+
+        $("#searchbox").typeahead([
+            {
+                name: 'experiences',
+                prefetch: { url: options.TypeaheadExperiencesUrl, ttl: ttl },
+                header: '<h4 class="typeahead-worktype">Experiences</h3>'
+            },
+            {
+                name: 'work',
+                prefetch: { url: options.TypeaheadWorkUrl, ttl: ttl },
+                header: '<h4 class="typeahead-worktype">Supporting Work</h3>'
+            }
+        ]).on('typeahead:selected typeahead:autocompleted', function(event, datum, dataset) {
+            badges.Support.experiences.removeAll();
+            getExperiences(dataset === 'experiences' ? options.MyExperiencesUrl : options.MyWorkUrl, { filter: datum.value });
+        });
     }
 
-    function getMyWork(filter, fnUpdate) {
-        $.getJSON(options.MyWorkUrl, filter, function (response) {
-            $.each(response, function(i, v) {
+    function getExperiences(url, filter) {
+        $.getJSON(url, filter, function (response) {
+            $.each(response, function (i, v) {
                 badges.Support.addExperience(v);
             });
             $("#work-loading-indicator").hide();
-            fnUpdate.call();
         });
     }
 

@@ -4,6 +4,18 @@
     ViewBag.Title = "Earn";
 }
 
+@section AdditionalStyles
+{
+    @Styles.Render("~/Content/typeahead")
+    <style type="text/css">
+        .typeahead-worktype {
+            margin: 0 20px 5px 20px;
+            padding: 3px 0;
+            border-bottom: 1px solid #ccc;
+        }
+    </style>
+}
+
 <h2>Earn</h2>
 
 @using (Html.BeginForm("Earn", "Badge", FormMethod.Post))
@@ -78,7 +90,7 @@
                     <blockquote><p id="current-criterion"></p></blockquote>
                 </div>
                 <form>
-                    <input type="search" class="form-control" placeholder="Search Your Experiences & Work"/>
+                    <input id="searchbox" type="search" class="form-control" placeholder="Search Your Experiences & Work"/>
                 </form>
                 <hr/>
                 <i id="work-loading-indicator" class="icon-spinner icon-spin"></i>
@@ -124,10 +136,16 @@
 @section AdditionalScripts
 {
     @Scripts.Render("~/bundles/knockout")
+    @Scripts.Render("~/bundles/typeahead")
     @Scripts.Render("~/bundles/earn")
 
     <script>
-        Badges.options({ MyWorkUrl: '@Html.Raw(Url.Action("MyWork"))' });
+        Badges.options({
+             MyExperiencesUrl: '@Html.Raw(Url.Action("MyExperiences"))',
+             MyWorkUrl: '@Html.Raw(Url.Action("MyWork"))',
+             TypeaheadExperiencesUrl: '@Html.Raw(Url.Action("MyExperiences", "Json"))',
+             TypeaheadWorkUrl: '@Html.Raw(Url.Action("MyWork", "Json"))'
+        });
 
         $(function() {
             Badges.init();
