@@ -104,6 +104,12 @@ namespace Badges.Controllers
             return View(badge);
         }
 
+        [HttpPost]
+        public ActionResult Earn(Guid id, BadgeAssociatedWorkModel[] criterion)
+        {
+            return RedirectToAction("Earn");
+        }
+
         /// <summary>
         /// Returns work associated with this student, optionally filtered by a 'search' string
         /// </summary>
@@ -144,5 +150,11 @@ namespace Badges.Controllers
                     BadgeCategories = RepositoryFactory.BadgeCategoryRepository.GetAll()
                 };
         }
+    }
+
+    public class BadgeAssociatedWorkModel
+    {
+        public Guid Id { get; set; }
+        public Guid[] Work { get; set; }
     }
 }

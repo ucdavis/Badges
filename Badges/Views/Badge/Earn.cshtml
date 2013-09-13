@@ -6,53 +6,53 @@
 
 <h2>Earn</h2>
 
-<div class="row">
-    <div class="col-md-12 well well-sm">
-        <div class="media">
-            <span class="pull-left" >
-                <img class="media-object" alt="Badge Icon" src="@Model.ImageUrl" style="width: 120px; height: 120px;">
-            </span>
-            <div class="media-body">
-                <h4 class="media-heading">@Model.Name</h4>
-                @Model.Description
+@using (Html.BeginForm("Earn", "Badge", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div class="row">
+        <div class="col-md-12 well well-sm">
+            <div class="media">
+                <span class="pull-left" >
+                    <img class="media-object" alt="Badge Icon" src="@Model.ImageUrl" style="width: 120px; height: 120px;">
+                </span>
+                <div class="media-body">
+                    <h4 class="media-heading">@Model.Name</h4>
+                    @Model.Description
+                </div>
             </div>
         </div>
     </div>
-</div>
-<div class="row">
-    <div id="badge-criteria" class="col-md-12">
-        @for (var i = 0; i < Model.BadgeCriterias.Count; i++)
-        {
-            var criterion = Model.BadgeCriterias[i];
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="well associated-work-container">
-                        <h4>Criteria @(i+1)</h4> 
-                        <blockquote><p>@criterion.Details</p></blockquote>
-                        <ul class="associated-work">
-                            <li>Work1</li>
-                            <li>Work2</li>
-                        </ul>
-                        <div class="form-actions">
-                            <a href="#associate-work" data-toggle="modal" data-criterion="@criterion.Details" class="btn btn-info associate-modal"><i class="icon-plus-sign icon-2x"></i> Associate</a>
+    <div class="row">
+        <div id="badge-criteria" class="col-md-12">
+            @for (var i = 0; i < Model.BadgeCriterias.Count; i++)
+            {
+                var criterion = Model.BadgeCriterias[i];
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="well associated-work-container">
+                            <h4>Criteria @(i + 1)</h4> 
+                            <blockquote><p>@criterion.Details</p></blockquote>             
+                            <input type="hidden" name="@string.Format("criterion[{0}].Id", i)" value="@criterion.Id"/>
+                            <ul class="associated-work" data-index="@i"></ul>
+                            <div class="form-actions">
+                                <a href="#associate-work" data-toggle="modal" data-criterion="@criterion.Details" class="btn btn-info associate-modal"><i class="icon-plus-sign icon-2x"></i> Associate</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        }
+            }
+        </div>
     </div>
-</div>
-<hr/>
-<div class="row">
-    <div class="col-md-12">
-        <form>
+    <hr/>
+    <div class="row">
+        <div class="col-md-12">
             <div class="form-actions">
                 <button type="submit" class="btn btn-primary">Save</button>
                 <a href="#" class="btn btn-link">Cancel</a>
             </div>
-        </form>
+        </div>
     </div>
-</div>
+}
 
 <!-- Modal -->
 <div id="associate-work" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="associate-work-label" aria-hidden="true">
@@ -73,11 +73,11 @@
                 </form>
                 <hr/>
                 <i id="work-loading-indicator" class="icon-spinner icon-spin"></i>
-                <div class="panel-group" id="accordion">
+                <div class="panel-group" id="experience-accordion">
                     <div class="panel panel-default" data-bind="foreach: experiences">
                         <div class="panel-heading">
                             <h4 class="panel-title">
-                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-bind="html: name, attr: { href: '#collapse' + $index() }"></a>
+                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#experience-accordion" data-bind="html: name, attr: { href: '#collapse' + $index() }"></a>
                                 <a href="#" target="_blank" class="pull-right"><i class="icon-external-link"></i></a>
                             </h4>
                         </div>
@@ -85,13 +85,15 @@
                             <div class="panel-body">
                                 <div class="row">
                                     <div class="col-md-12 well well-sm">
-                                        <img alt="Experience Picture" data-bind="attr: { src: coverImageUrl }" style="width: 500px; height: 100px; display: block;"/>
+                                        <a href="#" class="association" data-bind="attr: { id: id, 'data-text': name }" data-type="experience">
+                                            <img alt="Experience Picture" data-bind="attr: { src: coverImageUrl }" style="width: 500px; height: 100px; display: block;"/>
+                                        </a>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <ul class="nav nav-pills" data-bind="foreach: work">
                                         <li>
-                                            <a href="#">
+                                            <a href="#" class="association" data-bind="attr: { id: Id, 'data-text': Description, 'data-worktype': Type }" data-type="work">
                                                 <strong data-bind="html: Type"></strong> <span data-bind="html: Description"></span>
                                             </a>
                                         </li>
@@ -101,15 +103,8 @@
                         </div>
                     </div>
                 </div>
-                <div id="experience-container">
-                    <div data-bind="foreach: experiences">
-                        
-                        <hr/>
-                    </div>
-                </div>
             </div>
             <div class="modal-footer">
-                <input type="submit" class="btn btn-danger" value="Add Work" />
                 <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
             </div>
             }
