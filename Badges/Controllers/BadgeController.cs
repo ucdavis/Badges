@@ -39,6 +39,21 @@ namespace Badges.Controllers
         }
 
         /// <summary>
+        /// Shows all badges you have earned as well as badges you are working on
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult MyBadges()
+        {
+            var mybadges =
+                RepositoryFactory.BadgeApplicationRepository.Queryable.Where(
+                    x => x.Creator.Identifier == CurrentUser.Identity.Name)
+                                 .OrderByDescending(x => x.CreatedOn)
+                                 .Fetch(x => x.Badge);
+
+            return View(mybadges.ToList());
+        }
+
+        /// <summary>
         /// Create a new badge!
         /// </summary>
         /// <returns></returns>
@@ -189,7 +204,7 @@ namespace Badges.Controllers
             Message = "Your badge progress has been saved";
             RepositoryFactory.BadgeApplicationRepository.EnsurePersistent(application);
 
-            return RedirectToAction("Earn");
+            return RedirectToAction("MyBadges");
         }
 
         /// <summary>

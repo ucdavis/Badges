@@ -1,0 +1,50 @@
+﻿@model List<Badges.Core.Domain.BadgeApplication>
+
+@{
+    ViewBag.Title = "My Badges";
+}
+
+<h2>My Badges</h2>
+
+<div class="row">
+    <div class="col-md-2">
+        <div class="row well">
+            <label>Filter by Category</label>
+            <ul>
+                <li>Category1</li>
+                <li>Category2</li>
+                <li>Category3</li>
+            </ul>
+        </div>
+        <div class="row well">
+            <form>
+                <div class="form-group">
+                    <input type="search" class="form-control" placeholder="Search"/>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="col-md-10">
+            @foreach (var item in Model)
+            {
+                <div class="media">
+                    <span class="pull-left" >
+                        <img class="media-object" alt="Badge Icon" src="@item.Badge.ImageUrl" style="width: 120px; height: 120px;">
+                    </span>
+                    <div class="media-body">
+                        <h4 class="media-heading"><a href="@Url.Action("Earn", "Badge", new { area = string.Empty, id = item.Badge.Id })">@item.Badge.Name</a></h4>
+                        @if (item.Approved == false)
+                        {
+                            <p class="alert">In Progress!</p>
+                        }
+                        else
+                        {
+                            <p class="alert alert-success">Awarded on @string.Format("{0:d}", item.AwardedOn)</p>
+                        }
+                        @item.Badge.Description
+                    </div>
+                </div>
+                <hr/>
+            }
+    </div>
+</div>

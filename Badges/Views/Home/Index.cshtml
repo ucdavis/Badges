@@ -12,6 +12,10 @@
         <h1>Welcome to Badges!</h1>
         @*<p><input type="text" id="typeahead" placeholder="Your Name?"/></p>*@
         <p><a href="@Url.Action("Landing")" class="btn btn-primary btn-lg">Go to Landing Page</a></p>
+        <div class="well well-sm">
+            <p>Resetting the database will clear all data and generate a clean db structure</p>
+            @Html.ActionLink("Reset Database", "Reset", "Home", new { area = string.Empty }, new { @class = "btn btn-danger" })
+        </div>
     </div>
 </div>
 

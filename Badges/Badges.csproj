@@ -565,6 +565,7 @@
     <Content Include="Views\Badge\Create.cshtml" />
     <Content Include="Views\Badge\Browse.cshtml" />
     <Content Include="Views\Badge\Earn.cshtml" />
+    <Content Include="Views\Badge\MyBadges.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\files\" />
