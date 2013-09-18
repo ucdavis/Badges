@@ -29,6 +29,10 @@ namespace Badges.Core.Domain
         public virtual string DisplayName { get { return string.Format("{0} {1}", FirstName, LastName); } }
 
         public virtual string ImageUrl { get; set; }
+
+        public virtual string Bio { get; set; }
+
+        public virtual string Goals { get; set; }
     }
 
     public class ProfileMap : ClassMap<Profile>
@@ -44,6 +48,9 @@ namespace Badges.Core.Domain
             Map(x => x.LastName).Not.Nullable();
             Map(x => x.Email).Not.Nullable();
             Map(x => x.ImageUrl).Nullable();
+
+            Map(x => x.Bio).StringMaxLength();
+            Map(x => x.Goals).StringMaxLength();
         }
     }
 }
