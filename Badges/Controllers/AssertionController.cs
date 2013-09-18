@@ -44,7 +44,7 @@ namespace Badges.Controllers
 
             var obj = new
             {
-                badgeSubmission.Id,
+                uid = badgeSubmission.Id,
                 recipient,
                 image = badgeSubmission.Badge.ImageUrl,
                 evidence = AbsoluteUrl("Badge", "Public", id),
