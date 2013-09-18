@@ -35,7 +35,14 @@
                         <h4 class="media-heading"><a href="@Url.Action("Earn", "Badge", new { area = string.Empty, id = item.Badge.Id })">@item.Badge.Name</a></h4>
                         @if (item.Approved == false)
                         {
-                            <p class="alert">In Progress!</p>
+                            if (item.Submitted)
+                            {
+                                <p class="alert alert-info">Under Review</p>
+                            }
+                            else
+                            {
+                                <p class="alert">In Progress</p>
+                            }
                         }
                         else
                         {

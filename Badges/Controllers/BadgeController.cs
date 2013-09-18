@@ -159,50 +159,55 @@ namespace Badges.Controllers
 
             var user = RepositoryFactory.UserRepository.Queryable.Single(x => x.Identifier == CurrentUser.Identity.Name);
 
-            var application =
+            var submission =
                 RepositoryFactory.BadgeSubmissionRepository.Queryable.SingleOrDefault(
                     x => x.Badge.Id == badge.Id && x.Creator.Identifier == CurrentUser.Identity.Name);
 
-            if (application == null)
+            if (submission == null)
             {
-                application = new BadgeSubmission {Badge = badge, Creator = user, Approved = false};
+                submission = new BadgeSubmission { Badge = badge, Creator = user, Approved = false };
             }
             else
             {
-                application.BadgeFulfillments.Clear();
+                submission.BadgeFulfillments.Clear();
             }
 
-            foreach (var criterionAssocaition in criterion)
-            {
-                var criteria = RepositoryFactory.BadgeCriteriaRepository.GetById(criterionAssocaition.Id);
-
-                if (criterionAssocaition.Experience != null)
-                {
-                    foreach (var experience in criterionAssocaition.Experience.Distinct())
-                    {
-                        application.AddFulfillment(new BadgeFulfillment
-                            {
-                                BadgeCriteria = criteria,
-                                Experience = RepositoryFactory.ExperienceRepository.GetById(experience)
-                            });
-                    }
-                }
-
-                if (criterionAssocaition.Work != null)
-                {
-                    foreach (var work in criterionAssocaition.Work.Distinct())
-                    {
-                        application.AddFulfillment(new BadgeFulfillment
-                            {
-                                BadgeCriteria = criteria,
-                                SupportingWork = RepositoryFactory.SupportingWorkRepository.GetById(work)
-                            });
-                    }
-                }
-            }
-
+            AssociateWorkWithCriterion(submission, criterion);
+            
             Message = "Your badge progress has been saved";
-            RepositoryFactory.BadgeSubmissionRepository.EnsurePersistent(application);
+            RepositoryFactory.BadgeSubmissionRepository.EnsurePersistent(submission);
+
+            return RedirectToAction("MyBadges");
+        }
+
+        [HttpPost]
+        public ActionResult Submit(Guid id, BadgeAssociatedWorkModel[] criterion)
+        {
+            var badge = RepositoryFactory.BadgeRepository.GetNullableById(id);
+
+            if (badge == null) return HttpNotFound();
+
+            var user = RepositoryFactory.UserRepository.Queryable.Single(x => x.Identifier == CurrentUser.Identity.Name);
+
+            var submission =
+                RepositoryFactory.BadgeSubmissionRepository.Queryable.SingleOrDefault(
+                    x => x.Badge.Id == badge.Id && x.Creator.Identifier == CurrentUser.Identity.Name);
+
+            if (submission == null)
+            {
+                submission = new BadgeSubmission { Badge = badge, Creator = user, Approved = false };
+            }
+            else
+            {
+                submission.BadgeFulfillments.Clear();
+            }
+
+            AssociateWorkWithCriterion(submission, criterion);
+            submission.Submitted = true;
+            submission.SubmittedOn = DateTime.UtcNow;
+
+            Message = "Your badge submission has been forwarded for review.  You should recieve a response within 48 hours.";
+            RepositoryFactory.BadgeSubmissionRepository.EnsurePersistent(submission);
 
             return RedirectToAction("MyBadges");
         }
@@ -250,6 +255,38 @@ namespace Badges.Controllers
                                                .Take(5);
 
             return GetWorkForExperiences(experiences);
+        }
+
+        private void AssociateWorkWithCriterion(BadgeSubmission submission, IEnumerable<BadgeAssociatedWorkModel> criterion)
+        {
+            foreach (var criterionAssocaition in criterion)
+            {
+                var criteria = RepositoryFactory.BadgeCriteriaRepository.GetById(criterionAssocaition.Id);
+
+                if (criterionAssocaition.Experience != null)
+                {
+                    foreach (var experience in criterionAssocaition.Experience.Distinct())
+                    {
+                        submission.AddFulfillment(new BadgeFulfillment
+                        {
+                            BadgeCriteria = criteria,
+                            Experience = RepositoryFactory.ExperienceRepository.GetById(experience)
+                        });
+                    }
+                }
+
+                if (criterionAssocaition.Work != null)
+                {
+                    foreach (var work in criterionAssocaition.Work.Distinct())
+                    {
+                        submission.AddFulfillment(new BadgeFulfillment
+                        {
+                            BadgeCriteria = criteria,
+                            SupportingWork = RepositoryFactory.SupportingWorkRepository.GetById(work)
+                        });
+                    }
+                }
+            }
         }
 
         private JsonNetResult GetWorkForExperiences(IQueryable<Experience> experiencesQuery)

@@ -22,6 +22,9 @@ namespace Badges.Core.Domain
         [Required]
         public virtual Badge Badge { get; set; }
 
+        public virtual bool Submitted { get; set; }
+        public virtual DateTime? SubmittedOn { get; set; }
+
         public virtual bool Approved { get; set; }
         public virtual DateTime? AwardedOn { get; set; }
 
@@ -43,6 +46,9 @@ namespace Badges.Core.Domain
             Map(x => x.CreatedOn).Not.Nullable();
             Map(x => x.AwardedOn).Nullable();
             Map(x => x.Approved).Not.Nullable();
+
+            Map(x => x.Submitted).Not.Nullable();
+            Map(x => x.SubmittedOn).Nullable();
 
             References(x => x.Creator).Not.Nullable();
             References(x => x.Badge).Not.Nullable();
