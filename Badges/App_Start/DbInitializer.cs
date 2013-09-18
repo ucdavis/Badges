@@ -106,7 +106,7 @@ namespace Badges.App_Start
                     var category = new BadgeCategory
                         {
                             Name = "SampleCategory",
-                            ImageUrl = "http://localhost:59374//Content/images/climbingbadge.png"
+                            ImageUrl = "https://ucdbadges.blob.core.windows.net/publicimagesdev/12da4d70-207a-45e5-b6e4-f1b418c1802a"
                         };
 
                     session.SaveOrUpdate(category);
@@ -119,7 +119,7 @@ namespace Badges.App_Start
                             Name = "First Badge",
                             Description = "Really interesting badge for being awesome",
                             Creator = user,
-                            ImageUrl = "http://localhost:59374//Content/images/climbingbadge.png"
+                            ImageUrl = "https://ucdbadges.blob.core.windows.net/publicimagesdev/12da4d70-207a-45e5-b6e4-f1b418c1802a"
                         };
 
                     badge.AddCriteria("You need to do a, b, c");
