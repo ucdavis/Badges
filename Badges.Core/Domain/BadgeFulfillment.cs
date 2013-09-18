@@ -9,7 +9,7 @@ namespace Badges.Core.Domain
     public class BadgeFulfillment : DomainObjectGuid
     {
         [Required]
-        public virtual BadgeApplication BadgeApplication { get; set; }
+        public virtual BadgeSubmission BadgeSubmission { get; set; }
 
         [Required]
         public virtual BadgeCriteria BadgeCriteria { get; set; }
@@ -24,7 +24,7 @@ namespace Badges.Core.Domain
         {
             Id(x => x.Id).GeneratedBy.GuidComb();
 
-            References(x => x.BadgeApplication).Not.Nullable();
+            References(x => x.BadgeSubmission).Not.Nullable();
             References(x => x.BadgeCriteria).Not.Nullable();
 
             References(x => x.Experience).Nullable();

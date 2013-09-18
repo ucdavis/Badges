@@ -68,7 +68,7 @@
   <ItemGroup>
     <Compile Include="DomainObjectGuid.cs" />
     <Compile Include="Domain\Badge.cs" />
-    <Compile Include="Domain\BadgeApplication.cs" />
+    <Compile Include="Domain\BadgeSubmission.cs" />
     <Compile Include="Domain\BadgeCategory.cs" />
     <Compile Include="Domain\BadgeCriteria.cs" />
     <Compile Include="Domain\BadgeFulfillment.cs" />

@@ -45,7 +45,7 @@ namespace Badges.Controllers
         public ActionResult MyBadges()
         {
             var mybadges =
-                RepositoryFactory.BadgeApplicationRepository.Queryable.Where(
+                RepositoryFactory.BadgeSubmissionRepository.Queryable.Where(
                     x => x.Creator.Identifier == CurrentUser.Identity.Name)
                                  .OrderByDescending(x => x.CreatedOn)
                                  .Fetch(x => x.Badge);
@@ -122,7 +122,7 @@ namespace Badges.Controllers
                 };
 
             var existingBadgeApplication =
-                RepositoryFactory.BadgeApplicationRepository.Queryable.SingleOrDefault(
+                RepositoryFactory.BadgeSubmissionRepository.Queryable.SingleOrDefault(
                     x => x.Badge.Id == badge.Id && x.Creator.Identifier == CurrentUser.Identity.Name);
 
             if (existingBadgeApplication != null)
@@ -131,7 +131,7 @@ namespace Badges.Controllers
 
                 model.Fulfillments =
                     RepositoryFactory.BadgeFulfillmentRepository.Queryable.Where(
-                        x => x.BadgeApplication.Id == existingBadgeApplication.Id)
+                        x => x.BadgeSubmission.Id == existingBadgeApplication.Id)
                                      .Select(
                                          x =>
                                          new BadgeFulfillmentViewModel
@@ -160,12 +160,12 @@ namespace Badges.Controllers
             var user = RepositoryFactory.UserRepository.Queryable.Single(x => x.Identifier == CurrentUser.Identity.Name);
 
             var application =
-                RepositoryFactory.BadgeApplicationRepository.Queryable.SingleOrDefault(
+                RepositoryFactory.BadgeSubmissionRepository.Queryable.SingleOrDefault(
                     x => x.Badge.Id == badge.Id && x.Creator.Identifier == CurrentUser.Identity.Name);
 
             if (application == null)
             {
-                application = new BadgeApplication {Badge = badge, Creator = user, Approved = false};
+                application = new BadgeSubmission {Badge = badge, Creator = user, Approved = false};
             }
             else
             {
@@ -202,7 +202,7 @@ namespace Badges.Controllers
             }
 
             Message = "Your badge progress has been saved";
-            RepositoryFactory.BadgeApplicationRepository.EnsurePersistent(application);
+            RepositoryFactory.BadgeSubmissionRepository.EnsurePersistent(application);
 
             return RedirectToAction("MyBadges");
         }

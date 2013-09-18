@@ -8,9 +8,9 @@ namespace Badges.Core.Domain
     /// <summary>
     /// Represents an application that a person makes towards getting a badge
     /// </summary>
-    public class BadgeApplication : DomainObjectGuid
+    public class BadgeSubmission : DomainObjectGuid
     {
-        public BadgeApplication()
+        public BadgeSubmission()
         {
             CreatedOn = DateTime.UtcNow;
             BadgeFulfillments = new List<BadgeFulfillment>();
@@ -29,12 +29,12 @@ namespace Badges.Core.Domain
     
         public virtual void AddFulfillment(BadgeFulfillment fulfillment)
         {
-            fulfillment.BadgeApplication = this;
+            fulfillment.BadgeSubmission = this;
             BadgeFulfillments.Add(fulfillment);
         }
     }
 
-    public class BadgeApplicationMap : ClassMap<BadgeApplication>
+    public class BadgeApplicationMap : ClassMap<BadgeSubmission>
     {
         public BadgeApplicationMap()
         {
