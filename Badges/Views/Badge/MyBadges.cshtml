@@ -24,43 +24,74 @@
             </form>
         </div>
     </div>
-    <div class="col-md-10">
-            @foreach (var item in Model)
-            {
-                <div class="media">
-                    <span class="pull-left" >
-                        <img class="media-object" alt="Badge Icon" src="@item.Badge.ImageUrl" style="width: 120px; height: 120px;">
-                    </span>
-                    <div class="media-body">
-                        <h4 class="media-heading">
-                            @if (item.Submitted)
-                            {
-                                <a href="@Url.Action("Badge", "Public", new {area = string.Empty, id = item.Id})">@item.Badge.Name</a>
-                            }
-                            else
-                            {
-                                <a href="@Url.Action("Earn", "Badge", new {area = string.Empty, id = item.Badge.Id})">@item.Badge.Name</a>
-                            }
-                        </h4>
-                        @if (item.Approved == false)
+    <div id="badges" class="col-md-10">
+        @foreach (var item in Model)
+        {
+            <div class="media">
+                <span class="pull-left" >
+                    <img class="media-object" alt="Badge Icon" src="@item.Badge.ImageUrl" style="width: 120px; height: 120px;">
+                </span>
+                <div class="media-body">
+                    <h4 class="media-heading">
+                        @if (item.Submitted)
                         {
-                            if (item.Submitted)
-                            {
-                                <p class="alert alert-info">Under Review</p>
-                            }
-                            else
-                            {
-                                <p class="alert">In Progress</p>
-                            }
+                            <a href="@Url.Action("Badge", "Public", new {area = string.Empty, id = item.Id})">@item.Badge.Name</a>
                         }
                         else
                         {
-                            <p class="alert alert-success">Awarded on @string.Format("{0:d}", item.AwardedOn)</p>
+                            <a href="@Url.Action("Earn", "Badge", new {area = string.Empty, id = item.Badge.Id})">@item.Badge.Name</a>
                         }
+                    </h4>
+                    @if (item.Approved == false)
+                    {
+                        if (item.Submitted)
+                        {
+                            <p class="alert alert-info">Under Review</p>
+                        }
+                        else
+                        {
+                            <p class="alert">In Progress</p>
+                        }
+                    }
+                    else
+                    {
+                        <div class="alert alert-success">
+                            <h4>Awarded on @string.Format("{0:d}", item.AwardedOn)</h4>
+                            <p>
+                                <a class="badge-push" data-submission="@item.Id" href="#">
+                                    <i class="icon-briefcase"></i> Push this badge to your Mozilla backpack
+                                </a>
+                            </p>
+                        </div>
+                        
+                    }
+                    <p>
                         @item.Badge.Description
-                    </div>
+                    </p>
                 </div>
-                <hr/>
-            }
+            </div>
+            <hr/>
+        }
     </div>
 </div>
+
+@section AdditionalScripts
+{
+    <script src="http://beta.openbadges.org/issuer.js"></script>   
+    
+    <script>
+        $(function () {
+            var assertionBaseUrl = '@Html.Raw(Url.Action("UserBadge", "Assertion", null, Context.Request.Url.Scheme))';
+
+            $("#badges").on('click', '.badge-push', function(e) {
+                e.preventDefault();
+                var url = assertionBaseUrl + '/' + this.getAttribute('data-submission');
+
+                OpenBadges.issue(url, function (errors, successes) {
+                    console.log(errors);
+                    console.log(successes);
+                });
+            });
+        });
+    </script>
+}
