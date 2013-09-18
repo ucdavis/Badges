@@ -1,0 +1,14 @@
+﻿@model Badges.Core.Domain.Badge
+
+@{
+    ViewBag.Title = "Badge Criteria";
+}
+
+<h2>Criteria for the badge <strong>@Model.Name</strong></h2>
+
+<ul>
+    @foreach (var criterion in Model.BadgeCriterias)
+    {
+        <li>@criterion.Details</li>
+    }
+</ul>

@@ -32,7 +32,16 @@
                         <img class="media-object" alt="Badge Icon" src="@item.Badge.ImageUrl" style="width: 120px; height: 120px;">
                     </span>
                     <div class="media-body">
-                        <h4 class="media-heading"><a href="@Url.Action("Earn", "Badge", new { area = string.Empty, id = item.Badge.Id })">@item.Badge.Name</a></h4>
+                        <h4 class="media-heading">
+                            @if (item.Submitted)
+                            {
+                                <a href="@Url.Action("Badge", "Public", new {area = string.Empty, id = item.Id})">@item.Badge.Name</a>
+                            }
+                            else
+                            {
+                                <a href="@Url.Action("Earn", "Badge", new {area = string.Empty, id = item.Badge.Id})">@item.Badge.Name</a>
+                            }
+                        </h4>
                         @if (item.Approved == false)
                         {
                             if (item.Submitted)

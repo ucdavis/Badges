@@ -1,0 +1,13 @@
+﻿@model Badges.Models.Public.BadgeViewModel
+
+@{
+    ViewBag.Title = "Badges";
+}
+
+<h3>
+    Viewing the badge <strong>@Model.BadgeSubmission.Badge.Name</strong> awarded to <strong>@Model.CreatorProfile.DisplayName</strong> on <em>@string.Format("{0:d}", Model.BadgeSubmission.AwardedOn)</em>
+</h3>
+
+<p>
+    TODO: looks like the view experience page sorta
+</p>

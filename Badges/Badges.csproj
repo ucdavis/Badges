@@ -221,6 +221,7 @@
     <Compile Include="Controllers\InstructorController.cs" />
     <Compile Include="Controllers\JsonController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
+    <Compile Include="Controllers\PublicController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -230,6 +231,7 @@
     <Compile Include="Models\Badge\BadgeAssociatedWorkModel.cs" />
     <Compile Include="Models\Badge\BadgeFulfillmentViewModel.cs" />
     <Compile Include="Models\Profile\ProfileEditModel.cs" />
+    <Compile Include="Models\Public\BadgeViewModel.cs" />
     <Compile Include="Models\Services\BlobResult.cs" />
     <Compile Include="Models\Shared\Class1.cs" />
     <Compile Include="Models\Student\ExperienceEditModel.cs" />
@@ -569,6 +571,8 @@
     <Content Include="Views\Badge\Browse.cshtml" />
     <Content Include="Views\Badge\Earn.cshtml" />
     <Content Include="Views\Badge\MyBadges.cshtml" />
+    <Content Include="Views\Public\Badge.cshtml" />
+    <Content Include="Views\Public\Criteria.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\files\" />
