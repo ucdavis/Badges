@@ -1,0 +1,43 @@
+﻿@model IEnumerable<Badges.Core.Domain.BadgeSubmission>
+
+@{
+	ViewBag.Title = "Index";
+}
+
+<h2>Badge Submissions</h2>
+
+<table class="table table-striped table-hover">
+	<thead>
+		<tr>
+			<th></th>
+			<th>
+				Submitter
+			</th>
+			<th>
+				SubmittedOn
+			</th>
+		    <th>
+		        Badge
+		    </th>
+		</tr>
+	</thead>
+	<tbody>
+@foreach (var item in Model) {
+		<tr>
+			<td>
+				<a href='@Url.Action("Review", new {id=item.Id})' class="btn" title="Details"><i class="icon-file"></i> View Submission</a>
+			</td>
+		    <td>
+		        @item.Creator.Profile.DisplayName
+		    </td>
+			<td>
+				@String.Format("{0:g}", item.SubmittedOn)
+			</td>
+		    <td>
+		        @item.Badge.Name
+		    </td>
+		</tr>
+}
+	</tbody>
+</table>
+

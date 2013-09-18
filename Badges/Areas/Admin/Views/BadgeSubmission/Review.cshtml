@@ -1,0 +1,65 @@
+﻿@model Badges.Areas.Admin.Controllers.BadgeSubmissionViewModel
+
+@{
+    ViewBag.Title = "Review Submission";
+}
+
+@section SubNav
+{
+	<li>@Html.ActionLink("Back to List", "Index")</li>
+}
+
+<div>
+    <fieldset>
+        <legend>Review Badge Submission</legend>
+        <div class="form-group">
+            <label>Submitted</label>
+            <div class="form-control-static">by @Model.Submission.Creator.Profile.DisplayName at @Model.Submission.SubmittedOn</div>
+        </div>
+        <div class="form-group">
+            <label>Badge</label>
+            <div class="form-control-static">@Model.Badge.Name</div>
+        </div>
+        <div class="form-group">
+            <label>Criteria</label>
+            <table class="table table-condensed table-bordered">
+                <tbody>
+                    @foreach (var criterion in Model.BadgeCriteria)
+                    {
+                        <tr>
+                            <td colspan="2">
+                                <h4 class="form-control-static">@criterion.Details</h4>
+                            </td>
+                        </tr>
+                        foreach (var fulfillment in Model.BadgeFulfillments.Where(x => x.BadgeCriteria.Id == criterion.Id))
+                        {
+                            var name = fulfillment.Experience == null ? fulfillment.SupportingWork.Description : fulfillment.Experience.Name;
+                            <tr>
+                                <td></td>
+                                <td>@name</td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+        <hr/>
+        <div class="form-actions">
+            @using (Html.BeginForm("Approve", "BadgeSubmission", new { area = "Admin", id = Model.Submission.Id }, FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                <button type="submit" class="btn btn-primary">
+                    Approve!
+                </button>
+            }
+            OR
+            @using (Html.BeginForm("Deny", "BadgeSubmission", new { area = "Admin", id = Model.Submission.Id }, FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                <button type="submit" class="btn btn-danger">
+                    Deny
+                </button>
+            }
+        </div>
+    </fieldset>
+</div>
