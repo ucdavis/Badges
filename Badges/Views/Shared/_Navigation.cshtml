@@ -6,14 +6,18 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Badges</a>
+            <a class="navbar-brand" href="#">
+                <img src="@Url.Content("~/Content/img/logo-safs.png")" alt="UC Davis Sustainable Agriculture and Food Systems" />
+            </a>
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-left">
                 <li id="nav-home">@Html.ActionLink("Home", "Index", "Home", new { area = "" },  null)</li>
                 @if (User.Identity.IsAuthenticated && User.IsInRole(Badges.Core.Domain.RoleNames.Student))
                 {
-                    <li id="nav-portfolio">@Html.ActionLink("Portfolio", "Portfolio", "Student")</li>
+                    <li class="nav-add">@Html.ActionLink("Add Experience", "AddExperience", "Student")</li>
+                    <li class="nav-view">@Html.ActionLink("Portfolio", "Portfolio", "Student")</li>
+                    <li class="nav-badges">@Html.ActionLink("Badge Studio", "Index", "Badge")</li>
                 }
                 @if (User.Identity.IsAuthenticated && User.IsInRole(Badges.Core.Domain.RoleNames.Administrator))
                 {
@@ -22,26 +26,21 @@
             </ul>
             @if (User.Identity.IsAuthenticated)
             {
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="icon-user"></i> Welcome, @User.Identity.Name <b class="caret"></b>
+                <div class="navbar-right">
+                    <div class="profilebox circlepic">
+                        <a href="@Url.Action("Edit", "Profile")">
+                            <img src="@Url.Content("~/Content/img/profile-latte.jpg")" alt="Latte" />
+                            <span class="name">Latte B.</span>
                         </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="@Url.Action("Edit", "Profile", new { area = string.Empty})"><i class="icon-book"></i>My Profile</a></li>
-                            <li><a href="#"><i class="icon-envelope"></i>Contact Support</a></li>
-                            <li class="divider"></li>
-                            <li><a href="@Url.Action("LogOut", "Account", new {area=string.Empty})"><i class="icon-off"></i>Logout</a></li>
-                        </ul>
-                    </li>
-                </ul>
+                    </div>
+                </div>
             }
             else
             {
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="@Url.Action("Login", "Account")"><i class="icon-lock"></i> Log On</a></li>
-                </ul>
+                <div class="navbar-right">
+                    <a href="@Url.Action("Login", "Account")"><i class="icon-lock"></i> Login</a>
+                </div>
             }
-        </div>
+        </div><!--/.navbar-collapse -->
     </div>
 </div>

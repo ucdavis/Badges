@@ -1,0 +1,295 @@
+/* Move down content because we have a fixed navbar that is 50px tall */
+body {
+	padding-top: 50px;
+	padding-bottom: 20px;
+	font-family: "futura-pt",sans-serif;
+	background: url(img/bg.jpg) top center;
+	line-height: 1.25em;
+}
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+	font-family: "futura-pt",sans-serif;
+	font-weight: 400;
+}
+.navbar-inverse {
+	background: transparent url(img/bg-header.jpg) center top;
+	min-height: 60px;
+	border-bottom: 3px solid #234a5a;
+}
+.navbar-brand {
+	padding: 8px 15px 6px;
+}
+
+
+
+/* ----- nav ----- */
+.navbar-nav > li > a {
+	background: url(img/sprite-nav.png) no-repeat transparent;
+	height: 44px; width: 44px;
+	overflow: hidden;
+	padding: 0px;
+	margin: 7px 16px 8px 20px;
+	text-indent: -500px;
+}
+	.navbar-nav > li.nav-add > a {background-position: -44px 0px;}
+	.navbar-nav > li.nav-view > a {background-position: -88px 0px;}
+	.navbar-nav > li.nav-badges > a {background-position: -132px 0px;}
+	.navbar-nav > li.nav-search > a {background-position: -176px 0px;}
+
+.navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus {
+	background: url(img/sprite-nav.png) no-repeat transparent;
+}
+
+/* ----- profile tab ----- */
+.navbar-right {
+	position: relative;
+}
+.profilebox {
+	background: #234a5a;
+	width: 114px;
+	border-bottom: 3px solid #b1693d;
+}
+	.navbar .profilebox {
+		position: absolute;
+		top: 0px; right: 0px;
+	}
+	.jumbotron .profilebox {
+		width: 131px;
+		height: 80px;
+		display: inline-block;
+	}
+
+
+/* ----- circle cropped pic & all cap text style ----- */
+.circlepic {
+	text-align: center;
+}
+.circlepic img, .circlepic .circle {
+	width: 60px; 
+	background: #fff;
+	border: 3px solid #fff;
+	border-radius: 50%;
+	display: block;
+	margin: 10px auto 4px;
+	text-align: center;
+	line-height: 1em;
+}
+	/* --- figure out how to make this overlay on profile pic --- */
+	.circlepic .advisor:before {
+		background: url(img/profiletype-advisor.png) no-repeat;
+		background-size: 80px 80px;
+		content: '';
+		position: absolute;
+		width: 80px; height: 80px;
+		pointer-events: none;
+		border-radius: 50%;
+		left: 114px;  /* --- this can't be right..? --- */
+		top: 10px;
+/*		top: 0; right: 0; bottom: 0; left: 0;
+		margin: auto;*/
+	}
+	.circlepic.raised {
+		position: relative;
+		top: -20px;
+	}
+		.circlepic.raised.profilebox {top: 0px;}
+		.circlepic.raised.profilebox a {position: relative; top: -20px;}
+
+.circlepic .name {
+	display: block;
+	font-weight: 800;
+	color: #fff;
+	text-transform: uppercase;
+	letter-spacing: 0.75px;
+	margin-bottom: 8px;
+	line-height: 1em;
+}
+	.jumbotron .circlepic .name {
+		margin-bottom: 2px;
+		font-size: .7em;
+	}
+
+
+
+
+/* ----- jumbotron ----- */
+.jumbotron {
+	padding-top: 0px;
+	padding-bottom: 0px;
+	background: transparent;
+}
+.jumbotron .container { /* --- or should I try making it 100%? --- */
+	background: url(img/test-cover.jpg) no-repeat;
+	min-height: 425px;
+	padding-top: 75px;
+}
+.jumbotron .overlay {
+	position: relative;
+	left: -15px;
+	min-height: 275px;
+}
+	.jumbotron .details .circlepic.raised {top: -23px;}
+	.jumbotron .circlepic img, .jumbotron .circlepic .circle {margin-bottom: 7px;}
+
+	.jumbotron .toprow {
+		margin-bottom: 9px;
+		height: 80px;
+	}
+	.jumbotron .btmrow {
+		height: 40px;
+	}
+.overlay h1, .overlay h3 {
+	background: rgba(255,255,255,.7); 
+	border-bottom: 3px solid #fff;
+	display: inline-block;
+	margin: 0px;
+	vertical-align: top;
+	line-height: 1em;
+}
+	.overlay h1 {
+		color: #1b7593;
+		height: 77px;
+		padding: 15px 20px 0 16px;
+		font-size: 2.5em;
+	}
+	.overlay h3 {
+		color: #783032;
+		height: 43px;
+		padding: 12px 20px 0 24px;
+		font-size: 1.1em;
+		font-weight: 500;
+	}
+	.overlay h3 i {padding-right: 8px;}
+
+.jumbotron .details {
+	background: #b1693d;
+	padding: 0 15px;
+	color: #fff;
+	border-top: 3px solid #fff;
+	height: 100px;
+	position: relative;
+	top: 25px;
+}
+	.jumbotron .details .circlepic .name {
+		font-size: .55em;
+		font-weight: 600;
+	}
+	.details .type .circle {
+		width: 80px; height: 80px;
+		overflow: hidden;
+		font-size: 2.5em;
+		color: #b1693d;
+	}
+		.details .type .circle i {
+			vertical-align: middle;
+			position: relative;	
+			padding-top: 10px;
+		}
+	.details .text {
+		padding-left: 35px;
+		padding-top: 15px;
+	}
+		.details .text p {
+			font-size: .8em;
+			font-weight: 400;
+		}
+		.details .text p.date {
+			font-weight: 600;
+			font-size: .7em;
+			margin-bottom: 0px;
+		}
+	.details .participants {
+		text-align: left;
+	}
+	.details .participants a {
+		display: inline-block;
+		margin-right: 14px;
+		text-align: center;
+	}
+		.details .participants img {width: 80px; height: 80px;}
+
+.jumbotron .footer {
+	clear: both;
+	padding: 0 15px;
+	background: #fff;
+	height: 25px;
+	font-size: .55em;
+	text-transform: uppercase;
+	font-weight: 700;
+	letter-spacing: .75px;
+}
+	.jumbotron .footer a {color: #8f8f8f;}
+	.jumbotron .footer .moretext {
+		padding-left: 35px;
+	}
+
+
+/* ----- work styles ----- */
+/* .container.work {padding: 0px;} /* --- figure out a diff way so cols still align --- */
+.work .row div {
+	background: #fff;
+	padding-left: 0px;
+	padding-right: 0px;
+	margin-left: 15px;
+	margin-right: 15px;
+	color: #234a5a;
+	margin-bottom: 30px;
+}
+	.work .row div img {max-width: 100%;}
+	.work .row div p {
+		min-height: 40px;
+		padding: 13px 10px;
+		font-size: 1.25em;
+		margin: 0px;
+	}
+
+	.work .video a:before {
+		background: url(img/work-video.png) no-repeat;
+		content: '';
+		width: 175px;
+		height: 175px;
+		position: absolute;
+		margin: auto;
+		top: 0; right: 0; bottom: 0; left: 0;
+		pointer-events: none;
+	}
+
+	.work .file .main {
+		background: #783032; 
+		color: #fff;
+		display: block;
+		font-size: 1.5em;
+		font-weight: 600;
+		line-height: 1.35em;
+		padding-bottom: 41px;
+	}
+		.work .file .main:before {
+			background: url(img/work-file.png) no-repeat;
+			content: '';
+			width: 82px;
+			height: 82px;
+			position: absolute;
+			margin: auto;
+			top: 0; right: 0; bottom: 0; left: 0;
+			pointer-events: none;
+		}
+		.work .file .footer {font-size: 1.1em;}
+		.work .file .footer a {color: #a0a0a0;}
+
+	.work .row .text {
+		background: #b1693d;
+		color: #fff;
+		padding-bottom: 10px;
+		font-weight: 200;
+		line-height: 1.5em;
+	}
+		.work .row .text h2 {
+			padding: 13px 10px 0;
+			margin: 0;
+			font-weight: 500;
+		}
+
+
+
+/* ----- signup ----- */
+.profilepic img {border-radius: 50%; border: 3px solid #fff;}
+

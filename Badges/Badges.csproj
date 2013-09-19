@@ -245,6 +245,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Readme\Elmah.txt" />
+    <Content Include="Content\badges.css" />
     <Content Include="Content\bootstrap-custom.css" />
     <Content Include="Content\bootstrap-datepicker.css" />
     <Content Include="Content\bootstrap-responsive.css" />
@@ -347,6 +348,24 @@
     <Content Include="Content\images\climbingbadge.png" />
     <Content Include="Content\images\debut_light.png" />
     <Content Include="Content\images\logo.png" />
+    <Content Include="Content\img\bg-header.jpg" />
+    <Content Include="Content\img\bg.jpg" />
+    <Content Include="Content\img\logo-safs.png" />
+    <Content Include="Content\img\profile-cricket.jpg" />
+    <Content Include="Content\img\profile-default.jpg" />
+    <Content Include="Content\img\profile-feesh.jpg" />
+    <Content Include="Content\img\profile-grasshopper.jpg" />
+    <Content Include="Content\img\profile-latte.jpg" />
+    <Content Include="Content\img\profile-monkey.jpg" />
+    <Content Include="Content\img\profile-ramsel.jpg" />
+    <Content Include="Content\img\profile-upload.jpg" />
+    <Content Include="Content\img\profiletype-advisor.png" />
+    <Content Include="Content\img\sprite-nav.png" />
+    <Content Include="Content\img\test-cover.jpg" />
+    <Content Include="Content\img\test-dinodrive.jpg" />
+    <Content Include="Content\img\test-frictionclimb.jpg" />
+    <Content Include="Content\img\work-file.png" />
+    <Content Include="Content\img\work-video.png" />
     <Content Include="Content\Jcrop.gif" />
     <Content Include="Content\jquery.Jcrop.css" />
     <Content Include="Content\jquery.Jcrop.min.css" />
