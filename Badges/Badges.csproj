@@ -208,6 +208,7 @@
     <Compile Include="Areas\Admin\Controllers\BadgeCategoryController.cs" />
     <Compile Include="Areas\Admin\Controllers\BadgeRequestController.cs" />
     <Compile Include="Areas\Admin\Controllers\BadgeSubmissionController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ExperienceTypeController.cs" />
     <Compile Include="Areas\Admin\Controllers\InstructorController.cs" />
     <Compile Include="Areas\Admin\Controllers\OrganizationController.cs" />
     <Compile Include="Areas\Admin\Controllers\TitleController.cs" />

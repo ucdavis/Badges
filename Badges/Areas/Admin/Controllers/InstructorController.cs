@@ -13,6 +13,7 @@ namespace Badges.Areas.Admin.Controllers
     /// <summary>
     /// Controller for the Instructor class
     /// </summary>
+    [Authorize(Roles=RoleNames.Administrator)]
     public class InstructorController : ApplicationController
     {
         //

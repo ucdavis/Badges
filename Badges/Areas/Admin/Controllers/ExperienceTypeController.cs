@@ -16,21 +16,21 @@ namespace Badges.Areas.Admin.Controllers
     /// Controller for the BadgeCategory class
     /// </summary>
     [Authorize(Roles = RoleNames.Administrator)]
-    public class BadgeCategoryController : ApplicationController
+    public class ExperienceTypeController : ApplicationController
     {
         private readonly IFileService _fileService;
         //
         // GET: /Admin/BadgeCategory/
-        public BadgeCategoryController(IRepositoryFactory repositoryFactory, IFileService fileService) : base(repositoryFactory)
+        public ExperienceTypeController(IRepositoryFactory repositoryFactory, IFileService fileService) : base(repositoryFactory)
         {
             _fileService = fileService;
         }
 
         public ActionResult Index()
         {
-            var badgeCategoryList = RepositoryFactory.BadgeCategoryRepository.Queryable;
+            var experienceTypes = RepositoryFactory.ExperienceTypeRepository.Queryable;
 
-            return View(badgeCategoryList.ToList());
+            return View(experienceTypes.ToList());
         }
 
         //
@@ -148,7 +148,7 @@ namespace Badges.Areas.Admin.Controllers
 	/// <summary>
     /// ViewModel for the BadgeCategory class
     /// </summary>
-    public class BadgeCategoryViewModel
+    public class ExperienceTypeViewModel
 	{
         [Required]
         [StringLength(140)]
@@ -157,11 +157,11 @@ namespace Badges.Areas.Admin.Controllers
         public HttpPostedFileBase File { get; set; }
 	    public string ImageUrl { get; set; }
 
-		public static BadgeCategoryViewModel Create(IRepository repository)
+        public static ExperienceTypeViewModel Create(IRepository repository)
 		{
 			Check.Require(repository != null, "Repository must be supplied");
 
-		    var viewModel = new BadgeCategoryViewModel();
+            var viewModel = new ExperienceTypeViewModel();
  
 			return viewModel;
 		}

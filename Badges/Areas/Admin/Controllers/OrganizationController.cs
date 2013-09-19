@@ -12,6 +12,7 @@ namespace Badges.Areas.Admin.Controllers
     /// <summary>
     /// Controller for the Organization class
     /// </summary>
+    [Authorize(Roles=RoleNames.Administrator)]
     public class OrganizationController : ApplicationController
     {
         //

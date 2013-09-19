@@ -12,6 +12,7 @@ namespace Badges.Areas.Admin.Controllers
     /// <summary>
     /// Controller for the Title class
     /// </summary>
+    [Authorize(Roles=RoleNames.Administrator)]
     public class TitleController : ApplicationController
     {
         //
