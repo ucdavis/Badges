@@ -29,7 +29,7 @@
                 <div class="navbar-right">
                     <div class="profilebox circlepic">
                         <a href="@Url.Action("Edit", "Profile")">
-                            <img src="@ImageHelper.GetImage(ViewBag.ProfileImage, 60, 60)" alt="@ViewBag.ProfileName" />
+                            <img src="@ImageHelper.GetProfileImage(ViewBag.ProfileImage)" alt="@ViewBag.ProfileName" />
                             <span class="name">@ViewBag.ProfileName</span>
                         </a>
                     </div>

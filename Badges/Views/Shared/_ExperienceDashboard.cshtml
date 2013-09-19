@@ -7,8 +7,8 @@
             <div class="toprow">
                 <div class="profilebox circlepic raised">
                     <a href="#">
-                        <img src="@ImageHelper.GetImage(Model.Experience.Creator.Profile.ImageUrl, 60, 60)" alt="@ViewBag.ProfileName" />
-                        <span class="name">Trish A.</span>
+                        <img src="@ImageHelper.GetProfileImage(Model.Experience.Creator.Profile.ImageUrl)" alt="@ViewBag.ProfileName" />
+                        <span class="name">@Model.Experience.Creator.Profile.DisplayName</span>
                     </a>
                 </div><!--/.profilebox-->
                 <h1 class="title">@Model.Experience.Name</h1>
@@ -29,14 +29,13 @@
                 <p class="brief">@Model.Experience.Description</p>
             </div><!--/.text-->
             <div class="participants circlepic raised col-md-4">
-                <a href="#">
-                    <img src="@ImageHelper.GetImage(ViewBag.ProfileImage, 60, 60)" alt="Latte" />
-                    <span class="name">Ramsel R.</span>
-                </a>
-                <a href="#" class="advisor">
-                    <img src="@ImageHelper.GetImage(ViewBag.ProfileImage, 60, 60)" alt="Latte" />
-                    <span class="name">Monkey R.</span>
-                </a>
+                @foreach (var instructor in Model.Experience.Instructors.Take(3))
+                {
+                    <a href="#">
+                        <img src="@ImageHelper.GetProfileImage(instructor.User.Profile.ImageUrl)" alt="@instructor.DisplayName" />
+                        <span class="name">@instructor.DisplayName</span>
+                    </a>
+                }
             </div><!--/.participants-->
         </div><!--/.details-->
         <div class="footer row">

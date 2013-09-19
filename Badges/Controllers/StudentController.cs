@@ -152,7 +152,7 @@ namespace Badges.Controllers
                     Outcomes = new SelectList(RepositoryFactory.OutcomeRepository.GetAll(), "Id", "Name"),
                     Feedback = experience.FeedbackRequests.Where(x=>x.ResponseDate != null).ToList()
                 };
-
+            
             return View(model);
         }
 

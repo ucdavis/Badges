@@ -15,6 +15,8 @@ namespace Badges.Core.Domain
         public virtual string Identifier { get; set; }
 
         public virtual string DisplayName { get { return string.Format("{0}, {1}", LastName, FirstName); } }
+
+        public virtual User User { get; set; }
     }
 
     public class InstructorMap : ClassMap<Instructor>
@@ -27,6 +29,8 @@ namespace Badges.Core.Domain
             Map(x => x.LastName).Not.Nullable();
             Map(x => x.Email);
             Map(x => x.Identifier).Unique().Not.Nullable();
+
+            References(x => x.User).Not.Nullable();
         }
     }
 }

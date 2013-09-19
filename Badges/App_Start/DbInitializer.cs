@@ -1,3 +1,4 @@
+using System.Web.Configuration;
 using Badges.Core.Domain;
 using FluentNHibernate.Cfg;
 using Badges.App_Start;
@@ -49,23 +50,47 @@ namespace Badges.App_Start
                     session.SaveOrUpdate(adminRole);
 
                     var user = new User {Identifier = "postit"};
-                    user.Profile = new Profile(user) {FirstName = "Scott", LastName = "Kirkland", Email = "srkirkland@ucdavis.edu"};
+                    user.Profile = new Profile(user)
+                        {
+                            FirstName = "Scott",
+                            LastName = "Kirkland",
+                            Email = "srkirkland@ucdavis.edu",
+                            ImageUrl = WebConfigurationManager.AppSettings["DefaultProfilePictureUrl"]
+                        };
                     user.Roles.Add(studentRole);
 
                     session.SaveOrUpdate(user);
 
                     var hermes = new User {Identifier = "hconrad"};
-                    hermes.AssociateProfile(new Profile(hermes) { FirstName = "Hermes", LastName = "Conrad", Email = "hconrad@ucdavis.edu" });
+                    hermes.AssociateProfile(new Profile(hermes)
+                        {
+                            FirstName = "Hermes",
+                            LastName = "Conrad",
+                            Email = "hconrad@ucdavis.edu",
+                            ImageUrl = WebConfigurationManager.AppSettings["DefaultProfilePictureUrl"]
+                        });
                     hermes.Roles.Add(instructorRole);
 
                     session.SaveOrUpdate(hermes);
+
+                    var farnsworth = new User { Identifier = "hfarnsworth" };
+                    farnsworth.AssociateProfile(new Profile(farnsworth)
+                    {
+                        FirstName = "Hubert",
+                        LastName = "Farnsworth",
+                        Email = "hubert@planex.com",
+                        ImageUrl = WebConfigurationManager.AppSettings["DefaultProfilePictureUrl"]
+                    });
+
+                    session.SaveOrUpdate(farnsworth);
 
                     var instructor = new Instructor
                         {
                             FirstName = "Hubert",
                             LastName = "Farnsworth",
                             Email = "hubert@planex.com",
-                            Identifier = "hfarnworth"
+                            Identifier = "hfarnworth",
+                            User = farnsworth
                         };
 
                     var instructor2 = new Instructor
@@ -73,7 +98,8 @@ namespace Badges.App_Start
                         FirstName = "Hermes",
                         LastName = "Conrad",
                         Email = "hconrad@planex.com",
-                        Identifier = "hconrad"
+                        Identifier = "hconrad",
+                        User = hermes
                     };
 
                     session.SaveOrUpdate(instructor);

@@ -76,9 +76,11 @@ namespace Badges.Areas.Admin.Controllers
                     var user = new User {Identifier = instructorToCreate.Identifier};
                     user.AssociateProfile(profile);
                     user.Roles.Add(RepositoryFactory.RoleRepository.GetById(RoleNames.Instructor));
+                    existingUser = user;
                     RepositoryFactory.UserRepository.EnsurePersistent(user);
                 }
 
+                instructorToCreate.User = existingUser;
                 RepositoryFactory.InstructorRepository.EnsurePersistent(instructorToCreate);
 
                 Message = "Instructor Created Successfully";

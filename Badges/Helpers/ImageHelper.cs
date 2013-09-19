@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Web.Configuration;
 using SoundInTheory.DynamicImage.Fluent;
 
 namespace Badges.Helpers
@@ -20,6 +17,16 @@ namespace Badges.Helpers
                     LayerBuilder.Image.SourceUrl(url).WithFilter(FilterBuilder.Resize.To(width, height)));
 
             return composition.Url;
+        }
+
+        public static string GetProfileImage(string url)
+        {
+            if (string.IsNullOrWhiteSpace(url))
+            {
+                return GetImage(WebConfigurationManager.AppSettings["DefaultProfilePictureUrl"], 60, 60);
+            }
+
+            return GetImage(url, 60, 60);
         }
     }
 }
