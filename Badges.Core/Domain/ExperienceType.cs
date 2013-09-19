@@ -7,6 +7,9 @@ namespace Badges.Core.Domain
     {
         [Required]
         public virtual string Name { get; set; }
+
+        [Required]
+        public virtual string Icon { get; set; }
     }
 
     public class ExperienceTypeMap : ClassMap<ExperienceType>
@@ -17,6 +20,7 @@ namespace Badges.Core.Domain
             Id(x => x.Id).GeneratedBy.GuidComb();
 
             Map(x => x.Name);
+            Map(x => x.Icon);
         }
     }
 }

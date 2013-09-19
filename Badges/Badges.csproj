@@ -474,6 +474,7 @@
     <Content Include="Areas\Admin\Views\BadgeRequest\Review.cshtml" />
     <Content Include="Areas\Admin\Views\BadgeSubmission\Index.cshtml" />
     <Content Include="Areas\Admin\Views\BadgeSubmission\Review.cshtml" />
+    <Content Include="Areas\Admin\Views\ExperienceType\Index.cshtml" />
     <None Include="Properties\PublishProfiles\badges.pubxml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />

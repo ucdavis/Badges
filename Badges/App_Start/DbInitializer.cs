@@ -105,9 +105,9 @@ namespace Badges.App_Start
                     session.SaveOrUpdate(instructor);
                     session.SaveOrUpdate(instructor2);
 
-                    var etype = new ExperienceType {Name = "Awesome Experience"};
+                    var etype = new ExperienceType { Name = "Exploration", Icon = "icon-flag" };
                     session.SaveOrUpdate(etype);
-                    session.SaveOrUpdate(new ExperienceType {Name = "Decent Experience"});
+                    session.SaveOrUpdate(new ExperienceType {Name = "Collaboration", Icon = "icon-group"});
 
                     var outcome = new Outcome {Name = "Outcome 1"};
                     session.SaveOrUpdate(outcome);
@@ -120,7 +120,8 @@ namespace Badges.App_Start
                             Name = "Sample Experience",
                             Description = "This is a bit of text about exactly what I did in this experience",
                             Start = DateTime.Now,
-                            Location = "UC Davis"
+                            Location = "moab, ut",
+                            CoverImageUrl = "https://ucdbadges.blob.core.windows.net/publicimagesdev/e600f3de-a969-45af-b70b-7d2f5285e572"
                         };
 
                     experience.AddInstructor(instructor);

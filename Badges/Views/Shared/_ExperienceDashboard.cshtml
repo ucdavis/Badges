@@ -20,9 +20,9 @@
         <div class="details row">
             <div class="type circlepic raised col-md-1">
                 <div class="circle">
-                    <i class="icon-flag"></i>
+                    <i class="@Model.Experience.ExperienceType.Icon"></i>
                 </div><!--/.circle-->
-                <span class="name">Exploration</span>
+                <span class="name">@Model.Experience.ExperienceType.Name</span>
             </div><!--/.type-->
             <div class="text col-md-7">
                 <p class="date">@string.Format("{0:D}", Model.Experience.Start)</p>
