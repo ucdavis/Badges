@@ -1,0 +1,13 @@
+﻿@model Badges.Models.Shared.ExperienceViewModel
+
+<div id="work-container" class="container work">
+    <div class="row">
+        @foreach (var work in @Model.SupportingWorks)
+        {
+            <div class="@work.Type col-md-3">
+                @Html.Partial("_ViewWork", work)
+                <p>@work.Description</p>
+            </div>
+        }
+    </div>
+</div>

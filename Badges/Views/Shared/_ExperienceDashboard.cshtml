@@ -89,18 +89,3 @@
         </div>
     }
 </div>
-<div id="work-container">
-    @foreach (var work in @Model.SupportingWorks)
-    {
-        <div class="work-item">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">@work.Description</h3>
-                </div>
-                <div class="panel-body img-thumbnail">
-                    @Html.Partial("_ViewWork", work)
-                </div>
-            </div>
-        </div>
-    }
-</div>

@@ -6,11 +6,11 @@
     case SupportingWorkTypes.Photo:
         if (string.IsNullOrWhiteSpace(Model.Url))
         {
-            <img src="@Url.Action("ViewWorkFile", "Experience", new {id = Model.Id})" alt="@Model.Description" class="img-thumbnail" />
+            <img src="@Url.Action("ViewWorkFile", "Experience", new {id = Model.Id})" alt="@Model.Description" />
         }
         else
         {
-            <img src="@Model.Url" alt="@Model.Description" class="img-thumbnail" />
+            <img src="@Model.Url" alt="@Model.Description" />
         }
         break;
     case SupportingWorkTypes.Text:
