@@ -41,6 +41,10 @@
 
             var img = document.getElementById("cover-preview");
             img.src = window.URL.createObjectURL(file);
+            img.onload = function(e) {
+                window.URL.revokeObjectURL(this.src);
+            };
+            //img.height = 500;
         });
     }
 

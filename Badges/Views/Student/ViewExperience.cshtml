@@ -4,6 +4,15 @@
     ViewBag.Title = "View Experience";
 }
 
+@section AdditionalStyles
+{
+    <style type="text/css">
+        .jumbotron .container {
+            background: url(@Model.Experience.CoverImageUrl) no-repeat;
+        }
+    </style>
+}
+
 @Html.Partial("_ExperienceDashboard")
 
 <div class="row well well-sm">

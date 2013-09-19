@@ -20,11 +20,11 @@
     <div class="form-group">
         @if (string.IsNullOrWhiteSpace(Model.Experience.CoverImageUrl))
         {
-            <img id="cover-preview" src="http://placehold.it/1200x300" style="with: 1200px; height: 300px; display: block;" />
+            <img id="cover-preview" src="http://placehold.it/1200x300" alt="cover photo" style="display: block;" />
         }
         else
         {
-            <img id="cover-preview" src="@Model.Experience.CoverImageUrl" style="with:1200px; height: 300px; display: block;" />
+            <img id="cover-preview" src="@Model.Experience.CoverImageUrl" alt="cover photo" style="display: block;" />
         }
         @Html.Label("Experience_CoverImageUrl", "Upload Cover Photo")
         <input type="file" id="cover-image" class="form-control" name="CoverImage" accept="image/*" placeholder="Upload Cover Photo"/>
