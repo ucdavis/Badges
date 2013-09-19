@@ -1,26 +1,68 @@
 ﻿@model Badges.Models.Shared.ExperienceViewModel
 
+<!-- Main jumbotron for a primary marketing message or call to action -->
+<div class="jumbotron">
+    <div class="container">
+        <div class="overlay">
+            <div class="toprow">
+                <div class="profilebox circlepic raised">
+                    <a href="#">
+                        <img src="@ImageHelper.GetImage(Model.Experience.Creator.Profile.ImageUrl, 60, 60)" alt="@ViewBag.ProfileName" />
+                        <span class="name">Trish A.</span>
+                    </a>
+                </div><!--/.profilebox-->
+                <h1 class="title">@Model.Experience.Name</h1>
+            </div><!--/.toprow-->
+            <div class="btmrow">
+                <h3 class="location"><i class="icon-map-marker"></i>@Model.Experience.Location</h3>
+            </div><!--/.btmrow-->
+        </div><!--/.overlay-->
+        <div class="details row">
+            <div class="type circlepic raised col-md-1">
+                <div class="circle">
+                    <i class="icon-flag"></i>
+                </div><!--/.circle-->
+                <span class="name">Exploration</span>
+            </div><!--/.type-->
+            <div class="text col-md-7">
+                <p class="date">@string.Format("{0:D}", Model.Experience.Start)</p>
+                <p class="brief">@Model.Experience.Description</p>
+            </div><!--/.text-->
+            <div class="participants circlepic raised col-md-4">
+                <a href="#">
+                    <img src="@ImageHelper.GetImage(ViewBag.ProfileImage, 60, 60)" alt="Latte" />
+                    <span class="name">Ramsel R.</span>
+                </a>
+                <a href="#" class="advisor">
+                    <img src="@ImageHelper.GetImage(ViewBag.ProfileImage, 60, 60)" alt="Latte" />
+                    <span class="name">Monkey R.</span>
+                </a>
+            </div><!--/.participants-->
+        </div><!--/.details-->
+        <div class="footer row">
+            <div class="moretext col-md-offset-1 col-md-7">
+                <a href="#">View more details &raquo;</a>
+            </div><!--/.moretext-->
+            <div class="moreppl col-md-4">
+                <a href="#">View all participants &raquo;</a>
+                @if (Model.Experience.Creator.Identifier == User.Identity.Name)
+                {
+                    <a href="@Url.Action("EditExperience", "Student", new {id = Model.Experience.Id})" class="pull-right">
+                        <i class="icon-pencil"></i> Edit Experience
+                    </a>
+                }
+            </div><!--/.moretext-->
+        </div><!--/.footer-->
+    </div><!--/.container-->
+</div><!--/.jumbotron-->
+
 <div class="row">
     <div class="col-md-8">
-        <div class="well row">
-            <fieldset>
-                <legend>@Model.Experience.Name 
-                    @if (Model.Experience.Creator.Identifier == User.Identity.Name)
-                    {
-                        <a href="@Url.Action("EditExperience", "Student", new {id = Model.Experience.Id})" class="pull-right">
-                            <i class="icon-pencil"></i>
-                        </a>
-                    }
-                </legend>
-                <p>@Model.Experience.Description</p>
-                <hr/>
-                <div class="container">
-                    @foreach (var outcome in Model.ExperienceOutcomes)
-                    {
-                        <div class="col-sm-3">@outcome.Notes</div>
-                    }
-                </div>
-            </fieldset>
+        <div class="container">
+            @foreach (var outcome in Model.ExperienceOutcomes)
+            {
+                <div class="col-sm-3">@outcome.Notes</div>
+            }
         </div>
     </div>
     @if (Model.Feedback.Any())

@@ -23,6 +23,12 @@ namespace Badges.Controllers
                     user => user.Identifier == filterContext.HttpContext.User.Identity.Name);
 
                 ViewBag.AuthenticatedUser = AuthenticatedUser;
+
+                if (AuthenticatedUser != null)
+                {
+                    ViewBag.ProfileImage = AuthenticatedUser.Profile.ImageUrl;
+                    ViewBag.ProfileName = AuthenticatedUser.Profile.DisplayName;
+                }
             }
             
             base.OnActionExecuting(filterContext);

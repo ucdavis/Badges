@@ -10,6 +10,11 @@ namespace Badges.Helpers
     {
         public static string GetImage(string url, int width, int height)
         {
+            if (string.IsNullOrWhiteSpace(url))
+            {
+                return string.Empty;
+            }
+
             var composition =
                 new CompositionBuilder().WithLayer(
                     LayerBuilder.Image.SourceUrl(url).WithFilter(FilterBuilder.Resize.To(width, height)));
