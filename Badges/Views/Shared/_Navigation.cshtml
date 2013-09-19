@@ -29,8 +29,8 @@
                 <div class="navbar-right">
                     <div class="profilebox circlepic">
                         <a href="@Url.Action("Edit", "Profile")">
-                            <img src="@Url.Content("~/Content/img/profile-latte.jpg")" alt="Latte" />
-                            <span class="name">Latte B.</span>
+                            <img src="@ViewBag.AuthenticatedUser.Profile.ImageUrl" alt="@ViewBag.AuthenticatedUser.Profile.DisplayName" />
+                            <span class="name">@ViewBag.AuthenticatedUser.Profile.DisplayName</span>
                         </a>
                     </div>
                 </div>
