@@ -413,7 +413,8 @@ legend {
 		letter-spacing: .1em;
 		border: 0px none;
 		font-weight: 700;
-		padding-right: 50px;
+		margin-right: 40px;
+		padding: 15px 40px;
 	}
 		.btn-default {
 			background-color: #bdbdbd;
