@@ -22,12 +22,13 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 }
 
 .maincontent.container {
+	padding-top: 50px;
 }
 
 
 
 /* ----- nav ----- */
-.navbar-nav > li > a {
+.navbar-fixed-top .navbar-nav > li > a {
 	background: url(img/sprite-nav.png) no-repeat transparent;
 	height: 44px; width: 44px;
 	overflow: hidden;
@@ -40,7 +41,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 	.navbar-nav > li.nav-badges > a {background-position: -132px 0px;}
 	.navbar-nav > li.nav-search > a {background-position: -176px 0px;}
 
-.navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus {
+.navbar-fixed-top.navbar-inverse .navbar-nav > .active > a, .navbar-fixed-top.navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus {
 	background: url(img/sprite-nav.png) no-repeat transparent;
 }
 
@@ -117,17 +118,17 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 
 
 /* ----- jumbotron ----- */
-.jumbotron {
+.jumbotron.experience {
 	padding-top: 0px;
 	padding-bottom: 0px;
 	background: transparent;
 }
-.jumbotron .container { /* --- or should I try making it 100%? --- */
+.jumbotron.experience .container { /* --- or should I try making it 100%? --- */
 	background: url(img/test-cover.jpg) no-repeat;
 	min-height: 425px;
 	padding-top: 75px;
 }
-.jumbotron .overlay {
+.jumbotron.experience .overlay {
 	position: relative;
 	left: -15px;
 	min-height: 275px;
@@ -165,7 +166,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 	}
 	.overlay h3 i {padding-right: 8px;}
 
-.jumbotron .details {
+.jumbotron.experience .details {
 	background: #b1693d;
 	padding: 0 15px;
 	color: #fff;
