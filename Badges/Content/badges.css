@@ -356,7 +356,7 @@ legend {
 }
 .form-control, 
 .chosen-container-single .chosen-single,
-..chosen-container .chosen-drop {
+.chosen-container .chosen-drop {
 	background: #f8f7f5;
 	background: rgba(255,255,255,.4);
 	border-radius: 0px;
