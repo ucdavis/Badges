@@ -2,13 +2,15 @@
 body {
 	padding-top: 50px;
 	padding-bottom: 20px;
-	font-family: "futura-pt",sans-serif;
+	font-family: "futura-pt",Futura,Helvetica,sans-serif;
 	background: url(img/bg.jpg) top center;
 	line-height: 1.25em;
+	color: #071626;
 }
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
-	font-family: "futura-pt",sans-serif;
-	font-weight: 400;
+	font-family: "futura-pt",Futura,Helvetica,sans-serif;
+	font-weight: 500;
+	color: #1b7593;
 }
 .navbar-inverse {
 	background: transparent url(img/bg-header.jpg) center top;
@@ -293,6 +295,9 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 
 
 
-/* ----- signup ----- */
+/* ----- form styles ----- */
+.container.form .intro h2 {
+	font-style: italic;
+}
 .profilepic img {border-radius: 50%; border: 3px solid #fff;}
 
