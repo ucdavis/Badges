@@ -404,14 +404,15 @@ legend {
 		border-color: rgba(27, 117, 147, 0.2);
 	}
 .actions {
-	padding-left: 35px;
+	padding-left: 30px;
 }
 	.btn {
 		border-radius: 0px;
-		font-size: .5em;
+		font-size: 1.5em;
 		text-transform: uppercase;
-		letter-spacing: .01em;
+		letter-spacing: .1em;
 		border: 0px none;
+		font-weight: 700;
 	}
 		.btn-default {
 			background-color: #bdbdbd;
