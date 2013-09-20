@@ -17,13 +17,13 @@
     function initializeTypeahead() {
         $("#Experience_Name").typeahead({
             name: 'title',
-            prefetch: '@Url.Action("Titles", "Json")',
+            prefetch: options.TitlesUrl,
             limit: 10
         });
 
         $("#Experience_Organization").typeahead({
             name: 'orgs',
-            prefetch: '@Url.Action("Organizations", "Json")',
+            prefetch: options.OrganizationsUrl,
             limit: 10
         });
     }

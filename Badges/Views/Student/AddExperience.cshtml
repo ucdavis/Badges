@@ -30,7 +30,12 @@
     </script>
 
     <script>
-        $(function() {
+        $(function () {
+            Badges.options({
+                TitlesUrl: '@Html.Raw(Url.Action("Titles", "Json"))',
+                OrganizationsUrl: '@Html.Raw(Url.Action("Organizations", "Json"))',
+            });
+            
             Badges.init();
         });
     </script>
