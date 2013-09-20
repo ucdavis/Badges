@@ -7,5 +7,6 @@ namespace Badges.Models.Badge
         public Guid Id { get; set; }
         public Guid[] Work { get; set; }
         public Guid[] Experience { get; set; }
+        public string Comment { get; set; }
     }
 }

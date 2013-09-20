@@ -16,6 +16,9 @@ namespace Badges.Core.Domain
         
         public virtual Experience Experience { get; set; }
         public virtual SupportingWork SupportingWork { get; set; }
+
+        [StringLength(140)]
+        public virtual string Comment { get; set; }
     }
 
     public class BadgeFulfillmentMap : ClassMap<BadgeFulfillment>
@@ -23,6 +26,8 @@ namespace Badges.Core.Domain
         public BadgeFulfillmentMap()
         {
             Id(x => x.Id).GeneratedBy.GuidComb();
+
+            Map(x => x.Comment).Nullable().Length(140);
 
             References(x => x.BadgeSubmission).Not.Nullable();
             References(x => x.BadgeCriteria).Not.Nullable();

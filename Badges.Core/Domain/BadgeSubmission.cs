@@ -22,6 +22,8 @@ namespace Badges.Core.Domain
         [Required]
         public virtual Badge Badge { get; set; }
 
+        public virtual string Reflection { get; set; }
+
         public virtual bool Submitted { get; set; }
         public virtual DateTime? SubmittedOn { get; set; }
 
@@ -42,6 +44,8 @@ namespace Badges.Core.Domain
         public BadgeApplicationMap()
         {
             Id(x => x.Id).GeneratedBy.GuidComb();
+
+            Map(x => x.Reflection).Nullable().StringMaxLength();
 
             Map(x => x.CreatedOn).Not.Nullable();
             Map(x => x.AwardedOn).Nullable();

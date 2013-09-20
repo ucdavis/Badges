@@ -52,6 +52,7 @@
                                     <li>
                                         @fulfillment.Details
                                         <input type="hidden" name="@string.Format("criterion[{0}].{1}", i, fulfillment.WorkType)" value="@fulfillment.WorkId" />
+                                        <input type="text" placeholder="Comments" name="@string.Format("criterion[{0}].comment", i)" value="@fulfillment.Comment" />
                                     </li>
                                 }
                             </ul>
@@ -62,6 +63,14 @@
                     </div>
                 </div>
             }
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 well well-sm">
+            <div class="form-group">
+                <label>Reflections</label>
+                <textarea name="reflections" class="form-control" placeholder="Overall comments about this badge submission">@Model.Reflection</textarea>
+            </div>
         </div>
     </div>
     <hr/>

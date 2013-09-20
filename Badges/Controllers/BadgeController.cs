@@ -129,6 +129,8 @@ namespace Badges.Controllers
             {
                 Message = "Existing badge progress found-- you can continue associating work and experiences below";
 
+                model.Reflection = existingBadgeApplication.Reflection;
+
                 model.Fulfillments =
                     RepositoryFactory.BadgeFulfillmentRepository.Queryable.Where(
                         x => x.BadgeSubmission.Id == existingBadgeApplication.Id)
@@ -137,6 +139,7 @@ namespace Badges.Controllers
                                          new BadgeFulfillmentViewModel
                                              {
                                                  CriteriaId = x.BadgeCriteria.Id,
+                                                 Comment = x.Comment,
                                                  Details =
                                                      x.Experience == null
                                                          ? x.SupportingWork.Description
@@ -151,7 +154,7 @@ namespace Badges.Controllers
         }
 
         [HttpPost]
-        public ActionResult Earn(Guid id, BadgeAssociatedWorkModel[] criterion)
+        public ActionResult Earn(Guid id, BadgeAssociatedWorkModel[] criterion, string reflections)
         {
             var badge = RepositoryFactory.BadgeRepository.GetNullableById(id);
 
@@ -172,6 +175,7 @@ namespace Badges.Controllers
                 submission.BadgeFulfillments.Clear();
             }
 
+            submission.Reflection = reflections;
             AssociateWorkWithCriterion(submission, criterion);
             
             Message = "Your badge progress has been saved";
@@ -181,7 +185,7 @@ namespace Badges.Controllers
         }
 
         [HttpPost]
-        public ActionResult Submit(Guid id, BadgeAssociatedWorkModel[] criterion)
+        public ActionResult Submit(Guid id, BadgeAssociatedWorkModel[] criterion, string reflections)
         {
             var badge = RepositoryFactory.BadgeRepository.GetNullableById(id);
 
@@ -203,6 +207,7 @@ namespace Badges.Controllers
             }
 
             AssociateWorkWithCriterion(submission, criterion);
+            submission.Reflection = reflections;
             submission.Submitted = true;
             submission.SubmittedOn = DateTime.UtcNow;
 
@@ -269,6 +274,7 @@ namespace Badges.Controllers
                     {
                         submission.AddFulfillment(new BadgeFulfillment
                         {
+                            Comment = criterionAssocaition.Comment,
                             BadgeCriteria = criteria,
                             Experience = RepositoryFactory.ExperienceRepository.GetById(experience)
                         });
@@ -281,6 +287,7 @@ namespace Badges.Controllers
                     {
                         submission.AddFulfillment(new BadgeFulfillment
                         {
+                            Comment = criterionAssocaition.Comment,
                             BadgeCriteria = criteria,
                             SupportingWork = RepositoryFactory.SupportingWorkRepository.GetById(work)
                         });
