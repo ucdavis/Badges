@@ -23,6 +23,7 @@ namespace Badges.Core.Repositories
         IRepositoryWithTypedId<BadgeCriteria, Guid> BadgeCriteriaRepository { get; set; }
         IRepositoryWithTypedId<BadgeSubmission, Guid> BadgeSubmissionRepository { get; set; }
         IRepositoryWithTypedId<BadgeFulfillment, Guid> BadgeFulfillmentRepository { get; set; }
+        IRepositoryWithTypedId<Notification, Guid> NotificationRepository { get; set; }
         void Flush();
     }
 
@@ -40,6 +41,7 @@ namespace Badges.Core.Repositories
         public IRepositoryWithTypedId<ExperienceType, Guid> ExperienceTypeRepository { get; set; }
         public IRepositoryWithTypedId<Instructor, Guid> InstructorRepository { get; set; }
         public IRepositoryWithTypedId<FeedbackRequest, Guid> FeedbackRequestRepository { get; set; }
+        public IRepositoryWithTypedId<Notification, Guid> NotificationRepository { get; set; }
         public IRepositoryWithTypedId<Organization, Guid> OrganizationRepository { get; set; }
         public IRepositoryWithTypedId<Outcome, Guid> OutcomeRepository { get; set; }
         public IRepositoryWithTypedId<SupportingWork, Guid> SupportingWorkRepository { get; set; }
