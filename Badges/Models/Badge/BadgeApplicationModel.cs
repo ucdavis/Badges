@@ -8,5 +8,7 @@ namespace Badges.Models.Badge
         public Core.Domain.Badge Badge { get; set; }
         public IList<BadgeCriteria> BadgeCriterias { get; set; }
         public IList<BadgeFulfillmentViewModel> Fulfillments { get; set; }
+
+        public string Reflection { get; set; }
     }
 }

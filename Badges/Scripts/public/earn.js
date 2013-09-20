@@ -80,11 +80,15 @@
             var id = this.id;
 
             var associatedWork = currentCriteriaContainer.find(".associated-work");
-            var name = 'criterion[' + associatedWork.attr("data-index") + '].' + type; //Either .work or .experience
+            var name = 'criterion[' + associatedWork.attr("data-index") + '].';
+            var idName = name + type;
+            var commentName = name + 'comment';
 
             //Add this work to the proper container, then close the modal
             var workItem = $("<li>", { text: text })
-                .append($("<input>", { name: name, value: id, type: 'hidden' }));
+                .append($("<input>", { name: idName, value: id, type: 'hidden' }))
+                .append($("<input>", { name: commentName, type: 'text', placeholder: 'Comment' }));
+
             associatedWork.append(workItem);
 
             $("#associate-work").modal('hide');

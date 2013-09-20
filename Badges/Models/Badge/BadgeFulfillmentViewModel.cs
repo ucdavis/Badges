@@ -9,5 +9,7 @@ namespace Badges.Models.Badge
 
         public string Details { get; set; }
         public string WorkType { get; set; }
+
+        public string Comment { get; set; }
     }
 }
