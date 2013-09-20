@@ -319,16 +319,18 @@ p {
 }
 .helptext {
 	vertical-align: top;
+	margin-top: 59px;
 }
 	.helptext p {
 		color: #828180;
 		font-style: italic;
 		font-size: 1.35em;
+		padding: 0 0 0 10px;
 	}
 	.helptext i {
 		color: #adaca9;
 		padding-left: 40px;
-		padding-right: 10px;
+		font-size: 2em;
 	}
 .profilepic img {
 	border-radius: 50%; border: 3px solid #fff;
@@ -341,18 +343,23 @@ p {
 .form-group {
 	margin-bottom: 20px;
 }
-.form-control {
+.form-control, .chosen-container-single .chosen-single {
 	background: #f8f7f5;
 	background: rgba(255,255,255,.4);
 	border-radius: 0px;
 	box-shadow: none;
-	border: 0px none;
+	border: 3px solid rgba(255,255,255,.3);
 	height: 60px;
 	color: #dec387;
 	font-size: 1.75em;
 	padding: 0.4em 0.8em;
 	letter-spacing: .5px;
 }
+	.form-control:focus {
+		border-color: rgba(27, 117, 147, 0.3);
+		background: rgba(255,255,255,.8);
+		box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(27, 117, 147, 0.3);
+	}
 	textarea.form-control {
 		min-height: 200px;
 		font-size: 1.5em;
@@ -369,4 +376,7 @@ p {
 	.field-validation-error:before {
 		content: '* ';
 	}
+.chosen-container-single .chosen-single {
+
+}
 
