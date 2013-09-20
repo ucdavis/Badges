@@ -7,7 +7,12 @@ using System.Web;
 
 namespace Badges.Services
 {
-    public class NotificationService
+    public interface INotificationService
+    {
+        void Notify(User user, string message);
+    }
+
+    public class NotificationService : INotificationService
     {
         private readonly IRepositoryFactory _repositoryFactory;
 

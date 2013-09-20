@@ -243,6 +243,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\BadgesRoleProvider.cs" />
     <Compile Include="Services\IFileService.cs" />
+    <Compile Include="Services\NotificationService.cs" />
     <Compile Include="Services\UserService.cs" />
   </ItemGroup>
   <ItemGroup>

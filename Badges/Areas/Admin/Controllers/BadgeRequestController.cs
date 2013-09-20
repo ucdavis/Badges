@@ -6,6 +6,7 @@ using Badges.Core.Domain;
 using Badges.Core.Repositories;
 using UCDArch.Core.PersistanceSupport;
 using UCDArch.Core.Utils;
+using Badges.Services;
 
 namespace Badges.Areas.Admin.Controllers
 {
@@ -15,8 +16,11 @@ namespace Badges.Areas.Admin.Controllers
     [Authorize(Roles = RoleNames.Administrator)]
     public class BadgeRequestController : ApplicationController
     {
-        public BadgeRequestController(IRepositoryFactory repositoryFactory) : base(repositoryFactory)
+        private readonly INotificationService _notificationService;
+
+        public BadgeRequestController(IRepositoryFactory repositoryFactory, INotificationService notificationService) : base(repositoryFactory)
         {
+            _notificationService = notificationService;
         }
 
         public ActionResult Index()
@@ -54,6 +58,8 @@ namespace Badges.Areas.Admin.Controllers
             badge.Approved = true;
 
             Message = "The badge was successfully approved and can now be earned by students";
+
+            _notificationService.Notify(badge.Creator, "Congratulations, your badge was approved!");
             RepositoryFactory.BadgeRepository.EnsurePersistent(badge);
 
             return RedirectToAction("Index");
@@ -69,7 +75,8 @@ namespace Badges.Areas.Admin.Controllers
             }
             
             Message = "The badge has been denied and deleted from the system";
-            
+
+            _notificationService.Notify(badge.Creator, reason);
             RepositoryFactory.BadgeRepository.Remove(badge);
 
             return RedirectToAction("Index");
