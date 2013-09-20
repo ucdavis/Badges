@@ -33,7 +33,7 @@ namespace Badges.Controllers
         /// <returns></returns>
         public ActionResult Browse()
         {
-            var badges = RepositoryFactory.BadgeRepository.Queryable.Fetch(x=>x.Category);
+            var badges = RepositoryFactory.BadgeRepository.Queryable.Where(x=>x.Approved).Fetch(x=>x.Category);
 
             return View(badges.ToList());
         }
