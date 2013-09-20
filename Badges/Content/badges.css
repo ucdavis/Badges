@@ -317,18 +317,31 @@ p {
 	font-style: italic;
 	font-size: 2.4em;
 }
+.helptext {
+	vertical-align: top;
+}
+	.helptext p {
+		color: #828180;
+		font-style: italic;
+		font-size: 1.35em;
+	}
+	.helptext i {
+		color: #adaca9;
+		padding-left: 40px;
+		padding-right: 10px;
+	}
 .profilepic img {
 	border-radius: 50%; border: 3px solid #fff;
 }
-.helptext p {
-	color: #828180;
-	font-style: italic;
-	font-size: 1.35em;
+
+.container.form div.top {
+	padding-top: 1.6em;
 }
-.container.form .form-group {
+
+.form-group {
 	margin-bottom: 20px;
 }
-.container.form .form-control {
+.form-control {
 	background: #f8f7f5;
 	background: rgba(255,255,255,.4);
 	border-radius: 0px;
@@ -338,8 +351,22 @@ p {
 	color: #dec387;
 	font-size: 1.75em;
 	padding: 0.4em 0.8em;
+	letter-spacing: .5px;
 }
+	textarea.form-control {
+		min-height: 200px;
+		font-size: 1.5em;
+	}
 .container.form .form-control.required:after {
-	content: '*';
+	content: ' *';
 	color: #783032;
 }
+	.field-validation-error {
+		color: #783032;
+		padding-left: .8em;
+		padding-top: .2em;
+	}
+	.field-validation-error:before {
+		content: '* ';
+	}
+

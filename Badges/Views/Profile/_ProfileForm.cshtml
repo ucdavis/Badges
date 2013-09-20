@@ -8,7 +8,7 @@
                 <h2>New around here?</h2>
                 <p>Welcome to the UC Davis Sustainable Agriculture and Food Systems Badges project! Tell us a little more about yourself, then we’ll move right along to the fun parts.</p>
             </div>
-            <div class="basics col-md-4">
+            <div class="basics top col-md-4">
                 <h3>Basics</h3>
                 <div class="form-group">
                     @Html.TextBoxFor(x => x.Profile.FirstName, new {@class = "form-control required", placeholder = "First Name"})
@@ -23,7 +23,7 @@
                     @Html.ValidationMessageFor(x => x.Profile.Email)
                 </div>
             </div>
-            <div class="profilepic col-md-4">
+            <div class="profilepic top col-md-4">
                 @*<a href="#">
                     <img src="@Url.Content("~/Content/img/profile-upload.jpg")" alt="Upload a photo" />
                 </a>*@
@@ -40,10 +40,12 @@
         </div><!--/.row-->
         <div class="row">
             <div class="helptext col-md-4">
-                <i class="icon-info-sign"></i>
-                <p>Why did you choose the SAFS major? What brought you to UC&nbsp;Davis?</p>
+                <div class="row">
+                <i class="icon-info-sign col-md-3"></i>
+                <p class="col-md-9">Why did you choose the SAFS major? What brought you to UC&nbsp;Davis?</p>
+                </div>
             </div>
-            <div class="bio col-md-4">
+            <div class="bio col-md-8">
                 <h3>Your bio</h3>
                 <div class="form-group">
                     @Html.TextAreaFor(x => x.Profile.Bio, new {@class = "form-control"})
@@ -52,10 +54,12 @@
         </div><!--/.row-->
         <div class="row">
             <div class="helptext col-md-4">
-                <i class="icon-info-sign"></i>
-                <p>What do you hope to learn here at UC&nbsp;Davis?</p>
+                <div class="row">
+                <i class="icon-info-sign col-md-3"></i>
+                <p class="col-md-9">What do you hope to learn here at UC&nbsp;Davis?</p>
+                </div>
             </div>
-            <div class="goals col-md-4">
+            <div class="goals col-md-8">
                 <h3>Goals and interests</h3>
                 <div class="form-group">
                     @Html.TextAreaFor(x => x.Profile.Goals, new {@class = "form-control"})
@@ -64,10 +68,12 @@
         </div><!--/.row-->
         <div class="row">
             <div class="helptext col-md-4">
-                <i class="icon-info-sign"></i>
-                <p>What is your relationship to ASI? Are you a student or instructor?</p>
+                <div class="row">
+                <i class="icon-info-sign col-md-3"></i>
+                <p class="col-md-9">What is your relationship to ASI? Are you a student or instructor?</p>
+                </div>
             </div>
-            <div class="goals col-md-4">
+            <div class="goals col-md-8">
                 <h3>Your account</h3>
                 <div class="form-group">
                     @this.Select("Roles").Options(Model.Roles, x=>x.Id, x=>x.Name).Class("form-control requried")
