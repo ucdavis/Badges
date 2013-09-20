@@ -52,13 +52,34 @@
                 </button>
             }
             OR
+            <br/>
+            <a href="#deny" data-toggle="modal" class="btn btn-danger">Deny</a>
+        </div>
+    </fieldset>
+</div>
+
+<!-- Modal -->
+<div id="deny" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="deny-label" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3 id="deny-label">Deny New Badge Request</h3>
+            </div>
             @using (Html.BeginForm("Deny", "BadgeRequest", new { area = "Admin", id = Model.Id }, FormMethod.Post))
             {
                 @Html.AntiForgeryToken()
-                <button type="submit" class="btn btn-danger">
-                    Deny
-                </button>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Deny Reason</label>
+                        <textarea name="reason" class="form-control">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut tempor ipsum at mauris convallis blandit. Praesent ut nunc condimentum, fermentum urna vulputate, rutrum turpis. Vestibulum commodo vitae nisi non sagittis.</textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="submit" class="btn btn-danger" value="Deny Badge" />
+                    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+                </div>
             }
         </div>
-    </fieldset>
+    </div>
 </div>

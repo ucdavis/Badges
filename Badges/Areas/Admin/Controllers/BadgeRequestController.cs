@@ -59,7 +59,7 @@ namespace Badges.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult Deny(Guid id)
+        public ActionResult Deny(Guid id, string reason)
         {
             var badge = RepositoryFactory.BadgeRepository.GetNullableById(id);
 
@@ -69,6 +69,7 @@ namespace Badges.Areas.Admin.Controllers
             }
             
             Message = "The badge has been denied and deleted from the system";
+            
             RepositoryFactory.BadgeRepository.Remove(badge);
 
             return RedirectToAction("Index");
