@@ -7,6 +7,7 @@ using Badges.Core.Domain;
 using Badges.Core.Repositories;
 using UCDArch.Core.PersistanceSupport;
 using UCDArch.Core.Utils;
+using Badges.Services;
 
 namespace Badges.Areas.Admin.Controllers
 {
@@ -16,11 +17,13 @@ namespace Badges.Areas.Admin.Controllers
     [Authorize(Roles=RoleNames.Administrator)]
     public class BadgeSubmissionController : ApplicationController
     {
-	
+        private readonly INotificationService _notificationService;
+
         //
         // GET: /Admin/BadgeSubmission/
-        public BadgeSubmissionController(IRepositoryFactory repositoryFactory) : base(repositoryFactory)
+        public BadgeSubmissionController(IRepositoryFactory repositoryFactory, INotificationService notificationService) : base(repositoryFactory)
         {
+            _notificationService = notificationService;
         }
 
         public ActionResult Index()
@@ -63,11 +66,25 @@ namespace Badges.Areas.Admin.Controllers
             badgeSubmission.Approved = true;
             badgeSubmission.AwardedOn = DateTime.UtcNow;
 
-            //TODO: notify student of approval
-
+            _notificationService.Notify(badgeSubmission.Creator, "Congratulations, you have been awarded a new badge");
             RepositoryFactory.BadgeSubmissionRepository.EnsurePersistent(badgeSubmission);
 
             Message = "The badge has been awarded and some day the student will be notified....";
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Deny(Guid id, string reason)
+        {
+            var badgeSubmission = RepositoryFactory.BadgeSubmissionRepository.GetNullableById(id);
+
+            if (badgeSubmission == null) return HttpNotFound();
+
+            badgeSubmission.Submitted = false;
+
+            _notificationService.Notify(badgeSubmission.Creator, reason);
+            RepositoryFactory.BadgeSubmissionRepository.EnsurePersistent(badgeSubmission);
+
+            Message = "The badge has been sent back for changes and eventually the student will be notified....";
             return RedirectToAction("Index");
         }
     }
