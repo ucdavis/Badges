@@ -127,6 +127,11 @@ namespace Badges.Controllers
 
             if (existingBadgeApplication != null)
             {
+                if (existingBadgeApplication.Submitted || existingBadgeApplication.Approved)
+                {
+                    return RedirectToAction("Badge", "Public", new {id = existingBadgeApplication.Id});
+                }
+
                 Message = "Existing badge progress found-- you can continue associating work and experiences below";
 
                 model.Reflection = existingBadgeApplication.Reflection;
