@@ -356,7 +356,7 @@ legend {
 }
 .form-control, 
 .chosen-container-single .chosen-single,
-.chosen-container .chosen-drop {
+.chosen-container .chosen-drop x {
 	background: #f8f7f5;
 	background: rgba(255,255,255,.4);
 	border-radius: 0px;
@@ -403,4 +403,24 @@ legend {
 		background: rgba(255,255,255,.6);
 		border-color: rgba(27, 117, 147, 0.2);
 	}
+.actions {
+	padding-left: 35px;
+}
+	.btn {
+		border-radius: 0px;
+		font-size: .5em;
+		text-transform: uppercase;
+		letter-spacing: .01em;
+		border: 0px none;
+	}
+		.btn-default {
+			background-color: #bdbdbd;
+			color: #fff;
+		}
+			.btn-default i {color: #666665;}	
+		.btn-success {
+			background-color: #4b955b;
+		}
+			.btn-success i {color: #a4ccad;}
+
 
