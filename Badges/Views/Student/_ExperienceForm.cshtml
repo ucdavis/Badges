@@ -59,9 +59,9 @@
             @Html.ValidationMessageFor(x => x.Experience.Organization)   
         </div> 
         <div class="form-group">
-            @Html.LabelFor(x => x.Experience.Notes)
+            @Html.Label("Experience.Notes", "Notes for myself")
             <p class="helptext">Leave yourself some notes about this experience. These won't show up on your public experience page.</p>
-            @Html.TextAreaFor(x => x.Experience.Notes, new { @class="form-control", placeholder="Describe your experience"})
+            @Html.TextAreaFor(x => x.Experience.Notes, new { @class="form-control", placeholder="Dear diary..."})
             @Html.ValidationMessageFor(x => x.Experience.Notes)
         </div>
     </div>
@@ -86,7 +86,7 @@
         </div>
         <div class="form-group">
             @Html.Label("Experience.InstructorViewable", "Should this be viewable by instructors?")
-            @Html.LabelFor(x => x.Experience.InstructorViewable)
+            <!--@Html.LabelFor(x => x.Experience.InstructorViewable)-->
             @Html.CheckBoxFor(x => x.Experience.InstructorViewable)
             @Html.ValidationMessageFor(x => x.Experience.InstructorViewable)
         </div>

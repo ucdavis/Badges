@@ -336,7 +336,10 @@ legend {
 		font-size: 1.35em;
 		padding: 0 0 0 10px;
 	}
-	p.helptext {padding-left: 1.1em;}
+	p.helptext {
+		padding-left: 1.1em;
+		padding-right: 15%;
+	}
 	.helptext i {
 		color: #adaca9;
 		padding-left: 40px;
@@ -379,6 +382,7 @@ legend {
 .chosen-container-multi .chosen-choices li.search-field input[type="text"] {
 	height: auto;
 	color: #ccc;
+	font-family: "futura-pt",Futura,Helvetica,sans-serif;
 }
 .twitter-typeahead .tt-query, .twitter-typeahead .tt-hint {
 	height: 60px !important;
@@ -451,8 +455,8 @@ legend {
 
 /* ----- add experience form ----- */
 
-#Experience_ExperienceType_chosen {
-	width: 100%;
+#Experience_ExperienceType_chosen, #Experience_Instructors_chosen {
+	width: 100% !important;
 }
 .form-group.cover-photo {
 	position: relative;
@@ -462,7 +466,7 @@ legend {
 }
 	img#cover-preview {
 		max-width: 100%;
-		height: auto;
+		min-height: 100%;
 		position: absolute;
 		top: 0px; left: 0;
 	}
@@ -479,6 +483,6 @@ legend {
 	}
 
 #map-canvas {
-	border: 3px solid rgba(255,255,255,.3);
+	border: 3px solid rgba(255,255,255,.75);
 }
 
