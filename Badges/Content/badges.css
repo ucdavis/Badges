@@ -240,8 +240,10 @@ p, legend {
 
 #add-work {
 	background: #4b955b;
+	padding-bottom: 10px;
+	margin: auto;
 }
-	#add-work .intro {
+	.work-dash .intro {
 		background: #fff;
 		font-weight: 700;
 		color: #8fb897;
@@ -259,7 +261,7 @@ p, legend {
 		font-size: 1.25em;
 	}
 	#add-work .btn {
-		width: 1.25em;
+		font-size: 1.25em;
 		margin: 10px 10px 0 10px;
 	}
 	#add-work .btn-default {
