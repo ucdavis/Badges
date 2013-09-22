@@ -404,7 +404,7 @@ div.helptext {
 .chosen-container .chosen-drop x,
 .chosen-container-multi .chosen-choices {
 	background: #f8f7f5;
-	background: rgba(255,255,255,.4);
+	background: rgba(255,255,255,.5);
 	border-radius: 0px;
 	box-shadow: none;
 	border: 3px solid rgba(255,255,255,.3);
@@ -428,7 +428,7 @@ div.helptext {
 	}
 	.form-control:focus {
 		border-color: rgba(27, 117, 147, 0.2);
-		background: rgba(255,255,255,.6);
+		background: rgba(255,255,255,.75);
 		box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(27, 117, 147, 0.1);
 	}
 	textarea.form-control {
@@ -442,7 +442,9 @@ div.helptext {
 	.field-validation-error {
 		color: #783032;
 		padding-left: .8em;
-		padding-top: .2em;
+		padding-top: .4em;
+		font-size: 1.25em;
+		display: block;
 	}
 	.field-validation-error:before {
 		content: '* ';
@@ -512,7 +514,7 @@ div.helptext {
 		min-height: 100%;
 		height: auto;
 		position: absolute;
-		top: -50%; left: 0;
+		top: 0; right: 0; bottom: 0; left: 0; 
 	}
 	input#cover-image {
 		background: rgba(255,255,255,.8);
