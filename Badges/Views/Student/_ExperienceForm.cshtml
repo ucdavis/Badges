@@ -24,7 +24,7 @@
     </div>
 </div>
 <div class="row">
-    <div class="form-group col-md-10 col-md-offset-1">
+    <div class="form-group cover-photo col-md-10 col-md-offset-1">
         @if (string.IsNullOrWhiteSpace(Model.Experience.CoverImageUrl))
         {
             <img id="cover-preview" src="http://f.cl.ly/items/373L0L3w163g3A2o3h0c/exp-placeholder.jpg" alt="cover photo" style="display: block;" />
@@ -40,6 +40,7 @@
 <div class="row">
     <div class="form-group col-md-10 col-md-offset-1">
         @Html.LabelFor(x => x.Experience.Details)
+        <p class="helptext">In case you need to expand on your experience.</p>
         @Html.TextAreaFor(x => x.Experience.Details, new { @class="form-control", placeholder="Details about your experience"})
         @Html.ValidationMessageFor(x => x.Experience.Details)   
     </div>
@@ -47,7 +48,8 @@
 <div class="row">
     <div class="leftcol col-md-6 col-md-offset-1">
         <div class="form-group">
-            @Html.Label("Experience_Instructors", "Instructors")
+            @Html.Label("Experience_Instructors", "Who was involved?")
+            <p class="helptext">You can include advisors, instructors, etc.</p>
             @this.MultiSelect("Experience.Instructors").Id("Experience_Instructors").Class("form-control").Attr("data-placeholder", "Choose Your Instructors").Options(Model.Instructors, x=>x.Id, x=>x.DisplayName).Selected(Model.Experience.Instructors.Any() ? Model.Experience.Instructors.Select(x=>x.Id) : null)
         </div>   
         <div class="form-group">
@@ -63,7 +65,9 @@
     </div>
     <div class="rightcol col-md-4"> 
         <div class="form-group">
-            @Html.LabelFor(x => x.Experience.Location)
+            @Html.Label("Experience.Location", "Where was this?")
+            <p class="helptext">As general or accurate as you want!</p>
+            <!--@Html.LabelFor(x => x.Experience.Location)-->
             @Html.TextBoxFor(x => x.Experience.Location, new { @class="form-control", placeholder="Location"})
             <div id="map-canvas" style="width:100%; height: 200px;"></div>
             @Html.ValidationMessageFor(x => x.Experience.Location)
