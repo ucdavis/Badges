@@ -42,7 +42,7 @@
         <!--@Html.LabelFor(x => x.Experience.Details)-->
         @Html.Label("Experience_Details", "More about your experience")
         <p class="helptext">In case you need more than 140 characters to describe your experience.</p>
-        @Html.TextAreaFor(x => x.Experience.Details, new { @class="form-control", placeholder="All the details go here."})
+        @Html.TextAreaFor(x => x.Experience.Details, new { @class="form-control", placeholder="All the 411 goes here. Is that too nineties?"})
         @Html.ValidationMessageFor(x => x.Experience.Details)   
     </div>
 </div>
@@ -84,7 +84,7 @@
             @Html.TextBoxFor(x => x.Experience.End, "{0:d}", new { @class="form-control datepicker", placeholder="End date"})
             @Html.ValidationMessageFor(x => x.Experience.End)   
         </div>
-        <div class="form-group">
+        <div class="form-group exp-viewable">
             @Html.Label("Experience.InstructorViewable", "Should this be viewable by instructors?")
             <!--@Html.LabelFor(x => x.Experience.InstructorViewable)-->
             @Html.CheckBoxFor(x => x.Experience.InstructorViewable)
@@ -94,7 +94,8 @@
 </div>
 <div class="row">       
     <div class="form-actions col-md-10 col-md-offset-1">
-        <button type="submit" class="btn btn-primary"><i class="icon-ok"></i>Submit</button>
+        <button type="submit" class="btn btn-success"><i class="icon-ok"></i>Save it</button>
+        <a href="@Url.Action("Index", "Home")" class="btn btn-default"><i class="icon-remove button-icon"></i> Cancel</a>
     </div>
 </div>
 </fieldset>
