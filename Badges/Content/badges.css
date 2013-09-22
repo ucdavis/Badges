@@ -241,6 +241,13 @@ p, legend {
 #add-work {
 	background: #4b955b;
 }
+	#add-work .intro {
+		background: #fff;
+		font-weight: 700;
+		color: #8fb897;
+		font-size: 1.1em;
+		display: block;
+	}
 	#add-work li a {
 		width: 140px;
 		height: 60px;
@@ -250,6 +257,10 @@ p, legend {
 		width: 60px;
 		color: #fff;
 		font-size: 1.25em;
+	}
+	#add-work .btn {
+		width: 1.25em;
+		margin: 10px 10px 0 10px;
 	}
 	#add-work .btn-default {
 		border: 3px solid #7fb48b;
