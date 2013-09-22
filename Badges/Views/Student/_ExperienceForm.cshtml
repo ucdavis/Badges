@@ -39,9 +39,10 @@
 </div>
 <div class="row">
     <div class="form-group col-md-10 col-md-offset-1">
-        @Html.LabelFor(x => x.Experience.Details)
-        <p class="helptext">In case you need to expand on your experience.</p>
-        @Html.TextAreaFor(x => x.Experience.Details, new { @class="form-control", placeholder="Details about your experience"})
+        <!--@Html.LabelFor(x => x.Experience.Details)-->
+        @Html.Label("Experience.Details", "More about your experience")
+        <p class="helptext">In case you need more than 140 characters to describe your experience.</p>
+        @Html.TextAreaFor(x => x.Experience.Details, new { @class="form-control", placeholder="All the details go here."})
         @Html.ValidationMessageFor(x => x.Experience.Details)   
     </div>
 </div>
@@ -74,16 +75,17 @@
             @Html.ValidationMessageFor(x => x.Experience.Location)
         </div>
         <div class="form-group">
-            @Html.LabelFor(x => x.Experience.Start)
-            @Html.TextBoxFor(x => x.Experience.Start, "{0:d}", new { @class="form-control datepicker"})
+            @Html.Label("Experience.Start", "When was this?")
+            <p class="helptext">Include at least the start date.</p>
+            @Html.TextBoxFor(x => x.Experience.Start, "{0:d}", new { @class="form-control datepicker", placeholder="Start date"})
             @Html.ValidationMessageFor(x => x.Experience.Start)   
         </div>
         <div class="form-group">
-            @Html.LabelFor(x => x.Experience.End)
-            @Html.TextBoxFor(x => x.Experience.End, "{0:d}", new { @class="form-control datepicker"})
+            @Html.TextBoxFor(x => x.Experience.End, "{0:d}", new { @class="form-control datepicker", placeholder="End date"})
             @Html.ValidationMessageFor(x => x.Experience.End)   
         </div>
         <div class="form-group">
+            @Html.Label("Experience.InstructorViewable", "Should this be viewable by instructors?")
             @Html.LabelFor(x => x.Experience.InstructorViewable)
             @Html.CheckBoxFor(x => x.Experience.InstructorViewable)
             @Html.ValidationMessageFor(x => x.Experience.InstructorViewable)

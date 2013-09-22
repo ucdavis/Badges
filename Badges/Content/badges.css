@@ -415,6 +415,12 @@ legend {
 		background: rgba(255,255,255,.6);
 		border-color: rgba(27, 117, 147, 0.2);
 	}
+.dropdown-menu {
+	min-width: 360px;
+}
+	.datepicker table {width: 100%;}
+	.datepicker {text-align: center;}
+
 .actions {
 	padding-bottom: 50px;
 }
@@ -446,13 +452,12 @@ legend {
 	position: relative;
 	overflow: hidden;
 	height: 250px;
-	left: -7px;
 	border: 3px solid rgba(255,255,255,.3);
 }
 	img#cover-preview {
 		max-width: 100%;
 		position: absolute;
-		top: 0px;
+		top: 0px; left: 0;
 	}
 	input#cover-image {
 		background: rgba(255,255,255,.8);
@@ -460,7 +465,9 @@ legend {
 		text-align: center;
 		height: auto;
 		position: absolute;
-		bottom: 0px;
+		bottom: 0px; left: 0;
+		font-weight: 800;
+		color: #d5b053;
 		padding: 0.8em;
 	}
 
