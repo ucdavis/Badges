@@ -10,19 +10,20 @@
         .jumbotron.experience .container {
             background: url(@Model.Experience.CoverImageUrl) no-repeat;
         }
+        .container.maincontent {padding-top: 0;}
     </style>
 }
 
 @Html.Partial("_ExperienceDashboard")
 
 <div class="row well well-sm">
-    <nav class="navbar" role="navigation">
-        <!-- Brand and toggle get grouped for better mobile display -->
+    <nav class="navbar col-md-9" role="navigation">
+        <!-- Brand and toggle get grouped for better mobile display
         <div class="navbar-header col-sm-1">
-            <div class="thumbnail pull-right">
+            <div class="thumbnail circlepic pull-right">
                 @Html.Action("ViewProfileImage", "Profile")
             </div>
-        </div>
+        </div> -->
         <div class="collapse navbar-collapse">
             <ul id="add-work" class="nav navbar-nav btn-toolbar">
                 <li>

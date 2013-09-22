@@ -1,8 +1,8 @@
 ﻿@model Badges.Models.Shared.ExperienceViewModel
 
 <!-- Main jumbotron for a primary marketing message or call to action -->
-<div class="jumbotron experience">
-    <div class="container">
+<div class="jumbotron experience row">
+    <div class="container col-md-12">
         <div class="overlay">
             <div class="toprow">
                 <div class="profilebox circlepic raised">
@@ -18,13 +18,13 @@
             </div><!--/.btmrow-->
         </div><!--/.overlay-->
         <div class="details row">
-            <div class="type circlepic raised col-md-1">
+            <div class="type circlepic raised col-md-2">
                 <div class="circle">
                     <i class="@Model.Experience.ExperienceType.Icon"></i>
                 </div><!--/.circle-->
                 <span class="name">@Model.Experience.ExperienceType.Name</span>
             </div><!--/.type-->
-            <div class="text col-md-7">
+            <div class="text col-md-6">
                 <p class="date">@string.Format("{0:D}", Model.Experience.Start)</p>
                 <p class="brief">@Model.Experience.Description</p>
             </div><!--/.text-->
@@ -39,7 +39,7 @@
             </div><!--/.participants-->
         </div><!--/.details-->
         <div class="footer row">
-            <div class="moretext col-md-offset-1 col-md-7">
+            <div class="moretext col-md-offset-2 col-md-6">
                 <a href="#">View more details &raquo;</a>
             </div><!--/.moretext-->
             <div class="moreppl col-md-4">

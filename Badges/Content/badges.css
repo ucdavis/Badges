@@ -201,7 +201,6 @@ p, legend {
 			padding-top: 10px;
 		}
 	.details .text {
-		padding-left: 35px;
 		padding-top: 15px;
 	}
 		.details .text p {
@@ -234,12 +233,26 @@ p, legend {
 	letter-spacing: .75px;
 }
 	.jumbotron .footer a {color: #8f8f8f;}
-	.jumbotron .footer .moretext {
-		padding-left: 35px;
-	}
+	.jumbotron .footer .moretext {}
 
 
 /* ----- work styles ----- */
+
+#add-work {
+	background: #4b955b;
+}
+	#add-work li {
+	}
+	#add-work li i {
+		color: #fff;
+		font-size: 1.25em;
+	}
+	#add-work .btn-default {
+		border: 3px solid #7fb48b;
+		color: #fff;
+		background: #4b955b;
+	}
+
 /* .container.work {padding: 0px;} /* --- figure out a diff way so cols still align --- */
 .work .row div {
 	background: #fff;
@@ -328,9 +341,11 @@ p, legend {
 legend {
 	border: 0px none;
 }
+div.helptext {
+	margin-top: 62px;
+}
 .helptext p {
 	vertical-align: top;
-	margin-top: 62px;
 }
 	.helptext p, p.helptext {
 		color: #828180;

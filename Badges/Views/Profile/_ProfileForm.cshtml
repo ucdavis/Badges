@@ -10,7 +10,7 @@
             </div>
             <div class="edit-profile col-md-4">
                 <h2>Edit your profile</h2>
-                <p>Need to freshen up your information?</p>
+                <p>Need to freshen up your details? Be our guest!</p>
             </div>
             <div class="basics top col-md-4">
                 <h3>Basics</h3>
@@ -78,7 +78,7 @@
                 </div>
             </div>
             <div class="goals col-md-8">
-                <h3>Your account</h3>
+                <h3>Your account type</h3>
                 <div class="form-group">
                     @this.Select("Roles").Options(Model.Roles, x=>x.Id, x=>x.Name).Class("form-control requried")
                     @Html.ValidationMessageFor(x => x.Roles)
