@@ -2,7 +2,7 @@
 
 <fieldset>
 <div class="row">
-    <legend class="col-md-7">The heart of our system is to reflect on your experiences in the field, around campus, and anywhere you find learning. Record your experience below.</legend>
+    <legend class="intro col-md-7">The heart of our system is to reflect on your experiences in the field, around campus, and anywhere you find learning. Record your experience below.</legend>
 </div>
         
 <div class="row">
@@ -18,7 +18,7 @@
 </div>
 <div class="row">
     <div class="form-group col-md-10 col-md-offset-1">
-        @Html.LabelFor(x => x.Experience.Description)
+        <!--@Html.LabelFor(x => x.Experience.Description)-->
         @Html.TextBoxFor(x => x.Experience.Description, new { @class="form-control", placeholder="Brief Description", maxlength="140" })
         @Html.ValidationMessageFor(x => x.Experience.Description)
     </div>
@@ -27,13 +27,13 @@
     <div class="form-group col-md-10 col-md-offset-1">
         @if (string.IsNullOrWhiteSpace(Model.Experience.CoverImageUrl))
         {
-            <img id="cover-preview" src="https://www.dropbox.com/s/oj3giivqe10faw5/exp-placeholder.jpg" alt="cover photo" style="display: block;" />
+            <img id="cover-preview" src="http://f.cl.ly/items/373L0L3w163g3A2o3h0c/exp-placeholder.jpg" alt="cover photo" style="display: block;" />
         }
         else
         {
             <img id="cover-preview" src="@Model.Experience.CoverImageUrl" alt="cover photo" style="display: block;" />
         }
-        @Html.Label("Experience_CoverImageUrl", "Upload Cover Photo")
+        <!--@Html.Label("Experience_CoverImageUrl", "Upload Cover Photo")-->
         <input type="file" id="cover-image" class="form-control" name="CoverImage" accept="image/*" placeholder="Upload Cover Photo"/>
     </div>
 </div>
@@ -52,7 +52,7 @@
     <div class="form-group col-md-4">
         @Html.LabelFor(x => x.Experience.Location)
         @Html.TextBoxFor(x => x.Experience.Location, new { @class="form-control", placeholder="Location"})
-        <div id="map-canvas" style="width:200px; height: 200px;"></div>
+        <div id="map-canvas" style="width:100%; height: 200px;"></div>
         @Html.ValidationMessageFor(x => x.Experience.Location)
     </div>
 </div>

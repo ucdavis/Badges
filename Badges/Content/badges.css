@@ -4,7 +4,7 @@ body {
 	padding-bottom: 20px;
 	font-family: "futura-pt",Futura,Helvetica,sans-serif;
 	background: url(img/bg.jpg) top center;
-	background-size: 100%;
+	background-size: 100% 100%;
 	line-height: 1.5em;
 	color: #071626;
 	letter-spacing: 0.15px;
@@ -18,7 +18,7 @@ h1, h2, h3, .h1, .h2, .h3 {
 	margin-bottom: .1em;
 	margin-top: .7em;
 }
-p {
+p, legend {
 	font-size: 1.2em;
 	line-height: 1.6em;
 }
@@ -308,13 +308,13 @@ p {
 
 
 /* ----- form styles ----- */
-.container.form h3 {
+.container.form h3, .container.form .form-group label {
 	font-weight: 500;
 	color: #6b9aad;
 	margin-bottom: .3em;
 	margin-left: .8em;
 }
-.container.form .intro h2 {
+.container.form .intro h2, h2.intro {
 	font-style: italic;
 	font-size: 2.4em;
 }
@@ -322,7 +322,7 @@ p {
 	vertical-align: top;
 	margin-top: 62px;
 }
-	.helptext p {
+	.helptext p, p.helptext {
 		color: #828180;
 		font-style: italic;
 		font-size: 1.35em;
@@ -357,7 +357,8 @@ legend {
 }
 .form-control, 
 .chosen-container-single .chosen-single,
-.chosen-container .chosen-drop x {
+.chosen-container .chosen-drop x,
+.chosen-container-multi .chosen-choices {
 	background: #f8f7f5;
 	background: rgba(255,255,255,.4);
 	border-radius: 0px;
@@ -370,7 +371,7 @@ legend {
 	letter-spacing: .5px;
 }
 .twitter-typeahead .tt-query, .twitter-typeahead .tt-hint {
-	height: 60px;
+	height: 60px !important;
 }
 	.form-control:focus {
 		border-color: rgba(27, 117, 147, 0.2);
@@ -434,4 +435,5 @@ legend {
 /* ----- add experience form ----- */
 
 img#cover-preview {max-width: 100%;}
+input#cover-image {height: auto;}
 
