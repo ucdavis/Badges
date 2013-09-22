@@ -1,26 +1,33 @@
 ﻿@model Badges.Models.Student.ExperienceEditModel
 
-<fieldset class="col-md-10 col-md-offset-1">
-    <legend>The heart of our system is to reflect on your experiences in the field, around campus, and anywhere you find learning. Record your experience below.</legend>
+<fieldset>
+<div class="row">
+    <legend class="col-md-7">The heart of our system is to reflect on your experiences in the field, around campus, and anywhere you find learning. Record your experience below.</legend>
+</div>
         
-    <div class="form-group">
+<div class="row">
+    <div class="form-group col-md-7 col-md-offset-1">
         @Html.LabelFor(x => x.Experience.Name)
         @Html.TextBoxFor(x => x.Experience.Name, new { @class="form-control", placeholder="Experience Name/Title"})
         @Html.ValidationMessageFor(x => x.Experience.Name)   
     </div>
-    <div class="form-group">
+    <div class="form-group col-md-3">
+        @Html.Label("Experience_ExperienceType", "Experience Type")
+        @this.Select("Experience.ExperienceType").Id("Experience_ExperienceType").Class("form-control").Options(Model.ExperienceTypes, x=>x.Id, x=>x.Name).Selected(Model.Experience.ExperienceType != null ? Model.Experience.ExperienceType.Id : default(Guid))
+    </div>
+</div>
+<div class="row">
+    <div class="form-group col-md-10 col-md-offset-1">
         @Html.LabelFor(x => x.Experience.Description)
         @Html.TextBoxFor(x => x.Experience.Description, new { @class="form-control", placeholder="Brief Description", maxlength="140" })
         @Html.ValidationMessageFor(x => x.Experience.Description)
     </div>
-    <div class="form-group">
-        @Html.Label("Experience_ExperienceType", "Experience Type")
-        @this.Select("Experience.ExperienceType").Id("Experience_ExperienceType").Class("form-control").Options(Model.ExperienceTypes, x=>x.Id, x=>x.Name).Selected(Model.Experience.ExperienceType != null ? Model.Experience.ExperienceType.Id : default(Guid))
-    </div>
-    <div class="form-group">
+</div>
+<div class="row">
+    <div class="form-group col-md-10 col-md-offset-1">
         @if (string.IsNullOrWhiteSpace(Model.Experience.CoverImageUrl))
         {
-            <img id="cover-preview" src="http://placehold.it/1200x300" alt="cover photo" style="display: block;" />
+            <img id="cover-preview" src="https://www.dropbox.com/s/oj3giivqe10faw5/exp-placeholder.jpg" alt="cover photo" style="display: block;" />
         }
         else
         {
@@ -29,50 +36,60 @@
         @Html.Label("Experience_CoverImageUrl", "Upload Cover Photo")
         <input type="file" id="cover-image" class="form-control" name="CoverImage" accept="image/*" placeholder="Upload Cover Photo"/>
     </div>
-    <div class="form-group">
+</div>
+<div class="row">
+    <div class="form-group col-md-10 col-md-offset-1">
         @Html.LabelFor(x => x.Experience.Details)
         @Html.TextAreaFor(x => x.Experience.Details, new { @class="form-control", placeholder="Details about your experience"})
         @Html.ValidationMessageFor(x => x.Experience.Details)   
     </div>
-    <div class="form-group">
+</div>
+<div class="row">
+    <div class="form-group col-md-6 col-md-offset-1">
         @Html.Label("Experience_Instructors", "Instructors")
         @this.MultiSelect("Experience.Instructors").Id("Experience_Instructors").Class("form-control").Attr("data-placeholder", "Choose Your Instructors").Options(Model.Instructors, x=>x.Id, x=>x.DisplayName).Selected(Model.Experience.Instructors.Any() ? Model.Experience.Instructors.Select(x=>x.Id) : null)
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(x => x.Experience.Organization)
-        @Html.TextBoxFor(x => x.Experience.Organization, new { @class="form-control", placeholder="Organization"})
-        @Html.ValidationMessageFor(x => x.Experience.Organization)   
     </div>    
-    <div class="form-group">
-        @Html.LabelFor(x => x.Experience.Start)
-        @Html.TextBoxFor(x => x.Experience.Start, "{0:d}", new { @class="form-control datepicker"})
-        @Html.ValidationMessageFor(x => x.Experience.Start)   
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(x => x.Experience.End)
-        @Html.TextBoxFor(x => x.Experience.End, "{0:d}", new { @class="form-control datepicker"})
-        @Html.ValidationMessageFor(x => x.Experience.End)   
-    </div>    
-    <div class="form-group">
+    <div class="form-group col-md-4">
         @Html.LabelFor(x => x.Experience.Location)
         @Html.TextBoxFor(x => x.Experience.Location, new { @class="form-control", placeholder="Location"})
         <div id="map-canvas" style="width:200px; height: 200px;"></div>
         @Html.ValidationMessageFor(x => x.Experience.Location)
     </div>
-    <div class="form-group">
-        @Html.LabelFor(x => x.Experience.Notes)
-        @Html.TextAreaFor(x => x.Experience.Notes, new { @class="form-control", placeholder="Describe your experience"})
-        @Html.ValidationMessageFor(x => x.Experience.Notes)
+</div>
+<div class="row">
+    <div class="form-group col-md-6 col-md-offset-1">
+        @Html.LabelFor(x => x.Experience.Organization)
+        @Html.TextBoxFor(x => x.Experience.Organization, new { @class="form-control", placeholder="Organization"})
+        @Html.ValidationMessageFor(x => x.Experience.Organization)   
+    </div>    
+    <div class="form-group col-md-4">
+        @Html.LabelFor(x => x.Experience.Start)
+        @Html.TextBoxFor(x => x.Experience.Start, "{0:d}", new { @class="form-control datepicker"})
+        @Html.ValidationMessageFor(x => x.Experience.Start)   
     </div>
-
-    <div class="form-group">
+</div>
+<div class="row">
+    <div class="form-group col-md-6 col-md-offset-1">
         @Html.LabelFor(x => x.Experience.InstructorViewable)
         @Html.CheckBoxFor(x => x.Experience.InstructorViewable)
         @Html.ValidationMessageFor(x => x.Experience.InstructorViewable)
     </div>
-        
-    <div class="form-actions">
-        <button type="submit" class="btn btn-primary">Submit</button>
+    <div class="form-group col-md-4">
+        @Html.LabelFor(x => x.Experience.End)
+        @Html.TextBoxFor(x => x.Experience.End, "{0:d}", new { @class="form-control datepicker"})
+        @Html.ValidationMessageFor(x => x.Experience.End)   
     </div>
-
+</div>
+<div class="row">
+    <div class="form-group col-md-10 col-md-offset-1">
+        @Html.LabelFor(x => x.Experience.Notes)
+        @Html.TextAreaFor(x => x.Experience.Notes, new { @class="form-control", placeholder="Describe your experience"})
+        @Html.ValidationMessageFor(x => x.Experience.Notes)
+    </div>
+</div>
+<div class="row">       
+    <div class="form-actions col-md-10 col-md-offset-1">
+        <button type="submit" class="btn btn-primary"><i class="icon-ok"></i>Submit</button>
+    </div>
+</div>
 </fieldset>
