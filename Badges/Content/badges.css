@@ -318,6 +318,7 @@ p, legend {
 		margin-top: .7em;
 		margin-bottom: 0;
 	}
+	p label {font-size: 1em;}
 
 .container.form .intro h2, h2.intro {
 	font-style: italic;
@@ -349,13 +350,14 @@ legend {
 	}
 
 .profilepic .thumbnail {
-	margin-top: 62px;
+	margin-top: 0px;
 	border-radius: 0px;
 	border: 0px none;
 	background: transparent;
 }
 	.profilepic img {
 		border-radius: 50%; border: 3px solid #fff;
+		width: 75%;
 	}
 
 .container.form div.top {
@@ -458,8 +460,11 @@ legend {
 			.btn-success i {color: #a4ccad;}
 
 
-/* ----- add experience form ----- */
+/* ----- profile form ----- */
+.profile-create .edit-profile,
+.profile-edit .intro {display: none;}
 
+/* ----- add experience form ----- */
 #Experience_ExperienceType_chosen, #Experience_Instructors_chosen {
 	width: 100% !important;
 }

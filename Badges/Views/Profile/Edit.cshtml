@@ -4,16 +4,18 @@
     ViewBag.Title = "Your Profile";
 }
 
-<h2>Edit Your Profile</h2>
+<!--<h2>Edit your profile</h2>-->
 
 @using (Html.BeginForm("Edit", "Profile", FormMethod.Post, new {enctype = "multipart/form-data"}))
 {
     @Html.AntiForgeryToken()
-    <fieldset>
+    <!--<fieldset>
         <legend>Edit your profile</legend>
-    </fieldset>
+    </fieldset>-->
 
-    @Html.Partial("_ProfileForm")
+    <div class="profile-edit">
+        @Html.Partial("_ProfileForm")
+    </div>
 }
 
 @section AdditionalScripts
