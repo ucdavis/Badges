@@ -241,9 +241,13 @@ p, legend {
 #add-work {
 	background: #4b955b;
 }
-	#add-work li {
+	#add-work li a {
+		width: 140px;
+		height: 60px;
+		margin-right: 20px;
 	}
 	#add-work li i {
+		width: 60px;
 		color: #fff;
 		font-size: 1.25em;
 	}

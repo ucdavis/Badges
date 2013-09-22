@@ -16,8 +16,14 @@
 
 @Html.Partial("_ExperienceDashboard")
 
-<div class="row well well-sm">
-    <nav class="navbar col-md-9" role="navigation">
+<div class="row add-work">
+    <div class="col-md-2">
+        <div class="thumbnail circlepic">
+            @Html.Action("ViewProfileImage", "Profile")
+        </div>
+        <h3><strong>Add</strong> supporting work</h3>
+    </div>
+    <nav class="navbar col-md-7" role="navigation">
         <!-- Brand and toggle get grouped for better mobile display
         <div class="navbar-header col-sm-1">
             <div class="thumbnail circlepic pull-right">
