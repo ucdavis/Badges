@@ -29,20 +29,22 @@
         @Html.ValidationMessageFor(x => x.Experience.Description)
     </div>
 </div>
-<div class="row">
-    <div class="form-group cover-photo col-md-10 col-md-offset-1">
-        @if (string.IsNullOrWhiteSpace(Model.Experience.CoverImageUrl))
-        {
-            <img id="cover-preview" src="http://f.cl.ly/items/373L0L3w163g3A2o3h0c/exp-placeholder.jpg" alt="cover photo" style="display: block;" />
-        }
-        else
-        {
-            <img id="cover-preview" src="@Model.Experience.CoverImageUrl" alt="cover photo" style="display: block;" />
-        }
-        <!--@Html.Label("Experience_CoverImageUrl", "Upload Cover Photo")-->
-        <input type="file" id="cover-image" class="form-control" name="CoverImage" accept="image/*" placeholder="Upload Cover Photo"/>
+    <div class="row">
+        <span class="field-validation-valid" data-valmsg-for="CoverImage" data-valmsg-replace="true"></span>
+        <div class="form-group cover-photo col-md-10 col-md-offset-1">
+            @if (string.IsNullOrWhiteSpace(Model.Experience.CoverImageUrl))
+            {
+                <img id="cover-preview" src="http://f.cl.ly/items/373L0L3w163g3A2o3h0c/exp-placeholder.jpg" alt="cover photo" style="display: block;" />
+                <input type="file" id="cover-image" class="form-control" name="CoverImage" accept="image/*" placeholder="Upload Cover Photo" data-val="true" data-val-required="Cover photo is required" />        
+            }
+            else
+            {
+                <img id="cover-preview" src="@Model.Experience.CoverImageUrl" alt="cover photo" style="display: block;" />
+                <input type="file" id="cover-image" class="form-control" name="CoverImage" accept="image/*" placeholder="Replace Cover Photo"/>
+
+            }
+        </div>
     </div>
-</div>
 <div class="row">
     <div class="form-group col-md-10 col-md-offset-1">
         <!--@Html.LabelFor(x => x.Experience.Details)-->
