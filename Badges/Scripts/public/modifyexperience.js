@@ -10,7 +10,7 @@
     badges.init = function () {
         initializeTypeahead();
         initializeImagePreview();
-        $(".datepicker").datepicker();
+        $(".datepicker").datepicker({ format: 'm/d/yyyy', autoclose: true });
         initializeMap();
     };
 
