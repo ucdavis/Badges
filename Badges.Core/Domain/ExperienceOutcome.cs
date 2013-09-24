@@ -11,7 +11,8 @@ namespace Badges.Core.Domain
         }
 
         public virtual string Notes { get; set; }
-        public virtual int Rating { get; set; } //Something like star rating, novice->master slider
+
+        public virtual double Rating { get; set; } //Something like star rating, novice->master slider
         public virtual DateTime Created { get; set; }
 
         public virtual Experience Experience { get; set; }
