@@ -109,9 +109,14 @@ namespace Badges.App_Start
                     session.SaveOrUpdate(etype);
                     session.SaveOrUpdate(new ExperienceType {Name = "Collaboration", Icon = "icon-group"});
 
-                    var outcome = new Outcome {Name = "Outcome 1"};
+                    var outcome = new Outcome {Name = "Outcome 1", Description = "Some outcome", ImageUrl = string.Empty};
                     session.SaveOrUpdate(outcome);
-                    session.SaveOrUpdate(new Outcome { Name = "Super Skills"});
+                    session.SaveOrUpdate(new Outcome
+                        {
+                            Name = "Super Skills",
+                            Description = "Pretty good skillz",
+                            ImageUrl = string.Empty
+                        });
 
                     var experience = new Experience
                         {

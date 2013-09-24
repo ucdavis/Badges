@@ -110,6 +110,15 @@
                             @Html.DropDownList("outcomeid", Model.Outcomes)
                         </div>
                         <div class="form-group">
+                            <label>Outcome level</label>
+                            <span class="form-control">
+                                <span class="float-left">Novice</span>
+                                <input type="range" min="1" max="10" step=".25"/>    
+                                <span class="float-right">Expert</span>
+                            </span>
+                            
+                        </div>
+                        <div class="form-group">
                             <label>Feel free to enter some notes</label>
                             <textarea name="notes" class="form-control" placeholder="Outcome Notes" data-val="true" data-val-required="Notes are required"></textarea>
                             <span class="field-validation-valid" data-valmsg-for="notes" data-valmsg-replace="true"></span>
