@@ -1,0 +1,25 @@
+﻿@model Badges.Areas.Admin.Controllers.ExperienceTypeViewModel
+
+<form method="POST" class="form-horizontal well-small" enctype="multipart/form-data">
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Badge Category</legend>
+        <p class="well">See <a href="http://fortawesome.github.io/Font-Awesome/icons/">Font Awesome</a> for a list of icons to use in the icon field</p>
+        <div class="form-group">
+            @Html.LabelFor(x=>x.Name)
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(x=>x.Icon)
+            @Html.EditorFor(model => model.Icon)
+            @Html.ValidationMessageFor(model => model.Icon)
+        </div>
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Save changes</button>
+            @Html.ActionLink("Cancel", "Index", null, new {@class="btn btn-link"})
+        </div>
+    </fieldset>
+</form>

@@ -476,6 +476,9 @@
     <Content Include="Areas\Admin\Views\BadgeSubmission\Index.cshtml" />
     <Content Include="Areas\Admin\Views\BadgeSubmission\Review.cshtml" />
     <Content Include="Areas\Admin\Views\ExperienceType\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ExperienceType\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\ExperienceType\_ExperienceTypeForm.cshtml" />
+    <Content Include="Areas\Admin\Views\ExperienceType\Edit.cshtml" />
     <None Include="Properties\PublishProfiles\badges.pubxml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
