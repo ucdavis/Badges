@@ -1,5 +1,7 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 using Badges.Controllers;
 using Badges.Core.Domain;
@@ -32,17 +34,6 @@ namespace Badges.Areas.Admin.Controllers
         }
 
         //
-        // GET: /Admin/Outcome/Details/5
-        public ActionResult Details(Guid id)
-        {
-            var outcome = RepositoryFactory.OutcomeRepository.GetNullableById(id);
-
-            if (outcome == null) return RedirectToAction("Index");
-
-            return View(outcome);
-        }
-
-        //
         // GET: /Admin/Outcome/Create
         public ActionResult Create()
         {
@@ -54,11 +45,12 @@ namespace Badges.Areas.Admin.Controllers
         //
         // POST: /Admin/Outcome/Create
         [HttpPost]
-        public ActionResult Create(Outcome outcome)
+        public ActionResult Create(OutcomeViewModel model)
         {
-            var outcomeToCreate = new Outcome();
+            var outcomeToCreate = new Outcome {Name = model.Name, Description = model.Description};
 
-            TransferValues(outcome, outcomeToCreate);
+            var outcomeImage = _fileService.Save(model.File, publicAccess: true);
+            outcomeToCreate.ImageUrl = outcomeImage.Uri.AbsoluteUri;
 
             if (ModelState.IsValid)
             {
@@ -70,8 +62,9 @@ namespace Badges.Areas.Admin.Controllers
             }
             else
             {
-				var viewModel = OutcomeViewModel.Create(Repository);
-                viewModel.Outcome = outcome;
+                var viewModel = OutcomeViewModel.Create(Repository);
+                viewModel.Name = model.Name;
+                viewModel.Description = model.Description;
 
                 return View(viewModel);
             }
@@ -86,7 +79,9 @@ namespace Badges.Areas.Admin.Controllers
             if (outcome == null) return RedirectToAction("Index");
 
 			var viewModel = OutcomeViewModel.Create(Repository);
-			viewModel.Outcome = outcome;
+            viewModel.Name = outcome.Name;
+            viewModel.Description = outcome.Description;
+            viewModel.ImageUrl = outcome.ImageUrl;
 
 			return View(viewModel);
         }
@@ -94,16 +89,22 @@ namespace Badges.Areas.Admin.Controllers
         //
         // POST: /Admin/Outcome/Edit/5
         [HttpPost]
-        public ActionResult Edit(Guid id, Outcome outcome)
+        public ActionResult Edit(Guid id, OutcomeViewModel model)
         {
             var outcomeToEdit = RepositoryFactory.OutcomeRepository.GetNullableById(id);
 
             if (outcomeToEdit == null) return RedirectToAction("Index");
 
-            TransferValues(outcome, outcomeToEdit);
+            outcomeToEdit.Name = model.Name;
 
             if (ModelState.IsValid)
             {
+                if (model.File != null) //replace file if we have a new one
+                {
+                    var badgeImage = _fileService.Save(model.File, publicAccess: true);
+                    outcomeToEdit.ImageUrl = badgeImage.Uri.AbsoluteUri;
+                }
+
                 RepositoryFactory.OutcomeRepository.EnsurePersistent(outcomeToEdit);
 
                 Message = "Outcome Edited Successfully";
@@ -112,22 +113,12 @@ namespace Badges.Areas.Admin.Controllers
             }
             else
             {
-				var viewModel = OutcomeViewModel.Create(Repository);
-                viewModel.Outcome = outcome;
+                var viewModel = OutcomeViewModel.Create(Repository);
+                viewModel.Name = model.Name;
+                viewModel.Name = model.Description;
 
                 return View(viewModel);
             }
-        }
-        
-        //
-        // GET: /Admin/Outcome/Delete/5 
-        public ActionResult Delete(Guid id)
-        {
-			var outcome = RepositoryFactory.OutcomeRepository.GetNullableById(id);
-
-            if (outcome == null) return RedirectToAction("Index");
-
-            return View(outcome);
         }
 
         //
@@ -145,17 +136,6 @@ namespace Badges.Areas.Admin.Controllers
 
             return RedirectToAction("Index");
         }
-        
-        /// <summary>
-        /// Transfer editable values from source to destination
-        /// </summary>
-        private static void TransferValues(Outcome source, Outcome destination)
-        {
-			//Recommendation: Use AutoMapper
-			//Mapper.Map(source, destination)
-            throw new NotImplementedException();
-        }
-
     }
 
 	/// <summary>
@@ -163,13 +143,23 @@ namespace Badges.Areas.Admin.Controllers
     /// </summary>
     public class OutcomeViewModel
 	{
-		public Outcome Outcome { get; set; }
- 
+        [Required]
+        [StringLength(140)]
+        public string Name { get; set; }
+
+        [Required]
+        public string Description { get; set; }
+
+        [Required]
+        public HttpPostedFileBase File { get; set; }
+
+        public string ImageUrl { get; set; }
+        
 		public static OutcomeViewModel Create(IRepository repository)
 		{
 			Check.Require(repository != null, "Repository must be supplied");
-			
-			var viewModel = new OutcomeViewModel {Outcome = new Outcome()};
+
+		    var viewModel = new OutcomeViewModel();
  
 			return viewModel;
 		}

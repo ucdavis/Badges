@@ -481,6 +481,9 @@
     <Content Include="Areas\Admin\Views\ExperienceType\_ExperienceTypeForm.cshtml" />
     <Content Include="Areas\Admin\Views\ExperienceType\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Outcome\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Outcome\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Outcome\_OutcomeForm.cshtml" />
+    <Content Include="Areas\Admin\Views\Outcome\Edit.cshtml" />
     <None Include="Properties\PublishProfiles\badges.pubxml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
