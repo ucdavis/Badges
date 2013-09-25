@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Badges.Areas.Admin.Controllers;
 using Badges.Core.Domain;
 using System;
 using System.Linq;
@@ -7,8 +6,8 @@ using System.Web.Mvc;
 using Badges.Core.Repositories;
 using Badges.Models.Badge;
 using UCDArch.Core.PersistanceSupport;
-using UCDArch.Core.Utils;
 using UCDArch.Web.ActionResults;
+using Badges.Services;
 
 namespace Badges.Controllers
 {
@@ -18,8 +17,11 @@ namespace Badges.Controllers
     [Authorize(Roles=RoleNames.Student)]
     public class BadgeController : ApplicationController
     {
-        public BadgeController(IRepositoryFactory repositoryFactory) : base(repositoryFactory)
+        private readonly INotificationService _notificationService;
+
+        public BadgeController(IRepositoryFactory repositoryFactory, INotificationService notificationService) : base(repositoryFactory)
         {
+            _notificationService = notificationService;
         }
 
         public ActionResult Index()
@@ -94,6 +96,7 @@ namespace Badges.Controllers
                 return RedirectToAction("Index");
             }
 
+            _notificationService.NotifyAdministrators("A new badge has been proposed that is awaiting your review");
             Message = "Congrats, your proposed badge has been forwarded to the proper authorities";
             RepositoryFactory.BadgeRepository.EnsurePersistent(badgeToCreate);
 
@@ -216,6 +219,7 @@ namespace Badges.Controllers
             submission.Submitted = true;
             submission.SubmittedOn = DateTime.UtcNow;
 
+            _notificationService.NotifyAdministrators("A new badge submission has been created and is awaiting your review");
             Message = "Your badge submission has been forwarded for review.  You should recieve a response within 48 hours.";
             RepositoryFactory.BadgeSubmissionRepository.EnsurePersistent(submission);
 
