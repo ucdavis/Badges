@@ -211,6 +211,7 @@
     <Compile Include="Areas\Admin\Controllers\ExperienceTypeController.cs" />
     <Compile Include="Areas\Admin\Controllers\InstructorController.cs" />
     <Compile Include="Areas\Admin\Controllers\OrganizationController.cs" />
+    <Compile Include="Areas\Admin\Controllers\OutcomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\TitleController.cs" />
     <Compile Include="ComponentRegistrar.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -479,6 +480,7 @@
     <Content Include="Areas\Admin\Views\ExperienceType\Create.cshtml" />
     <Content Include="Areas\Admin\Views\ExperienceType\_ExperienceTypeForm.cshtml" />
     <Content Include="Areas\Admin\Views\ExperienceType\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Outcome\Index.cshtml" />
     <None Include="Properties\PublishProfiles\badges.pubxml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
