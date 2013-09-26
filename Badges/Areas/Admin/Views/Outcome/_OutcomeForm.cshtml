@@ -1,0 +1,36 @@
+﻿@model Badges.Areas.Admin.Controllers.OutcomeViewModel
+
+<form method="POST" class="form-horizontal well-small" enctype="multipart/form-data">
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Outcome</legend>
+        <div class="form-group">
+            @Html.LabelFor(x=>x.Name)
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(x=>x.Description)
+            @Html.EditorFor(model => model.Description)
+            @Html.ValidationMessageFor(model => model.Description)
+        </div>
+        <div class="form-group">
+            @if (string.IsNullOrWhiteSpace(Model.ImageUrl))
+            {
+                <img id="outcome-preview" height="120" width="120"></img>
+            }
+            else
+            {
+                <img id="outcome-preview" src="@Model.ImageUrl" alt="Outcome Image" height="120" width="120"></img>
+            }
+            <label for="outcome-image">Outcome Image</label>
+            <input id="outcome-image" name="file" type="file" accept="image/*" required="required"/>
+        </div>
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Save changes</button>
+            @Html.ActionLink("Cancel", "Index", null, new {@class="btn btn-link"})
+        </div>
+    </fieldset>
+</form>

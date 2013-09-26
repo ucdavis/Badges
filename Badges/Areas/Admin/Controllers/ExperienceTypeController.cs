@@ -6,24 +6,21 @@ using System.Web.Mvc;
 using Badges.Controllers;
 using Badges.Core.Domain;
 using Badges.Core.Repositories;
-using Badges.Services;
 using UCDArch.Core.PersistanceSupport;
 using UCDArch.Core.Utils;
 
 namespace Badges.Areas.Admin.Controllers
 {
     /// <summary>
-    /// Controller for the BadgeCategory class
+    /// Controller for the ExperienceType class
     /// </summary>
     [Authorize(Roles = RoleNames.Administrator)]
     public class ExperienceTypeController : ApplicationController
     {
-        private readonly IFileService _fileService;
         //
-        // GET: /Admin/BadgeCategory/
-        public ExperienceTypeController(IRepositoryFactory repositoryFactory, IFileService fileService) : base(repositoryFactory)
+        // GET: /Admin/ExperienceType/
+        public ExperienceTypeController(IRepositoryFactory repositoryFactory) : base(repositoryFactory)
         {
-            _fileService = fileService;
         }
 
         public ActionResult Index()
@@ -34,102 +31,88 @@ namespace Badges.Areas.Admin.Controllers
         }
 
         //
-        // GET: /Admin/BadgeCategory/Create
+        // GET: /Admin/ExperienceType/Create
         public ActionResult Create()
         {
-			var viewModel = BadgeCategoryViewModel.Create(Repository);
+			var viewModel = ExperienceTypeViewModel.Create(Repository);
 
             return View(viewModel);
-        } 
+        }
 
         //
-        // POST: /Admin/BadgeCategory/Create
+        // POST: /Admin/ExperienceType/Create
         [HttpPost]
-        public ActionResult Create(BadgeCategoryViewModel model)
+        public ActionResult Create(ExperienceTypeViewModel model)
         {
-            var badgeCategoryToCreate = new BadgeCategory {Name = model.Name};
-
-            var badgeImage = _fileService.Save(model.File, publicAccess: true);
-            badgeCategoryToCreate.ImageUrl = badgeImage.Uri.AbsoluteUri;
+            var experienceTypeToCreate = new ExperienceType();
+            TransferValues(model, experienceTypeToCreate);
 
             if (ModelState.IsValid)
             {
-                RepositoryFactory.BadgeCategoryRepository.EnsurePersistent(badgeCategoryToCreate);
+                RepositoryFactory.ExperienceTypeRepository.EnsurePersistent(experienceTypeToCreate);
 
-                Message = "BadgeCategory Created Successfully";
+                Message = "ExperienceType Created Successfully";
 
                 return RedirectToAction("Index");
             }
             else
             {
-				var viewModel = BadgeCategoryViewModel.Create(Repository);
-                viewModel.Name = model.Name;
-
-                return View(viewModel);
+				return View(model);
             }
         }
 
         //
-        // GET: /Admin/BadgeCategory/Edit/5
+        // GET: /Admin/ExperienceType/Edit/5
         public ActionResult Edit(Guid id)
         {
-            var badgeCategory = RepositoryFactory.BadgeCategoryRepository.GetNullableById(id);
+            var experienceType = RepositoryFactory.ExperienceTypeRepository.GetNullableById(id);
 
-            if (badgeCategory == null) return RedirectToAction("Index");
+            if (experienceType == null) return RedirectToAction("Index");
 
-			var viewModel = BadgeCategoryViewModel.Create(Repository);
-            viewModel.Name = badgeCategory.Name;
-            viewModel.ImageUrl = badgeCategory.ImageUrl;
+			var viewModel = ExperienceTypeViewModel.Create(Repository);
+            viewModel.Name = experienceType.Name;
+            viewModel.Icon = experienceType.Icon;
 
 			return View(viewModel);
         }
         
         //
-        // POST: /Admin/BadgeCategory/Edit/5
+        // POST: /Admin/ExperienceType/Edit/5
         [HttpPost]
-        public ActionResult Edit(Guid id, BadgeCategoryViewModel model)
+        public ActionResult Edit(Guid id, ExperienceTypeViewModel model)
         {
-            var badgeCategoryToEdit = RepositoryFactory.BadgeCategoryRepository.GetNullableById(id);
+            var experienceTypeToEdit = RepositoryFactory.ExperienceTypeRepository.GetNullableById(id);
 
-            if (badgeCategoryToEdit == null) return RedirectToAction("Index");
+            if (experienceTypeToEdit == null) return RedirectToAction("Index");
 
-            badgeCategoryToEdit.Name = model.Name;
+            TransferValues(model, experienceTypeToEdit);
             
             if (ModelState.IsValid)
             {
-                if (model.File != null) //replace file if we have a new one
-                {
-                    var badgeImage = _fileService.Save(model.File, publicAccess: true);
-                    badgeCategoryToEdit.ImageUrl = badgeImage.Uri.AbsoluteUri;
-                }
+                RepositoryFactory.ExperienceTypeRepository.EnsurePersistent(experienceTypeToEdit);
 
-                RepositoryFactory.BadgeCategoryRepository.EnsurePersistent(badgeCategoryToEdit);
-
-                Message = "BadgeCategory Edited Successfully";
+                Message = "ExperienceType Edited Successfully";
 
                 return RedirectToAction("Index");
             }
             else
             {
-				var viewModel = BadgeCategoryViewModel.Create(Repository);
-                viewModel.Name = model.Name;
-
-                return View(viewModel);
+                return View(model);
             }
         }
         
         //
-        // POST: /Admin/BadgeCategory/Delete/5
+        // POST: /Admin/ExperienceType/Delete/5
         [HttpPost]
-        public ActionResult Delete(Guid id, BadgeCategory badgeCategory)
+        public ActionResult Delete(Guid id, ExperienceType ExperienceType)
         {
-			var badgeCategoryToDelete = RepositoryFactory.BadgeCategoryRepository.GetNullableById(id);
+			var experienceTypeToDelete = RepositoryFactory.ExperienceTypeRepository.GetNullableById(id);
             
-            if (badgeCategoryToDelete == null) return RedirectToAction("Index");
+            if (experienceTypeToDelete == null) return RedirectToAction("Index");
 
-            RepositoryFactory.BadgeCategoryRepository.Remove(badgeCategoryToDelete);
+            RepositoryFactory.ExperienceTypeRepository.Remove(experienceTypeToDelete);
 
-            Message = "BadgeCategory Removed Successfully";
+            Message = "ExperienceType Removed Successfully";
 
             return RedirectToAction("Index");
         }
@@ -137,25 +120,26 @@ namespace Badges.Areas.Admin.Controllers
         /// <summary>
         /// Transfer editable values from source to destination
         /// </summary>
-        private static void TransferValues(BadgeCategory source, BadgeCategory destination)
+        private static void TransferValues(ExperienceTypeViewModel source, ExperienceType destination)
         {
             destination.Name = source.Name;
-            destination.ImageUrl = source.ImageUrl;
+            destination.Icon = source.Icon;
         }
 
     }
 
 	/// <summary>
-    /// ViewModel for the BadgeCategory class
+    /// ViewModel for the ExperienceType class
     /// </summary>
     public class ExperienceTypeViewModel
 	{
         [Required]
         [StringLength(140)]
         public string Name { get; set; }
+
         [Required]
-        public HttpPostedFileBase File { get; set; }
-	    public string ImageUrl { get; set; }
+        [StringLength(140)]
+	    public string Icon { get; set; }
 
         public static ExperienceTypeViewModel Create(IRepository repository)
 		{

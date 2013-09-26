@@ -1,0 +1,36 @@
+﻿@model Badges.Areas.Admin.Controllers.OutcomeViewModel
+
+@{
+	ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+
+@section SubNav
+{
+	<li>@Html.ActionLink("Back to List", "Index")</li>
+}
+
+@Html.Partial("_OutcomeForm")
+
+@section AdditionalScripts
+{
+    <script>
+        $(function () {
+            $("#outcome-image").change(function () {
+                var filesToUpload = this.files;
+                if (filesToUpload.length !== 1) return;
+
+                var file = filesToUpload[0];
+
+                if (!file.type.match(/image.*/)) {
+                    alert("only images, please");
+                }
+
+                var img = document.getElementById("outcome-preview");
+                img.src = window.URL.createObjectURL(file);
+            });
+        });
+    </script>
+}

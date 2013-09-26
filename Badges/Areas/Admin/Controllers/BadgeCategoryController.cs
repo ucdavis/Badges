@@ -133,16 +133,6 @@ namespace Badges.Areas.Admin.Controllers
 
             return RedirectToAction("Index");
         }
-        
-        /// <summary>
-        /// Transfer editable values from source to destination
-        /// </summary>
-        private static void TransferValues(BadgeCategory source, BadgeCategory destination)
-        {
-            destination.Name = source.Name;
-            destination.ImageUrl = source.ImageUrl;
-        }
-
     }
 
 	/// <summary>
