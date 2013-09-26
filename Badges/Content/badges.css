@@ -337,7 +337,7 @@ p, legend {
 
 
 /* ----- form styles ----- */
-.container.form h3, .container form .form-group label {
+.container.form h3, .container form .form-group label, .container form h3 {
 	font-weight: 500;
 	color: #6b9aad;
 	margin-bottom: .3em;
@@ -516,7 +516,7 @@ div.helptext {
 		position: absolute;
 		top: 0; right: 0; bottom: 0; left: 0; 
 	}
-	input#cover-image {
+	input#cover-image, input#cover-image[type="file"] {
 		background: rgba(255,255,255,.8);
 		border: 0px none;
 		text-align: center;

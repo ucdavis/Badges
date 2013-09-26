@@ -90,11 +90,11 @@ namespace Badges.Controllers
 
             if (badgeToCreate.BadgeCriterias.Count == 0)
             {
-                Message = "You need to add at least one criteria to create a Badge";
+                Message = "You need to add at least one criteria to create a Badge.";
                 return RedirectToAction("Index");
             }
 
-            Message = "Congrats, your proposed badge has been forwarded to the proper authorities";
+            Message = "Congrats, your proposed badge has been forwarded to the proper dinosaur authorities.";
             RepositoryFactory.BadgeRepository.EnsurePersistent(badgeToCreate);
 
             return RedirectToAction("Index");
