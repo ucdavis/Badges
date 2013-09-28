@@ -350,7 +350,7 @@ p, legend {
 	}
 	p label {font-size: 1em;}
 
-.container.form .intro h2, h2.intro {
+.container.form .intro h2, h2.intro, .intro h2 {
 	font-style: italic;
 	font-size: 2.4em;
 }
@@ -435,6 +435,7 @@ div.helptext {
 		min-height: 200px;
 		font-size: 1.5em;
 	}
+
 .container.form .form-control.required:after {
 	content: ' *';
 	color: #783032;
@@ -532,3 +533,17 @@ div.helptext {
 	border: 3px solid rgba(255,255,255,.75);
 }
 
+/* ----- create badge form ----- */
+.form-control.add-next-criteria {
+	background: rgba(255, 255, 255, 0.2);
+	border: 3px dashed rgba(255,255,255,.3);
+}
+.badge-criteria td label {
+	font-size: 4em;
+	background: rgba(34,120,149,1.0);
+	color: #fff;
+	border-radius: 50%;
+	display: inline-block;
+}
+.badge-criteria td input.form-control {
+}
