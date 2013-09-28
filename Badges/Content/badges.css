@@ -548,7 +548,7 @@ div.helptext {
 	border: 3px dashed rgba(255,255,255,.3);
 }
 .container.form .helptext h3 {margin-left: 0.4em;}
-.container form .form-group .badge-criteria td label {
+.container form .form-group .badge-criteria label {
 	font-size: 4em;
 	background: rgba(34,120,149,1.0);
 	color: #fff;
@@ -557,6 +557,11 @@ div.helptext {
 	width: 100px;
 	height: 100px;
 	padding-top: .2em;
+	text-align: center;
 }
+	.container form .form-group .badge-criteria tfoot label a {
+		color: #fff;
+	}
 .badge-criteria td input.form-control {
+	height: 100px;
 }

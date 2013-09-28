@@ -48,7 +48,7 @@
 	</div>
 	<div class="form-group">
 		<div class="helptext col-md-10 col-md-offset-1">
-			<h3>Add criteria for this badge</h3>
+			<h3>Add criteria to define this badge</h3>
 			<p>Need to explain more blah blah blah.</p>
 		</div>
 	</div>
@@ -59,20 +59,23 @@
 	            <tbody data-bind="foreach: criteria">
 	                <tr>
 	                    <td>
-	                    	<div class="criteria-label">
+	                    	<div class="criteria-label col-md-2">
 	                        <label>#<span data-bind="html: $index() + 1"></span></label></div>
 
-	                        <input type="text" class="form-control col-md-8" maxlength="140" data-bind="value: description, valueUpdate: 'afterkeydown', executeOnEnter: $root.addCriterion, attr: { name: 'criteria['+ $index() +']' }"/>
+	                        <div class="col-md-8">
+	                        <input type="text" class="form-control" maxlength="140" data-bind="value: description, valueUpdate: 'afterkeydown', executeOnEnter: $root.addCriterion, attr: { name: 'criteria['+ $index() +']' }"/>
+	                        </div>
 	                    </td>
 	                </tr>
 	            </tbody>
 	            <tfoot>
 		            <tr>
 		            	<td>
-		            		<div class="col-md-2 col-md-offset-1">
-		            		<label><a href="addRow">+</a></label></div>
-
-	                        <input type="text" class="form-control col-md-8" maxlength="140" />
+		            		<div class="col-md-2">
+		            		<label><a href="addRow"><img src-"../Content/img/btn-plus-light.png" /></a></label></div>
+		            		<div class="col-md-8">
+	                        <input type="text" class="form-control" maxlength="140" />
+	                        </div>
 		            	</td>
 		            </tr>
 		        </tfoot>
