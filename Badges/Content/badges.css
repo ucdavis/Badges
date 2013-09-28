@@ -562,7 +562,7 @@ div.helptext {
 	}
 	.container form .form-group .badge-criteria tfoot input {
 		background: rgba(255, 255, 255, 0.2);
-		border: 3px dashed rgba(255,255,255,.3);
+		border: 3px dashed rgba(255,255,255,.9);
 	}
 .badge-criteria td input.form-control {
 	height: 100px;
