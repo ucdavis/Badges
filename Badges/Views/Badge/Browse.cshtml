@@ -1,20 +1,42 @@
 ﻿@model IEnumerable<Badges.Core.Domain.Badge>
 
 @{
-	ViewBag.Title = "Browse";
+	ViewBag.Title = "Browse badges";
 }
 
-<h2>Browse</h2>
+
 
 
 @section SubNav
 {
-	<li>@Html.ActionLink("Create New", "Create")</li>
+	<!--<li>@Html.ActionLink("Create New", "Create")</li>-->
 }
-
+<div class="container form">
 <div class="row">
-    <div class="col-md-2">
-        <div class="row well">
+    <div class="intro col-md-4">
+        <h2>Choose a badge to work towards</h2>
+        <p>Every journey begins with a step, and this one starts when you find a badge you’d like to earn. Browse through the available badges below, or if you’re feeling ambitious, @Html.ActionLink("design your own badge from scratch", "Create").</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-8">
+            @foreach (var item in Model)
+            {
+                <div class="row">
+                <div class="media">
+                    <span class="pull-left col-md-3" >
+                        <img class="media-object" alt="Badge Icon" src="@item.ImageUrl" style="width: 170px; height: 170px;">
+                    </span>
+                    <div class="media-body col-md-9">
+                        <h4 class="media-heading"><a href="@Url.Action("Earn", "Badge", new { area = string.Empty, id = item.Id })">@item.Name</a></h4>
+                        @item.Description
+                    </div>
+                </div>
+                </div>
+            }
+    </div>
+    <div class="col-md-4">
+        <div class="row">
             <label>Filter by Category</label>
             <ul>
                 <li>Category1</li>
@@ -22,7 +44,7 @@
                 <li>Category3</li>
             </ul>
         </div>
-        <div class="row well">
+        <div class="row">
             <form>
                 <div class="form-group">
                     <input type="search" class="form-control" placeholder="Search"/>
@@ -30,19 +52,5 @@
             </form>
         </div>
     </div>
-    <div class="col-md-10">
-            @foreach (var item in Model)
-            {
-                <div class="media">
-                    <span class="pull-left" >
-                        <img class="media-object" alt="Badge Icon" src="@item.ImageUrl" style="width: 120px; height: 120px;">
-                    </span>
-                    <div class="media-body">
-                        <h4 class="media-heading"><a href="@Url.Action("Earn", "Badge", new { area = string.Empty, id = item.Id })">@item.Name</a></h4>
-                        @item.Description
-                    </div>
-                </div>
-                <hr/>
-            }
-    </div>
+</div>
 </div>
