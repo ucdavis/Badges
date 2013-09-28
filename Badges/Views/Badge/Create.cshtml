@@ -59,7 +59,8 @@
 	            <tbody data-bind="foreach: criteria">
 	                <tr>
 	                    <td>
-	                        <label class="col-md-2 col-md-offset-1">#<span data-bind="html: $index() + 1"></span></label>
+	                    	<div class="criteria-label">
+	                        <label>#<span data-bind="html: $index() + 1"></span></label></div>
 
 	                        <input type="text" class="form-control col-md-8" maxlength="140" data-bind="value: description, valueUpdate: 'afterkeydown', executeOnEnter: $root.addCriterion, attr: { name: 'criteria['+ $index() +']' }"/>
 	                    </td>
@@ -68,8 +69,10 @@
 	            <tfoot>
 		            <tr>
 		            	<td>
-		            		<label class="col-md-2 col-md-offset-1"><a href="addRow">+</a></label>
-		            		<a href="addRow" class="add-next-criteria">&nbsp;</a>
+		            		<div class="col-md-2 col-md-offset-1">
+		            		<label><a href="addRow">+</a></label></div>
+
+	                        <input type="text" class="form-control col-md-8" maxlength="140" />
 		            	</td>
 		            </tr>
 		        </tfoot>
