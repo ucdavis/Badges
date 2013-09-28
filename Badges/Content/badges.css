@@ -543,10 +543,7 @@ div.helptext {
 }
 
 /* ----- create badge form ----- */
-.form-control.add-next-criteria {
-	background: rgba(255, 255, 255, 0.2);
-	border: 3px dashed rgba(255,255,255,.3);
-}
+
 .container.form .helptext h3 {margin-left: 0.4em;}
 .container form .form-group .badge-criteria label {
 	font-size: 4em;
@@ -558,9 +555,14 @@ div.helptext {
 	height: 100px;
 	padding-top: .2em;
 	text-align: center;
+	margin: 0;
 }
 	.container form .form-group .badge-criteria tfoot label a {
 		color: #fff;
+	}
+	.container form .form-group .badge-criteria tfoot input {
+		background: rgba(255, 255, 255, 0.2);
+		border: 3px dashed rgba(255,255,255,.3);
 	}
 .badge-criteria td input.form-control {
 	height: 100px;
