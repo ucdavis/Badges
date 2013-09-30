@@ -11,6 +11,7 @@
         createModels();
         createBindingHandlers();
         ko.applyBindings(badges.Badge);
+        bindCategoryHandlers();
     };
 
     function createModels() {
@@ -54,5 +55,12 @@
                 });
             }
         };
+    }
+    
+    function bindCategoryHandlers() {
+        $("#Category").on('change', function() {
+            var selected = $("option:selected", this);
+            document.getElementById("category-image").src = selected.attr("data-img");
+        });
     }
 }(window.Badges = window.Badges || {}, jQuery));
