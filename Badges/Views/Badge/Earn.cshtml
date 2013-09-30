@@ -22,16 +22,26 @@
 {
     @Html.AntiForgeryToken()
     <div class="row">
-        <div class="col-md-12 well well-sm">
+        <div class="col-md-6 intro">
+            <h2>Make your case and earn this badge</h2>
+            <p>Now that your goal is in sight, provide evidence to let us know why you’re qualified for this badge. Select a criteria, and then associate work from your portfolio with each. Be sure to articulate your choices as necessary.</p>
+        </div>
+        <div class="col-md-6 well well-sm">
             <div class="media">
                 <span class="pull-left" >
                     <img class="media-object" alt="Badge Icon" src="@Model.Badge.ImageUrl" style="width: 120px; height: 120px;">
                 </span>
-                <div class="media-body">
-                    <h4 class="media-heading">@Model.Badge.Name</h4>
-                    @Model.Badge.Description
+                <div class="badge-desc media-body">
+                    <h3 class="media-heading">@Model.Badge.Name</h3>
+                    <p>@Model.Badge.Description</p>
                 </div>
             </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-9">
+            <h4>Criteria for the <span class="badge-title">@Model.Badge.Name</span></h4>
+            <p>For each criterion, add supporting experiences or specific works.</p>
         </div>
     </div>
     <div class="row">
@@ -41,23 +51,27 @@
                 var criterion = Model.BadgeCriterias[i];
                 var fulfillments = Model.Fulfillments.Where(x => x.CriteriaId == criterion.Id);
                 <div class="row">
-                    <div class="col-md-12">
-                        <div class="well associated-work-container">
-                            <h4>Criteria @(i + 1)</h4> 
+                    <div class="col-md-3">
+                        <div class="associated-work-container">
+                            <h4>#@(i + 1)</h4> 
                             <blockquote><p>@criterion.Details</p></blockquote>             
                             <input type="hidden" name="@string.Format("criterion[{0}].Id", i)" value="@criterion.Id"/>
+                        </div>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="associated-work-items">
                             <ul class="associated-work" data-index="@i">
                                 @foreach (var fulfillment in fulfillments)
                                 {
                                     <li>
-                                        @fulfillment.Details
+                                        <h4>@fulfillment.Details</h4>
                                         <input type="hidden" name="@string.Format("criterion[{0}].{1}", i, fulfillment.WorkType)" value="@fulfillment.WorkId" />
                                         <input type="text" placeholder="Comments" name="@string.Format("criterion[{0}].comment", i)" value="@fulfillment.Comment" />
                                     </li>
                                 }
                             </ul>
                             <div class="form-actions">
-                                <a href="#associate-work" data-toggle="modal" data-criterion="@criterion.Details" class="btn btn-info associate-modal"><i class="icon-plus-sign icon-2x"></i> Associate</a>
+                                <a href="#associate-work" data-toggle="modal" data-criterion="@criterion.Details" class="btn btn-info associate-modal"><i class="icon-plus-sign"></i> Add Work</a>
                             </div>
                         </div>
                     </div>
@@ -66,20 +80,20 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-12 well well-sm">
+        <div class="col-md-10 col-md-offset-1">
             <div class="form-group">
-                <label>Reflections</label>
-                <textarea name="reflections" class="form-control" placeholder="Overall comments about this badge submission">@Model.Reflection</textarea>
+                <label>Reflections on the <span class="badge-title">@Model.Badge.Name</span></label>
+                <textarea name="reflections" class="form-control" placeholder="Summarize your thoughts here. Why are you qualified to earn this badge?">@Model.Reflection</textarea>
             </div>
         </div>
     </div>
     <hr/>
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-10 col-md-offset-1">
             <div class="form-actions">
-                <button type="submit" class="btn btn-primary" formaction="@Url.Action("Submit", "Badge", new { id = Model.Badge.Id })">Submit</button> |
-                <button type="submit" class="btn btn-default">Save</button> |
-                <a href="#" class="btn btn-link">Cancel</a>
+                <button type="submit" class="btn btn-success" formaction="@Url.Action("Submit", "Badge", new { id = Model.Badge.Id })"><i class="icon-flag"></i> Submit</button>
+                <button type="submit" class="btn btn-primary"><i class="icon-ok"></i> Save</button>
+                <a href="#" class="btn btn-default"><i class="icon-delete"></i> Cancel</a>
             </div>
         </div>
     </div>

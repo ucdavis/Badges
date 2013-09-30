@@ -81,6 +81,7 @@ p, legend {
 		width: 131px;
 		height: 80px;
 		display: inline-block;
+		float: left;
 	}
 
 
@@ -172,9 +173,10 @@ p, legend {
 }
 	.overlay h1 {
 		color: #1b7593;
-		height: 77px;
+		height: 80px;
 		padding: 15px 20px 0 16px;
 		font-size: 2.5em;
+		float: left;
 	}
 	.overlay h3 {
 		color: #783032;
@@ -557,6 +559,12 @@ div.helptext {
 	text-align: center;
 	margin: 0;
 }
+	.container form .form-group .badge-criteria tfoot label {
+		background: rgba(34,120,149,.5);
+	}
+	.container form .form-group .badge-criteria tfoot label:hover {
+		background: rgba(34,120,149,.8);
+	}
 	.container form .form-group .badge-criteria tfoot label a {
 		color: #fff;
 	}
@@ -566,4 +574,7 @@ div.helptext {
 	}
 .badge-criteria td input.form-control {
 	height: 100px;
+	margin-bottom: 1em;
 }
+
+.badge-desc {margin-top: 2em;}

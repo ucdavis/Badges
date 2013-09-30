@@ -4,7 +4,14 @@
 	ViewBag.Title = "Design a new badge";
 }
 
-
+@section AdditionalStyles
+{
+    <style type="text/css">
+        div.helptext {
+            margin-top: 0;
+        }
+    </style>
+}
 
 
 @section SubNav
@@ -48,7 +55,7 @@
 	        @Html.ValidationMessageFor(x => x.Description)
 	    </div>
 	    <div class="type-img col-md-4">
-	    	<img id="category-image" src="@Url.Content(Model.BadgeCategories.First().ImageUrl)" style="height:300px;" alt="Type 1" />
+	    	<img id="category-image" src="@Url.Content(Model.BadgeCategories.First().ImageUrl)" style="height:200px;" alt="Type 1" />
 	    </div>
 	</div>
 	<div class="form-group">

@@ -13,7 +13,7 @@
 }
 <div class="container form">
 <div class="row">
-    <div class="intro col-md-4">
+    <div class="intro col-md-6">
         <h2>Choose a badge to work towards</h2>
         <p>Every journey begins with a step, and this one starts when you find a badge you’d like to earn. Browse through the available badges below, or if you’re feeling ambitious, @Html.ActionLink("design your own badge from scratch", "Create").</p>
     </div>
@@ -27,9 +27,9 @@
                     <span class="pull-left col-md-3" >
                         <img class="media-object" alt="Badge Icon" src="@item.ImageUrl" style="width: 170px; height: 170px;">
                     </span>
-                    <div class="media-body col-md-9">
-                        <h4 class="media-heading"><a href="@Url.Action("Earn", "Badge", new { area = string.Empty, id = item.Id })">@item.Name</a></h4>
-                        @item.Description
+                    <div class="media-body badge-desc col-md-8">
+                        <h3 class="media-heading"><a href="@Url.Action("Earn", "Badge", new { area = string.Empty, id = item.Id })">@item.Name</a></h3>
+                        <p>@item.Description</p>
                     </div>
                 </div>
                 </div>
