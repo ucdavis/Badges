@@ -24,7 +24,7 @@
             <h2>Make your case and earn this badge</h2>
             <p>Now that your goal is in sight, provide evidence to let us know why you’re qualified for this badge. Select a criteria, and then associate work from your portfolio with each. Be sure to articulate your choices as necessary.</p>
         </div>
-        <div class="col-md-6 well well-sm">
+        <div class="col-md-6 well well-sm badge-to-earn">
             <div class="media">
                 <span class="pull-left" >
                     <img class="media-object" alt="Badge Icon" src="@Model.Badge.ImageUrl" style="width: 120px; height: 120px;">
@@ -39,7 +39,7 @@
     <div class="row">
         <div class="col-md-9">
             <h3>Criteria for the <span class="badge-title">@Model.Badge.Name</span></h3>
-            <p>For each criterion, add supporting experiences or specific works.</p>
+            <p class="helptext">For each criterion, add supporting experiences or specific works.</p>
         </div>
     </div>
     <div class="row">
@@ -48,7 +48,7 @@
             {
                 var criterion = Model.BadgeCriterias[i];
                 var fulfillments = Model.Fulfillments.Where(x => x.CriteriaId == criterion.Id);
-                <div class="row">
+                <div class="row criterion">
                     <div class="col-md-3">
                         <div class="associated-work-container">
                             <h4>#@(i + 1)</h4> 
@@ -56,7 +56,7 @@
                             <input type="hidden" name="@string.Format("criterion[{0}].Id", i)" value="@criterion.Id"/>
 
                             <div class="form-actions">
-                                <a href="#associate-work" data-toggle="modal" data-criterion="@criterion.Details" class="btn btn-success associate-modal"><i class="icon-plus-sign"></i> Add Work</a>
+                                <a href="#associate-work" data-toggle="modal" data-criterion="@criterion.Details" class="btn btn-success associate-modal"><i class="icon-plus"></i> Add Work</a>
                             </div>
                         </div>
                     </div>
@@ -91,7 +91,7 @@
             <div class="form-actions">
                 <button type="submit" class="btn btn-primary"><i class="icon-ok"></i> Save</button>
                 <button type="submit" class="btn btn-success" formaction="@Url.Action("Submit", "Badge", new { id = Model.Badge.Id })"><i class="icon-flag"></i> Submit</button>
-                <a href="#" class="btn btn-default"><i class="icon-delete"></i> Cancel</a>
+                <a href="#" class="btn btn-default"><i class="icon-remove"></i> Cancel</a>
             </div>
         </div>
     </div>

@@ -107,10 +107,17 @@
 {
     @Scripts.Render("~/bundles/knockout")
     @Scripts.Render("~/bundles/badgecreate")
+    @Scripts.Render("~/bundles/isotope")
 
     <script>
         $(function() {
             Badges.init();
-        })
+            
+            //$('#work-container').isotope({
+            //    // options
+            //    itemSelector: '.work-item',
+            //    layoutMode: 'masonry'
+            //});
+        });
     </script>
 }
