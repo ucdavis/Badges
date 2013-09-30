@@ -17,7 +17,7 @@
 
     function bindModalEvents() {
         $("#badge-criteria").on("click", ".associate-modal", function () {
-            currentCriteriaContainer = $(this).parents(".associated-work-container");
+            currentCriteriaContainer = $(this).parents(".criterion");
             
             $("#current-criterion").html(this.getAttribute("data-criterion"));
         });
@@ -74,7 +74,7 @@
     function bindAssociationEvents() {
         $("#experience-accordion").on('click', '.association', function(e) {
             e.preventDefault();
-
+            
             var type = this.getAttribute("data-type");
             var text = this.getAttribute("data-text");
             var id = this.id;
