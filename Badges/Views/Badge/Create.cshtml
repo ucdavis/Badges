@@ -72,9 +72,9 @@
 		            <tr>
 		            	<td>
 		            		<div class="col-md-2">
-		            		<label><a href="addRow"><img src-"@Url.Content("~/Content/img/btn-plus-light.png")" alt="+" /></a></label></div>
+		            		<label><a href="addRow" data-bind="click: addCriterion"><img src='@Url.Content("~/Content/img/btn-plus-light.png")' alt="+" /></a></label></div>
 		            		<div class="col-md-9">
-	                        <input type="text" class="form-control" maxlength="140" />
+	                        <input type="text" class="form-control" data-bind="click: addCriterion" maxlength="0" />
 	                        </div>
 		            	</td>
 		            </tr>
