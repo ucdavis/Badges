@@ -547,7 +547,8 @@ div.helptext {
 /* ----- create badge form ----- */
 
 .container.form .helptext h3 {margin-left: 0.4em;}
-.container form .form-group .badge-criteria label {
+.container form .form-group .badge-criteria label,
+.associated-work-container h4 {
 	font-size: 4em;
 	background: rgba(34,120,149,1.0);
 	color: #fff;
@@ -577,4 +578,10 @@ div.helptext {
 	margin-bottom: 1em;
 }
 
+/* ----- earn badge form ----- */
+
 .badge-desc {margin-top: 2em;}
+.asociated-work blockquote {display: inline-block; width: 70%;}
+.associated-work-items {border-left: 3px solid #347f9a;}
+
+
