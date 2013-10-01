@@ -351,6 +351,9 @@ blockquote {
 
 /* ----- Modals ----- */
 
+#associate-work .modal-dialog {
+	width: 70%;
+}
 .modal-content {
 	background: url(img/bg.jpg) top center repeat fixed;
 }
@@ -358,6 +361,10 @@ blockquote {
 	background: #227895;
 	color: #fff;
 }
+	.modal-header h1, .modal-header h2, .modal-header h3, .modal-header h4 {
+		color: #fff;
+		font-style: italic;
+	}
 
 
 
@@ -660,7 +667,7 @@ div.helptext {
 	.no-work-til-brooklyn p {margin-left: 1.1em;}
 
 #associate-work .association {
-	height: 100px; overflow: hidden; position: relative;
+	height: 100px; overflow: hidden; position: relative; display: block;
 }
 	#associate-work .association img {
 		margin: auto;

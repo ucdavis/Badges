@@ -115,31 +115,27 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 <div class="row">
-                    <div class="col-md-4">
-                        /* Hey Scott, can this show the current criterion's #? */
+                    <div class="col-md-2">
+                        <!-- Hey Scott, can this show the current criterion's #? -->
                         <span class="criterion-number">#X</span>
                     </div>
-                    <div class="col-md-8">
+                    <div class="col-md-10">
                         <h3 id="associate-work-label">Associate work</h3>
                         <p id="current-criterion"></p>
                     </div>
                 </div>
             </div>
             <div class="modal-body">
-                <div class="well well-sm">
-                    <blockquote></blockquote>
-                </div>
                 <form>
                     <input id="searchbox" type="search" class="form-control" placeholder="Search Your Experiences & Work"/>
                 </form>
-                <hr/>
                 <i id="work-loading-indicator" class="icon-spinner icon-spin"></i>
                 <div class="panel-group" id="experience-accordion">
                     <div class="panel panel-default" data-bind="foreach: experiences">
                         <div class="panel-collapse collapse" data-bind="attr: { id: 'collapse' + $index() }, css: { 'in': $index() === 0 }">
                             <div class="panel-body">
                                 <div class="row">
-                                    <div class="col-md-12 well well-sm">
+                                    <div class="col-md-12">
                                         <a href="#" class="association" data-bind="attr: { id: id, 'data-text': name }" data-type="experience">
                                             <img alt="Experience Picture" data-bind="attr: { src: coverImageUrl }" style="width: 500px; height: auto; display: block;"/>
                                         </a>
