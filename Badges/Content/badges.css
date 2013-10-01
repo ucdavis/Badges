@@ -366,6 +366,7 @@ blockquote {
 		color: #fff;
 		font-style: italic;
 	}
+.modal-footer {border: 0px none;}
 .panel {
 	background: rgba(255,255,255,.5);
 }
@@ -694,8 +695,14 @@ div.helptext {
 		top: 0; right: 0; bottom: 0; left: 0;
 		width: 100%; height: auto;
 	}
-.experience .panel-body .work-col {border-left: 3px solid #b9cfd5; min-height: 275px;}
-	.experience-contents {padding-left; 1em;}
+	#associate-work h5 {
+		font-size: 1.25em;
+		text-transform: uppercase;
+		letter-spacing: .1em;
+		font-weight: 700;
+		margin-top: 1em;
+	}
+.experience .panel-body .work-col {border-left: 3px solid #b9cfd5; min-height: 306px;}
 	.experience-contents li a {
 		background: #fff;
 		display: block;
