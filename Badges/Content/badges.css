@@ -3,7 +3,7 @@ body {
 	padding-top: 50px;
 	padding-bottom: 20px;
 	font-family: "futura-pt",Futura,Helvetica,sans-serif;
-	background: url(img/bg.jpg) top fixed center repeat;
+	background: url(img/bg.jpg) top center repeat fixed;
 	line-height: 1.5em;
 	color: #071626;
 	letter-spacing: 0.15px;
