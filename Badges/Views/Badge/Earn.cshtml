@@ -136,19 +136,17 @@
                 <i id="work-loading-indicator" class="icon-spinner icon-spin"></i>
                 <div class="panel-group" id="experience-accordion">
                     <div class="panel panel-default" data-bind="foreach: experiences">
-                        <div class="panel-heading">
-                            <h4 class="panel-title">
-                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#experience-accordion" data-bind="html: name, attr: { href: '#collapse' + $index() }"></a>
-                                <a href="#" target="_blank" class="pull-right"><i class="icon-external-link"></i></a>
-                            </h4>
-                        </div>
                         <div class="panel-collapse collapse" data-bind="attr: { id: 'collapse' + $index() }, css: { 'in': $index() === 0 }">
                             <div class="panel-body">
                                 <div class="row">
                                     <div class="col-md-12 well well-sm">
                                         <a href="#" class="association" data-bind="attr: { id: id, 'data-text': name }" data-type="experience">
-                                            <img alt="Experience Picture" data-bind="attr: { src: coverImageUrl }" style="width: 500px; height: 100px; display: block;"/>
+                                            <img alt="Experience Picture" data-bind="attr: { src: coverImageUrl }" style="width: 500px; height: auto; display: block;"/>
                                         </a>
+                                        <h4 class="panel-title">
+                                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#experience-accordion" data-bind="html: name, attr: { href: '#collapse' + $index() }"></a>
+                                            <a href="#" target="_blank" class="pull-right"><i class="icon-external-link"></i></a>
+                                        </h4>
                                     </div>
                                 </div>
                                 <div class="row">

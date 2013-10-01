@@ -659,6 +659,14 @@ div.helptext {
 .no-work-til-brooklyn {margin-left: 5em; margin-top: 2em; opacity: 0.75;}
 	.no-work-til-brooklyn p {margin-left: 1.1em;}
 
+#associate-work .association {
+	height: 100px; overflow: hidden; position: relative;
+}
+	#associate-work .association img {
+		margin: auto;
+		position: absolute;
+		top: 0; right: 0; bottom: 0; left: 0;
+	}
 
 
 /* ----- ISOTOPE styles (transfer out later) ----- */
