@@ -599,11 +599,13 @@ div.helptext {
 	padding-top: .5em;
 }
 .associated-work-container .form-actions {padding-top: 2em;}
-.associated-work-items {border-left: 3px solid #347f9a; padding-left: 3em;}
+.criterion .col-md-9 {border-left: 3px solid #347f9a;}
+.associated-work-items {padding-left: 3em; min-height: 180px;}
 .criterion {padding-top: 1em; padding-bottom: 3em;}
 
 .work-item {
-	width: 33%;
+	width: 31%;
+	margin-right: 1%;
 	background: #fff;
 }
 	.work-item img {
@@ -612,15 +614,16 @@ div.helptext {
 	.work-item h4 {
 		font-size: 1.2em;
 		margin-left: 1em;
+		margin-top: 1em;
 	}
 	.work-item a {
 		color: #fff;
 		display: inline-block;
-		width: 33%;
+		width: 32.4%;
 		text-align: center;
 		height: 40px;
 		font-size: 1.35em;
-		padding-top: 4px;
+		padding-top: 9px;
 	}
 	.work-item a:hover {
 		text-decoration: none;
