@@ -599,7 +599,7 @@ div.helptext {
 	padding-top: .5em;
 }
 .associated-work-container .form-actions {padding-top: 2em;}
-.associated-work-items {border-left: 3px solid #347f9a;}
+.associated-work-items {border-left: 3px solid #347f9a; padding-left: 3em;}
 .criterion {padding-top: 1em; padding-bottom: 3em;}
 
 .work-item {
@@ -609,26 +609,40 @@ div.helptext {
 	.work-item img {
 		max-width: 100%;
 	}
+	.work-item h4 {
+		font-size: 1.2em;
+		margin-left: 1em;
+	}
 	.work-item a {
 		color: #fff;
 		display: inline-block;
 		width: 33%;
+		text-align: center;
+		height: 40px;
+		font-size: 1.35em;
+		padding-top: 4px;
+	}
+	.work-item a:hover {
+		text-decoration: none;
 	}
 		.work-item a.view {
-			background: #b1693d;
+			background: rgba(177,105,61,1);
 		}
+			.work-item a.view:hover {background: rgba(177,105,61,.6);}
 		.work-item a.comment {
-			background: #227895;
+			background: rgba(34,120,149,1);
 		}
+			.work-item a.comment:hover {background: rgba(34,120,149,.6);}
 		.work-item a.delete {
-			background: #c0bfbd;
+			background: rgba(192,191,189,1);
 		}
+			.work-item a.delete:hover {background: rgba(192,191,189,.6);}
 	.work-item input {
 		display: none;
 	}
 
 .no-work-til-brooklyn {margin-left: 5em; opacity: 0.75;}
-	.no-work-til-brooklyn p {margin-left: 0.8em;}
+	.no-work-til-brooklyn p {margin-left: 1.1em;}
 
 
 
