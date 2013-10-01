@@ -62,13 +62,19 @@
                     </div>
                     <div class="col-md-9">
                         <div class="associated-work-items">
-                            <ul class="associated-work" data-index="@i">
+                            <ul class="associated-work" id="associated-work" data-index="@i">
                                 @foreach (var fulfillment in fulfillments)
                                 {
-                                    <li>
+                                    <li class="work-item">
+                                        <img src="../../Content/img/test-frictionclimb.jpg" alt="" />
                                         <h4>@fulfillment.Details</h4>
                                         <input type="hidden" name="@string.Format("criterion[{0}].{1}", i, fulfillment.WorkType)" value="@fulfillment.WorkId" />
                                         <input type="text" placeholder="Comments" name="@string.Format("criterion[{0}].comment", i)" value="@fulfillment.Comment" />
+                                        <div class="work-actions">
+                                            <a href="view" class="view"><i class="icon-eye"></i></a>
+                                            <a href="view" class="comment"><i class="icon-comment"></i></a>
+                                            <a href="view" class="delete"><i class="icon-trash"></i></a>
+                                        </div>
                                     </li>
                                 }
                             </ul>
@@ -81,7 +87,7 @@
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div class="form-group">
-                <label>Reflections on the <span class="badge-title">@Model.Badge.Name</span></label>
+                <label>Reflections on earning the <span class="badge-title">@Model.Badge.Name</span></label>
                 <textarea name="reflections" class="form-control" placeholder="Summarize your thoughts here. Why are you qualified to earn this badge?">@Model.Reflection</textarea>
             </div>
         </div>
@@ -171,6 +177,13 @@
 
         $(function() {
             Badges.init();
+
+            $('#associated-work').isotope({
+                // options
+                itemSelector: '.work-item',
+                layoutMode: 'masonry'
+            });
+
         });
     </script>
 }

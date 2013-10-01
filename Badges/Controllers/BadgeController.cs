@@ -216,7 +216,7 @@ namespace Badges.Controllers
             submission.Submitted = true;
             submission.SubmittedOn = DateTime.UtcNow;
 
-            Message = "Your badge submission has been forwarded for review.  You should recieve a response within 48 hours.";
+            Message = "Your badge submission has been forwarded for review. You should recieve a response within 48 hours.";
             RepositoryFactory.BadgeSubmissionRepository.EnsurePersistent(submission);
 
             return RedirectToAction("MyBadges");

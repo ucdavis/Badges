@@ -583,16 +583,20 @@ div.helptext {
 .badge-to-earn {margin-top: 2em;}
 .badge-desc {margin-top: 2em;}
 .badge-desc p {margin-left: 0.8em;}
-.associated-work-container blockquote {display: inline-block; width: 70%;}
+.badge-title {color: #783032;}
+.associated-work-container blockquote {
+	display: inline-block; width: 70%;
+	font-size: 1.2em;
+}
 .associated-work-container h4 {
 	display: inline-block; 
-	margin-right: 4%; 
 	font-weight: 500; 
 	height: 70px; width: 70px; 
 	font-size: 2.5em; 
 	padding-top: .5em;
 }
+.associated-work-container .form-actions {padding-top: 2em;}
 .associated-work-items {border-left: 3px solid #347f9a;}
-.criterion {padding-top: 1em; padding-bottom: 2em;}
+.criterion {padding-top: 1em; padding-bottom: 3em;}
 
 
