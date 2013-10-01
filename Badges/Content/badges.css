@@ -349,6 +349,17 @@ blockquote {
 		}
 
 
+/* ----- Modals ----- */
+
+.modal-content {
+	background: url(img/bg.jpg) top center repeat fixed;
+}
+.modal-header {
+	background: #227895;
+	color: #fff;
+}
+
+
 
 /* ----- form styles ----- */
 .container.form h3, .container form .form-group label, .container form h3 {
@@ -600,7 +611,7 @@ div.helptext {
 }
 .associated-work-container .form-actions {padding-top: 2em;}
 .criterion .col-md-9 {border-left: 3px solid #347f9a;}
-.associated-work-items {padding-left: 3em; min-height: 180px;}
+.associated-work-items {padding-left: 1em; min-height: 180px;}
 .criterion {padding-top: 1em; padding-bottom: 3em;}
 
 .work-item {
@@ -645,7 +656,7 @@ div.helptext {
 		display: none;
 	}
 
-.no-work-til-brooklyn {margin-left: 5em; opacity: 0.75;}
+.no-work-til-brooklyn {margin-left: 5em; margin-top: 2em; opacity: 0.75;}
 	.no-work-til-brooklyn p {margin-left: 1.1em;}
 
 

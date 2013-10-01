@@ -114,12 +114,20 @@
           
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h3 id="associate-work-label">Associate Work</h3>
+                <div class="row">
+                    <div class="col-md-4">
+                        /* Hey Scott, can this show the current criterion's #? */
+                        <span class="criterion-number">#X</span>
+                    </div>
+                    <div class="col-md-8">
+                        <h3 id="associate-work-label">Associate work</h3>
+                        <p id="current-criterion"></p>
+                    </div>
+                </div>
             </div>
             <div class="modal-body">
                 <div class="well well-sm">
-                    <h4>Selected Criteria</h4>
-                    <blockquote><p id="current-criterion"></p></blockquote>
+                    <blockquote></blockquote>
                 </div>
                 <form>
                     <input id="searchbox" type="search" class="form-control" placeholder="Search Your Experiences & Work"/>
