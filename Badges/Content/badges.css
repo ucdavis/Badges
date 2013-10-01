@@ -645,7 +645,7 @@ div.helptext {
 		margin-left: 1em;
 		margin-top: 1em;
 	}
-	.work-item a {
+	.criterion .work-item a {
 		color: #fff;
 		display: inline-block;
 		width: 32.4%;
@@ -654,7 +654,7 @@ div.helptext {
 		font-size: 1.35em;
 		padding-top: 9px;
 	}
-	.work-item a:hover {
+	.criterion .work-item a:hover {
 		text-decoration: none;
 	}
 		.work-item a.view {
@@ -669,7 +669,7 @@ div.helptext {
 			background: rgba(192,191,189,1);
 		}
 			.work-item a.delete:hover {background: rgba(192,191,189,.6);}
-	.work-item input {
+	.criterion .work-item input {
 		display: none;
 	}
 
@@ -694,7 +694,7 @@ div.helptext {
 		top: 0; right: 0; bottom: 0; left: 0;
 		width: 100%; height: auto;
 	}
-.experience .panel-body .col-md-7 {border-left: 3px solid #b9cfd5;}
+.experience .panel-body .work-col {border-left: 3px solid #b9cfd5; min-height: 275px;}
 	.experience-contents {padding-left; 1em;}
 	.experience-contents li a {
 		background: #fff;
