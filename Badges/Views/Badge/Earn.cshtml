@@ -76,6 +76,17 @@
                                             <a href="delete" class="delete"><i class="icon-trash"></i></a>
                                         </div>
                                     </div>
+                                    <div class="work-item">
+                                        <img src="../../Content/img/test-frictionclimb.jpg" alt="" />
+                                        <h4>@fulfillment.Details</h4>
+                                        <input type="hidden" name="@string.Format("criterion[{0}].{1}", i, fulfillment.WorkType)" value="@fulfillment.WorkId" />
+                                        <input type="text" placeholder="Comments" name="@string.Format("criterion[{0}].comment", i)" value="@fulfillment.Comment" />
+                                        <div class="work-actions">
+                                            <a href="view" class="view"><i class="icon-eye-open"></i></a>
+                                            <a href="comment" class="comment"><i class="icon-comment"></i></a>
+                                            <a href="delete" class="delete"><i class="icon-trash"></i></a>
+                                        </div>
+                                    </div>
                                 }
                             </div>
                                 <div class="no-work-til-brooklyn">
