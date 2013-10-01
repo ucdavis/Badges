@@ -21,6 +21,9 @@ p, legend {
 	font-size: 1.2em;
 	line-height: 1.6em;
 }
+blockquote {
+	border-left: 0px none;
+}
 
 .navbar-inverse {
 	background: transparent url(img/bg-header.jpg) center top;
@@ -601,8 +604,31 @@ div.helptext {
 
 .work-item {
 	width: 33%;
+	background: #fff;
 }
+	.work-item img {
+		max-width: 100%;
+	}
+	.work-item a {
+		color: #fff;
+		display: inline-block;
+		width: 33%;
+	}
+		.work-item a.view {
+			background: #b1693d;
+		}
+		.work-item a.comment {
+			background: #227895;
+		}
+		.work-item a.delete {
+			background: #c0bfbd;
+		}
+	.work-item input {
+		display: none;
+	}
+
 .no-work-til-brooklyn {margin-left: 5em; opacity: 0.75;}
+	.no-work-til-brooklyn p {margin-left: 0.8em;}
 
 
 
