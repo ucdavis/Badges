@@ -356,6 +356,7 @@ blockquote {
 }
 .modal-content {
 	background: url(img/bg.jpg) top center repeat fixed;
+	border: 0px none;
 }
 .modal-header {
 	background: #227895;
@@ -366,7 +367,7 @@ blockquote {
 		font-style: italic;
 	}
 .panel {
-	background: rgba(255,255,255,.1);
+	background: rgba(255,255,255,.5);
 }
 	.panel-title {
 		background: #fff;
@@ -677,22 +678,30 @@ div.helptext {
 
 #associate-work .criterion-number {
 	background: #fff; color: #227895;
+	display: inline-block; 
+	font-weight: 500; 
+	height: 70px; width: 70px; 
+	font-size: 2.5em; 
+	padding-top: .5em;
 }
 
-#associate-work .association {
+#associate-work .experience-col .association {
 	height: 250px; overflow: hidden; position: relative; display: block;
 }
-	#associate-work .association img {
+	#associate-work .experience-col .association img {
 		margin: auto;
 		position: absolute;
 		top: 0; right: 0; bottom: 0; left: 0;
 		width: 100%; height: auto;
 	}
-.experience-contents {border-left: 3px solid #b9cfd5; padding-left: 1em;}
+.experience .panel-body .col-md-7 {border-left: 3px solid #b9cfd5;}
+	.experience-contents {padding-left; 1em;}
 	.experience-contents li a {
 		background: #fff;
 		display: block;
 	}
+	.experience-contents .work-item {width: 30%; margin-right: 2.5%;}
+	.experience-contents strong {display: block;}
 
 
 

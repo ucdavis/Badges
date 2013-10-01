@@ -127,15 +127,15 @@
             </div>
             <div class="modal-body">
                 <form>
-                    <input id="searchbox" type="search" class="form-control" placeholder="Search Your Experiences & Work"/>
+                    <input id="searchbox" type="search" class="form-control" placeholder="Search your experiences and work"/>
                 </form>
                 <i id="work-loading-indicator" class="icon-spinner icon-spin"></i>
                 <div class="panel-group" id="experience-accordion">
-                    <div class="panel panel-default" data-bind="foreach: experiences">
+                    <div class="panel panel-default experience" data-bind="foreach: experiences">
                         <div class="panel-collapse collapse" data-bind="attr: { id: 'collapse' + $index() }, css: { 'in': $index() === 0 }">
                             <div class="panel-body">
                                 <div class="row">
-                                    <div class="col-md-5">
+                                    <div class="col-md-5 experience-col">
                                         <a href="#" class="association" data-bind="attr: { id: id, 'data-text': name }" data-type="experience">
                                             <img alt="Experience Picture" data-bind="attr: { src: coverImageUrl }" display: block;"/>
                                         </a>
@@ -144,7 +144,7 @@
                                             <a href="#" target="_blank" class="pull-right"><i class="icon-external-link"></i></a>
                                         </h4>
                                     </div>
-                                    <div class="col-md-7">
+                                    <div class="col-md-7 work-col">
                                         <ul class="experience-contents nav nav-pills" data-bind="foreach: work">
                                             <li class="potential work-item">
                                                 <a href="#" class="association" data-bind="attr: { id: Id, 'data-text': Description, 'data-worktype': Type }" data-type="work">
