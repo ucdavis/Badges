@@ -8,12 +8,19 @@
     };
 
     badges.init = function () {
+        getFulfillments();
         bindModalEvents();
         createModels();
-        ko.applyBindings(badges.Support);
+        ko.applyBindings(badges.Support, document.getElementById('associate-work'));
         getExperiences(options.MyExperiencesUrl, {});
         bindAssociationEvents();
     };
+    
+    function getFulfillments() {
+        $.getJSON(options.FulfillmentsUrl, {}, function (response) {
+            console.log(response);
+        });
+    }
 
     function bindModalEvents() {
         $("#badge-criteria").on("click", ".associate-modal", function () {
@@ -68,6 +75,21 @@
             self.addExperience = function(experience) {
                 self.experiences.push(new badges.Experience(experience));
             };
+        };
+
+        badges.Fulfillment = function () {
+            var self = this;
+        };
+
+        badges.Criterion = function () {
+            var self = this;
+            self.criteria = '';
+            self.fulfillments = ko.observableArray([]);
+        };
+
+        badges.Associate = new function() {
+            var self = this;
+            self.criteria = ko.observableArray([]);
         };
     }
     

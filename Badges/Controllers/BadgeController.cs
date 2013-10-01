@@ -134,6 +134,7 @@ namespace Badges.Controllers
 
                 Message = "Existing badge progress found-- you can continue associating work and experiences below";
 
+                model.BadgeApplication = existingBadgeApplication;
                 model.Reflection = existingBadgeApplication.Reflection;
 
                 model.Fulfillments =
@@ -220,6 +221,36 @@ namespace Badges.Controllers
             RepositoryFactory.BadgeSubmissionRepository.EnsurePersistent(submission);
 
             return RedirectToAction("MyBadges");
+        }
+
+        public ActionResult Fulfillments(Guid id)
+        {
+            if (
+                !RepositoryFactory.BadgeSubmissionRepository.Queryable.Any(
+                    x => x.Id == id && x.Creator.Identifier == CurrentUser.Identity.Name))
+            {
+                return new HttpUnauthorizedResult();
+            }
+
+            var fulfillments =
+                    RepositoryFactory.BadgeFulfillmentRepository.Queryable.Where(
+                        x => x.BadgeSubmission.Id == id)
+                                     .Select(
+                                         x =>
+                                         new BadgeFulfillmentViewModel
+                                         {
+                                             CriteriaId = x.BadgeCriteria.Id,
+                                             Comment = x.Comment,
+                                             Details =
+                                                 x.Experience == null
+                                                     ? x.SupportingWork.Description
+                                                     : x.Experience.Name,
+                                             WorkId = x.Experience == null ? x.SupportingWork.Id : x.Experience.Id,
+                                             WorkType = x.Experience == null ? "work" : "experience"
+                                         })
+                                     .ToList();
+
+            return new JsonNetResult(fulfillments);
         }
 
         /// <summary>

@@ -10,5 +10,7 @@ namespace Badges.Models.Badge
         public IList<BadgeFulfillmentViewModel> Fulfillments { get; set; }
 
         public string Reflection { get; set; }
+
+        public BadgeSubmission BadgeApplication { get; set; }
     }
 }
