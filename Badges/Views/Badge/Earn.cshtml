@@ -62,22 +62,30 @@
                     </div>
                     <div class="col-md-9">
                         <div class="associated-work-items">
-                            <ul class="associated-work" id="associated-work" data-index="@i">
+                            <div class="associated-work" id="associated-work" data-index="@i">
                                 @foreach (var fulfillment in fulfillments)
                                 {
-                                    <li class="work-item">
+                                    <div class="work-item">
                                         <img src="../../Content/img/test-frictionclimb.jpg" alt="" />
                                         <h4>@fulfillment.Details</h4>
                                         <input type="hidden" name="@string.Format("criterion[{0}].{1}", i, fulfillment.WorkType)" value="@fulfillment.WorkId" />
                                         <input type="text" placeholder="Comments" name="@string.Format("criterion[{0}].comment", i)" value="@fulfillment.Comment" />
                                         <div class="work-actions">
-                                            <a href="view" class="view"><i class="icon-eye"></i></a>
+                                            <a href="view" class="view"><i class="icon-eye-open"></i></a>
                                             <a href="view" class="comment"><i class="icon-comment"></i></a>
                                             <a href="view" class="delete"><i class="icon-trash"></i></a>
                                         </div>
-                                    </li>
+                                    </div>
                                 }
-                            </ul>
+                            </div>
+                            @if (var fulfillment in fulfillments == 0) 
+                            /* Prob not correct, but here goes nothin! */
+                            {
+                                <div class="no-work-til-brooklyn">
+                                    <h3>Nothing to see here</h3>
+                                    <p>Get started associating work and experiences with that big green button to the left there.</p>
+                                </div>
+                            }
                         </div>
                     </div>
                 </div>
