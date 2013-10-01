@@ -115,11 +115,11 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 <div class="row">
-                    <div class="col-md-2">
+                    <div class="col-md-1">
                         <!-- Hey Scott, can this show the current criterion's #? -->
                         <span class="criterion-number">#X</span>
                     </div>
-                    <div class="col-md-10">
+                    <div class="col-md-11">
                         <h3 id="associate-work-label">Associate work</h3>
                         <p id="current-criterion"></p>
                     </div>
@@ -135,34 +135,32 @@
                         <div class="panel-collapse collapse" data-bind="attr: { id: 'collapse' + $index() }, css: { 'in': $index() === 0 }">
                             <div class="panel-body">
                                 <div class="row">
-                                    <div class="col-md-12">
+                                    <div class="col-md-5">
                                         <a href="#" class="association" data-bind="attr: { id: id, 'data-text': name }" data-type="experience">
-                                            <img alt="Experience Picture" data-bind="attr: { src: coverImageUrl }" style="width: 500px; height: auto; display: block;"/>
+                                            <img alt="Experience Picture" data-bind="attr: { src: coverImageUrl }" display: block;"/>
                                         </a>
                                         <h4 class="panel-title">
                                             <a class="accordion-toggle" data-toggle="collapse" data-parent="#experience-accordion" data-bind="html: name, attr: { href: '#collapse' + $index() }"></a>
                                             <a href="#" target="_blank" class="pull-right"><i class="icon-external-link"></i></a>
                                         </h4>
                                     </div>
+                                    <div class="col-md-7">
+                                        <ul class="experience-contents nav nav-pills" data-bind="foreach: work">
+                                            <li class="potential work-item">
+                                                <a href="#" class="association" data-bind="attr: { id: Id, 'data-text': Description, 'data-worktype': Type }" data-type="work">
+                                                    <strong data-bind="html: Type"></strong> <span data-bind="html: Description"></span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
-                                <div class="row">
-                                    <ul class="nav nav-pills" data-bind="foreach: work">
-                                        <li>
-                                            <a href="#" class="association" data-bind="attr: { id: Id, 'data-text': Description, 'data-worktype': Type }" data-type="work">
-                                                <strong data-bind="html: Type"></strong> <span data-bind="html: Description"></span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+                <button class="btn btn-default" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i> Close</button>
             </div>
-            }
         </div>
     </div>
 </div>
@@ -188,6 +186,12 @@
             $('#associated-work').isotope({
                 // options
                 itemSelector: '.work-item',
+                layoutMode: 'masonry'
+            });
+
+            $('.experience-contents').isotope({
+                // options
+                itemSelector: '.potential.work-item',
                 layoutMode: 'masonry'
             });
 
