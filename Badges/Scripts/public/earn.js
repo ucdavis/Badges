@@ -8,20 +8,14 @@
     };
 
     badges.init = function () {
-        getFulfillments();
         bindModalEvents();
         createModels();
         ko.applyBindings(badges.Support, document.getElementById('associate-work'));
+        getCriteria();
         getExperiences(options.MyExperiencesUrl, {});
         bindAssociationEvents();
     };
     
-    function getFulfillments() {
-        $.getJSON(options.FulfillmentsUrl, {}, function (response) {
-            console.log(response);
-        });
-    }
-
     function bindModalEvents() {
         $("#badge-criteria").on("click", ".associate-modal", function () {
             currentCriteriaContainer = $(this).parents(".criterion");
@@ -45,6 +39,14 @@
         ]).on('typeahead:selected typeahead:autocompleted', function(event, datum, dataset) {
             badges.Support.experiences.removeAll();
             getExperiences(dataset === 'experiences' ? options.MyExperiencesUrl : options.MyWorkUrl, { filter: datum.value });
+        });
+    }
+    
+    function getCriteria() {
+        $.getJSON(options.CriteriaUrl, {}, function (response) {
+            $.each(response, function(i, v) {
+                badges.Associate.addCriterion(v);
+            });
         });
     }
 
@@ -77,19 +79,38 @@
             };
         };
 
-        badges.Fulfillment = function () {
+        badges.Fulfillment = function (fulfillment) {
             var self = this;
+            self.comment = fulfillment.Comment;
+            self.detail = fulfillment.Details;
+            self.workid = fulfillment.WorkId;
+            self.worktype = fulfillment.WorkType;
+            self.type = fulfillment.SupportType;
         };
 
-        badges.Criterion = function () {
+        badges.Criterion = function (criterion) {
             var self = this;
-            self.criteria = '';
+            self.id = criterion.Criteria.Id;
+            self.details = criterion.Criteria.Details;
+            
             self.fulfillments = ko.observableArray([]);
+
+            self.addFulfillment = function(fulfillment) {
+                self.fulfillments.push(new badges.Fulfillment(fulfillment));
+            };
+
+            $.each(criterion.Fulfillments, function(i, v) {
+                self.addFulfillment(v);
+            });
         };
 
         badges.Associate = new function() {
             var self = this;
             self.criteria = ko.observableArray([]);
+
+            self.addCriterion = function(criterion) {
+                self.criteria.push(new badges.Criterion(criterion));
+            };
         };
     }
     

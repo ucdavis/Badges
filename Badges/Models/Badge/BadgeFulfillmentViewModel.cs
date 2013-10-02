@@ -14,5 +14,6 @@ namespace Badges.Models.Badge
 
         public string Comment { get; set; }
 
+        public string SupportType { get; set; }
     }
 }
