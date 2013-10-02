@@ -14,16 +14,10 @@
         ko.applyBindings(badges.Support, document.getElementById('associate-work'));
         getCriteria();
         getExperiences(options.MyExperiencesUrl, {});
-        bindAssociationEvents();
+        //bindAssociationEvents();
     };
     
     function bindModalEvents() {
-        $("#badge-criteria").on("click", ".associate-modal", function () {
-            currentCriteriaContainer = $(this).parents(".criterion");
-            
-            $("#current-criterion").html(this.getAttribute("data-criterion"));
-        });
-
         var ttl = 10000; //cache results for 1 minute
 
         $("#searchbox").typeahead([
@@ -75,10 +69,21 @@
             self.coverImageUrl = experience.CoverImageUrl;
 
             self.work = experience.Work;
+
+            self.associateExperience = function(exp) {
+                console.log(exp);
+                //badges.Associate.associateWithCurrentCriterion(experience);
+            };
+
+            self.associateWork = function(work) {
+                console.log(work);
+            };
         };
 
         badges.Support = new function() {
             var self = this;
+            self.criteriaDetails = ko.observable();
+            self.criteriaIndex = ko.observable();
             self.experiences = ko.observableArray([]);
 
             self.addExperience = function(experience) {
@@ -113,10 +118,22 @@
 
         badges.Associate = new function() {
             var self = this;
+            self.selectedCriterion = ko.observable();
             self.criteria = ko.observableArray([]);
 
             self.addCriterion = function(criterion) {
                 self.criteria.push(new badges.Criterion(criterion));
+            };
+
+            self.associateWork = function(index, criterion) {
+                self.selectedCriterion(criterion);
+                badges.Support.criteriaDetails(criterion.details);
+                badges.Support.criteriaIndex(index + 1);
+            };
+
+            self.associateWithCurrentCriterion = function(work) {
+                var currentCriterion = self.selectedCriterion();
+                currentCriterion.fulfillments.push(new badges.Fulfillment({ details: work.name ? work.name : work.description, workid: work.id, worktype: 3, type: 4 }));
             };
         };
     }

@@ -52,7 +52,7 @@
                             <input type="hidden" data-bind="value: id, attr: {name: 'criterion[' + $index() + '].Id' }" />
 
                             <div class="form-actions">
-                                <a href="#associate-work" data-toggle="modal" data-criterion="DETAILS HERE" class="btn btn-success associate-modal"><i class="icon-plus"></i> Add Work</a>
+                                <a href="#associate-work" data-toggle="modal" data-bind="click: function (data) { $root.associateWork($index(), data) }" data-criterion="DETAILS HERE" class="btn btn-success associate-modal"><i class="icon-plus"></i> Add Work</a>
                             </div>
                         </div>
                     </div>
@@ -103,16 +103,14 @@
 <div id="associate-work" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="associate-work-label" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-          
             <div class="modal-header">
                 <div class="row">
                     <div class="col-md-1">
-                        <!-- Hey Scott, can this show the current criterion's #? -->
-                        <span class="criterion-number">#X</span>
+                        <span class="criterion-number">#<span data-bind="html: criteriaIndex"></span></span>
                     </div>
                     <div class="col-md-10">
                         <h3 id="associate-work-label">Associate work for this criteria</h3>
-                        <p id="current-criterion"></p>
+                        <p id="current-criterion" data-bind="html: criteriaDetails"></p>
                     </div>
                     <div class="col-md-1">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -134,8 +132,8 @@
                             <div class="panel-body">
                                 <div class="row">
                                     <div class="col-md-5 experience-col">
-                                        <a href="#" class="association" data-bind="attr: { id: id, 'data-text': name }" data-type="experience">
-                                            <img alt="Experience Picture" data-bind="attr: { src: coverImageUrl }" display: block;"/>
+                                        <a href="#" class="association" data-bind="click: associateExperience, attr: { id: id, 'data-text': name }" data-type="experience">
+                                            <img alt="Experience Picture" data-bind="attr: { src: coverImageUrl }" style="display: block;"/>
                                         </a>
                                         <h4 class="panel-title">
                                             <a class="accordion-toggle" data-toggle="collapse" data-parent="#experience-accordion" data-bind="html: name, attr: { href: '#collapse' + $index() }"></a>
@@ -145,7 +143,7 @@
                                     <div class="col-md-7 work-col">
                                         <ul class="experience-contents nav nav-pills" data-bind="foreach: work">
                                             <li class="potential work-item">
-                                                <a href="#" class="association" data-bind="attr: { id: Id, 'data-text': Description, 'data-worktype': Type }" data-type="work">
+                                                <a href="#" class="association" data-bind="click: $parent.associateWork, attr: { id: Id, 'data-text': Description, 'data-worktype': Type }" data-type="work">
                                                     <strong data-bind="html: Type"></strong> <span data-bind="html: Description"></span>
                                                 </a>
                                             </li>
