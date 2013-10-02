@@ -14,7 +14,6 @@
         ko.applyBindings(badges.Support, document.getElementById('associate-work'));
         getCriteria();
         getExperiences(options.MyExperiencesUrl, {});
-        //bindAssociationEvents();
     };
     
     function bindModalEvents() {
@@ -112,6 +111,11 @@
                 self.fulfillments.push(new badges.Fulfillment(fulfillment));
             };
 
+            self.removeFulfillment = function(fulfillment) {
+                self.fulfillments.remove(fulfillment);
+                recomputeAssociationsIsotope();
+            };
+
             $.each(criterion.Fulfillments, function(i, v) {
                 self.addFulfillment(v);
             });
@@ -136,37 +140,17 @@
                 var currentCriterion = self.selectedCriterion();
                 currentCriterion.fulfillments.push(fulfillment);
 
-                workIsotope.isotope('destroy'); //TODO: (maybe redo layout on modal close?)
-                workIsotope = $('#associated-work').isotope({
-                    // options
-                    itemSelector: '.work-item',
-                    layoutMode: 'masonry'
-                });
+                recomputeAssociationsIsotope();
             };
         };
     }
     
-    function bindAssociationEvents() {
-        $("#experience-accordion").on('click', '.association', function(e) {
-            e.preventDefault();
-            
-            var type = this.getAttribute("data-type");
-            var text = this.getAttribute("data-text");
-            var id = this.id;
-
-            var associatedWork = currentCriteriaContainer.find(".associated-work");
-            var name = 'criterion[' + associatedWork.attr("data-index") + '].';
-            var idName = name + type;
-            var commentName = name + 'comment';
-
-            //Add this work to the proper container, then close the modal
-            var workItem = $("<li>", { text: text })
-                .append($("<input>", { name: idName, value: id, type: 'hidden' }))
-                .append($("<input>", { name: commentName, type: 'text', placeholder: 'Comment' }));
-
-            associatedWork.append(workItem);
-
-            $("#associate-work").modal('hide');
+    function recomputeAssociationsIsotope() {
+        workIsotope.isotope('destroy'); //TODO: (maybe redo layout on modal close?)
+        workIsotope = $('#associated-work').isotope({
+            // options
+            itemSelector: '.work-item',
+            layoutMode: 'masonry'
         });
     }
 }(window.Badges = window.Badges || {}, jQuery));
