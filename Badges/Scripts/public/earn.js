@@ -10,6 +10,7 @@
     badges.init = function () {
         bindModalEvents();
         createModels();
+        ko.applyBindings(badges.Associate, document.getElementById("badge-criteria"));
         ko.applyBindings(badges.Support, document.getElementById('associate-work'));
         getCriteria();
         getExperiences(options.MyExperiencesUrl, {});
@@ -47,6 +48,12 @@
             $.each(response, function(i, v) {
                 badges.Associate.addCriterion(v);
             });
+            
+            $('#associated-work').isotope({
+                // options
+                itemSelector: '.work-item',
+                layoutMode: 'masonry'
+            });
         });
     }
 
@@ -82,7 +89,7 @@
         badges.Fulfillment = function (fulfillment) {
             var self = this;
             self.comment = fulfillment.Comment;
-            self.detail = fulfillment.Details;
+            self.details = fulfillment.Details;
             self.workid = fulfillment.WorkId;
             self.worktype = fulfillment.WorkType;
             self.type = fulfillment.SupportType;

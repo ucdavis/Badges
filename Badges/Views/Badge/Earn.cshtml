@@ -43,49 +43,41 @@
         </div>
     </div>
     <div class="row">
-        <div id="badge-criteria" class="col-md-12">
-            @for (var i = 0; i < Model.BadgeCriterias.Count; i++)
-            {
-                var criterion = Model.BadgeCriterias[i];
-                var fulfillments = Model.Fulfillments.Where(x => x.CriteriaId == criterion.Id);
+        <div id="badge-criteria" class="col-md-12" data-bind="foreach: criteria">
                 <div class="row criterion">
                     <div class="col-md-3">
                         <div class="associated-work-container">
-                            <h4>#@(i + 1)</h4> 
-                            <blockquote><p>@criterion.Details</p></blockquote>             
-                            <input type="hidden" name="@string.Format("criterion[{0}].Id", i)" value="@criterion.Id"/>
+                            <h4>#<span data-bind="html: $index() + 1"></span></h4> 
+                            <blockquote><p data-bind="html: details"></p></blockquote>             
+                            <input type="hidden" data-bind="value: id, attr: {name: 'criterion[0].Id' }" />
 
                             <div class="form-actions">
-                                <a href="#associate-work" data-toggle="modal" data-criterion="@criterion.Details" class="btn btn-success associate-modal"><i class="icon-plus"></i> Add Work</a>
+                                <a href="#associate-work" data-toggle="modal" data-criterion="DETAILS HERE" class="btn btn-success associate-modal"><i class="icon-plus"></i> Add Work</a>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-9">
                         <div class="associated-work-items">
-                            <div class="associated-work" id="associated-work" data-index="@i">
-                                @foreach (var fulfillment in fulfillments)
-                                {
+                            <div class="associated-work" id="associated-work" data-bind="foreach: fulfillments">
                                     <div class="work-item">
                                         <img src="../../Content/img/test-frictionclimb.jpg" alt="" />
-                                        <h4>@fulfillment.Details</h4>
-                                        <input type="hidden" name="@string.Format("criterion[{0}].{1}", i, fulfillment.WorkType)" value="@fulfillment.WorkId" />
-                                        <input type="text" placeholder="Comments" name="@string.Format("criterion[{0}].comment", i)" value="@fulfillment.Comment" />
+                                        <h4 data-bind="html: details"></h4>
+                                        <input type="hidden" data-bind="value: workid, attr: { name: 'criterion[0].Experience' }" />
+                                        <input type="text" placeholder="Comments" data-bind="value: comment, attr: { name: 'criterion[0].comment' }" />
                                         <div class="work-actions">
                                             <a href="view" class="view"><i class="icon-eye-open"></i></a>
                                             <a href="comment" class="comment"><i class="icon-comment"></i></a>
                                             <a href="delete" class="delete"><i class="icon-trash"></i></a>
                                         </div>
                                     </div>
-                                }
                             </div>
-                                <div class="no-work-til-brooklyn">
-                                    <h3>Nothing to see here</h3>
-                                    <p>Get started associating work and experiences with that big green button to the left there.</p>
-                                </div>
+                            <div class="no-work-til-brooklyn" data-bind="visible: fulfillments().length === 0">
+                                <h3>Nothing to see here</h3>
+                                <p>Get started associating work and experiences with that big green button to the left there.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            }
         </div>
     </div>
     <div class="row">
@@ -160,12 +152,13 @@
                                         </ul>
                                     </div>
                                 </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-default" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i> Close</button>
+                <div class="modal-footer">
+                    <button class="btn btn-default" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i> Close</button>
+                </div>
             </div>
         </div>
     </div>
@@ -180,28 +173,21 @@
 
     <script>
         Badges.options({
-             CriteriaUrl: '@Html.Raw(Url.Action("Fulfillments", new { id = Model.Badge.Id }))',
-             MyExperiencesUrl: '@Html.Raw(Url.Action("MyExperiences"))',
-             MyWorkUrl: '@Html.Raw(Url.Action("MyWork"))',
-             TypeaheadExperiencesUrl: '@Html.Raw(Url.Action("MyExperiences", "Json"))',
-             TypeaheadWorkUrl: '@Html.Raw(Url.Action("MyWork", "Json"))'
+            CriteriaUrl: '@Html.Raw(Url.Action("Fulfillments", new {id = Model.Badge.Id}))',
+            MyExperiencesUrl: '@Html.Raw(Url.Action("MyExperiences"))',
+            MyWorkUrl: '@Html.Raw(Url.Action("MyWork"))',
+            TypeaheadExperiencesUrl: '@Html.Raw(Url.Action("MyExperiences", "Json"))',
+            TypeaheadWorkUrl: '@Html.Raw(Url.Action("MyWork", "Json"))'
         });
 
         $(function() {
             Badges.init();
-
-            $('#associated-work').isotope({
-                // options
-                itemSelector: '.work-item',
-                layoutMode: 'masonry'
-            });
 
             $('.experience-contents').isotope({
                 // options
                 itemSelector: '.potential.work-item',
                 layoutMode: 'masonry'
             });
-
         });
     </script>
 }
