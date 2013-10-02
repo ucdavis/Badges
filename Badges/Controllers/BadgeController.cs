@@ -259,9 +259,14 @@ namespace Badges.Controllers
                                                      x.Experience == null
                                                          ? x.SupportingWork.Description
                                                          : x.Experience.Name,
+                                                 ExperienceId =
+                                                     x.Experience == null
+                                                         ? x.SupportingWork.Experience.Id
+                                                         : x.Experience.Id,
                                                  WorkId = x.Experience == null ? x.SupportingWork.Id : x.Experience.Id,
                                                  WorkType = x.Experience == null ? "work" : "experience",
-                                                 SupportType = x.Experience == null ? x.SupportingWork.Type : string.Empty
+                                                 SupportType =
+                                                     x.Experience == null ? x.SupportingWork.Type : string.Empty
                                              })
                                      .ToList();
 
@@ -272,7 +277,7 @@ namespace Badges.Controllers
                                                  Criteria = new {c.Id, c.Details},
                                                  Fulfillments =
                                          fulfillments.Where(x => x.CriteriaId == c.Id)
-                                                     .Select(x => new {x.Comment, x.Details, x.WorkId, x.WorkType, x.SupportType})
+                                                     .Select(x => new {x.Comment, x.Details, x.WorkId, x.ExperienceId, x.WorkType, x.SupportType})
                                              };
 
                 return new JsonNetResult(criteriaGroup.ToList());
