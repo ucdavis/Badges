@@ -1,7 +1,7 @@
 ﻿(function(badges, $, undefined) {
     "use strict";
 
-    var options = {}, currentCriteriaContainer;
+    var options = {}, currentCriteriaContainer, workIsotope;
 
     badges.options = function(o) {
         $.extend(options, o);
@@ -43,7 +43,7 @@
                 badges.Associate.addCriterion(v);
             });
             
-            $('#associated-work').isotope({
+            workIsotope = $('#associated-work').isotope({
                 // options
                 itemSelector: '.work-item',
                 layoutMode: 'masonry'
@@ -71,12 +71,13 @@
             self.work = experience.Work;
 
             self.associateExperience = function(exp) {
-                console.log(exp);
-                //badges.Associate.associateWithCurrentCriterion(experience);
+                var fulfillment = new badges.Fulfillment({ Details: exp.name, WorkId: exp.id, WorkType: 'experience' });
+                badges.Associate.associateWithCurrentCriterion(fulfillment);
             };
-
-            self.associateWork = function(work) {
-                console.log(work);
+            
+            self.associateWork = function (work) {
+                var fulfillment = new badges.Fulfillment({ Details: work.Description, WorkId: work.Id, WorkType: 'work', SupportType: work.Type });
+                badges.Associate.associateWithCurrentCriterion(fulfillment);
             };
         };
 
@@ -131,9 +132,16 @@
                 badges.Support.criteriaIndex(index + 1);
             };
 
-            self.associateWithCurrentCriterion = function(work) {
+            self.associateWithCurrentCriterion = function(fulfillment) {
                 var currentCriterion = self.selectedCriterion();
-                currentCriterion.fulfillments.push(new badges.Fulfillment({ details: work.name ? work.name : work.description, workid: work.id, worktype: 3, type: 4 }));
+                currentCriterion.fulfillments.push(fulfillment);
+
+                workIsotope.isotope('destroy'); //TODO: (maybe redo layout on modal close?)
+                workIsotope = $('#associated-work').isotope({
+                    // options
+                    itemSelector: '.work-item',
+                    layoutMode: 'masonry'
+                });
             };
         };
     }
