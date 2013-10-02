@@ -240,6 +240,7 @@ namespace Badges.Controllers
                                          new BadgeFulfillmentViewModel
                                          {
                                              CriteriaId = x.BadgeCriteria.Id,
+                                             CriteriaDetails = x.BadgeCriteria.Details,
                                              Comment = x.Comment,
                                              Details =
                                                  x.Experience == null
@@ -250,7 +251,17 @@ namespace Badges.Controllers
                                          })
                                      .ToList();
 
-            return new JsonNetResult(fulfillments);
+            var criteriaGroup = from f in fulfillments
+                                group f by new {f.CriteriaId, f.CriteriaDetails}
+                                into criteria
+                                select
+                                    new
+                                        {
+                                            criteria.Key,
+                                            Fulfillments = criteria.Select(x => new {x.Comment, x.Details, x.WorkId, x.WorkType})
+                                        };
+
+            return new JsonNetResult(criteriaGroup.ToList());
         }
 
         /// <summary>
