@@ -49,7 +49,7 @@
                         <div class="associated-work-container">
                             <h4>#<span data-bind="html: $index() + 1"></span></h4> 
                             <blockquote><p data-bind="html: details"></p></blockquote>             
-                            <input type="hidden" data-bind="value: id, attr: {name: 'criterion[0].Id' }" />
+                            <input type="hidden" data-bind="value: id, attr: {name: 'criterion[' + $index() + '].Id' }" />
 
                             <div class="form-actions">
                                 <a href="#associate-work" data-toggle="modal" data-criterion="DETAILS HERE" class="btn btn-success associate-modal"><i class="icon-plus"></i> Add Work</a>
@@ -62,8 +62,8 @@
                                     <div class="work-item">
                                         <img src="../../Content/img/test-frictionclimb.jpg" alt="" />
                                         <h4 data-bind="html: details"></h4>
-                                        <input type="hidden" data-bind="value: workid, attr: { name: 'criterion[0].Experience' }" />
-                                        <input type="text" placeholder="Comments" data-bind="value: comment, attr: { name: 'criterion[0].comment' }" />
+                                        <input type="hidden" data-bind="value: workid, attr: { name: 'criterion[' + $index() + '].' + worktype }" />
+                                        <input type="text" placeholder="Comments" data-bind="value: comment, attr: { name: 'criterion['+ $index() +'].comment' }" />
                                         <div class="work-actions">
                                             <a href="view" class="view"><i class="icon-eye-open"></i></a>
                                             <a href="comment" class="comment"><i class="icon-comment"></i></a>
