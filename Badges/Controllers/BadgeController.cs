@@ -223,45 +223,65 @@ namespace Badges.Controllers
             return RedirectToAction("MyBadges");
         }
 
+        /// <summary>
+        /// Return fulfillments for a given badge
+        /// </summary>
+        /// <param name="id">BadgeId</param>
+        /// <returns></returns>
         public ActionResult Fulfillments(Guid id)
         {
-            if (
-                !RepositoryFactory.BadgeSubmissionRepository.Queryable.Any(
-                    x => x.Id == id && x.Creator.Identifier == CurrentUser.Identity.Name))
+            var badge = RepositoryFactory.BadgeRepository.GetNullableById(id);
+
+            if (badge == null)
             {
-                return new HttpUnauthorizedResult();
+                return HttpNotFound();
             }
 
-            var fulfillments =
+            var badgeCriteria = badge.BadgeCriterias.ToList();
+            
+            var badgeSubmission =
+                RepositoryFactory.BadgeSubmissionRepository.Queryable.SingleOrDefault(
+                    x => x.Badge.Id == badge.Id && x.Creator.Identifier == CurrentUser.Identity.Name);
+
+            if (badgeSubmission != null)
+            {
+                var fulfillments =
                     RepositoryFactory.BadgeFulfillmentRepository.Queryable.Where(
-                        x => x.BadgeSubmission.Id == id)
+                        x => x.BadgeSubmission.Id == badgeSubmission.Id)
                                      .Select(
                                          x =>
                                          new BadgeFulfillmentViewModel
-                                         {
-                                             CriteriaId = x.BadgeCriteria.Id,
-                                             CriteriaDetails = x.BadgeCriteria.Details,
-                                             Comment = x.Comment,
-                                             Details =
-                                                 x.Experience == null
-                                                     ? x.SupportingWork.Description
-                                                     : x.Experience.Name,
-                                             WorkId = x.Experience == null ? x.SupportingWork.Id : x.Experience.Id,
-                                             WorkType = x.Experience == null ? "work" : "experience"
-                                         })
+                                             {
+                                                 CriteriaId = x.BadgeCriteria.Id,
+                                                 CriteriaDetails = x.BadgeCriteria.Details,
+                                                 Comment = x.Comment,
+                                                 Details =
+                                                     x.Experience == null
+                                                         ? x.SupportingWork.Description
+                                                         : x.Experience.Name,
+                                                 WorkId = x.Experience == null ? x.SupportingWork.Id : x.Experience.Id,
+                                                 WorkType = x.Experience == null ? "work" : "experience"
+                                             })
                                      .ToList();
 
-            var criteriaGroup = from f in fulfillments
-                                group f by new {f.CriteriaId, f.CriteriaDetails}
-                                into criteria
-                                select
-                                    new
-                                        {
-                                            criteria.Key,
-                                            Fulfillments = criteria.Select(x => new {x.Comment, x.Details, x.WorkId, x.WorkType})
-                                        };
+                var criteriaGroup = from c in badgeCriteria
+                                     select
+                                         new
+                                             {
+                                                 Criteria = new {c.Id, c.Details},
+                                                 Fulfillments =
+                                         fulfillments.Where(x => x.CriteriaId == c.Id)
+                                                     .Select(x => new {x.Comment, x.Details, x.WorkId, x.WorkType})
+                                             };
 
-            return new JsonNetResult(criteriaGroup.ToList());
+                return new JsonNetResult(criteriaGroup.ToList());
+            }
+            else
+            {
+                return
+                    new JsonNetResult(
+                        badgeCriteria.Select(x => new {Critiera = new {x.Id, x.Details}, Fulfillments = new string[0]})); 
+            }
         }
 
         /// <summary>
