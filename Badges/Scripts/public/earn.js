@@ -42,7 +42,7 @@
                 badges.Associate.addCriterion(v);
             });
             
-            workIsotope = $('#associated-work').isotope({
+            workIsotope = $('.associated-work').isotope({
                 // options
                 itemSelector: '.work-item',
                 layoutMode: 'masonry'
@@ -148,7 +148,7 @@
     
     function recomputeAssociationsIsotope() {
         workIsotope.isotope('destroy'); //TODO: (maybe redo layout on modal close?)
-        workIsotope = $('#associated-work').isotope({
+        workIsotope = $('.associated-work').isotope({
             // options
             itemSelector: '.work-item',
             layoutMode: 'masonry'
