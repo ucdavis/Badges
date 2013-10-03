@@ -337,33 +337,36 @@ namespace Badges.Controllers
 
         private void AssociateWorkWithCriterion(BadgeSubmission submission, IEnumerable<BadgeAssociatedWorkModel> criterion)
         {
-            foreach (var criterionAssocaition in criterion)
+            foreach (var criterionAssociation in criterion)
             {
-                var criteria = RepositoryFactory.BadgeCriteriaRepository.GetById(criterionAssocaition.Id);
+                var criteria = RepositoryFactory.BadgeCriteriaRepository.GetById(criterionAssociation.Id);
 
-                if (criterionAssocaition.Experience != null)
+                if (criterionAssociation.Work != null)
                 {
-                    foreach (var experience in criterionAssocaition.Experience.Distinct())
+                    foreach (var workAssociation in criterionAssociation.Work)
                     {
-                        submission.AddFulfillment(new BadgeFulfillment
+                        if (workAssociation.Experience.HasValue)
                         {
-                            Comment = criterionAssocaition.Comment,
-                            BadgeCriteria = criteria,
-                            Experience = RepositoryFactory.ExperienceRepository.GetById(experience)
-                        });
-                    }
-                }
+                            submission.AddFulfillment(new BadgeFulfillment
+                                {
+                                    Comment = workAssociation.Comment,
+                                    BadgeCriteria = criteria,
+                                    Experience =
+                                        RepositoryFactory.ExperienceRepository.GetById(workAssociation.Experience.Value)
+                                });
 
-                if (criterionAssocaition.Work != null)
-                {
-                    foreach (var work in criterionAssocaition.Work.Distinct())
-                    {
-                        submission.AddFulfillment(new BadgeFulfillment
+                        }
+
+                        if (workAssociation.Work.HasValue)
                         {
-                            Comment = criterionAssocaition.Comment,
-                            BadgeCriteria = criteria,
-                            SupportingWork = RepositoryFactory.SupportingWorkRepository.GetById(work)
-                        });
+                            submission.AddFulfillment(new BadgeFulfillment
+                                {
+                                    Comment = workAssociation.Comment,
+                                    BadgeCriteria = criteria,
+                                    SupportingWork =
+                                        RepositoryFactory.SupportingWorkRepository.GetById(workAssociation.Work.Value)
+                                });
+                        }
                     }
                 }
             }

@@ -62,8 +62,8 @@
                                     <div class="work-item">
                                         <img src="../../Content/img/test-frictionclimb.jpg" alt="" />
                                         <h4 data-bind="html: details"></h4>
-                                        <input type="hidden" data-bind="value: workid, attr: { name: 'criterion[' + $parentContext.$index() + '].' + worktype }" />
-                                        <input type="text" placeholder="Comments" data-bind="value: comment, attr: { name: 'criterion['+ $index() +'].comment' }" />
+                                        <input type="hidden" data-bind="value: workid, attr: { name: 'criterion[' + $parentContext.$index() + '].work[' + $index() + '].' + worktype }" />
+                                        <input type="text" placeholder="Comments" data-bind="value: comment, attr: { name: 'criterion['+ $index() +'].work['+ $index() +'].comment' }" />
                                         <div class="work-actions">
                                             <a href="view" class="view" target="_blank" data-bind="attr: { href: '@(Html.Raw(Url.Action("ViewExperience", "Student", new { area = string.Empty })))/' + experienceid }"><i class="icon-eye-open"></i></a>
                                             <a href="comment" class="comment"><i class="icon-comment"></i></a>
