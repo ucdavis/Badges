@@ -43,49 +43,41 @@
         </div>
     </div>
     <div class="row">
-        <div id="badge-criteria" class="col-md-12">
-            @for (var i = 0; i < Model.BadgeCriterias.Count; i++)
-            {
-                var criterion = Model.BadgeCriterias[i];
-                var fulfillments = Model.Fulfillments.Where(x => x.CriteriaId == criterion.Id);
+        <div id="badge-criteria" class="col-md-12" data-bind="foreach: criteria">
                 <div class="row criterion">
                     <div class="col-md-3">
                         <div class="associated-work-container">
-                            <h4>#@(i + 1)</h4> 
-                            <blockquote><p>@criterion.Details</p></blockquote>             
-                            <input type="hidden" name="@string.Format("criterion[{0}].Id", i)" value="@criterion.Id"/>
+                            <h4>#<span data-bind="html: $index() + 1"></span></h4> 
+                            <blockquote><p data-bind="html: details"></p></blockquote>             
+                            <input type="hidden" data-bind="value: id, attr: {name: 'criterion[' + $index() + '].Id' }" />
 
                             <div class="form-actions">
-                                <a href="#associate-work" data-toggle="modal" data-criterion="@criterion.Details" class="btn btn-success associate-modal"><i class="icon-plus"></i> Add Work</a>
+                                <a href="#associate-work" data-toggle="modal" data-bind="click: function (data) { $root.associateWork($index(), data) }" class="btn btn-success associate-modal"><i class="icon-plus"></i> Add Work</a>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-9">
                         <div class="associated-work-items">
-                            <div class="associated-work" id="associated-work" data-index="@i">
-                                @foreach (var fulfillment in fulfillments)
-                                {
+                            <div class="associated-work" data-bind="foreach: fulfillments">
                                     <div class="work-item">
                                         <img src="../../Content/img/test-frictionclimb.jpg" alt="" />
-                                        <h4>@fulfillment.Details</h4>
-                                        <input type="hidden" name="@string.Format("criterion[{0}].{1}", i, fulfillment.WorkType)" value="@fulfillment.WorkId" />
-                                        <input type="text" placeholder="Comments" name="@string.Format("criterion[{0}].comment", i)" value="@fulfillment.Comment" />
+                                        <h4 data-bind="html: details"></h4>
+                                        <input type="hidden" data-bind="value: workid, attr: { name: 'criterion[' + $parentContext.$index() + '].work[' + $index() + '].' + worktype }" />
+                                        <input type="text" placeholder="Comments" data-bind="value: comment, attr: { name: 'criterion['+ $index() +'].work['+ $index() +'].comment' }" />
                                         <div class="work-actions">
-                                            <a href="view" class="view"><i class="icon-eye-open"></i></a>
+                                            <a href="view" class="view" target="_blank" data-bind="attr: { href: '@(Html.Raw(Url.Action("ViewExperience", "Student", new { area = string.Empty })))/' + experienceid }"><i class="icon-eye-open"></i></a>
                                             <a href="comment" class="comment"><i class="icon-comment"></i></a>
-                                            <a href="delete" class="delete"><i class="icon-trash"></i></a>
+                                            <a href="delete" class="delete" data-bind="click: $parent.removeFulfillment"><i class="icon-trash"></i></a>
                                         </div>
                                     </div>
-                                }
                             </div>
-                                <div class="no-work-til-brooklyn">
-                                    <h3>Nothing to see here</h3>
-                                    <p>Get started associating work and experiences with that big green button to the left there.</p>
-                                </div>
+                            <div class="no-work-til-brooklyn" data-bind="visible: fulfillments().length === 0">
+                                <h3>Nothing to see here</h3>
+                                <p>Get started associating work and experiences with that big green button to the left there.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            }
         </div>
     </div>
     <div class="row">
@@ -111,16 +103,14 @@
 <div id="associate-work" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="associate-work-label" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-          
             <div class="modal-header">
                 <div class="row">
                     <div class="col-md-1">
-                        <!-- Hey Scott, can this show the current criterion's #? -->
-                        <span class="criterion-number">#X</span>
+                        <span class="criterion-number">#<span data-bind="html: criteriaIndex"></span></span>
                     </div>
                     <div class="col-md-10">
                         <h3 id="associate-work-label">Associate work for this criteria</h3>
-                        <p id="current-criterion"></p>
+                        <p id="current-criterion" data-bind="html: criteriaDetails"></p>
                     </div>
                     <div class="col-md-1">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -142,8 +132,8 @@
                             <div class="panel-body">
                                 <div class="row">
                                     <div class="col-md-5 experience-col">
-                                        <a href="#" class="association" data-bind="attr: { id: id, 'data-text': name }" data-type="experience">
-                                            <img alt="Experience Picture" data-bind="attr: { src: coverImageUrl }" display: block;"/>
+                                        <a href="#" class="association" data-bind="click: associateExperience, attr: { id: id, 'data-text': name }" data-type="experience">
+                                            <img alt="Experience Picture" data-bind="attr: { src: coverImageUrl }" style="display: block;"/>
                                         </a>
                                         <h4 class="panel-title">
                                             <a class="accordion-toggle" data-toggle="collapse" data-parent="#experience-accordion" data-bind="html: name, attr: { href: '#collapse' + $index() }"></a>
@@ -153,19 +143,20 @@
                                     <div class="col-md-7 work-col">
                                         <ul class="experience-contents nav nav-pills" data-bind="foreach: work">
                                             <li class="potential work-item">
-                                                <a href="#" class="association" data-bind="attr: { id: Id, 'data-text': Description, 'data-worktype': Type }" data-type="work">
+                                                <a href="#" class="association" data-bind="click: $parent.associateWork, attr: { id: Id, 'data-text': Description, 'data-worktype': Type }" data-type="work">
                                                     <strong data-bind="html: Type"></strong> <span data-bind="html: Description"></span>
                                                 </a>
                                             </li>
                                         </ul>
                                     </div>
                                 </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-default" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i> Close</button>
+                <div class="modal-footer">
+                    <button class="btn btn-default" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i> Close</button>
+                </div>
             </div>
         </div>
     </div>
@@ -180,27 +171,21 @@
 
     <script>
         Badges.options({
-             MyExperiencesUrl: '@Html.Raw(Url.Action("MyExperiences"))',
-             MyWorkUrl: '@Html.Raw(Url.Action("MyWork"))',
-             TypeaheadExperiencesUrl: '@Html.Raw(Url.Action("MyExperiences", "Json"))',
-             TypeaheadWorkUrl: '@Html.Raw(Url.Action("MyWork", "Json"))'
+            CriteriaUrl: '@Html.Raw(Url.Action("Fulfillments", new {id = Model.Badge.Id}))',
+            MyExperiencesUrl: '@Html.Raw(Url.Action("MyExperiences"))',
+            MyWorkUrl: '@Html.Raw(Url.Action("MyWork"))',
+            TypeaheadExperiencesUrl: '@Html.Raw(Url.Action("MyExperiences", "Json"))',
+            TypeaheadWorkUrl: '@Html.Raw(Url.Action("MyWork", "Json"))'
         });
 
         $(function() {
             Badges.init();
-
-            $('#associated-work').isotope({
-                // options
-                itemSelector: '.work-item',
-                layoutMode: 'masonry'
-            });
 
             $('.experience-contents').isotope({
                 // options
                 itemSelector: '.potential.work-item',
                 layoutMode: 'masonry'
             });
-
         });
     </script>
 }
