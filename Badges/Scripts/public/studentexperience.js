@@ -30,6 +30,21 @@
             $("#work-type").val(worktype);
             $("#work-helptext").html(this.getAttribute("data-helptext"));
         });
+
+        $("#work-file").on('change', 'input:file', function(e) {
+            var files = e.currentTarget.files;
+            
+            if (files.length > 0) {
+                var fileSize = ((files[0].size / 1024) / 1024).toFixed(4); //file size in MB
+
+                if (fileSize > 10.0) {
+                    $("#upload-error").html("Sorry, the maximum upload size is 10.0MB").show();
+                    this.value = null;
+                } else {
+                    $("#upload-error").empty().hide();
+                }
+            }
+        });
     };
 
 }(window.Badges = window.Badges || {}, jQuery));
