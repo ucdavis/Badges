@@ -10,7 +10,7 @@
     badges.init = function () {
         bindModalEvents();
         createModels();
-        ko.applyBindings(badges.Associate, document.getElementById("badge-criteria"));
+        ko.applyBindings(badges.Associate, document.getElementById("form-criteria"));
         ko.applyBindings(badges.Support, document.getElementById('associate-work'));
         getCriteria();
         getExperiences(options.MyExperiencesUrl, {});
@@ -143,6 +143,15 @@
 
                 recomputeAssociationsIsotope();
             };
+
+            self.criteriaSatisfied = ko.computed(function() {
+                //make sure each criteria has >0 fulfillments
+                var satisfied = true;
+                $.each(self.criteria(), function(i, v) {
+                    if (v.fulfillments().length === 0) satisfied = false;
+                });
+                return satisfied;
+            });
         };
     }
     

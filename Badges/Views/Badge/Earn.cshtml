@@ -16,7 +16,7 @@
     </style>
 }
 
-@using (Html.BeginForm("Earn", "Badge", FormMethod.Post))
+@using (Html.BeginForm("Earn", "Badge", FormMethod.Post, new { id = "form-criteria" }))
 {
     @Html.AntiForgeryToken()
     <div class="row">
@@ -92,7 +92,7 @@
         <div class="col-md-10 col-md-offset-1">
             <div class="form-actions">
                 <button type="submit" class="btn btn-primary"><i class="icon-ok"></i> Save</button>
-                <button type="submit" class="btn btn-success" formaction="@Url.Action("Submit", "Badge", new { id = Model.Badge.Id })"><i class="icon-flag"></i> Submit</button>
+                <button type="submit" class="btn btn-success" data-bind="disable: !criteriaSatisfied()" formaction="@Url.Action("Submit", "Badge", new { id = Model.Badge.Id })"><i class="icon-flag"></i> Submit</button>
                 <a href="#" class="btn btn-default"><i class="icon-remove"></i> Cancel</a>
             </div>
         </div>
