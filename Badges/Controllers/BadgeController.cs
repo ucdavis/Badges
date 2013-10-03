@@ -134,6 +134,7 @@ namespace Badges.Controllers
 
                 Message = "Existing badge progress found-- you can continue associating work and experiences below";
 
+                model.BadgeApplication = existingBadgeApplication;
                 model.Reflection = existingBadgeApplication.Reflection;
 
                 model.Fulfillments =
@@ -223,6 +224,73 @@ namespace Badges.Controllers
         }
 
         /// <summary>
+        /// Return fulfillments for a given badge
+        /// </summary>
+        /// <param name="id">BadgeId</param>
+        /// <returns></returns>
+        public ActionResult Fulfillments(Guid id)
+        {
+            var badge = RepositoryFactory.BadgeRepository.GetNullableById(id);
+
+            if (badge == null)
+            {
+                return HttpNotFound();
+            }
+
+            var badgeCriteria = badge.BadgeCriterias.ToList();
+            
+            var badgeSubmission =
+                RepositoryFactory.BadgeSubmissionRepository.Queryable.SingleOrDefault(
+                    x => x.Badge.Id == badge.Id && x.Creator.Identifier == CurrentUser.Identity.Name);
+
+            if (badgeSubmission != null)
+            {
+                var fulfillments =
+                    RepositoryFactory.BadgeFulfillmentRepository.Queryable.Where(
+                        x => x.BadgeSubmission.Id == badgeSubmission.Id)
+                                     .Select(
+                                         x =>
+                                         new BadgeFulfillmentViewModel
+                                             {
+                                                 CriteriaId = x.BadgeCriteria.Id,
+                                                 CriteriaDetails = x.BadgeCriteria.Details,
+                                                 Comment = x.Comment,
+                                                 Details =
+                                                     x.Experience == null
+                                                         ? x.SupportingWork.Description
+                                                         : x.Experience.Name,
+                                                 ExperienceId =
+                                                     x.Experience == null
+                                                         ? x.SupportingWork.Experience.Id
+                                                         : x.Experience.Id,
+                                                 WorkId = x.Experience == null ? x.SupportingWork.Id : x.Experience.Id,
+                                                 WorkType = x.Experience == null ? "work" : "experience",
+                                                 SupportType =
+                                                     x.Experience == null ? x.SupportingWork.Type : string.Empty
+                                             })
+                                     .ToList();
+
+                var criteriaGroup = from c in badgeCriteria
+                                     select
+                                         new
+                                             {
+                                                 Criteria = new {c.Id, c.Details},
+                                                 Fulfillments =
+                                         fulfillments.Where(x => x.CriteriaId == c.Id)
+                                                     .Select(x => new {x.Comment, x.Details, x.WorkId, x.ExperienceId, x.WorkType, x.SupportType})
+                                             };
+
+                return new JsonNetResult(criteriaGroup.ToList());
+            }
+            else
+            {
+                return
+                    new JsonNetResult(
+                        badgeCriteria.Select(x => new {Criteria = new {x.Id, x.Details}, Fulfillments = new string[0]})); 
+            }
+        }
+
+        /// <summary>
         /// Returns work associated with this student, optionally filtered by a 'search' string
         /// </summary>
         /// <param name="filter">Currently filters by name of experience</param>
@@ -269,33 +337,36 @@ namespace Badges.Controllers
 
         private void AssociateWorkWithCriterion(BadgeSubmission submission, IEnumerable<BadgeAssociatedWorkModel> criterion)
         {
-            foreach (var criterionAssocaition in criterion)
+            foreach (var criterionAssociation in criterion)
             {
-                var criteria = RepositoryFactory.BadgeCriteriaRepository.GetById(criterionAssocaition.Id);
+                var criteria = RepositoryFactory.BadgeCriteriaRepository.GetById(criterionAssociation.Id);
 
-                if (criterionAssocaition.Experience != null)
+                if (criterionAssociation.Work != null)
                 {
-                    foreach (var experience in criterionAssocaition.Experience.Distinct())
+                    foreach (var workAssociation in criterionAssociation.Work)
                     {
-                        submission.AddFulfillment(new BadgeFulfillment
+                        if (workAssociation.Experience.HasValue)
                         {
-                            Comment = criterionAssocaition.Comment,
-                            BadgeCriteria = criteria,
-                            Experience = RepositoryFactory.ExperienceRepository.GetById(experience)
-                        });
-                    }
-                }
+                            submission.AddFulfillment(new BadgeFulfillment
+                                {
+                                    Comment = workAssociation.Comment,
+                                    BadgeCriteria = criteria,
+                                    Experience =
+                                        RepositoryFactory.ExperienceRepository.GetById(workAssociation.Experience.Value)
+                                });
 
-                if (criterionAssocaition.Work != null)
-                {
-                    foreach (var work in criterionAssocaition.Work.Distinct())
-                    {
-                        submission.AddFulfillment(new BadgeFulfillment
+                        }
+
+                        if (workAssociation.Work.HasValue)
                         {
-                            Comment = criterionAssocaition.Comment,
-                            BadgeCriteria = criteria,
-                            SupportingWork = RepositoryFactory.SupportingWorkRepository.GetById(work)
-                        });
+                            submission.AddFulfillment(new BadgeFulfillment
+                                {
+                                    Comment = workAssociation.Comment,
+                                    BadgeCriteria = criteria,
+                                    SupportingWork =
+                                        RepositoryFactory.SupportingWorkRepository.GetById(workAssociation.Work.Value)
+                                });
+                        }
                     }
                 }
             }
