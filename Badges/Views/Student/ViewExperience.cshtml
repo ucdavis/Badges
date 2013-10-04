@@ -175,7 +175,8 @@
           
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h3 id="supporting-work-label">Add Supporting Work</h3>
+                <i class="icon-add"></i>
+                <h3 id="supporting-work-label">Add supporting work</h3>
             </div>
             @using (Html.BeginForm("AddSupportingWork", "Student", new { id = Model.Experience.Id }, FormMethod.Post, new { enctype = "multipart/form-data" }))
             {
@@ -185,7 +186,7 @@
                     <fieldset id="supporting-work-fields">
                         <p id="work-helptext" class="well"></p>
                         <div id="work-description" class="form-group">
-                            <label>Please enter a short description of this work</label>
+                            <label>What made this experience impactful? Write out the details of your experience that shaped your learning.</label>
                             <input type="text" name="description" class="form-control" placeholder="Work Description" maxlength="140" data-val="true" data-val-required="Work Description Is Required"></input>
                             <span class="field-validation-valid" data-valmsg-for="description" data-valmsg-replace="true"></span>
                         </div>
