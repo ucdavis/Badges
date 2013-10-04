@@ -1,0 +1,76 @@
+
+/* ------------------------------------------------ */
+/* ----- Styles for the informational website ----- */
+/* ------------------------------------------------ */
+
+body {
+	line-height: 1.75em;
+}
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+	line-height: 1.75em;
+}
+.btn {
+	border-radius: 0px;
+}
+	.btn-primary {
+		background: #1b7593;
+		border-color: #1b7593;
+	}
+	.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open .dropdown-toggle.btn-primary {
+		background: #234a5a;
+		border-color: #234a5a;
+	}
+
+.work .row div p {
+	font-weight: 300;
+	padding: 0;
+	font-size: 1em;
+}
+
+.background {
+	background: fixed 0 0 / 100% auto #292C37 url(img/bg-couchman.jpg) no-repeat;	
+}
+.section-landing .jumbotron {
+
+	background: fixed 0 0 / 100% auto #292C37 url(img/bg-couchman.jpg) no-repeat;
+	background: transparent;
+	background-size: 100%;
+}
+	.section-landing .jumbotron.learning {
+		background: url(img/bg-lamb.jpg) no-repeat;
+		background-size: 100%;
+	}
+
+.jumbotron {margin-bottom: 0px;}
+.jumbotron.work {
+	background: url(img/bg.jpg) top center;
+	margin-bottom: 0px;
+}
+
+.section-landing .jumbotron .container {
+	background: transparent;
+	min-height: 300px;
+}
+	.jumbotron .overlay {
+		min-height: 200px;
+	}
+	.overlay h3 {
+		font-weight: 700;
+		letter-spacing: 1px;
+	}
+	.jumbotron .actions {
+		margin-bottom: 1em;
+	}
+
+	.jumbotron.learning .actions {
+		margin-top: 1em;
+	}
+	.jumbotron.learning .actions h3 {
+		color: #fff;
+		background: rgba(33,33,33,.6);
+		padding: .25em .5em;
+	}
+
+.section-landing .work div {
+	background: transparent;
+}
