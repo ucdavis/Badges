@@ -263,10 +263,10 @@ blockquote {
 		color: #8fb897;
 		font-size: 1.1em;
 		display: block;
-		height: 150px;
+		height: 80px;
 	}
 	#add-work li a {
-		width: 164px;
+		width: 135px;
 		height: 60px;
 		margin-right: 20px;
 	}
@@ -285,6 +285,10 @@ blockquote {
 		background: #4b955b;
 	}
 	.work-dash .navbar, .work-dash .navbar div {padding-left: 0;}
+
+
+.audio audio {width: 100%; position: relative; top: -8px;}
+.audio p {padding-top: 0;}
 
 /* .container.work {padding: 0px;} /* --- figure out a diff way so cols still align --- */
 .work .row div {

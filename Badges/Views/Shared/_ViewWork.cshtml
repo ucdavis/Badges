@@ -26,10 +26,12 @@
         }
         break;
     case SupportingWorkTypes.Link:
-        <a href="@Model.Url" target="_blank">@Model.Url <i class="icon-external-link"></i></a>
+        
+        <i class="icon-link"></i> <span>@Model.Title</span><a href="@Model.Url" target="_blank">@Model.Url</a>
         break;
     case SupportingWorkTypes.File:
-        <a href="@Url.Action("ViewWorkFile", "Experience", new {id = Model.Id})">View @Model.Name</a>
+        <a href="@Url.Action("ViewWorkFile", "Experience", new {id = Model.Id})">@Model.Name</a><i class="icon-download"></i> 
+        <span class="footer"><a href="@Url.Action("ViewWorkFile", "Experience", new {id = Model.Id})">@Model.Name</a></span>
         break;
     case SupportingWorkTypes.Audio:
         <audio controls>
