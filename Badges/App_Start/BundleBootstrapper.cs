@@ -51,6 +51,11 @@ namespace Badges.App_Start
                             .Include("~/Content/chosen.css")
                             .Include("~/Content/badges.css"));
 
+            bundles.Add(new StyleBundle("~/Content/static")
+                            .Include("~/Content/bootstrap/bootstrap.css")
+                            .Include("~/Content/badges.css")
+                            .Include("~/Content/static.css"));
+
             bundles.Add(new StyleBundle("~/Content/typeahead").Include("~/Content/typeahead-bootstrap.css"));
             
             bundles.Add(new StyleBundle("~/Content/datepicker").Include("~/Content/bootstrap-datepicker.css"));
