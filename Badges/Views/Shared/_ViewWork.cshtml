@@ -27,7 +27,7 @@
         break;
     case SupportingWorkTypes.Link:
         
-        <i class="icon-link"></i> <span>@Model.Title</span><a href="@Model.Url" target="_blank">@Model.Url</a>
+        <i class="icon-link"></i> <span>@Model.Description</span><a href="@Model.Url" target="_blank">@Model.Url</a>
         break;
     case SupportingWorkTypes.File:
         <a href="@Url.Action("ViewWorkFile", "Experience", new {id = Model.Id})">@Model.Name</a><i class="icon-download"></i> 
