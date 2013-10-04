@@ -352,8 +352,15 @@
     <Content Include="Content\images\climbingbadge.png" />
     <Content Include="Content\images\debut_light.png" />
     <Content Include="Content\images\logo.png" />
+    <Content Include="Content\img\badge-type-1.png" />
+    <Content Include="Content\img\bg-couchman.jpg" />
+    <Content Include="Content\img\bg-farm.jpg" />
     <Content Include="Content\img\bg-header.jpg" />
+    <Content Include="Content\img\bg-lamb.jpg" />
     <Content Include="Content\img\bg.jpg" />
+    <Content Include="Content\img\btn-plus-light.png" />
+    <Content Include="Content\img\exp-placeholder.jpg" />
+    <Content Include="Content\img\iMac-badges.png" />
     <Content Include="Content\img\logo-safs.png" />
     <Content Include="Content\img\profile-cricket.jpg" />
     <Content Include="Content\img\profile-default.jpg" />
