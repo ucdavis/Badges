@@ -321,7 +321,6 @@ blockquote {
 		#work-container .link p {display: none;}
 
 	#work-container .file {
-
 	}
 		#work-container .file a {
 			background: #783032;
@@ -330,6 +329,8 @@ blockquote {
 		}
 		#work-container .file i {color: rgba(255,255,255,.25);}
 		#work-container .file p {display: none;}
+
+	#work-container .text {}
 
 .audio audio {width: 100%; position: relative; top: -8px;}
 .audio p {padding-top: 0;}
