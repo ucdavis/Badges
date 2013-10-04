@@ -263,9 +263,10 @@ blockquote {
 		color: #8fb897;
 		font-size: 1.1em;
 		display: block;
+		height: 150px;
 	}
 	#add-work li a {
-		width: 140px;
+		width: 164px;
 		height: 60px;
 		margin-right: 20px;
 	}
@@ -283,6 +284,7 @@ blockquote {
 		color: #fff;
 		background: #4b955b;
 	}
+	.work-dash .navbar, .work-dash .navbar div {padding-left: 0;}
 
 /* .container.work {padding: 0px;} /* --- figure out a diff way so cols still align --- */
 .work .row div {
