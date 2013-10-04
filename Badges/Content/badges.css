@@ -289,31 +289,47 @@ blockquote {
 #work-container {}
 
 	#work-container .link {
-		padding: .5em .1em;
 	}
-	#work-container .link i {
-		-moz-transform: scaleX(-1);
-        -o-transform: scaleX(-1);
-        -webkit-transform: scaleX(-1);
-        transform: scaleX(-1);
-        filter: FlipH;
-        -ms-filter: "FlipH";
-	}
-	#work-container .link a {
-		background: #234a5a;
-		color: #fff;
-		text-transform: uppercase;
-		letter-spacing: 1px;
-	}
-	#work-container .link span {
-		font-size: 1.75em; 
-		display: block;
-		text-transform: none;
-		letter-spacing: 0px;
-		font-weight: 500;
-	}
+		#work-container .link i {
+			-moz-transform: scaleX(-1);
+	        -o-transform: scaleX(-1);
+	        -webkit-transform: scaleX(-1);
+	        transform: scaleX(-1);
+	        filter: FlipH;
+	        -ms-filter: "FlipH";
+	        display: inline-block;
+	        color: #234a5a;
+	        padding: .5em .1em;
+		}
+		#work-container .link a {
+			background: #234a5a;
+			color: #fff;
+			text-transform: uppercase;
+			letter-spacing: 1px;
+			display: inline-block;
+			padding: .5em .1em;
+			font-size: .8em;
+		}
+		#work-container .link span {
+			font-size: 1.75em; 
+			display: block;
+			text-transform: none;
+			letter-spacing: 0px;
+			font-weight: 500;
+		}
 
-	#work-container .link p {display: none;}
+		#work-container .link p {display: none;}
+
+	#work-container .file {
+
+	}
+		#work-container .file a {
+			background: #783032;
+			color: #fff;
+			font-weight: 500;
+		}
+		#work-container .file i {color: rgba(255,255,255,.25);}
+		#work-container .file p {display: none;}
 
 .audio audio {width: 100%; position: relative; top: -8px;}
 .audio p {padding-top: 0;}
