@@ -301,7 +301,7 @@ blockquote {
 	        display: inline-block;
 	        color: #234a5a;
 	        text-align: center;
-	        width: 14%;
+	        width: 13%;
 	        padding-bottom: 0.75em;
 	        vertical-align: bottom;
 		}
@@ -354,10 +354,12 @@ blockquote {
 			font-size: 1.75em;
 			color: #fff;
 			margin-bottom: 0;
+			padding: .5em .5em 0em;
 		}
 		#work-container .text blockquote {
 			padding: .5em 1em;
 			margin-bottom: 0;
+			font-size: 1.25em;
 		}
 		#work-container .text p {display: none;}
 
@@ -378,6 +380,8 @@ blockquote {
 		font-weight: 800;
 		letter-spacing: 1.5px;
 		font-size: .8em;
+		padding: .5em 1em;
+		text-align: left;
 	}
 
 /* .container.work {padding: 0px;} /* --- figure out a diff way so cols still align --- */
