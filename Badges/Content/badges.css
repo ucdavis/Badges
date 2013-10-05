@@ -412,10 +412,11 @@ blockquote {
 	.outcomes {
 		margin-bottom: 1em;
 		color: #fff;
-		padding: 1em;
 	}
 		.outcomes h4 {
 			display: inline-block;
+			color: #fff;
+			padding: .25em 1em;
 		}
 		.outcomes p {
 			display: inline-block;
