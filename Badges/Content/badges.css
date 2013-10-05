@@ -264,6 +264,7 @@ blockquote {
 		font-size: 1.1em;
 		display: block;
 		height: 80px;
+		text-align: right;
 	}
 	#add-work li a {
 		width: 135px;
@@ -301,7 +302,8 @@ blockquote {
 	        color: #234a5a;
 	        text-align: center;
 	        width: 14%;
-	        vertical-align: middle;
+	        padding-bottom: 0.75em;
+	        vertical-align: bottom;
 		}
 		#work-container .link a {
 			background: #234a5a;
@@ -309,7 +311,7 @@ blockquote {
 			text-transform: uppercase;
 			letter-spacing: 1px;
 			display: inline-block;
-			padding: 1em;
+			padding: 1.25em 1em;
 			font-size: .75em;
 			width: 85%;
 		}
@@ -347,6 +349,11 @@ blockquote {
 		}
 
 	#work-container .text {}
+		#work-container .text h4 {}
+		#work-container .text blockquote {
+
+		}
+		#work-container .text p {display: none;}
 
 .audio audio {width: 100%; position: relative; top: -8px;}
 .audio p {padding-top: 0;}
