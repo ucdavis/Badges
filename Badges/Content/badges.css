@@ -294,6 +294,7 @@ blockquote {
 		margin: 0 1em 1em;
 		min-height: 50px;
 		background: #fff;
+		display: inline-block;
 	}
 
 	#work-container .link {
