@@ -293,7 +293,7 @@ blockquote {
 	#work-container.container {padding: 0;}
 
 	#work-container .work-item-box {
-		width: 31%;
+		/*width: 31%;*/
 		margin: 0 .5em 1em;
 		min-height: 50px;
 		background: #fff;
@@ -404,7 +404,7 @@ blockquote {
 	}
 
 	.feedback {
-		background: url(img/bg-feedback.jpg) top right no-repeat;
+		background: #234a5a url(img/bg-feedback.jpg) top right no-repeat;
 	}
 		.feedback .quote {
 			color: #fff;
