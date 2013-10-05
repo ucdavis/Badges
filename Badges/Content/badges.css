@@ -437,7 +437,7 @@ blockquote {
 		}
 		.feedback .quote blockquote {
 			margin-bottom: 0;
-			text-indent: -.25em;
+			text-indent: -.3em;
 		}
 		.feedback .quote blockquote:before {
 			content: '"';
@@ -445,6 +445,9 @@ blockquote {
 			font-size: 1.75em;	
 			position: relative;
 			left: -.25em;
+		}
+		.feedback .quote blockquote:after {
+			content: '"';
 		}
 		.feedback .quote .author {
 			text-align: right;
