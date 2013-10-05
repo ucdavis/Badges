@@ -292,8 +292,8 @@ blockquote {
 }
 
 	#work-container .work-item-box {
-		width: 33%;
-		margin: 0 1em 1em;
+		width: 31%;
+		margin: 0 .5em 1em;
 		min-height: 50px;
 		background: #fff;
 		display: inline-block;
@@ -337,6 +337,7 @@ blockquote {
 		#work-container .link p {display: none;}
 
 	#work-container .file {
+		padding-bottom: .25em;
 	}
 		#work-container .file a {
 			background: #783032;
@@ -350,6 +351,7 @@ blockquote {
 			color: rgba(255,255,255,.25);
 			display: block;
 			text-align: center;
+			padding-top: .5em;
 		}
 		#work-container .file p {display: none;}
 		#work-container .footer a {
@@ -399,6 +401,16 @@ blockquote {
 		padding: .5em 1em;
 		text-align: left;
 	}
+
+	.feedback .quote {
+		color: #fff;
+		font-size: 1.5em;
+	}
+		.feedback .quote blockquote:before {
+			content: '"';
+			vertical-align: top;
+			font-size: 1.75em;
+		}
 
 /* .container.work {padding: 0px;} /* --- figure out a diff way so cols still align --- */
 .work .row div {
