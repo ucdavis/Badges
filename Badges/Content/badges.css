@@ -293,7 +293,7 @@ blockquote {
 	#work-container.work .row div {margin: 0; background: transparent; padding: 0 15px;}
 	#work-container.container {padding: 0;}
 
-	#work-container .work-item-box {
+	#work-container.work .row div.work-item-box {
 		/*width: 31%;
 		margin: 0 .5em 1em;*/
 		min-height: 50px;
@@ -365,7 +365,7 @@ blockquote {
 			font-size: .8em;
 		}
 
-	#work-container .text.work-item-box {
+	#work-container.work .row div.text.work-item-box {
 		background: #b1693d;
 	}
 		#work-container .text h4 {
