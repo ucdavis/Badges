@@ -370,7 +370,7 @@ blockquote {
 			font-size: 1.75em;
 			color: #fff;
 			margin-bottom: 0;
-			padding: .5em .5em 0em;
+			padding: 0.5em 0.65em 0;
 		}
 		#work-container .text blockquote {
 			padding: .5em 1em;
@@ -383,6 +383,9 @@ blockquote {
 		#work-container .photo img {
 			max-width: 100%;
 		}
+
+	#work-container .audio {margin-top: 1em;}
+		#work-container .audio p {padding-top: 0;}
 
 .audio audio {width: 100%; position: relative; top: -8px;}
 .audio p {padding-top: 0;}
@@ -405,31 +408,36 @@ blockquote {
 		text-align: left;
 	}
 
+	.outcomes {
+		margin-bottom: 1em;
+	}
+
 	.feedback {
 		background: #234a5a url(img/bg-feedback.jpg) top right no-repeat;
 	}
 		.feedback .quote {
 			color: #fff;
 			font-size: 1.5em;
+			padding: .25em;
 		}
 		.feedback .quote blockquote {
 			margin-bottom: 0;
-			text-indent: -.5em;
+			text-indent: -.1em;
 		}
 		.feedback .quote blockquote:before {
 			content: '"';
 			vertical-align: top;
 			font-size: 1.75em;	
 			position: relative;
-			left: -.5em;
+			left: -.1em;
 		}
 		.feedback .quote .author {
 			text-align: right;
 			text-transform: uppercase;
 			font-size: .75em;
 			font-weight: 800;
-			margin-bottom: .25em;
-			padding-right: 1em;
+			padding-right: .5em;
+			padding-bottom: .25em;
 		}
 
 /* .container.work {padding: 0px;} /* --- figure out a diff way so cols still align --- */
