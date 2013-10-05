@@ -362,7 +362,9 @@ blockquote {
 			font-size: .8em;
 		}
 
-	#work-container .text {}
+	#work-container .text.work-item-box {
+		background: #b1693d;
+	}
 		#work-container .text h4 {
 			font-weight: 500;
 			font-size: 1.75em;
@@ -412,13 +414,14 @@ blockquote {
 		}
 		.feedback .quote blockquote {
 			margin-bottom: 0;
+			text-indent: -.5em;
 		}
 		.feedback .quote blockquote:before {
 			content: '"';
 			vertical-align: top;
 			font-size: 1.75em;	
 			position: relative;
-			left: -15px;
+			left: -.5em;
 		}
 		.feedback .quote .author {
 			text-align: right;
@@ -426,6 +429,7 @@ blockquote {
 			font-size: .75em;
 			font-weight: 800;
 			margin-bottom: .25em;
+			padding-right: 1em;
 		}
 
 /* .container.work {padding: 0px;} /* --- figure out a diff way so cols still align --- */
