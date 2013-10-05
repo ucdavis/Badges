@@ -290,7 +290,7 @@ blockquote {
 #work-container {
 	vertical-align: top;
 }
-	#work-container.work .row div {margin: 0;}
+	#work-container.work .row div {margin: 0; width: 100%;}
 	#work-container.container {padding: 0;}
 
 	#work-container .work-item-box {
