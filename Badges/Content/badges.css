@@ -293,8 +293,8 @@ blockquote {
 	#work-container.container {padding: 0;}
 
 	#work-container .work-item-box {
-		/*width: 31%;*/
-		margin: 0 .5em 1em;
+		/*width: 31%;
+		margin: 0 .5em 1em;*/
 		min-height: 50px;
 		background: #fff;
 		display: inline-block;
@@ -394,6 +394,7 @@ blockquote {
 	width: 100%;
 	display: block;
 	background: #234a5a;
+	padding-top: 1em;
 }
 	.outcomes a.btn, .feedback a.btn {
 		display: block;
@@ -410,7 +411,16 @@ blockquote {
 
 	.outcomes {
 		margin-bottom: 1em;
+		color: #fff;
+		padding: 1em;
 	}
+		.outcomes h4 {
+			display: inline-block;
+		}
+		.outcomes p {
+			display: inline-block;
+			font-size: .8em;
+		}
 
 	.feedback {
 		background: #234a5a url(img/bg-feedback.jpg) top right no-repeat;
@@ -422,14 +432,14 @@ blockquote {
 		}
 		.feedback .quote blockquote {
 			margin-bottom: 0;
-			text-indent: -.1em;
+			text-indent: -.25em;
 		}
 		.feedback .quote blockquote:before {
 			content: '"';
 			vertical-align: top;
 			font-size: 1.75em;	
 			position: relative;
-			left: -.1em;
+			left: -.25em;
 		}
 		.feedback .quote .author {
 			text-align: right;
