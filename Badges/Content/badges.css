@@ -197,7 +197,7 @@ blockquote {
 	border-top: 3px solid #fff;
 	height: 100px;
 	position: relative;
-	top: 25px;
+	top: 26px;
 }
 	.jumbotron .details .circlepic .name {
 		font-size: .55em;
@@ -293,6 +293,7 @@ blockquote {
 		width: 33%;
 		margin: 0 1em 1em;
 		min-height: 50px;
+		background: #fff;
 	}
 
 	#work-container .link {
@@ -368,6 +369,11 @@ blockquote {
 			font-size: 1.25em;
 		}
 		#work-container .text p {display: none;}
+
+	#work-container .photo {}
+		#work-container .photo img {
+			max-width: 100%;
+		}
 
 .audio audio {width: 100%; position: relative; top: -8px;}
 .audio p {padding-top: 0;}
