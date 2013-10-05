@@ -287,7 +287,9 @@ blockquote {
 	}
 	.work-dash .navbar, .work-dash .navbar div {padding-left: 0;}
 
-#work-container {}
+#work-container {
+	vertical-align: top;
+}
 
 	#work-container .work-item-box {
 		width: 33%;
@@ -295,6 +297,7 @@ blockquote {
 		min-height: 50px;
 		background: #fff;
 		display: inline-block;
+		vertical-align: top;
 	}
 
 	#work-container .link {
