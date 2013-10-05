@@ -349,14 +349,36 @@ blockquote {
 		}
 
 	#work-container .text {}
-		#work-container .text h4 {}
+		#work-container .text h4 {
+			font-weight: 500;
+			font-size: 1.75em;
+			color: #fff;
+			margin-bottom: 0;
+		}
 		#work-container .text blockquote {
-
+			padding: .5em 1em;
+			margin-bottom: 0;
 		}
 		#work-container .text p {display: none;}
 
 .audio audio {width: 100%; position: relative; top: -8px;}
 .audio p {padding-top: 0;}
+
+.outcomes, .feedback {
+	width: 100%;
+	display: block;
+	background: #234a5a;
+}
+	.outcomes a.btn, .feedback a.btn {
+		display: block;
+		width: 100%;
+		background: #b1693d;
+		color: #fff;
+		text-transform: uppercase;
+		font-weight: 800;
+		letter-spacing: 1.5px;
+		font-size: .8em;
+	}
 
 /* .container.work {padding: 0px;} /* --- figure out a diff way so cols still align --- */
 .work .row div {

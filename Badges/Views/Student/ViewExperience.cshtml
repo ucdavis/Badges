@@ -77,20 +77,24 @@
     </nav>
 </div>
 
-<div class="outcomes">
-    <a href="#outcome" data-toggle="modal" class="btn img-rounded">
-        <i class="icon-ok-sign"></i>
-        <small>Add Outcome</small>
-    </a>
-</div>
-<div class="feedback">
-    <a href="#feedback" data-toggle="modal" class="btn img-rounded">
-        <i class="icon-lightbulb"></i>
-        <small>Request Feedback</small>
-    </a>
-</div>
 
-@Html.Partial("_ExperienceWork")
+<div class="row">
+    <div class="col-md-9">
+    @Html.Partial("_ExperienceWork")
+    </div>
+    <div class="col-md-3">
+        <div class="outcomes">
+            <a href="#outcome" data-toggle="modal" class="btn">
+                Add a new outcome &raquo;
+            </a>
+        </div>
+        <div class="feedback">
+            <a href="#feedback" data-toggle="modal" class="btn">
+                Send a feedback request &raquo;
+            </a>
+        </div>
+    </div>
+</div>
 
 <!-- Modal -->
 <div id="outcome" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="outcome-label" aria-hidden="true">
@@ -184,9 +188,8 @@
                     @Html.AntiForgeryToken()
                     <input type="hidden" id="work-type" name="type" value="photo"/>
                     <fieldset id="supporting-work-fields">
-                        <p id="work-helptext" class="well"></p>
+                        <p id="work-helptext" class="well">What made this experience impactful?</p>
                         <div id="work-description" class="form-group">
-                            <label>What made this experience impactful? Write out the details of your experience that shaped your learning.</label>
                             <input type="text" name="description" class="form-control" placeholder="Work Description" maxlength="140" data-val="true" data-val-required="Work Description Is Required"></input>
                             <span class="field-validation-valid" data-valmsg-for="description" data-valmsg-replace="true"></span>
                         </div>
