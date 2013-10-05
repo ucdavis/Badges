@@ -413,10 +413,14 @@ blockquote {
 		margin-bottom: 1em;
 		color: #fff;
 	}
+		.outcomes .outcome {
+			padding-bottom: .5em;
+		}
 		.outcomes h4 {
 			display: inline-block;
 			color: #fff;
-			padding: .25em 1em;
+			padding: .25em .25em .25em 1em;
+			margin: 0;
 		}
 		.outcomes p {
 			display: inline-block;
