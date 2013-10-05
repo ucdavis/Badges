@@ -4,7 +4,7 @@
     <!--<div class="row">-->
         @foreach (var work in @Model.SupportingWorks)
         {
-            <div class="@work.Type work-item">
+            <div class="@work.Type work-item-box">
                 @Html.Partial("_ViewWork", work)
                 <p>@work.Description</p>
             </div>
