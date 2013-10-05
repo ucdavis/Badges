@@ -291,6 +291,8 @@ blockquote {
 
 	#work-container .work-item-box {
 		width: 33%;
+		margin: 0 1em 1em;
+		min-height: 50px;
 	}
 
 	#work-container .link {
