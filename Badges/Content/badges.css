@@ -290,6 +290,7 @@ blockquote {
 #work-container {
 	vertical-align: top;
 }
+	#work-container.work .row div {margin: 0;}
 	#work-container.container {padding: 0;}
 
 	#work-container .work-item-box {
@@ -313,8 +314,8 @@ blockquote {
 	        display: inline-block;
 	        color: #234a5a;
 	        text-align: center;
-	        width: 13%;
-	        padding-bottom: 0.75em;
+	        width: 14%;
+	        padding: 0.75em 0;
 	        vertical-align: bottom;
 		}
 		#work-container .link a {
@@ -323,9 +324,10 @@ blockquote {
 			text-transform: uppercase;
 			letter-spacing: 1px;
 			display: inline-block;
-			padding: 1.25em 1em;
+			padding: 1.5em 1em;
 			font-size: .75em;
 			width: 85%;
+			float: right;
 		}
 		#work-container .link span {
 			font-size: 2.25em; 
@@ -448,6 +450,8 @@ blockquote {
 		}
 		.feedback .quote blockquote:after {
 			content: '"';
+			vertical-align: top;
+			font-size: 1.75em;	
 		}
 		.feedback .quote .author {
 			text-align: right;

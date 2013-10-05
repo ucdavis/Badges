@@ -4,9 +4,11 @@
     <div class="row">
         @foreach (var work in @Model.SupportingWorks)
         {
-            <div class="@work.Type work-item-box col-md-4">
-                @Html.Partial("_ViewWork", work)
-                <p>@work.Description</p>
+        	<div class="col-md-4">
+	            <div class="@work.Type work-item-box">
+	                @Html.Partial("_ViewWork", work)
+	                <p>@work.Description</p>
+	            </div>
             </div>
         }
     </div>
