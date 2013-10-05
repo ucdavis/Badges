@@ -301,6 +301,8 @@ blockquote {
 		display: inline-block;
 		vertical-align: top;
 		width: 100%;
+		margin-bottom: 1em;
+		padding: 0;
 	}
 
 	#work-container .link {
