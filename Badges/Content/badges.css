@@ -290,6 +290,7 @@ blockquote {
 #work-container {
 	vertical-align: top;
 }
+	#work-container.container {padding: 0;}
 
 	#work-container .work-item-box {
 		width: 31%;
@@ -402,14 +403,29 @@ blockquote {
 		text-align: left;
 	}
 
-	.feedback .quote {
-		color: #fff;
-		font-size: 1.5em;
+	.feedback {
+		background: url(img/bg-feedback.jpg) top right no-repeat;
 	}
+		.feedback .quote {
+			color: #fff;
+			font-size: 1.5em;
+		}
+		.feedback .quote blockquote {
+			margin-bottom: 0;
+		}
 		.feedback .quote blockquote:before {
 			content: '"';
 			vertical-align: top;
-			font-size: 1.75em;
+			font-size: 1.75em;	
+			position: relative;
+			left: -15px;
+		}
+		.feedback .quote .author {
+			text-align: right;
+			text-transform: uppercase;
+			font-size: .75em;
+			font-weight: 800;
+			margin-bottom: .25em;
 		}
 
 /* .container.work {padding: 0px;} /* --- figure out a diff way so cols still align --- */
