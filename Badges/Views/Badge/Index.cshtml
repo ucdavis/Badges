@@ -4,10 +4,11 @@
     ViewBag.Title = "Badge Center";
 }
 
-<h2>Badge Center</h2>
+<h2>Badge center</h2>
 
-<ul class="nav">
-    <li>@Html.ActionLink("Design A Badge", "Create")</li>
-    <li>@Html.ActionLink("Earn A Badge", "Browse")</li>
-    <li>@Html.ActionLink("My Badges", "MyBadges")</li>
+
+<ul class="nav menu row">
+    <li class="col-md-4"><a href="#"><i class="icon-beaker icon-3x"></i>@Html.ActionLink("Design A Badge", "Create")</a></li>
+    <li class="col-md-4"><a href="#"><i class="icon-star icon-3x"></i>@Html.ActionLink("Earn A Badge", "Browse")</a></li>
+    <li class="col-md-4"><a href="#"><i class="icon-trophy icon-3x"></i>@Html.ActionLink("My Badges", "MyBadges")</a></li>
 </ul>

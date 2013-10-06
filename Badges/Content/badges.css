@@ -67,6 +67,15 @@ blockquote {
 	background: url(img/sprite-nav.png) no-repeat transparent;
 }
 
+	/* ---- landing page menus ---- */
+	.nav.menu a {
+		display: inline-block;
+		width: 100%;
+		min-height: 120px;
+		font-size: 2.5em;
+		background: #fff;
+	}
+
 /* ----- profile tab ----- */
 .navbar-right {
 	position: relative;
@@ -442,9 +451,9 @@ blockquote {
 		}
 		.feedback .quote blockquote {
 			margin-bottom: 0;
-			text-indent: -.3em;
+			/*text-indent: -.3em;*/
 		}
-		.feedback .quote blockquote:before {
+/*		.feedback .quote blockquote:before {
 			content: '"';
 			vertical-align: top;
 			font-size: 1.75em;	
@@ -455,7 +464,7 @@ blockquote {
 			content: '"';
 			vertical-align: top;
 			font-size: 1.75em;	
-		}
+		}*/
 		.feedback .quote .author {
 			text-align: right;
 			text-transform: uppercase;
