@@ -6,10 +6,10 @@
 
 <div class="row">
     <div class="col-md-4">
-        <div class="toprow">
+        <div class="toprow experiences">
             <div class="profilebox circlepic raised">
-                @Html.Action("ViewProfileImage", "Profile")
-                <span class="name">@ViewBag.Name</span>
+                <a href="#">@Html.Action("ViewProfileImage", "Profile")
+                <span class="name">@ViewBag.Name</span></a>
             </div><!--/.profilebox-->
             <h1 class="title">Experiences</h1>
         </div>
@@ -34,13 +34,13 @@
     @foreach (var experience in Model)
     {
         <div class="col-md-6">
-            <div class="experience">
+            <div class="experience menu">
                 <a href="#">
                 <img src="../../Content/img/test-cover.jpg" alt="Exp pic goes here" />
                 </a>
                 <div class="details">
                     <div class="row">
-                    <div class="type circlepic raised col-md-4">
+                    <div class="type circlepic raised col-md-3">
                         <div class="circle">
                             <i class="icon-flag"></i>
                         </div><!--/.circle-->

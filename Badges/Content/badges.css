@@ -894,16 +894,28 @@ div.helptext {
 
 
 /* ----- portfolio styles ----- */
-.experience {
+	.experiences h1.title {height: 60px;}
+	.experiences .profilebox {width: 155px;}
+	.experiences .circlepic img, 
+	.experiences .circlepic .circle {height: 90px; width: 90px;}
+	.experiences .circlepic .name {color: #fff;}
+
+.experience.menu {
 	background: #fff;
 	color: #b1693d;
 }
-	.experience img {max-width: 100%;}
-	.experience h3 a {color: #b1693d;}
-	.experience .circle {background: #B1693D; color: #fff;}
-	.experience .text p {color: #071626;}
-	.experience a.footer {
-		color: #4a4a4a;
+	.experience.menu img {max-width: 100%;}
+	.experience.menu h3 {margin-top: 0; font-size: 2.5em;}
+	.experience.menu h3 a {color: #b1693d;}
+	.experience.menu .profilebox {float: left;}
+	.experience.menu .circle {background: #B1693D;}
+	.experience.menu .circlepic .name {color: #fff;}
+	.experience.menu .details .type .circle i {color: #fff; padding-top: 30px;}
+	.experience.menu .details .type .name {color: #B1693D;}
+	.experience.menu .text {padding-left: 0;}
+	.experience.menu .text p {color: #071626; font-size: 1.25em; margin-bottom: 2em;}
+	.experience.menu a.footer {
+		color: #8f8f8f;
 		text-transform: uppercase;
 		font-weight: 600;
 		letter-spacing: 1px;
