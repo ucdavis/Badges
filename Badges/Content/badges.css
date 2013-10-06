@@ -894,17 +894,24 @@ div.helptext {
 
 
 /* ----- portfolio styles ----- */
+.experiences {margin-top: 3em;}
 	.experiences h1.title {height: 60px;}
-	.experiences .profilebox {width: 155px;}
+	.experiences .profilebox {width: 155px; height: 60px; float: left;}
 	.experiences .circlepic img, 
 	.experiences .circlepic .circle {height: 90px; width: 90px;}
 	.experiences .circlepic .name {color: #fff;}
+	.experiences .circlepic.raised.profilebox a {top: -71px;}
 
 .experience.menu {
 	background: #fff;
 	color: #b1693d;
 }
-	.experience.menu img {max-width: 100%;}
+	.experience.menu a.cover {
+		max-height: 225px; 
+		overflow: hidden; 
+		display: block;
+	}
+	.experience.menu .cover img {max-width: 100%;}
 	.experience.menu h3 {margin-top: 0; font-size: 2.5em;}
 	.experience.menu h3 a {color: #b1693d;}
 	.experience.menu .profilebox {float: left;}
@@ -920,6 +927,7 @@ div.helptext {
 		font-weight: 600;
 		letter-spacing: 1px;
 		font-size: .75em;
+		display: block;
 	}
 
 
