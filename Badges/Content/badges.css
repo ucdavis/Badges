@@ -81,6 +81,7 @@ blockquote {
 		.nav.menu a:hover {
 			background: rgba(255,255,255,.75);
 			color: rgba(75,149,91,.75);
+			text-decoration: none;
 		}
 
 		.nav.menu.student .exp-link a {
@@ -479,24 +480,16 @@ blockquote {
 		.feedback .quote {
 			color: #fff;
 			font-size: 1.5em;
-			padding: .25em;
+			padding: .25em .5em .5em .25em;
 		}
 		.feedback .quote blockquote {
 			margin-bottom: 0;
 			/*text-indent: -.3em;*/
 		}
-/*		.feedback .quote blockquote:before {
-			content: '"';
-			vertical-align: top;
-			font-size: 1.75em;	
-			position: relative;
-			left: -.25em;
+		.feedback .quote blockquote i {
+			min-height: 50px;
 		}
-		.feedback .quote blockquote:after {
-			content: '"';
-			vertical-align: top;
-			font-size: 1.75em;	
-		}*/
+
 		.feedback .quote .author {
 			text-align: right;
 			text-transform: uppercase;
@@ -577,7 +570,7 @@ blockquote {
 	width: 70%;
 }
 .modal-content {
-	background: url(img/bg.jpg) top center repeat fixed;
+	background: url(img/bg.jpg) #f0efed top center repeat fixed;
 	border: 0px none;
 }
 .modal-header {
