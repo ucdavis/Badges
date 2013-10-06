@@ -78,6 +78,10 @@ blockquote {
 		text-align: center;
 		color: #4b955b;
 	}
+		.nav.menu a:hover {
+			background: rgba(255,255,255,.75);
+			color: rgba(75,149,91,.75);
+		}
 
 /* ----- profile tab ----- */
 .navbar-right {
