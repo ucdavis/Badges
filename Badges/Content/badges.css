@@ -83,6 +83,31 @@ blockquote {
 			color: rgba(75,149,91,.75);
 		}
 
+		.nav.menu.student .exp-link a {
+			color: rgb(27,117,147);
+		}
+			.nav.menu.student .exp-link a:hover {
+				color: rgba(27,117,147,.75);
+			}
+		.nav.menu.student .portfolio-link a {
+			color: rgb(177,105,61);
+		}
+			.nav.menu.student .portfolio-link a:hover {
+				color: rgba(177,105,61,.75);
+			}
+		.nav.menu.student .badge-link a {
+			color: rgb(75,149,91);
+		}
+			.nav.menu.student .badge-link a:hover {
+				color: rgba(75,149,91,.75);
+			}
+		.nav.menu.student .feedback-link a {
+			color: rgb(35,74,90);
+		}
+			.nav.menu.student .feedback-link a:hover {
+				color: rgba(35,74,90,.75);
+			}
+
 /* ----- profile tab ----- */
 .navbar-right {
 	position: relative;
