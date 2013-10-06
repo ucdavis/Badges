@@ -1,10 +1,8 @@
 ﻿@model IQueryable<Badges.Core.Domain.Experience>
 
 @{
-    ViewBag.Title = "My Portfolio";
+    ViewBag.Title = "My experiences";
 }
-
-<h2>My Portfolio</h2>
 
 <div class="row">
     <div class="col-md-4">
@@ -41,15 +39,19 @@
                 <img src="../../Content/img/test-cover.jpg" alt="Exp pic goes here" />
                 </a>
                 <div class="details">
-                    <div class="type circlepic raised col-md-2">
+                    <div class="row">
+                    <div class="type circlepic raised col-md-4">
                         <div class="circle">
                             <i class="icon-flag"></i>
                         </div><!--/.circle-->
                         <span class="name">Type type</span>
                     </div><!--/.type-->
-                    <h3><a href="#">@Html.ActionLink(experience.Name, "ViewExperience", "Student", new { id = experience.Id}, null)</a></h3>
-                    <p>@experience.Description</p>
-                    <a href="#" class="footer">View full details &raquo;</a>
+                    <div class="text col-md-8">
+                        <h3>@Html.ActionLink(experience.Name, "ViewExperience", "Student", new { id = experience.Id}, null)</h3>
+                        <p>@experience.Description</p>
+                        <a href="#" class="footer">View full details &raquo;</a>
+                    </div>
+                    </div>
                 </div>
             </div>
         </div>

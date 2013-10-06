@@ -159,14 +159,14 @@ blockquote {
 	.jumbotron .details .circlepic.raised {top: -23px;}
 	.jumbotron .circlepic img, .jumbotron .circlepic .circle {margin-bottom: 7px;}
 
-	.jumbotron .toprow {
+	.jumbotron .toprow, .toprow {
 		margin-bottom: 9px;
 		height: 80px;
 	}
 	.jumbotron .btmrow {
 		height: 40px;
 	}
-.overlay h1, .overlay h3 {
+.overlay h1, h1.title, .overlay h3 {
 	background: rgba(255,255,255,.7); 
 	border-bottom: 3px solid #fff;
 	display: inline-block;
@@ -174,7 +174,7 @@ blockquote {
 	vertical-align: top;
 	line-height: 1em;
 }
-	.overlay h1 {
+	.overlay h1, h1.title {
 		color: #1b7593;
 		height: 80px;
 		padding: 15px 20px 0 16px;
@@ -891,6 +891,24 @@ div.helptext {
 	}
 	.experience-contents .work-item {width: 30%; margin-right: 2.5%;}
 	.experience-contents strong {display: block;}
+
+
+/* ----- portfolio styles ----- */
+.experience {
+	background: #fff;
+	color: #b1693d;
+}
+	.experience img {max-width: 100%;}
+	.experience h3 a {color: #b1693d;}
+	.experience .circle {background: #B1693D; color: #fff;}
+	.experience .text p {color: #071626;}
+	.experience a.footer {
+		color: #4a4a4a;
+		text-transform: uppercase;
+		font-weight: 600;
+		letter-spacing: 1px;
+		font-size: .75em;
+	}
 
 
 
