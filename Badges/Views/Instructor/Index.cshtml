@@ -1,28 +1,28 @@
 ﻿@model dynamic
 
 @{
-    ViewBag.Title = "Instructor Dashboard";
+    ViewBag.Title = "Instructor dashboard";
 }
 
-<h2>Instructor Dashboard</h2>
+<h2>Instructor dashboard</h2>
 
-<div class="row">
+<div class="row nav menu instructor">
     <div class="col-md-4">
-        <a href="@Url.Action("MyStudents")" class="btn img-rounded well well-lg">
+        <a href="@Url.Action("MyStudents")">
             <i class="icon-group icon-4x"></i>
-            <h5>My Students</h5>
+            My students
         </a>
     </div>
     <div class="col-md-4">
-        <a href="@Url.Action("Notifications")" class="btn img-rounded well well-lg">
+        <a href="@Url.Action("Notifications")">
             <i class="icon-bell icon-4x"></i> <span class="badge badge-important pull-right">@ViewBag.NotificationCount</span>
-            <h5>View Notifications</h5>
+            <h5>View notifications</h5>
         </a>
     </div>
     <div class="col-md-4">
-        <a href="@Url.Action("Portfolio")" class="btn img-rounded well well-lg disabled">
-            <i class="icon-minus icon-4x"></i>
-            <h5>All Portfolios</h5>
+        <a href="@Url.Action("Portfolio")">
+            <i class="icon-archive icon-4x"></i>
+            <h5>All portfolios</h5>
         </a>
     </div>
 </div>
