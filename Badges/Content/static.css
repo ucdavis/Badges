@@ -51,10 +51,10 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 	background: transparent;
 	min-height: 300px;
 }
-	.jumbotron .overlay {
+	.jumbotron .maintitle {
 		min-height: 200px;
 	}
-	.overlay h3 {
+	.maintitle h3 {
 		font-weight: 700;
 		letter-spacing: 1px;
 	}
