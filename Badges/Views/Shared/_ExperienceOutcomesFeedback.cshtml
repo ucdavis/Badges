@@ -6,14 +6,13 @@
     </div>
     <div class="col-md-3">
         <div class="outcomes">
-            <div class="outcome">
-                <h4>Wayfinding</h4>
-                <p>Sept 13, 2013</p>
-            </div>
-            <div class="outcome">
-                <h4>Hydration</h4>
-                <p>Sept 21, 2013</p>
-            </div>
+            @foreach (var outcome in Model.ExperienceOutcomes)
+            {
+                <div class="outcome">
+                    <h4>@outcome.Outcome.Name</h4>
+                    <p>@string.Format("{0:D}", outcome.Created)</p>
+                </div>
+            }
             @if (User.IsInRole(Badges.Core.Domain.RoleNames.Student))
             {
                 <a href="#outcome" data-toggle="modal" class="btn">
@@ -22,14 +21,13 @@
             }
         </div>
         <div class="feedback">
-            <div class="quote">
-                <blockquote><i class="icon-quote-left pull-left icon-muted"></i>This is by far the most desert-like desert I’ve been to all year.</blockquote>
-                <div class="author">- Monkey R.</div>
-            </div>
-            <div class="quote">
-                <blockquote><i class="icon-quote-left pull-left icon-muted"></i>Needs more sand.</blockquote>
-                <div class="author">- Ramsel R.</div>
-            </div>
+            @foreach (var feedback in Model.Feedback)
+            {
+                <div class="quote">
+                    <blockquote><i class="icon-quote-left pull-left icon-muted"></i>@feedback.Response</blockquote>
+                    <div class="author">- @feedback.Instructor.DisplayName</div>
+                </div>
+            }
             @if (User.IsInRole(Badges.Core.Domain.RoleNames.Student))
             {
                 <a href="#feedback" data-toggle="modal" class="btn">
@@ -39,4 +37,3 @@
         </div>
     </div>
 </div>
-
