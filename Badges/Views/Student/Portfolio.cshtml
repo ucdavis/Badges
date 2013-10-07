@@ -8,7 +8,7 @@
     <div class="col-md-4">
         <div class="toprow">
             <div class="profilebox circlepic raised">
-                <a href="#" class="SCOTT">@Html.Action("ViewProfileImage", "Profile")
+                <a href="@Url.Action("Edit", "Profile")">@Html.Action("ViewProfileImage", "Profile")
                 <span class="name">@ViewBag.Name</span></a>
             </div><!--/.profilebox-->
             <h1 class="title">Experiences</h1>
@@ -17,7 +17,7 @@
     <div class="col-md-4">
         <form>
             <div class="form-group">
-                <input type="select" class="form-control" placeholder="Sort by type"/>
+                <input type="text" class="form-control" placeholder="Sort by type"/>
             </div>
         </form>
     </div>
@@ -35,7 +35,7 @@
     {
         <div class="col-md-6">
             <div class="experience menu">
-                <a href="#" class="cover SCOTT">
+                <a href="@Url.Action("ViewExperience", "Student", new { id = experience.Id, area = string.Empty })" class="cover">
                 <img src="../../Content/img/test-cover.jpg" alt="Exp pic goes here" />
                 </a>
                 <div class="details">
@@ -49,7 +49,7 @@
                     <div class="text col-md-8">
                         <h3>@Html.ActionLink(experience.Name, "ViewExperience", "Student", new { id = experience.Id}, null)</h3>
                         <p>@experience.Description</p>
-                        <a href="#" class="SCOTT footer">View full details &raquo;</a>
+                        <a href="@Url.Action("ViewExperience", "Student", new { id = experience.Id, area = string.Empty })" class="footer">View full details &raquo;</a>
                     </div>
                     </div>
                 </div>
