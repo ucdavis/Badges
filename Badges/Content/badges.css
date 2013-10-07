@@ -208,7 +208,7 @@ blockquote {
 	.jumbotron .btmrow {
 		height: 40px;
 	}
-.overlay h1, h1.title, .overlay h3 {
+.overlay h1, h1.title, .overlay h3, .maintitle h1, .maintitle h3 {
 	background: rgba(255,255,255,.7); 
 	border-bottom: 3px solid #fff;
 	display: inline-block;

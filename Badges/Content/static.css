@@ -9,9 +9,15 @@ body {
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 	line-height: 1.75em;
 }
+
 .btn {
 	border-radius: 0px;
 }
+	.section-landing .btn {
+		font-size: .8em;
+		padding: 10px 16px;
+		margin-right: 0;
+	}
 	.btn-primary {
 		background: #1b7593;
 		border-color: #1b7593;
