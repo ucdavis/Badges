@@ -930,7 +930,7 @@ div.helptext {
 /* ----- portfolio styles ----- */
 .experiences {margin-top: 3em;}
 	.experiences h1.title {height: 60px;}
-	.experiences .profilebox {width: 155px; height: 60px; float: left;}
+	.experiences .profilebox {width: 150px; height: 60px; float: left;}
 	.experiences .circlepic img, 
 	.experiences .circlepic .circle {height: 90px; width: 90px;}
 	.experiences .circlepic .name {color: #fff;}
