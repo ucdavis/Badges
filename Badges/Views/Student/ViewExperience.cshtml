@@ -77,40 +77,7 @@
     </nav>
 </div>
 
-
-<div class="row">
-    <div class="col-md-9">
-    @Html.Partial("_ExperienceWork")
-    </div>
-    <div class="col-md-3">
-        <div class="outcomes">
-            <div class="outcome">
-                <h4>Wayfinding</h4>
-                <p>Sept 13, 2013</p>
-            </div>
-            <div class="outcome">
-                <h4>Hydration</h4>
-                <p>Sept 21, 2013</p>
-            </div>
-            <a href="#outcome" data-toggle="modal" class="btn">
-                Add a new outcome &raquo;
-            </a>
-        </div>
-        <div class="feedback">
-            <div class="quote">
-                <blockquote><i class="icon-quote-left pull-left icon-muted"></i>This is by far the most desert-like desert I’ve been to all year.</blockquote>
-                <div class="author">- Monkey R.</div>
-            </div>
-            <div class="quote">
-                <blockquote><i class="icon-quote-left pull-left icon-muted"></i>Needs more sand.</blockquote>
-                <div class="author">- Ramsel R.</div>
-            </div>
-            <a href="#feedback" data-toggle="modal" class="btn">
-                Send a feedback request &raquo;
-            </a>
-        </div>
-    </div>
-</div>
+@Html.Partial("_ExperienceOutcomesFeedback")
 
 <!-- Modal -->
 <div id="outcome" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="outcome-label" aria-hidden="true">

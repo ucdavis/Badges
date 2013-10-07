@@ -616,6 +616,7 @@
     <Content Include="Views\Public\Badge.cshtml" />
     <Content Include="Views\Public\Criteria.cshtml" />
     <Content Include="Views\Shared\_ExperienceWork.cshtml" />
+    <Content Include="Views\Shared\_ExperienceOutcomesFeedback.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\files\" />
