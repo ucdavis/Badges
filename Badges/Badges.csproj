@@ -355,8 +355,10 @@
     <Content Include="Content\img\badge-type-1.png" />
     <Content Include="Content\img\bg-couchman.jpg" />
     <Content Include="Content\img\bg-farm.jpg" />
+    <Content Include="Content\img\bg-feedback.jpg" />
     <Content Include="Content\img\bg-header.jpg" />
     <Content Include="Content\img\bg-lamb.jpg" />
+    <Content Include="Content\img\bg-quote.jpg" />
     <Content Include="Content\img\bg.jpg" />
     <Content Include="Content\img\btn-plus-light.png" />
     <Content Include="Content\img\exp-placeholder.jpg" />
