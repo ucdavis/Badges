@@ -15,85 +15,41 @@
         <title>Badges!</title>
         
         @Styles.Render("~/Content/static")
-
-        <style type="text/css">
-            .typeahead-worktype {
-                margin: 0 20px 5px 20px;
-                padding: 3px 0;
-                border-bottom: 1px solid #ccc;
-            }
-
-            .btn {
-                border-radius: 0px;
-            }
-            .btn-primary {
-                background: #1b7593;
-                border-color: #1b7593;
-            }
-            .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open .dropdown-toggle.btn-primary {
-                background: #234a5a;
-                border-color: #234a5a;
-            }
-
-            .work .row div p {
-                font-weight: 300;
-                padding: 0;
-                font-size: 1em;
-            }
-
-            .background {
-                background: fixed 0 0 / 100% auto #292C37 url(../../Content/img/bg-couchman.jpg) no-repeat;   
-            }
-            .section-landing .jumbotron {
-
-                background: fixed 0 0 / 100% auto #292C37 url(../../Content/img/bg-couchman.jpg) no-repeat;
-                background: transparent;
-                background-size: 100%;
-            }
-            .section-landing .jumbotron.learning {
-                background: url(../../Content/img/bg-lamb.jpg) no-repeat;
-                background-size: 100%;
-            }
-
-            .jumbotron {margin-bottom: 0px;}
-            .jumbotron.work {
-                background: url(../../Content/img/bg.jpg) top center;
-                margin-bottom: 0px;
-            }
-
-            .section-landing .jumbotron .container {
-                background: transparent;
-                min-height: 300px;
-            }
-            .jumbotron .overlay {
-                min-height: 200px;
-            }
-            .overlay h3 {
-                font-weight: 700;
-                letter-spacing: 1px;
-            }
-            .jumbotron .actions {
-                margin-bottom: 1em;
-            }
-
-            .jumbotron.learning .actions {
-                margin-top: 1em;
-            }
-            .jumbotron.learning .actions h3 {
-                color: #fff;
-                background: rgba(33,33,33,.6);
-                padding: .25em .5em;
-            }
-
-            .section-landing .work div {
-                background: transparent;
-            }
-        
-        </style>
     </head>
     <body>
         <div class="section-landing">
             <div class="background">
+
+                <div class="navbar navbar-inverse navbar-fixed-top">
+                  <div class="container">
+                    <div class="navbar-header">
+                      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                      </button>
+                      <a class="navbar-brand" href="#"><img src="../../Content/img/logo-safs.png" alt="UC Davis Sustainable Agriculture and Food Systems" /></a>
+                    </div>
+                    <div class="navbar-collapse collapse">
+                      <!--<ul class="nav navbar-nav">
+                        <li class="active nav-home"><a href="#">Home</a></li>
+                        <li class="nav-add"><a href="#add">Add experience</a></li>
+                        <li class="nav-view"><a href="#view">View portfolio</a></li>
+                        <li class="nav-badges"><a href="#badge">Badge studio</a></li>
+                        <li class="nav-search"><a href="#search">Search</a></li>
+                      </ul>-->
+                      <div class="navbar-right">
+                        <div class="profilebox circlepic">
+                          <a href="#">
+                            <img src="../../Content/img/profile-latte.jpg" alt="Latte" />
+                            <span class="name">Latte B.</span>
+                          </a>
+                        </div>
+                      </div>
+                    </div><!--/.navbar-collapse -->
+                  </div>
+                </div>
+
 
                 <!-- Main jumbotron for a primary marketing message or call to action -->
                 <div class="jumbotron">
