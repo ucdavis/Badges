@@ -39,11 +39,11 @@ namespace Badges.Services
 
             var blobClient = storageAccount.CreateCloudBlobClient();
 
-            _container = blobClient.GetContainerReference("imagesdev");
+            _container = blobClient.GetContainerReference(CloudConfigurationManager.GetSetting("FileContainer"));
             _container.CreateIfNotExists();
             _container.SetPermissions(new BlobContainerPermissions { PublicAccess = BlobContainerPublicAccessType.Off });
-            
-            _publicContainer = blobClient.GetContainerReference("publicimagesdev");
+
+            _publicContainer = blobClient.GetContainerReference(CloudConfigurationManager.GetSetting("PublicImageContainer"));
             _publicContainer.CreateIfNotExists();
             _publicContainer.SetPermissions(new BlobContainerPermissions { PublicAccess = BlobContainerPublicAccessType.Container });
         }
