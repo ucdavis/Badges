@@ -1,0 +1,39 @@
+﻿@model Badges.Models.Shared.ExperienceViewModel
+
+<div class="row">
+    <div class="col-md-9">
+    @Html.Partial("_ExperienceWork")
+    </div>
+    <div class="col-md-3">
+        <div class="outcomes">
+            @foreach (var outcome in Model.ExperienceOutcomes)
+            {
+                <div class="outcome">
+                    <h4>@outcome.Outcome.Name</h4>
+                    <p>@string.Format("{0:D}", outcome.Created)</p>
+                </div>
+            }
+            @if (User.IsInRole(Badges.Core.Domain.RoleNames.Student))
+            {
+                <a href="#outcome" data-toggle="modal" class="btn">
+                    Add a new outcome &raquo;
+                </a>
+            }
+        </div>
+        <div class="feedback">
+            @foreach (var feedback in Model.Feedback)
+            {
+                <div class="quote">
+                    <blockquote><i class="icon-quote-left pull-left icon-muted"></i>@feedback.Response</blockquote>
+                    <div class="author">- @feedback.Instructor.DisplayName</div>
+                </div>
+            }
+            @if (User.IsInRole(Badges.Core.Domain.RoleNames.Student))
+            {
+                <a href="#feedback" data-toggle="modal" class="btn">
+                    Send a feedback request &raquo;
+                </a>
+            }
+        </div>
+    </div>
+</div>
