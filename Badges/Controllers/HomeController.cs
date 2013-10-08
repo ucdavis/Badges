@@ -24,8 +24,11 @@ namespace Badges.Controllers
         [HandleTransactionsManually]
         public ActionResult Reset()
         {
-            DbInitializer.ResetDb();
-            ViewBag.Message = "The database has been reset";
+            if (CurrentUser.Identity.Name == "postit")
+            {
+                DbInitializer.ResetDb();
+                ViewBag.Message = "The database has been reset";
+            }
 
             return RedirectToAction("Index");
         }
