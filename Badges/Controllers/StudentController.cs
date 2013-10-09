@@ -206,15 +206,14 @@ namespace Badges.Controllers
         }
 
         /// <summary>
-        /// Out the outcome with given notes to the experience
+        /// Add the outcome with given notes to the experience
         /// </summary>
         /// <param name="id">Experience ID</param>
         /// <param name="outcomeId">Outcome ID</param>
-        /// <param name="rating">rating for outcome competency</param>
         /// <param name="notes">Notes</param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult AddOutcome(Guid id, Guid outcomeId, double rating, string notes)
+        public ActionResult AddOutcome(Guid id, Guid outcomeId, string notes)
         {
             var experience =
                 RepositoryFactory.ExperienceRepository.Queryable.SingleOrDefault(
@@ -228,7 +227,6 @@ namespace Badges.Controllers
             experience.AddOutcome(new ExperienceOutcome
                 {
                     Outcome = RepositoryFactory.OutcomeRepository.GetById(outcomeId),
-                    Rating = rating,
                     Notes = notes,
                     Created = DateTime.UtcNow
                 });
