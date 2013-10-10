@@ -148,8 +148,8 @@ namespace Badges.Controllers
                     Experience = experience,
                     SupportingWorks = experience.SupportingWorks.ToList(),
                     ExperienceOutcomes = experience.ExperienceOutcomes.ToList(),
-                    Instructors = new MultiSelectList(RepositoryFactory.InstructorRepository.GetAll(), "Id", "DisplayName"),
-                    Outcomes = new SelectList(RepositoryFactory.OutcomeRepository.GetAll(), "Id", "Name"),
+                    Instructors = new MultiSelectList(RepositoryFactory.InstructorRepository.Queryable.OrderBy(x=>x.LastName).ToList(), "Id", "DisplayName"),
+                    Outcomes = new SelectList(RepositoryFactory.OutcomeRepository.Queryable.OrderBy(x=>x.Name), "Id", "Name"),
                     Feedback = experience.FeedbackRequests.Where(x=>x.ResponseDate != null).ToList()
                 };
             

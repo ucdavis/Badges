@@ -58,7 +58,7 @@ namespace Badges.Controllers
             var model = new ProfileEditModel
                 {
                     Profile = new Profile(),
-                    Roles = RepositoryFactory.RoleRepository.GetAll().OrderByDescending(x=>x.Name).ToList()
+                    Roles = RepositoryFactory.RoleRepository.Queryable.OrderByDescending(x=>x.Name).ToList()
                 };
 
             return View(model);
@@ -109,7 +109,7 @@ namespace Badges.Controllers
             var model = new ProfileEditModel
             {
                 Profile = profile,
-                Roles = RepositoryFactory.RoleRepository.GetAll().OrderByDescending(x=>x.Name).ToList()
+                Roles = RepositoryFactory.RoleRepository.Queryable.OrderByDescending(x=>x.Name).ToList()
             };
 
             return View(model);
