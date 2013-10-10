@@ -52,7 +52,7 @@ namespace Badges.Controllers
             if (RepositoryFactory.UserRepository.Queryable.Any(x => x.Identifier == CurrentUser.Identity.Name))
             {
                 Message = "You already have a profile"; //TODO: redirect to existing profile
-                RedirectToAction("Landing", "Home");
+                RedirectToAction("Index", "Home");
             }
 
             var model = new ProfileEditModel
@@ -87,7 +87,7 @@ namespace Badges.Controllers
             user.Roles.Add(RepositoryFactory.RoleRepository.GetById(roles));
             RepositoryFactory.UserRepository.EnsurePersistent(user);
             
-            return RedirectToAction("Landing", "Home");
+            return RedirectToAction("Index", "Home");
         }
     
         /// <summary>
