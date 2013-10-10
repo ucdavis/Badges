@@ -52,7 +52,7 @@ namespace Badges.Controllers
             if (RepositoryFactory.UserRepository.Queryable.Any(x => x.Identifier == CurrentUser.Identity.Name))
             {
                 Message = "You already have a profile"; //TODO: redirect to existing profile
-                RedirectToAction("Index", "Home");
+                return RedirectToAction("Edit");
             }
 
             var model = new ProfileEditModel
@@ -70,7 +70,7 @@ namespace Badges.Controllers
             if (RepositoryFactory.UserRepository.Queryable.Any(x => x.Identifier == CurrentUser.Identity.Name))
             {
                 Message = "You already have a profile";
-                RedirectToAction("Edit");
+                return RedirectToAction("Edit");
             }
 
             if (image == null)
