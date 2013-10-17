@@ -52,13 +52,13 @@ namespace Badges.Controllers
             if (RepositoryFactory.UserRepository.Queryable.Any(x => x.Identifier == CurrentUser.Identity.Name))
             {
                 Message = "You already have a profile"; //TODO: redirect to existing profile
-                RedirectToAction("Landing", "Home");
+                return RedirectToAction("Edit");
             }
 
             var model = new ProfileEditModel
                 {
                     Profile = new Profile(),
-                    Roles = RepositoryFactory.RoleRepository.GetAll()
+                    Roles = RepositoryFactory.RoleRepository.Queryable.OrderByDescending(x=>x.Name).ToList()
                 };
 
             return View(model);
@@ -70,7 +70,7 @@ namespace Badges.Controllers
             if (RepositoryFactory.UserRepository.Queryable.Any(x => x.Identifier == CurrentUser.Identity.Name))
             {
                 Message = "You already have a profile";
-                RedirectToAction("Edit");
+                return RedirectToAction("Edit");
             }
 
             if (image == null)
@@ -87,7 +87,7 @@ namespace Badges.Controllers
             user.Roles.Add(RepositoryFactory.RoleRepository.GetById(roles));
             RepositoryFactory.UserRepository.EnsurePersistent(user);
             
-            return RedirectToAction("Landing", "Home");
+            return RedirectToAction("Index", "Home");
         }
     
         /// <summary>
@@ -109,7 +109,7 @@ namespace Badges.Controllers
             var model = new ProfileEditModel
             {
                 Profile = profile,
-                Roles = RepositoryFactory.RoleRepository.GetAll()
+                Roles = RepositoryFactory.RoleRepository.Queryable.OrderByDescending(x=>x.Name).ToList()
             };
 
             return View(model);

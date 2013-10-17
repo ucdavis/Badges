@@ -97,15 +97,6 @@
                             @Html.DropDownList("outcomeid", Model.Outcomes, new { @class = "form-control" })
                         </div>
                         <div class="form-group">
-                            <label>Outcome level</label>
-                            <span class="form-control">
-                                <span class="float-left">Novice</span>
-                                <input type="range" name="rating" min="1" max="10" step=".25" value="5" data-val="true" data-val-range="Please choose an outcome level" data-val-range-max="10" data-val-range-min="1" />
-                                <span class="float-right">Expert</span>
-                            </span>
-                            <span class="field-validation-valid" data-valmsg-for="rating" data-valmsg-replace="true"></span>
-                        </div>
-                        <div class="form-group">
                             <label>Feel free to enter some notes</label>
                             <textarea name="notes" class="form-control" placeholder="Outcome Notes" data-val="true" data-val-required="Notes are required"></textarea>
                             <span class="field-validation-valid" data-valmsg-for="notes" data-valmsg-replace="true"></span>

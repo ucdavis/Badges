@@ -16,9 +16,32 @@ namespace Badges.Controllers
         [HandleTransactionsManually]
         public ActionResult Index()
         {
-            ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
+            var user =
+    RepositoryFactory.UserRepository.Queryable.SingleOrDefault(x => x.Identifier == CurrentUser.Identity.Name);
 
-            return View();
+            if (user == null)
+            {
+                return RedirectToAction("Create", "Profile");
+            }
+
+            var roles = user.Roles.ToList();
+
+            if (roles.Any(x => x.Id == RoleNames.Student))
+            {
+                return RedirectToAction("Index", "Student");
+            }
+
+            if (roles.Any(x => x.Id == RoleNames.Instructor))
+            {
+                return RedirectToAction("Index", "Instructor");
+            }
+
+            if (roles.Any(x => x.Id == RoleNames.Administrator))
+            {
+                return RedirectToAction("Index", "Landing", new { area = "Admin" });
+            }
+            
+            return new HttpUnauthorizedResult();
         }
 
         [HandleTransactionsManually]
@@ -39,45 +62,6 @@ namespace Badges.Controllers
             ViewBag.Message = "Your app description page.";
 
             return View();
-        }
-
-        /// <summary>
-        /// Landing page, redirects you to the proper dashboard for your roles
-        /// </summary>
-        /// <returns></returns>
-        [Authorize] 
-        public ActionResult Landing()
-        {
-            var user =
-                RepositoryFactory.UserRepository.Queryable.SingleOrDefault(x => x.Identifier == CurrentUser.Identity.Name);
-
-            if (user == null)
-            {
-                return RedirectToAction("Create", "Profile");
-            }
-
-            var roles = user.Roles.ToList();
-
-            if (roles.Any(x => x.Id == RoleNames.Student))
-            {
-                return RedirectToAction("Index", "Student");
-            }
-            
-            if (roles.Any(x=>x.Id == RoleNames.Instructor))
-            {
-                return RedirectToAction("Index", "Instructor");
-            }
-            
-            if (roles.Any(x=>x.Id == RoleNames.Administrator))
-            {
-                return RedirectToAction("Index", "Landing", new {area = "Admin"});
-            }
-            else
-            {
-                return new HttpUnauthorizedResult();
-            }
-
-            return View("Index");
         }
     }
 }
