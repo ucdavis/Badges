@@ -5,72 +5,104 @@
     ViewBag.Title = "Profile Picture";
 }
 
+   <link href="~/Content/jquery.Jcrop.css" rel="stylesheet" />
+
 <h2>Profile Picture</h2>
 
-<form>
+<form method="POST" action="@Url.Action("Crop")" enctype="multipart/form-data">
     <div class="form-group">
-        <div class="well" id="canvas-holder">
-            <canvas id="canvas-preview"></canvas>
+        <div class="well" id="image-holder">
         </div>
     </div>
     <div class="form-group">
         <label>Upload File</label>
-        <input id="profile-upload" type="file"/>
+        <input id="profile-upload" name="picture" type="file"/>
     </div>
-    <div class="form-actions">
-        <button type="submit">Submit</button>
-    </div>
+
+    <label>X1 <input type="text" size="4" id="x1" name="x1" /></label>
+    <label>Y1 <input type="text" size="4" id="y1" name="y1" /></label>
+    <label>X2 <input type="text" size="4" id="x2" name="x2" /></label>
+    <label>Y2 <input type="text" size="4" id="y2" name="y2" /></label>
+    <label>W <input type="text" size="4" id="w" name="w" /></label>
+    <label>H <input type="text" size="4" id="h" name="h" /></label>
+    
+    <button type="submit">Crop it!</button>
 </form>
 
 <script src="~/Scripts/jquery-1.9.1.js"></script>
-    <script>
-        $(function() {
-            $("#profile-upload").on('change', function (e) {
-                e.preventDefault();
+<script src="~/Scripts/jquery.Jcrop.js"></script>
+
+<script>
+    $(function () {
+
+        var cropper;
+        
+        $("#profile-upload").on('change', function (e) {
+            e.preventDefault();
                 
-                // from an input element
-                var filesToUpload = this.files;
+            // from an input element
+            var filesToUpload = this.files;
 
-                if (filesToUpload.length !== 1) return;
+            if (filesToUpload.length !== 1) return;
 
-                var file = filesToUpload[0];
+            var file = filesToUpload[0];
 
-                if (!file.type.match(/image.*/)) {
-                    alert("only images, please");
-                }
-                
-                var img = new Image();
-                img.onload = function() {
-                    var canvas = document.getElementById("canvas-preview");
-                    resizeImage(img, canvas);
-                    //canvas.width = img.width;
-                    //canvas.height = img.height;
-                    //canvas.getContext("2d").drawImage(img, 0, 0);
-                };
-                img.src = window.URL.createObjectURL(file);
+            if (!file.type.match(/image.*/)) {
+                alert("only images, please");
+            }
+
+            var image = $("<img>");
+            
+            if (cropper) {
+                cropper.destroy();
+            }
+
+            image[0].src = window.URL.createObjectURL(file);
+
+            $("#image-holder").empty().append(image);
+            
+            image.Jcrop({
+                aspectRatio: 1,
+                allowSelect: false,
+                allowResize: true, //Maybe we allow resize and then shrink the img?
+                onChange: showCoords,
+                onSelect: showCoords
+            }, function () {
+                cropper = this;
+                cropper.animateTo([0, 0, 120, 120]);
             });
         });
+    });
+    
+    function showCoords(c) {
+        jQuery('#x1').val(c.x);
+        jQuery('#y1').val(c.y);
+        jQuery('#x2').val(c.x2);
+        jQuery('#y2').val(c.y2);
+        jQuery('#w').val(c.w);
+        jQuery('#h').val(c.h);
+    }
         
-        function resizeImage(img, canvas) {
-            var MAX_WIDTH = 800;
-            var MAX_HEIGHT = 600;
-            var width = img.width;
-            var height = img.height;
+    function resizeImage(img, canvas) {
+        var MAX_WIDTH = 800;
+        var MAX_HEIGHT = 600;
+        var width = img.width;
+        var height = img.height;
 
-            if (width > height) {
-                if (width > MAX_WIDTH) {
-                    height *= MAX_WIDTH / width;
-                    width = MAX_WIDTH;
-                }
-            } else {
-                if (height > MAX_HEIGHT) {
-                    width *= MAX_HEIGHT / height;
-                    height = MAX_HEIGHT;
-                }
+        if (width > height) {
+            if (width > MAX_WIDTH) {
+                height *= MAX_WIDTH / width;
+                width = MAX_WIDTH;
             }
-            canvas.width = width;
-            canvas.height = height;
-            var ctx = canvas.getContext("2d");
-            ctx.drawImage(img, 0, 0, width, height);
+        } else {
+            if (height > MAX_HEIGHT) {
+                width *= MAX_HEIGHT / height;
+                height = MAX_HEIGHT;
+            }
         }
-    </script>
+        canvas.width = width;
+        canvas.height = height;
+        var ctx = canvas.getContext("2d");
+        ctx.drawImage(img, 0, 0, width, height);
+    }
+</script>
