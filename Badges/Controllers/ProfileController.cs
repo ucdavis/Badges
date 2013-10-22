@@ -38,13 +38,17 @@ namespace Badges.Controllers
 
         [HttpPost]
         [BypassAntiForgeryToken]
-        public ActionResult Crop(int x1, int x2, int y1, int y2, int w, int h)
+        public ActionResult Crop(HttpPostedFileBase picture, int x1, int x2, int y1, int y2, int w, int h)
         {
-            var img = new CompositionBuilder()
-                .WithLayer(LayerBuilder.Image.SourceFile("~/Content/images/profile-default.jpg")
-                                       .WithFilter(FilterBuilder.Crop.X(x1).Y(y1).To(w, h)));
-            
-            return Content(img.Url);
+            using (var reader = new BinaryReader(picture.InputStream))
+            {
+                var img = new CompositionBuilder()
+                    //.WithLayer(LayerBuilder.Image.SourceFile("~/Content/images/profile-default.jpg")
+                    .WithLayer(LayerBuilder.Image.SourceBytes(reader.ReadBytes(picture.ContentLength))
+                                           .WithFilter(FilterBuilder.Crop.X(x1).Y(y1).To(w, h)));
+
+                return Redirect(img.Url);
+            }
         }
 
         public ActionResult Create()
