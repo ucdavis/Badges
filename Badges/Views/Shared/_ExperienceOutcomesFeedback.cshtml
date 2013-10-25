@@ -5,17 +5,36 @@
     @Html.Partial("_ExperienceWork")
     </div>
     <div class="col-md-3">
-        <div class="outcomes">
-            @foreach (var outcome in Model.ExperienceOutcomes)
+        <div id="outcomes" class="outcomes">
+            @{
+                var outcomeCategories = Model.ExperienceOutcomes.Select(x => x.Outcome.Name).Distinct().ToArray();
+            }
+            @foreach (var outcomeCategoryName in outcomeCategories)
             {
                 <div class="outcome">
-                    <h4>@outcome.Outcome.Name</h4>
-                    <p>@string.Format("{0:D}", outcome.Created)</p>
+                    <h4>@outcomeCategoryName</h4>
+                    <ul>   
+                    @foreach (var outcome in Model.ExperienceOutcomes.Where(x=>x.Outcome.Name == outcomeCategoryName).ToArray())
+                    {
+                        <li style="padding-top: 20px">
+                            @string.Format("{0:D}", outcome.Created)
+                            @if (User.IsInRole(Badges.Core.Domain.RoleNames.Student))
+                            {
+                                <span class="pull-right">
+                                    <a href="#outcome" data-toggle="modal" data-name="@outcomeCategoryName" data-id="@outcome.Id" data-note="@outcome.Notes" class="outcome-edit">
+                                        <i class="icon-edit"></i>
+                                    </a>
+                                </span>
+                            }
+                        </li>
+                    }
+                    </ul>
                 </div>
             }
+
             @if (User.IsInRole(Badges.Core.Domain.RoleNames.Student))
             {
-                <a href="#outcome" data-toggle="modal" class="btn">
+                <a id="outcome-add" href="#outcome" data-toggle="modal" class="btn">
                     Add a new outcome &raquo;
                 </a>
             }
