@@ -87,8 +87,9 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 <h3 id="outcome-label">Add Outcome</h3>
             </div>
-            @using (Html.BeginForm("AddOutcome", "Student", new { id = Model.Experience.Id }, FormMethod.Post))
+            @using (Html.BeginForm("AddEditOutcome", "Student", new { id = Model.Experience.Id }, FormMethod.Post))
             {
+                @Html.Hidden("existingOutcomeId")
                 <div class="modal-body">
                     @Html.AntiForgeryToken()
                     <fieldset>
@@ -104,7 +105,7 @@
                     </fieldset>
                 </div>
                 <div class="modal-footer">
-                    <input type="submit" class="btn btn-danger" value="Add Outcome" />
+                    <input id="outcome-submit" type="submit" class="btn btn-danger" value="Add Outcome" />
                     <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
                 </div>
             }

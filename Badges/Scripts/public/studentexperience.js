@@ -24,7 +24,10 @@
     function configureOutcomes() {
         $('#outcome-add').on('click', function() {
             // reset the notes when modal is shown
-            $("#notes").val('');
+            $("#notes").val(null);
+            $("#existingOutcomeId").val(null);
+
+            $("#outcome-submit").val("Add Outcome");
         });
 
         $("#outcomes").on('click', '.outcome-edit', function(e) {
@@ -34,9 +37,12 @@
 
             //Find the popup, set the existing values
             $("#notes").val(notes);
+            $("#existingOutcomeId").val(outcomeid);
             $("#outcomeid option").filter(function() {
                 return $(this).text() == outcome; 
             }).prop('selected', true);
+            
+            $("#outcome-submit").val("Edit Outcome");
         });
     }
 

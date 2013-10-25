@@ -210,10 +210,11 @@ namespace Badges.Controllers
         /// </summary>
         /// <param name="id">Experience ID</param>
         /// <param name="outcomeId">Outcome ID</param>
+        /// <param name="existingOutcomeId">If we are editing an existing outcome, this is the Id of the existing outcome</param>
         /// <param name="notes">Notes</param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult AddOutcome(Guid id, Guid outcomeId, string notes)
+        public ActionResult AddEditOutcome(Guid id, Guid outcomeId, Guid? existingOutcomeId, string notes)
         {
             var experience =
                 RepositoryFactory.ExperienceRepository.Queryable.SingleOrDefault(
@@ -224,12 +225,21 @@ namespace Badges.Controllers
                 return new HttpNotFoundResult("Could not find the requested experience");
             }
 
-            experience.AddOutcome(new ExperienceOutcome
-                {
-                    Outcome = RepositoryFactory.OutcomeRepository.GetById(outcomeId),
-                    Notes = notes,
-                    Created = DateTime.UtcNow
-                });
+            if (existingOutcomeId.HasValue)
+            {
+                var existingOutcome = experience.ExperienceOutcomes.Single(x => x.Id == existingOutcomeId.Value);
+                existingOutcome.Outcome = RepositoryFactory.OutcomeRepository.GetById(outcomeId);
+                existingOutcome.Notes = notes;
+            }
+            else
+            {
+                experience.AddOutcome(new ExperienceOutcome
+                    {
+                        Outcome = RepositoryFactory.OutcomeRepository.GetById(outcomeId),
+                        Notes = notes,
+                        Created = DateTime.UtcNow
+                    });
+            }
 
             RepositoryFactory.ExperienceRepository.EnsurePersistent(experience);
 
