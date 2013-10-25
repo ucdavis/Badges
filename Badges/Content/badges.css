@@ -474,7 +474,7 @@ blockquote {
 			font-size: .8em;
 		}
 		.outcomes li .pull-right form {float: right; line-height: 1.1em;} 
-		.outcomes li .pull-right .btn.btn-xs {font-size: 1.1em; padding: 0 5px;}
+		.outcomes li .pull-right .btn.btn-xs {font-size: 1.1em; padding: 0 5px; line-height: 1.25em;}
 
 	.feedback {
 		background: #234a5a url(img/bg-feedback.jpg) top right no-repeat;
