@@ -6,13 +6,22 @@
     </div>
     <div class="col-md-3">
         <div class="outcomes">
-            @foreach (var outcome in Model.ExperienceOutcomes)
+            @{
+                var outcomeCategories = Model.ExperienceOutcomes.Select(x => x.Outcome.Name).Distinct().ToArray();
+            }
+            @foreach (var outcomeCategory in outcomeCategories)
             {
                 <div class="outcome">
-                    <h4>@outcome.Outcome.Name</h4>
-                    <p>@string.Format("{0:D}", outcome.Created)</p>
+                    <h4>@outcomeCategory</h4>
+                    <ul>   
+                    @foreach (var outcome in Model.ExperienceOutcomes.Where(x=>x.Outcome.Name == outcomeCategory).ToArray())
+                    {
+                        <li>@string.Format("{0:D}", outcome.Created)</li>
+                    }
+                    </ul>
                 </div>
             }
+
             @if (User.IsInRole(Badges.Core.Domain.RoleNames.Student))
             {
                 <a href="#outcome" data-toggle="modal" class="btn">
