@@ -17,6 +17,30 @@
     };
 
     badges.init = function () {
+        configureWork();
+        configureOutcomes();
+    };
+
+    function configureOutcomes() {
+        $('#outcome-add').on('click', function() {
+            // reset the notes when modal is shown
+            $("#notes").val('');
+        });
+
+        $("#outcomes").on('click', '.outcome-edit', function(e) {
+            var outcome = this.getAttribute("data-name");
+            var notes = this.getAttribute("data-note");
+            var outcomeid = this.getAttribute("data-id");
+
+            //Find the popup, set the existing values
+            $("#notes").val(notes);
+            $("#outcomeid option").filter(function() {
+                return $(this).text() == outcome; 
+            }).prop('selected', true);
+        });
+    }
+
+    function configureWork() {
         $("#add-work").on("click", "a", function(e) {
             var worktype = this.getAttribute("data-work");
             var fields = workFields[worktype];
@@ -33,7 +57,7 @@
 
         $("#work-file").on('change', 'input:file', function(e) {
             var files = e.currentTarget.files;
-            
+
             if (files.length > 0) {
                 var fileSize = ((files[0].size / 1024) / 1024).toFixed(4); //file size in MB
 
@@ -45,6 +69,6 @@
                 }
             }
         });
-    };
+    }
 
 }(window.Badges = window.Badges || {}, jQuery));
