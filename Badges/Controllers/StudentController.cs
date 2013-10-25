@@ -246,6 +246,27 @@ namespace Badges.Controllers
             return RedirectToAction("ViewExperience", "Student", new {id});
         }
 
+        [HttpPost]
+        public ActionResult RemoveOutcome(Guid id, Guid experienceOutcomeId)
+        {
+            var experience =
+                RepositoryFactory.ExperienceRepository.Queryable.SingleOrDefault(
+                    x => x.Id == id && x.Creator.Identifier == CurrentUser.Identity.Name);
+
+            if (experience == null)
+            {
+                return new HttpNotFoundResult("Could not find the requested experience");
+            }
+
+            var outcome = experience.ExperienceOutcomes.Single(x => x.Id == experienceOutcomeId);
+
+            experience.ExperienceOutcomes.Remove(outcome);
+
+            RepositoryFactory.ExperienceRepository.EnsurePersistent(experience);
+         
+            return RedirectToAction("ViewExperience", "Student", new { id });
+        }
+
         /// <summary>
         /// Request feedback via email from instructors
         /// </summary>

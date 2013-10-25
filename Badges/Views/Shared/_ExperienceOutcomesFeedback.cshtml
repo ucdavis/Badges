@@ -21,14 +21,17 @@
                             @if (User.IsInRole(Badges.Core.Domain.RoleNames.Student))
                             {
                                 <span class="pull-right">
-                                    <a href="#outcome" data-toggle="modal" data-name="@outcomeCategoryName" data-id="@outcome.Id" data-note="@outcome.Notes" class="outcome-edit">
-                                        <i class="icon-edit"></i>
-                                    </a>
-                                    <form>
-                                        <button type="submit" class="btn btn-link btn-xs">
+                                <a href="#outcome" data-toggle="modal" data-name="@outcomeCategoryName" data-id="@outcome.Id" data-note="@outcome.Notes" class="outcome-edit">
+                                    <i class="icon-edit"></i>
+                                </a>
+                                    @using (Html.BeginForm("RemoveOutcome", "Student", new { id = Model.Experience.Id }, FormMethod.Post))
+                                    {
+                                        @Html.AntiForgeryToken()
+                                        @Html.Hidden("experienceOutcomeId", outcome.Id)
+                                        <button type="submit" class="btn btn-link btn-xs" onclick="return confirm('Are you sure you want to remove this outcome?');">
                                             <i class="icon-remove"></i>
                                         </button>
-                                    </form>
+                                    }
                                 </span>
                             }
                         </li>
