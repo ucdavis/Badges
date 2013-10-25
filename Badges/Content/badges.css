@@ -473,6 +473,7 @@ blockquote {
 			display: inline-block;
 			font-size: .8em;
 		}
+		.outcomes li a.outcome-edit {float: left;}
 		.outcomes li .pull-right form {float: right; line-height: 1.1em;} 
 		.outcomes li .pull-right .btn.btn-xs {font-size: 1.1em; padding: 0 5px; line-height: 1.25em;}
 
