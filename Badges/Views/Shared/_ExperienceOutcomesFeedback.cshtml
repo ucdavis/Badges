@@ -16,7 +16,17 @@
                     <ul>   
                     @foreach (var outcome in Model.ExperienceOutcomes.Where(x=>x.Outcome.Name == outcomeCategory).ToArray())
                     {
-                        <li>@string.Format("{0:D}", outcome.Created)</li>
+                        <li style="padding-top: 20px">
+                            @string.Format("{0:D}", outcome.Created)
+                            <span class="pull-right">
+                                <form>
+                                    @Html.AntiForgeryToken()
+                                    <button type="submit" class="btn-xs">
+                                        <i class="icon-edit"></i>
+                                    </button>
+                                </form>
+                            </span>
+                        </li>
                     }
                     </ul>
                 </div>
