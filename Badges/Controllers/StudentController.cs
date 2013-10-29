@@ -33,6 +33,14 @@ namespace Badges.Controllers
             return View();
         }
 
+        public ActionResult Error()
+        {
+            var i = 0;
+            var test = 1/i;
+
+            return Content("Error!" + test);
+        }
+
         public ActionResult Portfolio()
         {
             var experiences =
