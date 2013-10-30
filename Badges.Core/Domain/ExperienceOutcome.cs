@@ -26,7 +26,7 @@ namespace Badges.Core.Domain
             Id(x => x.Id).GeneratedBy.GuidComb();
 
             Map(x => x.Rating);
-            Map(x => x.Notes);
+            Map(x => x.Notes).StringMaxLength();
             Map(x => x.Created);
 
             References(x => x.Experience).Not.Nullable();
