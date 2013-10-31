@@ -1,5 +1,6 @@
 ﻿using System.Web.Mvc;
 using System.Web.Security;
+using Badges.Core.Domain;
 using UCDArch.Web.Authentication;
 
 namespace Badges.Controllers
@@ -26,13 +27,9 @@ namespace Badges.Controllers
             return Redirect("https://cas.ucdavis.edu/cas/logout");
         }
 
+        [Authorize(Roles = RoleNames.Administrator)]
         public ActionResult Emulate(string id /* Login ID*/)
         {
-            //TODO: either remove emulate or update with roles
-            if (ControllerContext.HttpContext.User.Identity.Name != "postit")
-            {
-                return RedirectToAction("Index", "Home"); 
-            }
             if (!string.IsNullOrEmpty(id))
             {
                 FormsAuthentication.RedirectFromLoginPage(id, false);
