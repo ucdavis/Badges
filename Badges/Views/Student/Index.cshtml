@@ -4,8 +4,57 @@
     ViewBag.Title = "Student dashboard";
 }
 
-<h2>Student dashboard</h2>
+<div class="row">
+    <div class="col-md-7 intro">
+        <h2 class="intro">Student dashboard</h2>
+        <p>Here we have your handy dashboard: create a new experience or work on recent ones; see what feedback you’ve got; or put it all together and earn some badges.</p>
+    </div>
+</div>
 
+<div class="row">
+    <div class="col-md-8 addexp">
+        <a href="@Url.Action("AddExperience")"><img src="../../Content/img/dashbtn-addexp.jpg" alt="Add experience" /></a>
+    </div>
+    <div class="col-md-4 badgecenter">
+        <a href="@Url.Action("Index", "Badge", new { area = string.Empty })">
+        <img src="../../Content/img/dashbtn-badges.jpg" alt="Badge center" /></a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-8 recentexp">
+        <table>
+        <tr>
+            <th><h4>Your recent experiences</h4></th>
+            <th colspan="2"><em>Created on</em></th>
+        </tr>
+        <tr>
+            <td><a href="#">Arch Hunting</a></td>
+            <td><em>Oct 21, 2013</em></td>
+            <td><a href="@Url.Action("Index", "Home")" class="btn btn-default"><i class="icon-edit button-icon"></i> Edit</a></td>
+        </tr>
+        </table>
+
+        <a href="@Url.Action("Portfolio")" class="btn btn-default portfolio"><i class="icon-view button-icon"></i> View your portfolio</a>
+    </div>
+    <div class="col-md-4 feedback">
+        <table>
+        <tr>
+            <th><h4>Your feedback</h4></th>
+        </tr>
+        <tr>
+            <td><a href="#">"Two thumbs up! Great family fun."</a><br />
+                <span class="quotesource"><a href="#">- Scott K.</a></span> /
+                <span class="date">Oct 19, 2013</span>
+            </td>
+        </tr>
+        </table>
+
+        <a href="@Url.Action("Feedback")" class="btn btn-default feedback"><i class="icon-comment button-icon"></i> All feedback</a>
+    </div>
+</div>
+
+<!-- 
 <div class="row nav menu student">
     <div class="col-md-3 exp-link">
         <a href="@Url.Action("AddExperience")">
@@ -31,4 +80,4 @@
             View feedback
         </a>
     </div>
-</div>
+</div> -->
