@@ -629,11 +629,6 @@ input#cover-image, input#cover-image[type="file"] {
     width: 100%;
     margin-bottom: 1em;
     padding: 0; }
-  #work-container .footer a {
-    background: #fff;
-    color: #8f8f8f;
-    padding: .5em 1em;
-    font-size: .8em; }
   #work-container .link i {
     -moz-transform: scaleX(-1);
     -o-transform: scaleX(-1);
@@ -769,6 +764,11 @@ input#cover-image, input#cover-image[type="file"] {
     padding: 13px 10px 0;
     margin: 0;
     font-weight: 500; }
+.work .footer a {
+  background: #fff;
+  color: #8f8f8f;
+  padding: .5em 1em;
+  font-size: .8em; }
 
 /* ----- Work Modals ----- */
 #associate-work .modal-dialog {
