@@ -1,0 +1,24 @@
+// Modal styles
+
+.modal-content {
+	background: url(img/bg.jpg) #f0efed top center repeat fixed;
+	border: 0px none;
+}
+.modal-header {
+	background: #227895;
+	color: #fff;
+}
+	#supporting-work .modal-header {background: #4b955b;}
+	.modal-header h1, .modal-header h2, .modal-header h3, .modal-header h4 {
+		color: #fff;
+		font-style: italic;
+	}
+.modal-footer {border: 0px none;}
+.panel {
+	@include light-bg(0.5);
+}
+	.panel-title {
+		background: #fff;
+		padding: 1em;
+		font-size: 1.3em;
+	}

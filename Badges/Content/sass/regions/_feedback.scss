@@ -1,0 +1,35 @@
+// Feedback
+
+
+/* ----- Styles when viewing an experience ----- */
+.feedback {
+	width: 100%;
+	display: block;
+	background: $dark-blue;
+	padding-top: 1em;
+	background: $dark-blue url(img/bg-feedback.jpg) top right no-repeat;
+
+	a.btn {
+		@include footer-btn;
+	}
+		.quote {
+			color: #fff;
+			font-size: 1.5em;
+			padding: .25em .5em .5em .25em;
+		
+			blockquote {
+				margin-bottom: 0;
+				
+				i {
+					min-height: 50px;
+				}
+			}
+
+			.author {
+				@include uppercase-big;
+				text-align: right;
+				padding-right: .5em;
+				padding-bottom: .25em;
+			}
+		}
+}

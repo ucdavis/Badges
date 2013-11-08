@@ -1,0 +1,69 @@
+// Profile box
+
+/* ----- profile box ----- */
+.profilebox {
+	background: $dark-blue;
+	border-bottom: $border-tripel $copper;
+	width: 114px;
+}
+	.navbar .profilebox {
+		position: absolute;
+		top: 0px; right: 0px;
+	}
+	.jumbotron .profilebox {
+		width: 131px;
+		height: 80px;
+		display: inline-block;
+		float: left;
+	}
+
+
+/* ----- circle cropped pic & all cap text style ----- */
+
+@mixin circlepic($size) {
+	width: $size; 
+	background: #fff;
+	border: $border-tripel #fff;
+	border-radius: 50%;
+	display: block;
+	margin: 10px auto 4px;
+	text-align: center;
+	line-height: 1em;
+}
+
+
+
+.circlepic {
+	text-align: center;
+}
+.circlepic img, .circlepic .circle {
+	@include circlepic(60px);
+}
+	/* --- figure out how to make this overlay on profile pic --- */
+	.circlepic .advisor:before {
+		background: url(img/profiletype-advisor.png) no-repeat;
+		background-size: 80px 80px;
+		content: '';
+		position: absolute;
+		width: 80px; height: 80px;
+		pointer-events: none;
+		border-radius: 50%;
+		left: 114px;  /* --- this can't be right..? --- */
+		top: 10px;
+	}
+	.circlepic.raised {
+		position: relative;
+		top: -20px;
+	}
+		.circlepic.raised.profilebox {top: 0px;}
+		.circlepic.raised.profilebox a {position: relative; top: -20px;}
+
+.circlepic .name {
+	@include uppercase-mini(#fff);
+	display: block;
+	margin-bottom: 8px;
+}
+	.jumbotron .circlepic .name {
+		margin-bottom: 2px;
+		font-size: .7em;
+	}

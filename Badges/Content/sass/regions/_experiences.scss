@@ -1,0 +1,101 @@
+// Experiences
+// Adding and viewing experiences
+
+
+/* ----- jumbotron ----- */
+.jumbotron.experience {
+	padding-top: 0px;
+	padding-bottom: 0px;
+	background: transparent;
+
+	.container { /* --- or should I try making it 100%? --- */
+		background: url(img/test-cover.jpg) no-repeat;
+		min-height: 425px;
+		padding-top: 75px;
+	}
+	.overlay {
+		position: relative;
+		left: -15px;
+		min-height: 275px;
+	}
+
+	.details {
+		background: $copper;
+		padding: 0 15px;
+		color: #fff;
+		border-top: $border-tripel #fff;
+		height: 100px;
+		position: relative;
+		top: 26px;
+	}
+
+}
+
+.jumbotron {
+/* ---- Can I nest these without breaking shit? ----- */
+	.details .circlepic.raised {top: -23px;}
+	.circlepic img, .circlepic .circle {margin-bottom: 7px;}
+
+	.details .circlepic .name {
+		font-size: .55em;
+		font-weight: $heavy;
+	}
+
+	.footer {
+		clear: both;
+		padding: 0 15px;
+		background: #fff;
+		height: 25px;
+		@include uppercase-micro;
+
+		a {color: $light-gray;}
+	}
+
+}
+
+
+/* ----- The box with info under a pic, for experiences ----- */
+.details {
+	.type .circle {
+		width: 80px; height: 80px;
+		overflow: hidden;
+		font-size: 2.5em;
+		color: $copper;
+		
+		i {
+			vertical-align: middle;
+			position: relative;	
+			padding-top: 10px;
+		}
+
+	}
+	.text {
+		padding-top: 15px;
+
+		p {
+			font-size: .8em;
+			font-weight: $book;
+		}
+		p.date {
+			font-weight: $heavy;
+			font-size: .7em;
+			margin-bottom: 0px;
+		}	
+	}
+	.participants {
+		text-align: left;
+	
+		a {
+			display: inline-block;
+			margin-right: 14px;
+			text-align: center;
+		}
+		img {width: 80px; height: 80px;}
+	}
+}
+
+
+
+
+
+

@@ -1,0 +1,236 @@
+// Work styles
+
+/* ----- The dashbar for choosing what work to add ----- */
+.work-dash .intro {
+	background: #fff;
+	font-weight: $bold;
+	color: #8fb897;
+	font-size: 1.1em;
+	display: block;
+	height: 80px;
+	text-align: right;
+}
+
+#add-work {
+	background: #4b955b;
+	padding-bottom: 10px;
+	margin: auto;
+
+	li a {
+		width: 135px;
+		height: 60px;
+		margin-right: 20px;
+	}
+	li i {
+		width: 60px;
+		color: #fff;
+		font-size: 1.25em;
+	}
+	.btn {
+		font-size: 1.25em;
+		margin: 10px 10px 0 10px;
+	}
+	.btn-default {
+		border: $border-tripel #7fb48b;
+		color: #fff;
+		background: #4b955b;
+	}
+}
+
+.work-dash .navbar, .work-dash .navbar div {padding-left: 0;}
+
+
+/* ----- The masonry area containing the completed work ----- */
+#work-container {
+	vertical-align: top;
+
+	&.work .row div {margin: 0; background: transparent; padding: 0 15px;}
+	&.container {padding: 0;}
+
+	&.work .row div.work-item-box {
+		/*width: 31%;
+		margin: 0 .5em 1em;*/
+		min-height: 50px;
+		background: #fff;
+		display: inline-block;
+		vertical-align: top;
+		width: 100%;
+		margin-bottom: 1em;
+		padding: 0;
+	}
+
+	.footer a {
+		background: #fff;
+		color: $light-gray;
+		padding: .5em 1em;
+		font-size: .8em;
+	}
+
+	.link {
+		i {
+			-moz-transform: scaleX(-1);
+	        -o-transform: scaleX(-1);
+	        -webkit-transform: scaleX(-1);
+	        transform: scaleX(-1);
+	        filter: FlipH;
+	        -ms-filter: "FlipH";
+	        display: inline-block;
+	        color: $dark-blue;
+	        text-align: center;
+	        width: 14%;
+	        padding: 0.75em 0;
+	        vertical-align: bottom;
+	        float: left;
+		}
+		a {
+			background: $dark-blue;
+			color: #fff;
+			text-transform: uppercase;
+			letter-spacing: 1px;
+			display: inline-block;
+			padding: 1.5em 1em;
+			font-size: .75em;
+			width: 85%;
+			float: right;
+		}
+		span {
+			font-size: 2.25em; 
+			display: block;
+			text-transform: none;
+			letter-spacing: 0px;
+			font-weight: $medium;
+		}
+		p {display: none;}
+	}
+
+	.file {
+		padding-bottom: .25em;
+
+		a {
+			background: $ron-burgundy;
+			color: #fff;
+			font-weight: $medium;
+			font-size: 1.75em;
+			display: block;
+			padding: 1em;
+		}
+		i {
+			color: rgba(255,255,255,.25);
+			display: block;
+			text-align: center;
+			padding-top: .5em;
+		}
+		p {display: none;}
+	}
+
+	&.work .row div.text.work-item-box {
+		background: $copper;
+	}
+	.text {
+		h4 {
+			font-weight: $medium;
+			font-size: 1.75em;
+			color: #fff;
+			margin-bottom: 0;
+			padding: 0.5em 0.65em 0;
+		}
+		blockquote {
+			padding: .5em 1em;
+			margin-bottom: 0;
+			font-size: 1.25em;
+		}
+		p {display: none;}
+	}
+
+	.photo {
+		img {
+			max-width: 100%;
+		}
+	}
+
+	.audio {margin-top: 1em;
+		p {padding-top: 0;}
+		audio {width: 100%; position: relative; top: -8px;}
+	}
+}
+
+
+/* ---- Can these go in the above nest too? ----- */
+.work {
+	.row div {
+		background: #fff;
+		padding-left: 0px;
+		padding-right: 0px;
+		margin-left: 15px;
+		margin-right: 15px;
+		color: $dark-blue;
+		margin-bottom: 30px;
+
+		img {max-width: 100%;}
+		p {
+			min-height: 40px;
+			padding: 13px 10px;
+			font-size: 1.25em;
+			margin: 0px;
+		}
+	}
+
+	.video a:before {
+		background: url(img/work-video.png) no-repeat;
+		content: '';
+		width: 175px;
+		height: 175px;
+		position: absolute;
+		margin: auto;
+		top: 0; right: 0; bottom: 0; left: 0;
+		pointer-events: none;
+	}
+
+	.file {
+		.main {
+			background: $ron-burgundy; 
+			color: #fff;
+			display: block;
+			font-size: 1.5em;
+			font-weight: $heavy;
+			line-height: 1.35em;
+			padding-bottom: 41px;
+		
+			&:before {
+				background: url(img/work-file.png) no-repeat;
+				content: '';
+				width: 82px;
+				height: 82px;
+				position: absolute;
+				margin: auto;
+				top: 0; right: 0; bottom: 0; left: 0;
+				pointer-events: none;
+			}
+		}
+		.footer {
+			font-size: 1.1em;
+			a {color: #a0a0a0;}
+		}
+	}
+
+	.row .text {
+		background: $copper;
+		color: #fff;
+		padding-bottom: 10px;
+		font-weight: $extralight;
+		line-height: 1.5em;
+	
+		h2 {
+			padding: 13px 10px 0;
+			margin: 0;
+			font-weight: $medium;
+		}
+	}
+}
+
+
+/* ----- Work Modals ----- */
+#associate-work .modal-dialog {
+	width: 70%;
+}
+

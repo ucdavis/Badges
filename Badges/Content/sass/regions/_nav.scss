@@ -1,0 +1,79 @@
+// Styles for the top navigation bar
+
+.navbar-inverse {
+	background: transparent url(img/bg-header.jpg) center top;
+	min-height: 60px;
+	border-bottom: $border-tripel $dark-blue;
+}
+.navbar-brand {
+	padding: 8px 15px 6px;
+}
+
+
+/* ----- nav ----- */
+.navbar-fixed-top .navbar-nav > li > a {
+	background: url(img/sprite-nav.png) no-repeat transparent;
+	height: 44px; width: 44px;
+	overflow: hidden;
+	padding: 0px;
+	margin: 7px 16px 8px 20px;
+	text-indent: -500px;
+}
+	.navbar-nav > li.nav-add > a {background-position: -44px 0px;}
+	.navbar-nav > li.nav-view > a {background-position: -88px 0px;}
+	.navbar-nav > li.nav-badges > a {background-position: -132px 0px;}
+	.navbar-nav > li.nav-search > a {background-position: -176px 0px;}
+
+.navbar-fixed-top.navbar-inverse .navbar-nav > .active > a, 
+.navbar-fixed-top.navbar-inverse .navbar-nav > .active > a:hover, 
+.navbar-inverse .navbar-nav > .active > a:focus {
+	background: url(img/sprite-nav.png) no-repeat transparent;
+}
+.navbar-right {
+	position: relative;
+}
+
+	/* ---- DEPRICATED landing page menus ---- */
+	.nav.menu {
+			a {
+			display: inline-block;
+			width: 100%;
+			min-height: 100px;
+			font-size: 2.5em;
+			background: #fff;
+			margin-top: 1em;
+			text-align: center;
+			color: #4b955b;
+		}
+			a:hover {
+				@include light-bg(0.75);
+				color: rgba(75,149,91,.75);
+				text-decoration: none;
+			}
+	}
+	.nav.menu.student {
+		.exp-link a {
+			color: rgb(27,117,147);
+		}
+			.exp-link a:hover {
+				color: rgba(27,117,147,.75);
+			}
+		.portfolio-link a {
+			color: rgb(177,105,61);
+		}
+			.portfolio-link a:hover {
+				color: rgba(177,105,61,.75);
+			}
+		.badge-link a {
+			color: rgb(75,149,91);
+		}
+			.badge-link a:hover {
+				color: rgba(75,149,91,.75);
+			}
+		.feedback-link a {
+			color: rgb(35,74,90);
+		}
+			.feedback-link a:hover {
+				color: rgba(35,74,90,.75);
+			}
+	}

@@ -1,0 +1,35 @@
+// Outcomes
+
+
+/* ---- Styles when viewing an experience ---- */
+.outcomes {
+	width: 100%;
+	display: block;
+	background: $dark-blue;
+	padding-top: 1em;
+
+	margin-bottom: 1em;
+	color: #fff;
+
+	a.btn {
+		@include footer-btn;
+	}
+	.outcome {
+		padding-bottom: .5em;
+	}
+	h4 {
+		display: inline-block;
+		color: #fff;
+		padding: .25em .25em .25em 1em;
+		margin: 0;
+	}
+	p {
+		display: inline-block;
+		font-size: .8em;
+	}
+	li {
+		a.outcome-edit {float: left;}
+		.pull-right form {float: right; line-height: 1.1em;} 
+		.pull-right .btn.btn-xs {font-size: 1.1em; padding: 0 5px; line-height: 1.25em;}
+	}
+}
