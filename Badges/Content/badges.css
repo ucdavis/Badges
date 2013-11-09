@@ -1081,10 +1081,10 @@ input#cover-image, input#cover-image[type="file"] {
   padding: 0.75em 1em 0.9em;
   display: block; }
 .recent.feedback td {
-  padding: 0.75em 1em 0.9em; }
+  padding: 1em; }
 .recent.feedback td a {
   color: #1b7593;
-  font-size: 1.1em; }
+  font-size: 1.25em; }
 .recent.feedback td .quotesource {
   display: block; }
   .recent.feedback td .quotesource a {
@@ -1121,9 +1121,13 @@ input#cover-image, input#cover-image[type="file"] {
 .addexp a {
   background-position: -485px -130px; }
   .addexp a:hover img {
-    -webkit-box-shadow: 0px 0px 15px -20px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: 0px 0px 15px -20px rgba(0, 0, 0, 0.75);
-    box-shadow: 0px 0px 15px -20px rgba(0, 0, 0, 0.75); }
+    -webkit-box-shadow: 0 0 31px 10px rgba(253, 220, 27, 0.75);
+    -moz-box-shadow: 0 0 31px 10px rgba(253, 220, 27, 0.75);
+    box-shadow: 0 0 31px 10px rgba(253, 220, 27, 0.75); }
 
 .badgecenter a {
   background-position: -650px -483px; }
+  .badgecenter a:hover img {
+    -webkit-box-shadow: 0 0 31px 10px rgba(253, 220, 27, 0.75);
+    -moz-box-shadow: 0 0 31px 10px rgba(253, 220, 27, 0.75);
+    box-shadow: 0 0 31px 10px rgba(253, 220, 27, 0.75); }

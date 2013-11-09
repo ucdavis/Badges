@@ -26,11 +26,11 @@
 		display: block;
 	}
 	&.feedback td {
-		padding: 0.75em 1em 0.9em;
+		padding: 1em;
 	}
 	&.feedback td a {
 		color: $sharks-blue;
-		font-size: 1.1em;
+		font-size: 1.25em;
 	}
 	&.feedback td .quotesource {
 		display: block;
@@ -75,13 +75,18 @@
 		@extend .dashbtn;
 		background-position: -485px -130px;
 		&:hover img {
-			-webkit-box-shadow: 0px 0px 15px -20px rgba(0,0,0,0.75);
-			-moz-box-shadow: 0px 0px 15px -20px rgba(0,0,0,0.75);
-			box-shadow: 0px 0px 15px -20px rgba(0,0,0,0.75);
+			-webkit-box-shadow: 0 0 31px 10px rgba(253, 220, 27, 0.75);
+			-moz-box-shadow: 0 0 31px 10px rgba(253, 220, 27, 0.75);
+			box-shadow: 0 0 31px 10px rgba(253, 220, 27, 0.75);
 		}
 	}
 	.badgecenter a {
 		@extend .dashbtn;
 		background-position: -650px -483px;
+		&:hover img {
+			-webkit-box-shadow: 0 0 31px 10px rgba(253, 220, 27, 0.75);
+			-moz-box-shadow: 0 0 31px 10px rgba(253, 220, 27, 0.75);
+			box-shadow: 0 0 31px 10px rgba(253, 220, 27, 0.75);
+		}
 	}
 
