@@ -151,6 +151,7 @@ div.helptext {
 		margin-right: 40px;
 		padding: 15px 40px;
 	
+		&.btn-sm {font-size: 0.8em; margin-right: 0; padding: 10px 15px;}
 		&.btn-xs {padding: 1px 5px; margin: 0;}
 		i {padding-right: 10px;}
 	}
