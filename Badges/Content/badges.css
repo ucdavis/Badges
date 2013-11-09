@@ -1067,7 +1067,8 @@ input#cover-image, input#cover-image[type="file"] {
   width: 100%; }
 .recent th {
   font-weight: 400;
-  border-bottom: 3px solid #b36a3e; }
+  border-bottom: 3px solid #b36a3e;
+  vertical-align: bottom; }
   .recent th h4 {
     font-size: 1.75em;
     margin: 2em 0 0; }
@@ -1119,6 +1120,10 @@ input#cover-image, input#cover-image[type="file"] {
 
 .addexp a {
   background-position: -485px -130px; }
+  .addexp a:hover img {
+    -webkit-box-shadow: 0px 0px 170px -24px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 170px -24px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 0px 170px -24px rgba(0, 0, 0, 0.75); }
 
 .badgecenter a {
   background-position: -650px -483px; }
