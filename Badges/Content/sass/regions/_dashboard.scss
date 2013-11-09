@@ -1,0 +1,62 @@
+// Dashboard styles
+
+/* ---- Student dash ----- */
+
+.dashbtn {
+	display: block;
+	background: url('img/bg-couchman.jpg') no-repeat;
+	width: 100%;
+	height: 190px;
+	padding: 100px 0 0 15px;
+	border: $border-tripel #fff;
+}
+	.addexp a {
+		@extend .dashbtn;
+		background-position: -485px -130px;
+	}
+	.badgecenter a {
+		@extend .dashbtn;
+		background-position: -650px -483px;
+	}
+
+.recent {
+	
+	table {
+		width: 100%;
+	}
+	th {
+		font-weight: $book;
+		border-bottom: $border-tripel lighten($copper, 0.5);
+	}
+	td {
+		@include light-bg(0.5);
+	}
+
+	&.exp td.title a {
+		color: $copper;
+		font-size: 1.75em;
+		padding: 0.5em 1em;
+	}
+	&.feedback td a {
+		color: $sharks-blue;
+		font-size: 1.1em;
+	}
+	&.feedback td .quotesource a {
+		color: $dark-gray;
+		font-size: 0.9em;
+	}
+
+	&.exp a.btn-default {background: $copper;
+		&:hover {background: lighten($copper, 0.2);}
+	}
+	&.feedback a.btn-default, td a.btn-default {background: $sharks-blue;
+		&:hover {background: lighten($sharks-blue, 0.2);}
+	}
+	td a.btn-default i {
+		color: #fff;
+	}
+
+	& > .btn-default {margin-top: .5em;}
+
+}
+
