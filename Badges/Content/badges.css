@@ -1111,7 +1111,10 @@ input#cover-image, input#cover-image[type="file"] {
   margin-top: .5em;
   width: 100%; }
   .recent > .btn-default img {
-    padding-right: 10px; }
+    padding-right: 10px;
+    width: 36px;
+    position: relative;
+    top: -2px; }
 
 .dashbtn, .addexp a, .badgecenter a {
   display: block;

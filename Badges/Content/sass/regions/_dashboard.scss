@@ -61,7 +61,12 @@
 
 	& > .btn-default {
 		margin-top: .5em; width: 100%;
-		img {padding-right: 10px;}
+		img {
+			padding-right: 10px;
+			width: 36px; 
+			position: relative;
+			top: -2px;
+		}
 	}
 
 
