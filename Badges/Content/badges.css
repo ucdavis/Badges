@@ -1066,10 +1066,10 @@ input#cover-image, input#cover-image[type="file"] {
   border: 3px solid white; }
 
 .addexp a {
-  background-position: 560px 135px; }
+  background-position: -485px -130px; }
 
 .badgecenter a {
-  background-position: 674px 498px; }
+  background-position: -650px -483px; }
 
 .recent table {
   width: 100%; }
@@ -1078,20 +1078,25 @@ input#cover-image, input#cover-image[type="file"] {
   border-bottom: 3px solid #b36a3e; }
 .recent td {
   background: rgba(255, 255, 255, 0.5); }
-  .exp .recent td.title a {
-    color: #b1693d;
-    font-size: 1.5em; }
-  .feedback .recent td a {
-    color: #1b7593;
-    font-size: 1.1em; }
-  .feedback .recent td .quotesource a {
-    color: #071626;
-    font-size: 0.9em; }
-.recent .exp a.btn-default {
+.recent.exp td.title a {
+  color: #b1693d;
+  font-size: 1.75em;
+  padding: 0.5em 1em; }
+.recent.feedback td a {
+  color: #1b7593;
+  font-size: 1.1em; }
+.recent.feedback td .quotesource a {
+  color: #071626;
+  font-size: 0.9em; }
+.recent.exp a.btn-default {
   background: #b1693d; }
-  .recent .exp a.btn-default:hover {
+  .recent.exp a.btn-default:hover {
     background: #b2693d; }
-.recent .feedback a.btn-default, .recent td a.btn-default {
+.recent.feedback a.btn-default, .recent td a.btn-default {
   background: #1b7593; }
-  .recent .feedback a.btn-default:hover, .recent td a.btn-default:hover {
+  .recent.feedback a.btn-default:hover, .recent td a.btn-default:hover {
     background: #1b7694; }
+.recent td a.btn-default i {
+  color: #fff; }
+.recent > .btn-default {
+  margin-top: .5em; }
