@@ -28,44 +28,51 @@
 		font-weight: $book;
 		border-bottom: $border-tripel lighten($copper, 0.5);
 
-		h4 {font-size: 1.75em;}
+		h4 {font-size: 1.75em; margin: 2em 0 0;}
 	}
 	td {
 		@include light-bg(0.5);
+		margin-bottom: 3px;
 	}
 
 	&.exp td.title a {
 		color: $copper;
 		font-size: 2em;
-		padding: 0.5em 1em;
+		padding: 0.75em 1em 0.9em;
+		display: block;
 	}
 	&.feedback td {
-		padding: 0.5em 1em;
+		padding: 0.75em 1em 0.9em;
 	}
 	&.feedback td a {
 		color: $sharks-blue;
 		font-size: 1.1em;
 	}
-	&.feedback td .quotesource a {
-		color: $dark-gray;
-		font-size: 1em;
+	&.feedback td .quotesource {
+		display: block;
+
+		a {
+			color: $dark-gray;
+			font-size: 1em;
+			font-weight: $heavy;
+		}
 	}
 
 	&.exp a.btn-default {background: $copper;
-		&:hover {background: lighten($copper, 0.5); color: rgba(255,255,255,0.5);}
+		&:hover {background: lighten($copper, 0.5); color: rgba(255,255,255,0.3);}
 	}
 	&.feedback a.btn-default, td a.btn-default {background: $sharks-blue;
-		&:hover {background: lighten($sharks-blue, 0.5); color: rgba(255,255,255,0.5);}
+		&:hover {background: lighten($sharks-blue, 0.5); color: rgba(255,255,255,0.3);}
 	}
 	
 	a.btn-default i {
 		color: #fff;
 	}
 		a.btn-default:hover i {
-			color: rgba(255,255,255,0.5);
+			color: rgba(255,255,255,0.3);
 		}
 		a.btn-default:hover img {
-			opacity: 0.5;
+			opacity: 0.3;
 		}
 
 	& > .btn-default {margin-top: .5em;}

@@ -322,15 +322,17 @@ textarea.form-control {
   border-radius: 0px;
   margin-right: 40px;
   padding: 15px 40px; }
+  .btn i {
+    padding-right: 10px; }
   .btn.btn-sm {
-    font-size: 0.8em;
+    font-size: 1em;
     margin-right: 0;
-    padding: 10px 15px; }
+    padding: 8px 15px; }
+    .btn.btn-sm i {
+      padding-right: 5px; }
   .btn.btn-xs {
     padding: 1px 5px;
     margin: 0; }
-  .btn i {
-    padding-right: 10px; }
 
 .btn-default {
   background-color: #bdbdbd;
@@ -1081,36 +1083,42 @@ input#cover-image, input#cover-image[type="file"] {
   font-weight: 400;
   border-bottom: 3px solid #b36a3e; }
   .recent th h4 {
-    font-size: 1.75em; }
+    font-size: 1.75em;
+    margin: 2em 0 0; }
 .recent td {
-  background: rgba(255, 255, 255, 0.5); }
+  background: rgba(255, 255, 255, 0.5);
+  margin-bottom: 3px; }
 .recent.exp td.title a {
   color: #b1693d;
   font-size: 2em;
-  padding: 0.5em 1em; }
+  padding: 0.75em 1em 0.9em;
+  display: block; }
 .recent.feedback td {
-  padding: 0.5em 1em; }
+  padding: 0.75em 1em 0.9em; }
 .recent.feedback td a {
   color: #1b7593;
   font-size: 1.1em; }
-.recent.feedback td .quotesource a {
-  color: #071626;
-  font-size: 1em; }
+.recent.feedback td .quotesource {
+  display: block; }
+  .recent.feedback td .quotesource a {
+    color: #071626;
+    font-size: 1em;
+    font-weight: 600; }
 .recent.exp a.btn-default {
   background: #b1693d; }
   .recent.exp a.btn-default:hover {
     background: #b36a3e;
-    color: rgba(255, 255, 255, 0.5); }
+    color: rgba(255, 255, 255, 0.3); }
 .recent.feedback a.btn-default, .recent td a.btn-default {
   background: #1b7593; }
   .recent.feedback a.btn-default:hover, .recent td a.btn-default:hover {
     background: #1b7795;
-    color: rgba(255, 255, 255, 0.5); }
+    color: rgba(255, 255, 255, 0.3); }
 .recent a.btn-default i {
   color: #fff; }
 .recent a.btn-default:hover i {
-  color: rgba(255, 255, 255, 0.5); }
+  color: rgba(255, 255, 255, 0.3); }
 .recent a.btn-default:hover img {
-  opacity: 0.5; }
+  opacity: 0.3; }
 .recent > .btn-default {
   margin-top: .5em; }
