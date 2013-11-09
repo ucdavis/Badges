@@ -16,7 +16,7 @@
                     <ul>   
                     @foreach (var outcome in Model.ExperienceOutcomes.Where(x=>x.Outcome.Name == outcomeCategoryName).ToArray())
                     {
-                        <li style="padding-top: 20px">
+                        <li>
                             @string.Format("{0:D}", outcome.Created)
                             @if (User.IsInRole(Badges.Core.Domain.RoleNames.Student))
                             {

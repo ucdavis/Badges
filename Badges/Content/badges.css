@@ -507,7 +507,7 @@ input#cover-image, input#cover-image[type="file"] {
   .jumbotron.experience .overlay {
     position: relative;
     left: -15px;
-    min-height: 275px; }
+    min-height: 260px; }
   .jumbotron.experience .details {
     background: #b1693d;
     padding: 0 15px;
@@ -1017,11 +1017,13 @@ input#cover-image, input#cover-image[type="file"] {
   background: #fff;
   color: #b1693d; }
   .menuitem a.cover {
-    max-height: 225px;
+    max-height: 185px;
     overflow: hidden;
     display: block; }
   .menuitem .cover img {
-    max-width: 100%; }
+    max-width: 100%;
+    position: relative;
+    top: -25%; }
   .menuitem h3 {
     margin-top: 0;
     font-size: 2.5em; }
@@ -1043,7 +1045,7 @@ input#cover-image, input#cover-image[type="file"] {
     .menuitem .text p {
       color: #071626;
       font-size: 1.25em;
-      margin-bottom: 2em; }
+      margin-bottom: 1em; }
   .menuitem a.footer {
     text-transform: uppercase;
     font-weight: 700;

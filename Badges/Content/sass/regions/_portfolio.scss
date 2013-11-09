@@ -18,11 +18,11 @@
 	color: $copper;
 
 	 a.cover {
-		max-height: 225px; 
+		max-height: 185px; 
 		overflow: hidden; 
 		display: block;
 	}
-	 .cover img {max-width: 100%;}
+	 .cover img {max-width: 100%; position: relative; top: -25%;}
 
 	 h3 {
 	 	margin-top: 0; 
@@ -44,7 +44,7 @@
 	 	p {
 	 		color: $copy-gray; 
 	 		font-size: 1.25em; 
-	 		margin-bottom: 2em;
+	 		margin-bottom: 1em;
 	 	}
 	 }
 	 
