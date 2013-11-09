@@ -22,30 +22,32 @@
 </div>
 
 <div class="row">
-    <div class="col-md-8 recentexp">
+    <div class="col-md-8 recent exp">
         <table>
         <tr>
             <th><h4>Your recent experiences</h4></th>
             <th colspan="2"><em>Created on</em></th>
         </tr>
-        <tr>
-            <td><a href="#">Arch Hunting</a></td>
-            <td><em>Oct 21, 2013</em></td>
-            <td><a href="@Url.Action("Index", "Home")" class="btn btn-default"><i class="icon-edit button-icon"></i> Edit</a></td>
-        </tr>
+            <!-- For each experience -->
+            <tr>
+                <td class="title"><a href="#">Arch Hunting</a></td>
+                <td><em>Oct 21, 2013</em></td>
+                <td><a href="@Url.Action("Index", "Home")" class="btn btn-default btn-sm"><i class="icon-edit button-icon"></i> Edit</a></td>
+            </tr>
+            <!-- -->
         </table>
 
-        <a href="@Url.Action("Portfolio")" class="btn btn-default portfolio"><i class="icon-view button-icon"></i> View your portfolio</a>
+        <a href="@Url.Action("Portfolio")" class="btn btn-default portfolio"><img src="http://v.caes.ucdavis.edu/ASI/Badges/img/icon-less-creepy-eyeball.png" alt="" /></i> View your portfolio</a>
     </div>
-    <div class="col-md-4 recentfeedback">
+    <div class="col-md-4 recent feedback">
         <table>
         <tr>
             <th><h4>Your feedback</h4></th>
         </tr>
         <tr>
             <td><a href="#">"Two thumbs up! Great family fun."</a><br />
-                <span class="quotesource"><a href="#">- Scott K.</a></span> /
-                <span class="date">Oct 19, 2013</span>
+                <span class="quotesource"><a href="#">- Scott K.</a> /
+                <span class="date">Oct 19, 2013</span></span>
             </td>
         </tr>
         </table>

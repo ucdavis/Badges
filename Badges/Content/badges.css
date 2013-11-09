@@ -755,7 +755,9 @@ input#cover-image, input#cover-image[type="file"] {
     padding: 13px 10px 0;
     margin: 0;
     font-weight: 500; }
-.work .footer a {
+
+#work-container .work .footer a,
+#work-container .work .file .footer a {
   background: #fff;
   color: #828180;
   padding: .5em 1em;
@@ -766,14 +768,14 @@ input#cover-image, input#cover-image[type="file"] {
   width: 70%; }
 
 /* ---- Styles when viewing an experience ---- */
-.outcomes {
+.view-rightcol .outcomes {
   width: 100%;
   display: block;
   background: #234a5a;
   padding-top: 1em;
   margin-bottom: 1em;
   color: #fff; }
-  .outcomes a.btn {
+  .view-rightcol .outcomes a.btn {
     display: block;
     width: 100%;
     background: #b1693d;
@@ -786,34 +788,34 @@ input#cover-image, input#cover-image[type="file"] {
     font-size: .8em;
     padding: .5em 1em;
     text-align: left; }
-  .outcomes .outcome {
+  .view-rightcol .outcomes .outcome {
     padding-bottom: .5em; }
-  .outcomes h4 {
+  .view-rightcol .outcomes h4 {
     display: inline-block;
     color: #fff;
     padding: .25em .25em .25em 1em;
     margin: 0; }
-  .outcomes p {
+  .view-rightcol .outcomes p {
     display: inline-block;
     font-size: .8em; }
-  .outcomes li a.outcome-edit {
+  .view-rightcol .outcomes li a.outcome-edit {
     float: left; }
-  .outcomes li .pull-right form {
+  .view-rightcol .outcomes li .pull-right form {
     float: right;
     line-height: 1.1em; }
-  .outcomes li .pull-right .btn.btn-xs {
+  .view-rightcol .outcomes li .pull-right .btn.btn-xs {
     font-size: 1.1em;
     padding: 0 5px;
     line-height: 1.25em; }
 
 /* ----- Styles when viewing an experience ----- */
-.feedback {
+.view-rightcol .feedback {
   width: 100%;
   display: block;
   background: #234a5a;
   padding-top: 1em;
   background: #234a5a url(img/bg-feedback.jpg) top right no-repeat; }
-  .feedback a.btn {
+  .view-rightcol .feedback a.btn {
     display: block;
     width: 100%;
     background: #b1693d;
@@ -826,15 +828,15 @@ input#cover-image, input#cover-image[type="file"] {
     font-size: .8em;
     padding: .5em 1em;
     text-align: left; }
-  .feedback .quote {
+  .view-rightcol .feedback .quote {
     color: #fff;
     font-size: 1.5em;
     padding: .25em .5em .5em .25em; }
-    .feedback .quote blockquote {
+    .view-rightcol .feedback .quote blockquote {
       margin-bottom: 0; }
-      .feedback .quote blockquote i {
+      .view-rightcol .feedback .quote blockquote i {
         min-height: 50px; }
-    .feedback .quote .author {
+    .view-rightcol .feedback .quote .author {
       font-size: 0.75em;
       text-transform: uppercase;
       font-weight: 800;
@@ -1053,3 +1055,43 @@ input#cover-image, input#cover-image[type="file"] {
     color: #828180;
     font-size: .75em;
     display: block; }
+
+/* ---- Student dash ----- */
+.dashbtn, .addexp a, .badgecenter a {
+  display: block;
+  background: url("img/bg-couchman.jpg") no-repeat;
+  width: 100%;
+  height: 190px;
+  padding: 100px 0 0 15px;
+  border: 3px solid white; }
+
+.addexp a {
+  background-position: 560px 135px; }
+
+.badgecenter a {
+  background-position: 674px 498px; }
+
+.recent table {
+  width: 100%; }
+.recent th {
+  font-weight: 400;
+  border-bottom: 3px solid #b36a3e; }
+.recent td {
+  background: rgba(255, 255, 255, 0.5); }
+  .exp .recent td.title a {
+    color: #b1693d;
+    font-size: 1.5em; }
+  .feedback .recent td a {
+    color: #1b7593;
+    font-size: 1.1em; }
+  .feedback .recent td .quotesource a {
+    color: #071626;
+    font-size: 0.9em; }
+.recent .exp a.btn-default {
+  background: #b1693d; }
+  .recent .exp a.btn-default:hover {
+    background: #b2693d; }
+.recent .feedback a.btn-default, .recent td a.btn-default {
+  background: #1b7593; }
+  .recent .feedback a.btn-default:hover, .recent td a.btn-default:hover {
+    background: #1b7694; }
