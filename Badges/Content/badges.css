@@ -1116,18 +1116,43 @@ input#cover-image, input#cover-image[type="file"] {
   width: 100%;
   height: 190px;
   padding: 100px 0 0 15px;
-  border: 3px solid white; }
+  border: 3px solid white;
+  overflow: hidden; }
 
 .addexp a {
   background-position: -485px -130px; }
+  .addexp a img {
+    -webkit-box-shadow: 0 0 0px 0px rgba(253, 220, 27, 0);
+    -moz-box-shadow: 0 0 0px 0px rgba(253, 220, 27, 0);
+    box-shadow: 0 0 0px 0px rgba(253, 220, 27, 0);
+    -webkit-transition: 500ms linear 0s;
+    -moz-transition: 500ms linear 0s;
+    -o-transition: 500ms linear 0s;
+    transition: 500ms linear 0s; }
   .addexp a:hover img {
     -webkit-box-shadow: 0 0 31px 10px rgba(253, 220, 27, 0.75);
     -moz-box-shadow: 0 0 31px 10px rgba(253, 220, 27, 0.75);
-    box-shadow: 0 0 31px 10px rgba(253, 220, 27, 0.75); }
+    box-shadow: 0 0 31px 10px rgba(253, 220, 27, 0.75);
+    -webkit-transition: 500ms linear 0s;
+    -moz-transition: 500ms linear 0s;
+    -o-transition: 500ms linear 0s;
+    transition: 500ms linear 0s; }
 
 .badgecenter a {
   background-position: -650px -483px; }
+  .badgecenter a img {
+    -webkit-box-shadow: 0 0 0px 0px rgba(253, 220, 27, 0);
+    -moz-box-shadow: 0 0 0px 0px rgba(253, 220, 27, 0);
+    box-shadow: 0 0 0px 0px rgba(253, 220, 27, 0);
+    -webkit-transition: 500ms linear 0s;
+    -moz-transition: 500ms linear 0s;
+    -o-transition: 500ms linear 0s;
+    transition: 500ms linear 0s; }
   .badgecenter a:hover img {
     -webkit-box-shadow: 0 0 31px 10px rgba(253, 220, 27, 0.75);
     -moz-box-shadow: 0 0 31px 10px rgba(253, 220, 27, 0.75);
-    box-shadow: 0 0 31px 10px rgba(253, 220, 27, 0.75); }
+    box-shadow: 0 0 31px 10px rgba(253, 220, 27, 0.75);
+    -webkit-transition: 500ms linear 0s;
+    -moz-transition: 500ms linear 0s;
+    -o-transition: 500ms linear 0s;
+    transition: 500ms linear 0s; }
