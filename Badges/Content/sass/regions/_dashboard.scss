@@ -2,23 +2,6 @@
 
 /* ---- Student dash ----- */
 
-.dashbtn {
-	display: block;
-	background: url('img/bg-couchman.jpg') no-repeat;
-	width: 100%;
-	height: 190px;
-	padding: 100px 0 0 15px;
-	border: $border-tripel #fff;
-}
-	.addexp a {
-		@extend .dashbtn;
-		background-position: -485px -130px;
-	}
-	.badgecenter a {
-		@extend .dashbtn;
-		background-position: -650px -483px;
-	}
-
 .recent {
 	
 	table {
@@ -32,8 +15,7 @@
 	}
 	td {
 		@include light-bg(0.5);
-		margin-bottom: 3px;
-		display: block;
+		border-bottom: $border-tripel $light-gray;
 	}
 
 	&.exp td.title a {
@@ -79,4 +61,21 @@
 	& > .btn-default {margin-top: .5em;}
 
 }
+
+.dashbtn {
+	display: block;
+	background: url('img/bg-couchman.jpg') no-repeat;
+	width: 100%;
+	height: 190px;
+	padding: 100px 0 0 15px;
+	border: $border-tripel #fff;
+}
+	.addexp a {
+		@extend .dashbtn;
+		background-position: -485px -130px;
+	}
+	.badgecenter a {
+		@extend .dashbtn;
+		background-position: -650px -483px;
+	}
 
