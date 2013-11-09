@@ -1074,7 +1074,7 @@ input#cover-image, input#cover-image[type="file"] {
     margin: 2em 0 0; }
 .recent td {
   background: rgba(255, 255, 255, 0.5);
-  border-bottom: 3px solid #bdbdbd; }
+  border-bottom: 3px solid #eeeeee; }
 .recent.exp td.title a {
   color: #b1693d;
   font-size: 2em;
@@ -1094,12 +1094,12 @@ input#cover-image, input#cover-image[type="file"] {
 .recent.exp a.btn-default {
   background: #b1693d; }
   .recent.exp a.btn-default:hover {
-    background: #b36a3e;
+    background: #b26a3d;
     color: rgba(255, 255, 255, 0.3); }
 .recent.feedback a.btn-default, .recent td a.btn-default {
   background: #1b7593; }
   .recent.feedback a.btn-default:hover, .recent td a.btn-default:hover {
-    background: #1b7795;
+    background: #1b7694;
     color: rgba(255, 255, 255, 0.3); }
 .recent a.btn-default i {
   color: #fff; }
@@ -1121,9 +1121,9 @@ input#cover-image, input#cover-image[type="file"] {
 .addexp a {
   background-position: -485px -130px; }
   .addexp a:hover img {
-    -webkit-box-shadow: 0px 0px 170px -24px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: 0px 0px 170px -24px rgba(0, 0, 0, 0.75);
-    box-shadow: 0px 0px 170px -24px rgba(0, 0, 0, 0.75); }
+    -webkit-box-shadow: 0px 0px 15px -20px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 15px -20px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 0px 15px -20px rgba(0, 0, 0, 0.75); }
 
 .badgecenter a {
   background-position: -650px -483px; }

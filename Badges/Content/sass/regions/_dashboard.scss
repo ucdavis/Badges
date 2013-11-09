@@ -16,7 +16,7 @@
 	}
 	td {
 		@include light-bg(0.5);
-		border-bottom: $border-tripel $light-gray;
+		border-bottom: $border-tripel #eee;
 	}
 
 	&.exp td.title a {
@@ -43,10 +43,10 @@
 	}
 
 	&.exp a.btn-default {background: $copper;
-		&:hover {background: lighten($copper, 0.5); color: rgba(255,255,255,0.3);}
+		&:hover {background: lighten($copper, 0.3); color: rgba(255,255,255,0.3);}
 	}
 	&.feedback a.btn-default, td a.btn-default {background: $sharks-blue;
-		&:hover {background: lighten($sharks-blue, 0.5); color: rgba(255,255,255,0.3);}
+		&:hover {background: lighten($sharks-blue, 0.3); color: rgba(255,255,255,0.3);}
 	}
 	
 	a.btn-default i {
@@ -75,9 +75,9 @@
 		@extend .dashbtn;
 		background-position: -485px -130px;
 		&:hover img {
-			-webkit-box-shadow: 0px 0px 170px -24px rgba(0,0,0,0.75);
-			-moz-box-shadow: 0px 0px 170px -24px rgba(0,0,0,0.75);
-			box-shadow: 0px 0px 170px -24px rgba(0,0,0,0.75);
+			-webkit-box-shadow: 0px 0px 15px -20px rgba(0,0,0,0.75);
+			-moz-box-shadow: 0px 0px 15px -20px rgba(0,0,0,0.75);
+			box-shadow: 0px 0px 15px -20px rgba(0,0,0,0.75);
 		}
 	}
 	.badgecenter a {
