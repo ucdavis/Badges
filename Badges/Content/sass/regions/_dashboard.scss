@@ -33,6 +33,7 @@
 	td {
 		@include light-bg(0.5);
 		margin-bottom: 3px;
+		display: block;
 	}
 
 	&.exp td.title a {

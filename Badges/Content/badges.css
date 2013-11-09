@@ -1087,7 +1087,8 @@ input#cover-image, input#cover-image[type="file"] {
     margin: 2em 0 0; }
 .recent td {
   background: rgba(255, 255, 255, 0.5);
-  margin-bottom: 3px; }
+  margin-bottom: 3px;
+  display: block; }
 .recent.exp td.title a {
   color: #b1693d;
   font-size: 2em;
