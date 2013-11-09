@@ -4,25 +4,57 @@
     ViewBag.Title = "Instructor dashboard";
 }
 
-<h2>Instructor dashboard</h2>
-
-<div class="row nav menu instructor">
-    <div class="col-md-4">
-        <a href="@Url.Action("MyStudents")">
-            <i class="icon-group icon-4x"></i>
-            My students
-        </a>
-    </div>
-    <div class="col-md-4">
-        <a href="@Url.Action("Notifications")">
-            <i class="icon-bell icon-4x"></i> <span class="badge badge-important pull-right">@ViewBag.NotificationCount</span>
-            <h5>View notifications</h5>
-        </a>
-    </div>
-    <div class="col-md-4">
-        <a href="@Url.Action("Portfolio")">
-            <i class="icon-archive icon-4x"></i>
-            <h5>All portfolios</h5>
-        </a>
+<div class="row">
+    <div class="col-md-7 intro">
+        <h2 class="intro">Instructor dashboard</h2>
+        <p>Here we have your handy dashboard: keep tabs on your students’ work, leave feedback, and respond to existing conversations.</p>
     </div>
 </div>
+
+
+<div class="row">
+    <div class="col-md-6 recent exp">
+        <table>
+        <tr>
+            <th><h4>Your students' experiences</h4></th>
+            <th colspan="2"><em>Created on</em></th>
+        </tr>
+            <tr>
+                <td class="title"><a href="#">Arch Hunting</a></td>
+                <td><em>Oct 21, 2013</em></td>
+            </tr>
+            <tr>
+                <td class="title"><a href="#">Something something</a></td>
+                <td><em>Oct 12, 2013</em></td>
+            </tr>
+        </table>
+
+        <a href="@Url.Action("MyStudents")" class="btn btn-default"><i class="icon-users button-icon"></i> View your portfolio</a>
+    </div>
+    <div class="col-md-6 recent feedback">
+        <table>
+        <tr>
+            <th><h4>Your feedback</h4></th>
+        </tr>
+        <tr>
+            <td><a href="#">"I spent 21349018 hours working on this. Please advise."</a>
+                <span class="quotesource"><a href="#">- Doug L.</a> / <span class="expsource">Lego Structures</span> /
+                    <span class="date">Oct 19, 2013</span></span>
+            </td>
+            <td><a href="@Url.Action("Index", "Home")" class="btn btn-default btn-sm"><img src="http://v.caes.ucdavis.edu/ASI/Badges/img/icon-less-creepy-eyeball.png" alt="" /> View</a></td>
+        </tr>
+        <tr>
+            <td><a href="#">"This cannot progress any further without your approval!"</a>
+                <span class="quotesource"><a href="#">- Jennie D.</a> / <span class="expsource">Extreme Scrapbooking</span> /
+                    <span class="date">Oct 19, 2013</span></span>
+            </td>
+            <td><a href="@Url.Action("Index", "Home")" class="btn btn-default btn-sm"><img src="http://v.caes.ucdavis.edu/ASI/Badges/img/icon-less-creepy-eyeball.png" alt="" /> View</a></td>
+        </tr>
+        </table>
+
+        <a href="@Url.Action("Notifications")" class="btn btn-default"><i class="icon-comment button-icon"></i> All notifications</a>
+    </div>
+</div>
+
+
+
