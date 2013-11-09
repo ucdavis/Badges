@@ -1108,7 +1108,10 @@ input#cover-image, input#cover-image[type="file"] {
 .recent a.btn-default:hover img {
   opacity: 0.3; }
 .recent > .btn-default {
-  margin-top: .5em; }
+  margin-top: .5em;
+  width: 100%; }
+  .recent > .btn-default img {
+    padding-right: 10px; }
 
 .dashbtn, .addexp a, .badgecenter a {
   display: block;
