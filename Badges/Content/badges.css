@@ -1085,6 +1085,10 @@ input#cover-image, input#cover-image[type="file"] {
 .recent.feedback td a {
   color: #1b7593;
   font-size: 1.25em; }
+  .recent.feedback td a.btn-default {
+    color: #fff; }
+  .recent.feedback td a.btn-default img {
+    width: 18px; }
 .recent.feedback td .quotesource {
   display: block; }
   .recent.feedback td .quotesource a {

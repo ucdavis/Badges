@@ -31,6 +31,9 @@
 	&.feedback td a {
 		color: $sharks-blue;
 		font-size: 1.25em;
+
+		&.btn-default {color: #fff;}
+		&.btn-default img {width: 18px;}
 	}
 	&.feedback td .quotesource {
 		display: block;
@@ -68,8 +71,6 @@
 			top: -2px;
 		}
 	}
-
-
 }
 
 .dashbtn {
