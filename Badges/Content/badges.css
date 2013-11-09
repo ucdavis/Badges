@@ -536,7 +536,7 @@ input#cover-image, input#cover-image[type="file"] {
     font-weight: 700;
     letter-spacing: 0.1em; }
     .jumbotron .footer a {
-      color: #8f8f8f; }
+      color: #828180; }
 
 /* ----- The box with info under a pic, for experiences ----- */
 .details .type .circle {
@@ -757,7 +757,7 @@ input#cover-image, input#cover-image[type="file"] {
     font-weight: 500; }
 .work .footer a {
   background: #fff;
-  color: #8f8f8f;
+  color: #828180;
   padding: .5em 1em;
   font-size: .8em; }
 
@@ -1050,6 +1050,6 @@ input#cover-image, input#cover-image[type="file"] {
     text-transform: uppercase;
     font-weight: 700;
     letter-spacing: 0.1em;
-    color: #8f8f8f;
+    color: #828180;
     font-size: .75em;
     display: block; }

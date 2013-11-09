@@ -42,7 +42,7 @@
 	 	padding-left: 0;
 
 	 	p {
-	 		color: $copy-gray; 
+	 		color: $dark-gray; 
 	 		font-size: 1.25em; 
 	 		margin-bottom: 1em;
 	 	}
@@ -50,7 +50,7 @@
 	 
 	 a.footer {
 		@include uppercase;
-		color: $light-gray;
+		color: $med-gray;
 		font-size: .75em;
 		display: block;
 	}
