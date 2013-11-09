@@ -4,7 +4,7 @@
 /* ----- form styles ----- */
 .container.form h3, .container form .form-group label, .container form h3 {
 	font-weight: $medium;
-	color: #6b9aad;
+	color: $pale-blue;
 	margin-bottom: .3em;
 	margin-left: .8em;
 }
@@ -15,9 +15,8 @@
 	}
 	p label {font-size: 1em;}
 
-.container.form .intro h2, h2.intro, .intro h2 {
-	font-style: italic;
-	font-size: 2.4em;
+h2.intro, .intro h2 {
+	@include intro-title;
 }
 
 legend {
@@ -26,36 +25,38 @@ legend {
 div.helptext {
 	margin-top: 62px;
 }
-.helptext p {
-	vertical-align: top;
-}
-	.helptext p, p.helptext {
-		color: #828180;
-		font-style: italic;
-		font-size: 1.35em;
+.helptext {
+	p {
+		vertical-align: top;
+		@include helptext;
 		padding: 0 0 0 10px;
 	}
-	p.helptext {
-		padding-left: 1.1em;
-		padding-right: 15%;
-	}
-	.helptext i {
+	i {
 		color: #adaca9;
-		padding-left: 40px;
 		font-size: 2em;
+		padding-left: 40px;
 		padding-right: 0px;
 	}
-
-.profilepic .thumbnail {
-	margin-top: 0px;
-	border-radius: 0px;
-	border: 0px none;
-	background: transparent;
 }
-	.profilepic img {
-		border-radius: 50%; border: $border-tripel #fff;
+
+	p.helptext {
+		@include helptext;
+		padding: 0 15% 0 1.1em;
+	}
+
+.profilepic {
+	.thumbnail {
+		margin-top: 0px;
+		border-radius: 0px;
+		border: 0px none;
+		background: transparent;
+	}
+	img {
+		border-radius: 50%; 
+		border: $border-tripel #fff;
 		width: 75%;
 	}
+}
 
 .container.form div.top {
 	padding-top: 1.1em;
@@ -64,7 +65,8 @@ div.helptext {
 .form-group {
 	margin-bottom: 20px;
 }
-.form-control, .form-control.datepicker, 
+.form-control, 
+.form-control.datepicker, 
 .chosen-container-single .chosen-single,
 .chosen-container .chosen-drop x,
 .chosen-container-multi .chosen-choices {
@@ -74,7 +76,7 @@ div.helptext {
 	box-shadow: none;
 	border: $border-tripel rgba(255,255,255,.3);
 	height: 60px;
-	color: #dec387;
+	color: $pale-gold;
 	font-size: 1.75em;
 	padding: 0.4em 0.8em;
 	letter-spacing: .5px;
@@ -82,11 +84,12 @@ div.helptext {
 	.chosen-container-multi .chosen-choices {
 		vertical-align: middle;
 		padding: 0.4em 0.8em 0;
-	}
-	.chosen-container-multi .chosen-choices li.search-field input[type="text"] {
-		height: auto;
-		color: #ccc;
-		font-family: $futura;
+	
+		li.search-field input[type="text"] {
+			height: auto;
+			color: #ccc;
+			font-family: $futura;
+		}
 	}
 	.twitter-typeahead .tt-query, .twitter-typeahead .tt-hint {
 		height: 60px !important;
@@ -132,30 +135,33 @@ div.helptext {
 .dropdown-menu {
 	min-width: 360px;
 }
-	.datepicker table {width: 100%;}
-	.datepicker {text-align: center;}
+	.datepicker {
+		text-align: center;
+		table {width: 100%;}
+	}
 
 .actions {
 	padding-bottom: 50px;
 }
 	.btn {
-		border-radius: 0px;
 		font-size: 1.5em;
-		text-transform: uppercase;
-		letter-spacing: .1em;
+		@include uppercase;
 		border: 0px none;
-		font-weight: $bold;
+		border-radius: 0px;
 		margin-right: 40px;
 		padding: 15px 40px;
+	
+		&.btn-xs {padding: 1px 5px; margin: 0;}
+		i {padding-right: 10px;}
 	}
-		.btn.btn-xs {padding: 1px 5px; margin: 0;}
-		.btn i {padding-right: 10px;}
-		.btn-default {
-			background-color: #bdbdbd;
-			color: #fff;
-		}
-			.btn-default i {color: #666665;}	
-		.btn-success {
-			background-color: #4b955b;
-		}
-			.btn-success i {color: #a4ccad;}
+	.btn-default {
+		background-color: $cancel-gray;
+		color: #fff;
+
+		i {color: $med-gray;}	
+	}
+	.btn-success {
+		background-color: $badges-green;
+	
+		i {color: #a4ccad;}
+	}

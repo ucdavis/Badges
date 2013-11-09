@@ -2,38 +2,56 @@
 
 
 /* ----- portfolio styles ----- */
-.experiences {margin-top: 3em;}
-	.experiences h1.title {height: 60px;}
-	.experiences .profilebox {width: 150px; height: 60px; float: left;}
-	.experiences .circlepic img, 
-	.experiences .circlepic .circle {height: 90px; width: 90px;}
-	.experiences .circlepic .name {color: #fff;}
-	.experiences .circlepic.raised.profilebox a {top: -71px;}
+.portfolio {
+	margin-top: 3em;
 
-.experience.menu {
+	h1.title {height: 60px;}
+	.profilebox {width: 150px; height: 60px; float: left;}
+	.circlepic {
+		img, .circle {height: 90px; width: 90px;}
+		.name {color: #fff;}
+		&.raised.profilebox a {top: -71px;}
+	}
+}
+.menuitem {
 	background: #fff;
 	color: $copper;
-}
-	.experience.menu a.cover {
+
+	 a.cover {
 		max-height: 225px; 
 		overflow: hidden; 
 		display: block;
 	}
-	.experience.menu .cover img {max-width: 100%;}
-	.experience.menu h3 {margin-top: 0; font-size: 2.5em;}
-	.experience.menu h3 a {color: $copper;}
-	.experience.menu .profilebox {float: left;}
-	.experience.menu .circle {background: $copper;}
-	.experience.menu .circlepic .name {color: #fff;}
-	.experience.menu .details .type .circle i {color: #fff; padding-top: 30px;}
-	.experience.menu .details .type .name {color: $copper;}
-	.experience.menu .text {padding-left: 0;}
-	.experience.menu .text p {color: $copy-gray; font-size: 1.25em; margin-bottom: 2em;}
-	.experience.menu a.footer {
+	 .cover img {max-width: 100%;}
+
+	 h3 {
+	 	margin-top: 0; 
+	 	font-size: 2.5em;
+
+	 	a {color: $copper;}
+	 }
+	 
+	 .profilebox {float: left;}
+	 .circle {background: $copper;}
+	 .circlepic .name {color: #fff;}
+	 .details .type {
+	 	.circle i {color: #fff; padding-top: 30px;}
+	 	.name {color: $copper;}
+	 }
+	 .text {
+	 	padding-left: 0;
+
+	 	p {
+	 		color: $copy-gray; 
+	 		font-size: 1.25em; 
+	 		margin-bottom: 2em;
+	 	}
+	 }
+	 
+	 a.footer {
+		@include uppercase;
 		color: $light-gray;
-		text-transform: uppercase;
-		font-weight: $heavy;
-		letter-spacing: 1px;
 		font-size: .75em;
 		display: block;
 	}
+}

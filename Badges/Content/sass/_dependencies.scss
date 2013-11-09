@@ -33,11 +33,16 @@
 
 	// Palette for BADGES
 	$copy-gray:			#071626;
+	$med-gray:			#828180;
 	$light-gray: 		#8f8f8f;
+	$cancel-gray:		#bdbdbd;
+	$badges-green:		#4b955b;
+	$pale-blue:			#6b9aad;
 	$sharks-blue: 		#1b7593;
 	$dark-blue: 		#234a5a;
 	$copper:			#b1693d;
 	$ron-burgundy:		#783032;
+	$pale-gold:			#dec387;
 
 
 
@@ -66,24 +71,38 @@
 		font-weight: $medium;
 	}
 
-	@mixin uppercase-mini($color) {
-		color: $color;
-		text-transform: uppercase;
-		font-weight: $extrabold;
-		letter-spacing: 0.75px;
-		line-height: 1em;
-	}
-
-	@mixin uppercase-micro {
-		font-size: 0.55em;
+	@mixin uppercase {
 		text-transform: uppercase;
 		font-weight: $bold;
-		letter-spacing: 0.75px;
+		letter-spacing: 0.1em;
 	}
-	@mixin uppercase-big {
-		font-size: 0.75em;
-		text-transform: uppercase;
-		font-weight: $extrabold;
+
+		@mixin uppercase-mini($color) {
+			color: $color;
+			text-transform: uppercase;
+			font-weight: $extrabold;
+			letter-spacing: 0.75px;
+			line-height: 1em;
+		}
+
+		@mixin uppercase-micro {
+			font-size: 0.55em;
+			@include uppercase;
+		}
+		@mixin uppercase-big {
+			font-size: 0.75em;
+			text-transform: uppercase;
+			font-weight: $extrabold;
+		}
+
+	@mixin intro-title {
+		font-style: italic;
+		font-size: 2.4em;
+	}
+	@mixin helptext {
+		color: $med-gray;
+		font-style: italic;
+		font-size: 1.35em;
 	}
 
 

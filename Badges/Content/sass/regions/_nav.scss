@@ -43,7 +43,7 @@
 			background: #fff;
 			margin-top: 1em;
 			text-align: center;
-			color: #4b955b;
+			color: $badges-green;
 		}
 			a:hover {
 				@include light-bg(0.75);

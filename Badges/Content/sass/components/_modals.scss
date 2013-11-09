@@ -5,14 +5,15 @@
 	border: 0px none;
 }
 .modal-header {
-	background: #227895;
+	background: $sharks-blue;
 	color: #fff;
-}
-	#supporting-work .modal-header {background: #4b955b;}
-	.modal-header h1, .modal-header h2, .modal-header h3, .modal-header h4 {
+
+	#supporting-work & {background: $badges-green;}
+	h1, h2, h3, h4 {
 		color: #fff;
 		font-style: italic;
 	}
+}
 .modal-footer {border: 0px none;}
 .panel {
 	@include light-bg(0.5);
