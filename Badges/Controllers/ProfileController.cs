@@ -9,10 +9,13 @@ using Badges.Core.Domain;
 using Badges.Core.Repositories;
 using Badges.Models.Profile;
 using Badges.Models.Shared;
+using ImageResizer;
 using SoundInTheory.DynamicImage.Fluent;
+using SoundInTheory.DynamicImage.Sources;
 using UCDArch.Testing.Fakes;
 using UCDArch.Web.Attributes;
 using Badges.Services;
+using UCDArch.Core.Utils;
 
 namespace Badges.Controllers
 {
@@ -136,7 +139,13 @@ namespace Badges.Controllers
             
             if (image != null)
             {
-                userProfileToEdit.Profile.ImageUrl = _fileService.Save(image, publicAccess: true).Uri.AbsoluteUri;
+                using (var memoryStream = new MemoryStream())
+                {
+                    var crop = new ResizeSettings("width=300&height=300&crop=100,100,600,600"); //new ImageResizer.ResizeSettings(300, 300, FitMode.Crop, null);
+                    ImageBuilder.Current.Build(image, memoryStream, crop);
+                    userProfileToEdit.Profile.ImageUrl =
+                        _fileService.Save(memoryStream, image.ContentType, publicAccess: true).Uri.AbsoluteUri;
+                }
             }
 
             userProfileToEdit.Roles.Clear();

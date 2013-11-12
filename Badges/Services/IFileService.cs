@@ -16,6 +16,7 @@ namespace Badges.Services
         /// </summary>
         /// <returns></returns>
         BlobIdentity Save(HttpPostedFileBase file, bool publicAccess = false);
+        BlobIdentity Save(Stream stream, string contentType, bool publicAccess = false);
 
         void Delete(Guid id, bool publicAccess = false);
 
@@ -60,9 +61,25 @@ namespace Badges.Services
             
             var blob = container.GetBlockBlobReference(blobId.ToString());
             blob.UploadFromStream(file.InputStream);
+            
             SetContentType(blob, file.ContentType);
             
             return new BlobIdentity {Id = blobId, Uri = blob.Uri};
+        }
+
+        public BlobIdentity Save(Stream stream, string contentType, bool publicAccess = false)
+        {
+            var container = publicAccess ? _publicContainer : _container;
+
+            var blobId = Guid.NewGuid();
+
+            var blob = container.GetBlockBlobReference(blobId.ToString());
+            stream.Seek(0, SeekOrigin.Begin);
+            blob.UploadFromStream(stream);
+
+            SetContentType(blob, contentType);
+
+            return new BlobIdentity { Id = blobId, Uri = blob.Uri };
         }
 
         public void Delete(Guid id, bool publicAccess = false)
