@@ -4,14 +4,14 @@
     ViewBag.Title = "Your Profile";
 }
 
-<!--<h2>Edit your profile</h2>-->
+@section AdditionalStyles
+{
+    <link href="~/Content/jquery.Jcrop.css" rel="stylesheet" />
+}
 
 @using (Html.BeginForm("Edit", "Profile", FormMethod.Post, new {enctype = "multipart/form-data"}))
 {
     @Html.AntiForgeryToken()
-    <!--<fieldset>
-        <legend>Edit your profile</legend>
-    </fieldset>-->
 
     <div class="profile-edit">
         @Html.Partial("_ProfileForm")
@@ -20,7 +20,9 @@
 
 @section AdditionalScripts
 {
+    <script src="~/Scripts/jquery.Jcrop.js"></script>
     <script>
+        var cropper;
         $(function() {
             $("#profile-upload").change(function() {
                 var filesToUpload = this.files;
@@ -34,6 +36,21 @@
 
                 var img = document.getElementById("profile-picture");
                 img.src = window.URL.createObjectURL(file);
+                
+                if (cropper) {
+                    cropper.destroy();
+                }
+                
+                $(img).Jcrop({
+                        aspectRatio: 1,
+                        allowSelect: false,
+                        allowResize: true, //Maybe we allow resize and then shrink the img?
+                        onChange: function (c) { console.log(c); },
+                        onSelect: function (c) { console.log(c); }
+                    }, function () {
+                        cropper = this;
+                        cropper.animateTo([0, 0, 120, 120]);
+                    });
             });
         });
     </script>
