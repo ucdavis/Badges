@@ -197,8 +197,8 @@
     @Scripts.Render("~/bundles/studentexperience")
     @Scripts.Render("~/bundles/isotope")
 
-    <script>
-        $(function() {
+    <script type="text/javascript">
+        $(document).ready(function() {
             Badges.init();
             $('#work-container .row').isotope({
                  options
