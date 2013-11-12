@@ -520,6 +520,7 @@ input#cover-image, input#cover-image[type="file"] {
     color: #fff;
     border-top: 3px solid white;
     min-height: 100px;
+    height: 100px;
     position: relative;
     top: 26px; }
 
@@ -771,7 +772,8 @@ input#cover-image, input#cover-image[type="file"] {
 
 #work-container.work .row div.work-item-box {
   width: 32%;
-  margin-right: 1%; }
+  margin-right: 1%;
+  margin-bottom: 1%; }
 
 /* ----- Work Modals ----- */
 #associate-work .modal-dialog {
