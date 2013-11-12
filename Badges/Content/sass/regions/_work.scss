@@ -222,8 +222,8 @@
 
 }
 
-	#work-container .work .footer a,
-	#work-container .work .file .footer a {
+	#work-container.work .footer a,
+	#work-container.work .file .footer a {
 		background: #fff;
 		color: $med-gray;
 		padding: .5em 1em;
@@ -234,4 +234,10 @@
 #associate-work .modal-dialog {
 	width: 70%;
 }
+
+#supporting-work {
+
+}
+
+
 

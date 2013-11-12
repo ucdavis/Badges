@@ -519,7 +519,7 @@ input#cover-image, input#cover-image[type="file"] {
     padding: 0 15px;
     color: #fff;
     border-top: 3px solid white;
-    height: 100px;
+    height: 92px;
     position: relative;
     top: 26px; }
 
@@ -762,8 +762,8 @@ input#cover-image, input#cover-image[type="file"] {
     margin: 0;
     font-weight: 500; }
 
-#work-container .work .footer a,
-#work-container .work .file .footer a {
+#work-container.work .footer a,
+#work-container.work .file .footer a {
   background: #fff;
   color: #828180;
   padding: .5em 1em;
