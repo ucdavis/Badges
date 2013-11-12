@@ -692,7 +692,8 @@ input#cover-image, input#cover-image[type="file"] {
   #work-container .photo img {
     max-width: 100%; }
   #work-container .audio {
-    margin-top: 1em; }
+    margin-top: 1em;
+    min-height: 95px; }
     #work-container .audio p {
       padding-top: 0; }
     #work-container .audio audio {

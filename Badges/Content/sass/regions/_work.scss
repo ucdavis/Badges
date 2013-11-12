@@ -143,7 +143,10 @@
 		}
 	}
 
-	.audio {margin-top: 1em;
+	.audio {
+		margin-top: 1em;
+		min-height: 95px;
+		
 		p {padding-top: 0;}
 		audio {width: 100%; position: relative; top: -8px;}
 	}
