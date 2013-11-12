@@ -519,7 +519,7 @@ input#cover-image, input#cover-image[type="file"] {
     padding: 0 15px;
     color: #fff;
     border-top: 3px solid white;
-    height: 92px;
+    min-height: 100px;
     position: relative;
     top: 26px; }
 
