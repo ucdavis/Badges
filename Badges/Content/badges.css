@@ -608,6 +608,10 @@ input#cover-image, input#cover-image[type="file"] {
   padding-left: 0; }
 
 /* ----- The masonry area containing the completed work ----- */
+.work-item-box {
+  width: 32%;
+  margin-right: 1%; }
+
 #work-container {
   vertical-align: top; }
   #work-container.work .row div {
