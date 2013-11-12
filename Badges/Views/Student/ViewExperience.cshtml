@@ -200,12 +200,13 @@
     <script>
         $(function() {
             Badges.init();
-            
-            //$('#work-container').isotope({
-                // options
-            //    itemSelector: '.work-item',
-            //    layoutMode: 'masonry'
-            //});
+        });
+        $(window).load(function() {
+            $('#work-container').isotope({
+                 options
+                itemSelector: '.work-item',
+                layoutMode: 'masonry'
+            });
         });
     </script>
 }
