@@ -10,6 +10,7 @@ using System;
 using Badges.Models.Shared;
 using Badges.Models.Student;
 using Badges.Services;
+using ImageResizer;
 using UCDArch.Core.PersistanceSupport;
 
 namespace Badges.Controllers
@@ -17,6 +18,9 @@ namespace Badges.Controllers
     [Authorize(Roles=RoleNames.Student)]
     public class StudentController : ApplicationController
     {
+        private const int CoverPictureWidth = 1050;
+        private const int CoverPictureHeight = 350;
+
         private readonly IUserService _userService;
         private readonly IFileService _fileService;
         //
@@ -75,8 +79,7 @@ namespace Badges.Controllers
             {
                 if (coverImage != null)
                 {
-                    var image = _fileService.Save(coverImage, publicAccess: true);
-                    experience.CoverImageUrl = image.Uri.AbsoluteUri;
+                    experience.CoverImageUrl = CropAndSave(coverImage, CoverPictureWidth, CoverPictureHeight);
                 }
 
                 RepositoryFactory.ExperienceRepository.EnsurePersistent(experience);
@@ -125,8 +128,7 @@ namespace Badges.Controllers
             {
                 if (coverImage != null)
                 {
-                    var image = _fileService.Save(coverImage, publicAccess: true);
-                    experienceToEdit.CoverImageUrl = image.Uri.AbsoluteUri;
+                    experienceToEdit.CoverImageUrl = CropAndSave(coverImage, CoverPictureWidth, CoverPictureHeight);
                 }
                 
                 RepositoryFactory.ExperienceRepository.EnsurePersistent(experienceToEdit);
@@ -312,6 +314,27 @@ namespace Badges.Controllers
             Message = string.Format("Feedback Requests sent successfully");
 
             return RedirectToAction("ViewExperience", "Student", new {id});
+        }
+
+        /// <summary>
+        /// Crops the image to the given size, saves, and returns the url of the final blob
+        /// </summary>
+        /// <param name="image"></param>
+        /// <param name="width"></param>
+        /// <param name="height"></param>
+        /// <returns></returns>
+        private string CropAndSave(HttpPostedFileBase image, int width, int height)
+        {
+            var cropResizer = new ResizeSettings(width, height, FitMode.Crop, null);
+
+            using (var stream = new MemoryStream())
+            {
+                ImageBuilder.Current.Build(image.InputStream, stream, cropResizer);
+
+                var blob = _fileService.Save(stream, image.ContentType, publicAccess: true);
+
+                return blob.Uri.AbsoluteUri;
+            }
         }
 
         private ExperienceEditModel GetEditModel(Experience experience)
