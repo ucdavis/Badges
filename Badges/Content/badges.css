@@ -692,14 +692,14 @@ input#cover-image, input#cover-image[type="file"] {
   #work-container .photo img {
     max-width: 100%; }
   #work-container .audio {
-    margin-top: 1em;
-    height: 100px !important; }
+    margin-top: 1em; }
     #work-container .audio p {
       padding-top: 0; }
     #work-container .audio audio {
       width: 100%;
       position: relative;
-      top: -8px; }
+      top: -8px;
+      height: 30px; }
 
 /* ---- Can these go in the above nest too? ----- */
 .work .row div {

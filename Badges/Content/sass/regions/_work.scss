@@ -145,10 +145,9 @@
 
 	.audio {
 		margin-top: 1em;
-		height: 100px !important;
 
 		p {padding-top: 0;}
-		audio {width: 100%; position: relative; top: -8px;}
+		audio {width: 100%; position: relative; top: -8px; height: 30px;}
 	}
 }
 
