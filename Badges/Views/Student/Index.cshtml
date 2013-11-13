@@ -28,6 +28,12 @@
                 <th><h4>Your recent experiences</h4></th>
                 <th colspan="2"><em>Created on</em></th>
             </tr>
+            @if (!Model.Experiences.Any())
+            {
+                <tr>
+                    <td>GO CREATE AN EXPERIENCE!</td>
+                </tr>
+            }
             @foreach (var experience in Model.Experiences)
             {
                 <tr>
@@ -45,6 +51,12 @@
             <tr>
                 <th><h4>Your feedback</h4></th>
             </tr>
+            @if (!Model.Feedback.Any())
+            {
+                <tr>
+                    <td>GO GET SOME FEEDBACK!</td>
+                </tr>
+            }
             @foreach (var feedback in Model.Feedback)
             {
                 <tr>
