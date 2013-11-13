@@ -108,13 +108,15 @@ namespace Badges.Services
             
             var blob = container.GetBlockBlobReference(blobId.ToString());
             modifiedStream.Seek(0, SeekOrigin.Begin);
-            blob.UploadFromStream(modifiedStream);
-            SetContentType(blob, contentType);
+            var modifiedTask = blob.UploadFromStreamAsync(modifiedStream)
+                .ContinueWith(task => SetContentType(blob, contentType));
 
             var originalBlob = container.GetBlockBlobReference(blobId + OriginalIdentifier);
             originalStream.Seek(0, SeekOrigin.Begin);
-            originalBlob.UploadFromStream(originalStream);
-            SetContentType(originalBlob, contentType);
+            var originalTask = originalBlob.UploadFromStreamAsync(originalStream)
+                        .ContinueWith(task => SetContentType(originalBlob, contentType));
+
+            System.Threading.Tasks.Task.WaitAll(modifiedTask, originalTask);
 
             return new BlobIdentity {Id = blobId, Uri = blob.Uri};
         }
