@@ -329,9 +329,10 @@ namespace Badges.Controllers
 
             using (var stream = new MemoryStream())
             {
-                ImageBuilder.Current.Build(image.InputStream, stream, cropResizer);
+                ImageBuilder.Current.Build(image.InputStream, stream, cropResizer, disposeSource: false);
 
-                var blob = _fileService.Save(stream, image.ContentType, publicAccess: true);
+                //Save cropped and original image (for possible processing later)
+                var blob = _fileService.Save(image.InputStream, stream, image.ContentType, publicAccess: true);
 
                 return blob.Uri.AbsoluteUri;
             }

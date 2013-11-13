@@ -23,6 +23,12 @@ namespace Badges.Services
         /// <returns></returns>
         BlobIdentity Save(Stream stream, string contentType, bool publicAccess = false);
 
+        /// <summary>
+        /// Save two versions of the same file, but return the modified version for consumption
+        /// </summary>
+        /// <returns></returns>
+        BlobIdentity Save(Stream originalStream, Stream modifiedStream, string contentType, bool publicAccess = false);
+
         void Delete(Guid id, bool publicAccess = false);
 
         /// <summary>
@@ -35,6 +41,7 @@ namespace Badges.Services
 
     public class FileService : IFileService
     {
+        private const string OriginalIdentifier = "_original";
         private readonly CloudBlobContainer _container;
         private readonly CloudBlobContainer _publicContainer;
 
@@ -86,6 +93,29 @@ namespace Badges.Services
             blob.UploadFromStream(stream);
             SetContentType(blob, contentType);
             
+            return new BlobIdentity {Id = blobId, Uri = blob.Uri};
+        }
+
+        /// <summary>
+        /// Save two versions of the same file, but return the modified version for consumption
+        /// </summary>
+        /// <returns></returns>
+        public BlobIdentity Save(Stream originalStream, Stream modifiedStream, string contentType, bool publicAccess = false)
+        {
+            var container = publicAccess ? _publicContainer : _container;
+
+            var blobId = Guid.NewGuid();
+            
+            var blob = container.GetBlockBlobReference(blobId.ToString());
+            modifiedStream.Seek(0, SeekOrigin.Begin);
+            blob.UploadFromStream(modifiedStream);
+            SetContentType(blob, contentType);
+
+            var originalBlob = container.GetBlockBlobReference(blobId + OriginalIdentifier);
+            originalStream.Seek(0, SeekOrigin.Begin);
+            originalBlob.UploadFromStream(originalStream);
+            SetContentType(originalBlob, contentType);
+
             return new BlobIdentity {Id = blobId, Uri = blob.Uri};
         }
 
