@@ -1,4 +1,4 @@
-﻿@model dynamic
+﻿@model Badges.Models.Student.StudentIndexModel
 
 @{
     ViewBag.Title = "Student dashboard";
@@ -24,43 +24,36 @@
 <div class="row">
     <div class="col-md-8 recent exp">
         <table>
-        <tr>
-            <th><h4>Your recent experiences</h4></th>
-            <th colspan="2"><em>Created on</em></th>
-        </tr>
-            <!-- For each experience -->
             <tr>
-                <td class="title"><a href="#">Arch Hunting</a></td>
-                <td><em>Oct 21, 2013</em></td>
-                <td><a href="@Url.Action("Index", "Home")" class="btn btn-default btn-sm"><i class="icon-edit button-icon"></i> Edit</a></td>
+                <th><h4>Your recent experiences</h4></th>
+                <th colspan="2"><em>Created on</em></th>
             </tr>
-            <tr>
-                <td class="title"><a href="#">Something something</a></td>
-                <td><em>Oct 12, 2013</em></td>
-                <td><a href="@Url.Action("Index", "Home")" class="btn btn-default btn-sm"><i class="icon-edit button-icon"></i> Edit</a></td>
-            </tr>
-            <!-- -->
+            @foreach (var experience in Model.Experiences)
+            {
+                <tr>
+                    <td class="title"><a href="@Url.Action("ViewExperience", new { id = experience.Id })">@experience.Name</a></td>
+                    <td><em>@experience.Created.ToString("MMM d, yyyy")</em></td>
+                    <td><a href="@Url.Action("EditExperience", new { id = experience.Id })" class="btn btn-default btn-sm"><i class="icon-edit button-icon"></i> Edit</a></td>
+                </tr>
+            }
         </table>
 
         <a href="@Url.Action("Portfolio")" class="btn btn-default"><img src="http://v.caes.ucdavis.edu/ASI/Badges/img/icon-less-creepy-eyeball.png" alt="" /> View your portfolio</a>
     </div>
     <div class="col-md-4 recent feedback">
         <table>
-        <tr>
-            <th><h4>Your feedback</h4></th>
-        </tr>
-        <tr>
-            <td><a href="#">"Two thumbs up! Great family fun."</a>
-                <span class="quotesource"><a href="#">- Scott K.</a> /
-                    <span class="date">Oct 19, 2013</span></span>
-            </td>
-        </tr>
-        <tr>
-            <td><a href="#">"Waka waka."</a>
-                <span class="quotesource"><a href="#">- Quiz K.</a> /
-                    <span class="date">Oct 17, 2013</span></span>
-            </td>
-        </tr>
+            <tr>
+                <th><h4>Your feedback</h4></th>
+            </tr>
+            @foreach (var feedback in Model.Feedback)
+            {
+                <tr>
+                    <td><a href="@Url.Action("ViewExperience", new { id = feedback.Experience.Id })">@feedback.Response</a>
+                        <span class="quotesource"><a href="#">@feedback.Instructor.DisplayName</a> /
+                            <span class="date">@string.Format("{0:MMM d, yyyy}", feedback.ResponseDate)</span></span>
+                    </td>
+                </tr>
+            }
         </table>
 
         <a href="@Url.Action("Feedback")" class="btn btn-default"><i class="icon-comment button-icon"></i> All feedback</a>

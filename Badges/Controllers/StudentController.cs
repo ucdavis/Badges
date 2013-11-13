@@ -34,7 +34,24 @@ namespace Badges.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            var recentExperiences = RepositoryFactory.ExperienceRepository.Queryable
+                                                     .Where(x => x.Creator.Identifier == User.Identity.Name)
+                                                     .OrderByDescending(x => x.Created)
+                                                     .Take(5);
+
+            var recentFeedback = RepositoryFactory.FeedbackRequestRepository.Queryable
+                                                  .Where(x => x.Experience.Creator.Identifier == User.Identity.Name)
+                                                  .Where(x => x.ResponseDate.HasValue)
+                                                  .OrderByDescending(x => x.ResponseDate)
+                                                  .Take(5);
+
+            var model = new StudentIndexModel
+                {
+                    Experiences = recentExperiences.ToArray(),
+                    Feedback = recentFeedback.ToArray()
+                };
+
+            return View(model);
         }
 
         public ActionResult Error()

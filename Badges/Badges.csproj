@@ -249,6 +249,7 @@
     <Compile Include="Models\Shared\Class1.cs" />
     <Compile Include="Models\Student\ExperienceEditModel.cs" />
     <Compile Include="Models\Shared\ExperienceViewModel.cs" />
+    <Compile Include="Models\Student\StudentIndexModel.cs" />
     <Compile Include="Models\Student\SupportingWorkModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\BadgesRoleProvider.cs" />
