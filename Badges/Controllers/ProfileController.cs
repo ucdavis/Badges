@@ -9,6 +9,7 @@ using Badges.Core.Domain;
 using Badges.Core.Repositories;
 using Badges.Models.Profile;
 using Badges.Models.Shared;
+using ImageResizer;
 using SoundInTheory.DynamicImage.Fluent;
 using UCDArch.Testing.Fakes;
 using UCDArch.Web.Attributes;
@@ -20,6 +21,8 @@ namespace Badges.Controllers
     public class ProfileController : ApplicationController
     {
         private readonly IFileService _fileService;
+        private const int ProfilePictureWidth = 300;
+        private const int ProfilePictureHeight = 300;
 
         public ProfileController(IRepositoryFactory repositoryFactory, IFileService fileService) : base(repositoryFactory)
         {
@@ -84,7 +87,7 @@ namespace Badges.Controllers
                                                        Server.MapPath("~/Content/images/profile-default.jpg")));
             }
 
-            profile.ImageUrl = _fileService.Save(image, publicAccess: true).Uri.AbsoluteUri;
+            profile.ImageUrl = CropAndSave(image, ProfilePictureWidth, ProfilePictureHeight);
             var user = new User {Identifier = CurrentUser.Identity.Name, Profile = profile};
             profile.User = user;
 
@@ -136,7 +139,7 @@ namespace Badges.Controllers
             
             if (image != null)
             {
-                userProfileToEdit.Profile.ImageUrl = _fileService.Save(image, publicAccess: true).Uri.AbsoluteUri;
+                userProfileToEdit.Profile.ImageUrl = CropAndSave(image, ProfilePictureWidth, ProfilePictureHeight);
             }
 
             userProfileToEdit.Roles.Clear();
@@ -184,6 +187,27 @@ namespace Badges.Controllers
                                         .Url;
 
             return PartialView(model);
+        }
+
+        /// <summary>
+        /// Crops the image to the given size, saves, and returns the url of the final blob
+        /// </summary>
+        /// <param name="image"></param>
+        /// <param name="width"></param>
+        /// <param name="height"></param>
+        /// <returns></returns>
+        private string CropAndSave(HttpPostedFileBase image, int width, int height)
+        {
+            var cropResizer = new ResizeSettings(width, height, FitMode.Crop, null);
+
+            using (var stream = new MemoryStream())
+            {
+                ImageBuilder.Current.Build(image.InputStream, stream, cropResizer);
+                
+                var blob = _fileService.Save(stream, image.ContentType, publicAccess: true);
+
+                return blob.Uri.AbsoluteUri;
+            }
         }
     }
 }
