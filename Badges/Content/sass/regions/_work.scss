@@ -145,8 +145,8 @@
 
 	.audio {
 		margin-top: 1em;
-		min-height: 95px;
-		
+		height: 100px !important;
+
 		p {padding-top: 0;}
 		audio {width: 100%; position: relative; top: -8px;}
 	}

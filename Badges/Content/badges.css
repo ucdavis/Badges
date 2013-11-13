@@ -693,7 +693,7 @@ input#cover-image, input#cover-image[type="file"] {
     max-width: 100%; }
   #work-container .audio {
     margin-top: 1em;
-    min-height: 95px; }
+    height: 100px !important; }
     #work-container .audio p {
       padding-top: 0; }
     #work-container .audio audio {
