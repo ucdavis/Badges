@@ -10,6 +10,11 @@ namespace Badges.Core.Domain
     /// </summary>
     public class SupportingWork : DomainObjectGuid
     {
+        public SupportingWork()
+        {
+            Created = DateTime.UtcNow;
+        }
+
         [Required]
         public virtual string Description { get; set; }
         
@@ -19,6 +24,8 @@ namespace Badges.Core.Domain
 
         public virtual string Notes { get; set; }
         public virtual string Url { get; set; }
+
+        public virtual DateTime Created { get; set; }
 
         [Required] //Type of work, text, photo, video, etc
         public virtual string Type { get; set; }
@@ -71,14 +78,15 @@ namespace Badges.Core.Domain
 
             Map(x => x.Description).Not.Nullable();
             
-            Map(x => x.Name);
+            Map(x => x.Name).Nullable();
             Map(x => x.ContentId).Nullable();
             Map(x => x.ContentType).Nullable();
 
-            Map(x => x.Url);
+            Map(x => x.Url).Nullable();
             Map(x => x.Notes).StringMaxLength();
 
-            Map(x => x.Type);
+            Map(x => x.Created).Not.Nullable();
+            Map(x => x.Type).Not.Nullable();
 
             References(x => x.Experience).Not.Nullable();
         }

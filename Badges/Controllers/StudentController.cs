@@ -147,7 +147,8 @@ namespace Badges.Controllers
                 {
                     experienceToEdit.CoverImageUrl = CropAndSave(coverImage, CoverPictureWidth, CoverPictureHeight);
                 }
-                
+
+                experienceToEdit.LastModified = DateTime.UtcNow;
                 RepositoryFactory.ExperienceRepository.EnsurePersistent(experienceToEdit);
 
                 Message = "Experience Updated!";

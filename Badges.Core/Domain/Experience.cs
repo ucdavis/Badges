@@ -11,6 +11,7 @@ namespace Badges.Core.Domain
         {
             InstructorViewable = true;
             Created = DateTime.UtcNow;
+            LastModified = DateTime.UtcNow;
             Instructors = new List<Instructor>();
             SupportingWorks = new List<SupportingWork>();
             ExperienceOutcomes = new List<ExperienceOutcome>();
@@ -40,6 +41,7 @@ namespace Badges.Core.Domain
         public virtual string CoverImageUrl { get; set; }
 
         public virtual DateTime Created { get; set; }
+        public virtual DateTime LastModified { get; set; }
 
         //True if associated instructors can view this experience
         [Display(Name = "Instructor Viewable")]
@@ -66,12 +68,14 @@ namespace Badges.Core.Domain
         {
             work.Experience = this;
             SupportingWorks.Add(work);
+            LastModified = DateTime.UtcNow;
         }
 
         public virtual void AddOutcome(ExperienceOutcome outcome)
         {
             outcome.Experience = this;
             ExperienceOutcomes.Add(outcome);
+            LastModified = DateTime.UtcNow;
         }
 
         public virtual void AddFeedbackRequest(FeedbackRequest feedbackRequest)
@@ -96,7 +100,8 @@ namespace Badges.Core.Domain
             Map(x => x.CoverImageUrl);
             Map(x => x.Details).StringMaxLength();
             Map(x => x.Notes).StringMaxLength();
-            Map(x => x.Created);
+            Map(x => x.Created).Not.Nullable();
+            Map(x => x.LastModified).Not.Nullable();
 
             References(x => x.ExperienceType).Not.Nullable();
             References(x => x.Creator).Not.Nullable();

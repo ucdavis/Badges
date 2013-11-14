@@ -2,15 +2,15 @@
 <SchemaComparison>
   <Version>10</Version>
   <SourceModelProvider>
-    <ConnectionBasedModelProvider>
-      <ConnectionString>Data Source=.\Sqlexpress;Initial Catalog=Badges;Integrated Security=True;Pooling=False</ConnectionString>
-    </ConnectionBasedModelProvider>
-  </SourceModelProvider>
-  <TargetModelProvider>
     <ProjectBasedModelProvider>
       <ProjectGuid>{4cd0df0d-e678-4df9-9a45-0ce2e5396cc1}</ProjectGuid>
       <Name>Badges.Db</Name>
     </ProjectBasedModelProvider>
+  </SourceModelProvider>
+  <TargetModelProvider>
+    <ConnectionBasedModelProvider>
+      <ConnectionString>Data Source=knotaohtzr.database.windows.net;Initial Catalog=badges;Persist Security Info=True;User ID=badges;Pooling=False</ConnectionString>
+    </ConnectionBasedModelProvider>
   </TargetModelProvider>
   <SchemaCompareSettingsService>
     <SchemaCompareSettingsService>
@@ -38,7 +38,7 @@
       </PropertyElementName>
       <PropertyElementName>
         <Name>BlockOnPossibleDataLoss</Name>
-        <Value>True</Value>
+        <Value>False</Value>
       </PropertyElementName>
       <PropertyElementName>
         <Name>BlockWhenDriftDetected</Name>

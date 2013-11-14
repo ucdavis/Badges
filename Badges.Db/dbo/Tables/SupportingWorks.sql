@@ -6,9 +6,12 @@
     [ContentType]  NVARCHAR (255)   NULL,
     [Url]          NVARCHAR (255)   NULL,
     [Notes]        NVARCHAR (MAX)   NULL,
-    [Type]         NVARCHAR (255)   NULL,
+    [Created]      DATETIME         NOT NULL,
+    [Type]         NVARCHAR (255)   NOT NULL,
     [ExperienceID] UNIQUEIDENTIFIER NOT NULL,
     PRIMARY KEY CLUSTERED ([ID] ASC),
     CONSTRAINT [FKC181041DD85FF60F] FOREIGN KEY ([ExperienceID]) REFERENCES [dbo].[Experiences] ([ID])
 );
+
+
 

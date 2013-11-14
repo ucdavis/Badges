@@ -8,7 +8,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
     <ProjectGuid>{4cd0df0d-e678-4df9-9a45-0ce2e5396cc1}</ProjectGuid>
-    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql110DatabaseSchemaProvider</DSP>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.SqlAzureDatabaseSchemaProvider</DSP>
     <OutputType>Database</OutputType>
     <RootPath>
     </RootPath>
@@ -86,5 +86,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="SqlExpress.scmp" />
+    <None Include="SqlTest.scmp" />
   </ItemGroup>
 </Project>
