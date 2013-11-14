@@ -269,6 +269,7 @@ namespace Badges.Controllers
                     });
             }
 
+            experience.SetModified();
             RepositoryFactory.ExperienceRepository.EnsurePersistent(experience);
 
             return RedirectToAction("ViewExperience", "Student", new {id});
@@ -289,6 +290,7 @@ namespace Badges.Controllers
             var outcome = experience.ExperienceOutcomes.Single(x => x.Id == experienceOutcomeId);
 
             experience.ExperienceOutcomes.Remove(outcome);
+            experience.SetModified();
 
             RepositoryFactory.ExperienceRepository.EnsurePersistent(experience);
          

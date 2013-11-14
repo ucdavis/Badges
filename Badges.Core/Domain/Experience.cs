@@ -83,6 +83,11 @@ namespace Badges.Core.Domain
             feedbackRequest.Experience = this;
             FeedbackRequests.Add(feedbackRequest);
         }
+
+        public virtual void SetModified()
+        {
+            LastModified = DateTime.UtcNow;
+        }
     }
 
     public class ExperienceMap : ClassMap<Experience>
