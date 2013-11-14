@@ -1,0 +1,6 @@
+﻿CREATE TABLE [dbo].[Roles] (
+    [ID]   NVARCHAR (255) NOT NULL,
+    [Name] NVARCHAR (255) NOT NULL,
+    PRIMARY KEY CLUSTERED ([ID] ASC)
+);
+

@@ -1,0 +1,6 @@
+﻿CREATE TABLE [dbo].[Titles] (
+    [ID]   UNIQUEIDENTIFIER NOT NULL,
+    [Name] NVARCHAR (256)   NOT NULL,
+    PRIMARY KEY CLUSTERED ([ID] ASC)
+);
+

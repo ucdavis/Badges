@@ -14,6 +14,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{515D08
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Badges.Core", "Badges.Core\Badges.Core.csproj", "{2BDFC212-F37B-405D-9E7A-86B90FF1F4DA}"
 EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Badges.Db", "Badges.Db\Badges.Db.sqlproj", "{4CD0DF0D-E678-4DF9-9A45-0CE2E5396CC1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,6 +34,12 @@ Global
 		{2BDFC212-F37B-405D-9E7A-86B90FF1F4DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2BDFC212-F37B-405D-9E7A-86B90FF1F4DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2BDFC212-F37B-405D-9E7A-86B90FF1F4DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4CD0DF0D-E678-4DF9-9A45-0CE2E5396CC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4CD0DF0D-E678-4DF9-9A45-0CE2E5396CC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4CD0DF0D-E678-4DF9-9A45-0CE2E5396CC1}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{4CD0DF0D-E678-4DF9-9A45-0CE2E5396CC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4CD0DF0D-E678-4DF9-9A45-0CE2E5396CC1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4CD0DF0D-E678-4DF9-9A45-0CE2E5396CC1}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
