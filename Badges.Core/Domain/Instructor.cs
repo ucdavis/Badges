@@ -16,6 +16,8 @@ namespace Badges.Core.Domain
 
         public virtual string DisplayName { get { return string.Format("{0}, {1}", LastName, FirstName); } }
 
+        public virtual string ShortName { get { return string.Format("{0} {1}.", FirstName, LastName.Substring(0,1)); } }
+
         public virtual User User { get; set; }
     }
 

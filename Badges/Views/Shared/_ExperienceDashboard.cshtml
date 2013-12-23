@@ -39,8 +39,8 @@
                 @foreach (var instructor in Model.Experience.Instructors.Take(3))
                 {
                     <a href="#">
-                        <img src="@ImageHelper.GetProfileImage(instructor.User.Profile.ImageUrl)" alt="@instructor.DisplayName" />
-                        <span class="name">@instructor.DisplayName</span>
+                        <img src="@ImageHelper.GetProfileImage(instructor.User.Profile.ImageUrl)" alt="@instructor.ShortName" />
+                        <span class="name">@instructor.ShortName</span>
                     </a>
                 }
             </div><!--/.participants-->
