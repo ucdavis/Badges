@@ -101,6 +101,8 @@ TestResults
 ClientBin
 [Ss]tyle[Cc]op.*
 ~$*
+*.mdf
+*.ldf
 *.dbmdl
 Generated_Code #added for RIA/Silverlight projects
 

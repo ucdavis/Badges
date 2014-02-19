@@ -258,6 +258,10 @@
     <Compile Include="Services\UserService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\Badges.mdf" />
+    <Content Include="App_Data\Badges_log.ldf">
+      <DependentUpon>Badges.mdf</DependentUpon>
+    </Content>
     <Content Include="App_Readme\Elmah.txt" />
     <Content Include="Content\badges.css" />
     <Content Include="Content\bootstrap-custom.css" />
