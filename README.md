@@ -3,7 +3,7 @@ Badges
 
 Badges project with Sustainable Agriculture and Food Systems (SA&amp;FS)
 
-Technical Environment
+A little about our Technical Environment
 ======
 
 Badges is an ASP.NET MVC application which runs on Windows Azure.  The technology stack includes:
