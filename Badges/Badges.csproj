@@ -215,6 +215,7 @@
     <Compile Include="Areas\Admin\Controllers\BadgeCategoryController.cs" />
     <Compile Include="Areas\Admin\Controllers\BadgeRequestController.cs" />
     <Compile Include="Areas\Admin\Controllers\BadgeSubmissionController.cs" />
+    <Compile Include="Areas\Admin\Controllers\RevokeBadgeController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
     <Compile Include="Areas\Admin\Controllers\ExperienceTypeController.cs" />
     <Compile Include="Areas\Admin\Controllers\InstructorController.cs" />
@@ -509,6 +510,8 @@
     <Content Include="Areas\Admin\Views\Outcome\_OutcomeForm.cshtml" />
     <Content Include="Areas\Admin\Views\Outcome\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\User\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\RevokeBadge\index.cshtml" />
+    <Content Include="Areas\Admin\Views\RevokeBadge\ViewBadges.cshtml" />
     <None Include="Properties\PublishProfiles\asibadges.pubxml" />
     <None Include="Properties\PublishProfiles\badges.pubxml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
