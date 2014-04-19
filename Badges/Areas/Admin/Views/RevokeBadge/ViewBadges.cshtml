@@ -4,7 +4,14 @@
     ViewBag.Title = "ViewBadges";
 }
 
-<h2>My Badges</h2>
+@if (@Model.Any())
+{
+    <h2>@Model.First().Creator.Profile.DisplayName's Badges</h2>
+}
+else
+{
+    <h2>No badges found</h2>
+}
 
 <div class="row">
     <div class="col-md-2">
@@ -33,36 +40,14 @@
                 </span>
                 <div class="media-body">
                     <h4 class="media-heading">
-                        @if (item.Submitted)
-                        {
-                            <a href="@Url.Action("Badge", "Public", new {area = string.Empty, id = item.Id})">@item.Badge.Name</a>
-                        }
-                        else
-                        {
-                            <a href="@Url.Action("Earn", "Badge", new {area = string.Empty, id = item.Badge.Id})">@item.Badge.Name</a>
-                        }
+                        <a href="@Url.Action("Earn", "Badge", new {area = string.Empty, id = item.Badge.Id})">@item.Badge.Name</a>
                     </h4>
-                    @if (item.Approved == false)
-                    {
-                        if (item.Submitted)
-                        {
-                            <p class="alert alert-info">Under Review</p>
-                        }
-                        else
-                        {
-                            <p class="alert alert-warning">In Progress</p>
-                        }
-                    }
-                    else
-                    {
                         <div class="alert alert-success">
                             <h4>Awarded on @string.Format("{0:d}", item.AwardedOn)</h4>
                             <p>
                                 <a href="@Url.Action("Revoke", "Admin/RevokeBadge", new {area = string.Empty, id = item.Id})">Revoke Badge</a>
                             </p>
                         </div>
-
-                    }
                     <p>
                         @item.Badge.Description
                     </p>
@@ -72,24 +57,3 @@
         }
     </div>
 </div>
-
-@section AdditionalScripts
-{
-    <script src="http://beta.openbadges.org/issuer.js"></script>
-
-    <script>
-        $(function () {
-            var assertionBaseUrl = '@Html.Raw(Url.Action("UserBadge", "Assertion", null, Context.Request.Url.Scheme))';
-
-            $("#badges").on('click', '.badge-push', function (e) {
-                e.preventDefault();
-                var url = assertionBaseUrl + '/' + this.getAttribute('data-submission');
-
-                OpenBadges.issue(url, function (errors, successes) {
-                    console.log(errors);
-                    console.log(successes);
-                });
-            });
-        });
-    </script>
-}

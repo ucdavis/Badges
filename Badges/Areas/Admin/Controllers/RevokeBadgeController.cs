@@ -15,15 +15,15 @@ namespace Badges.Areas.Admin.Controllers
     [Authorize(Roles = RoleNames.Administrator)]
     public class RevokeBadgeController : ApplicationController
     {
-        
-	    //private readonly IRepository<RevokeBadge> _revokeBadgeRepository;
-
+        /** Default constructor **/
         public RevokeBadgeController(IRepositoryFactory repositoryFactory) : base(repositoryFactory)
         {
         }
-    
-        //
+
         // GET: /Admin/RevokeBadge/
+        /**
+         * Displays a list of students and allows the user to revoke badges from those students.
+         **/
         public ActionResult Index()
         {
             // Display the list of students
@@ -31,17 +31,30 @@ namespace Badges.Areas.Admin.Controllers
             return View(users.ToList());
         }
 
+        // GET: /Admin/RevokeBadge/ViewBadges/{username}
+        /** 
+         * Displays a list of badges that are already granted to the student with the given username. 
+         * The user can then revoke an individual badge.
+         **/
         public ActionResult ViewBadges(string id)
         {
-            // Display the granted badges of the given student
-            var badges = RepositoryFactory.BadgeSubmissionRepository.Queryable.Where(x => x.Creator.Identifier.Equals(id))
-                                 .OrderByDescending(x => x.CreatedOn).Fetch(x => x.Badge);
+            // HTTP 404 if no student has this ID
+            if (!RepositoryFactory.UserRepository.Queryable.Any(x => x.Identifier.Equals(id) && x.Roles.Any(r => r.Id == RoleNames.Student))) return HttpNotFound();
 
-            return View(badges.ToList());
+            // Display the granted badges of the given student
+            var badgesList = RepositoryFactory.BadgeSubmissionRepository.Queryable.Where(x => x.Creator.Identifier.Equals(id))
+                                 .OrderByDescending(x => x.CreatedOn).Fetch(x => x.Badge).ToList();
+
+            return View(badgesList);
         }
 
+        // GET: /Admin/RevokeBadge/Revoke/{badgeSubmission}
+        /**
+         * Revokes the badge previously granted by the given BadgeSubmission.
+         **/
         public ActionResult Revoke(Guid id)
         {
+            // Set the BadgeSubmission's state to unsubmitted and unapproved
             var badgeSubmission = RepositoryFactory.BadgeSubmissionRepository.GetNullableById(id);
 
             if (badgeSubmission == null) return HttpNotFound();
@@ -50,27 +63,10 @@ namespace Badges.Areas.Admin.Controllers
             badgeSubmission.Approved = false;
 
             RepositoryFactory.BadgeSubmissionRepository.EnsurePersistent(badgeSubmission);
-
+            // TODO: Give a notification to the user whose badge was revoked
             Message = "The badge has been revoked.";
             return RedirectToAction("Index");
         }
 
     }
-    /*
-	/// <summary>
-    /// ViewModel for the RevokeBadge class
-    /// </summary>
-    public class RevokeBadgeViewModel
-	{
-		//public RevokeBadge RevokeBadge { get; set; }
- 
-		public static RevokeBadgeViewModel Create(IRepository repository)
-		{
-			Check.Require(repository != null, "Repository must be supplied");
-			
-			var viewModel = new RevokeBadgeViewModel {RevokeBadge = new RevokeBadge()};
- 
-			return viewModel;
-		}
-	}*/
 }
