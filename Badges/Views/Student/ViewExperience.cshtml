@@ -72,6 +72,16 @@
                         <span>File</span>
                     </a>
                 </li>
+
+                <li>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                    <a href="#deletion" data-work="delete" data-helptext="Delete photo, video, or audio file."
+                       data-toggle="modal" class="btn btn-default">
+                        <i class="icon-trash icon-2x"></i>
+                        <span>Delete</span>
+                    </a>
+                </li>
+
             </ul>
         </div><!-- /.navbar-collapse -->
     </nav>
@@ -84,7 +94,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
                 <h3 id="outcome-label">Add Outcome</h3>
             </div>
             @using (Html.BeginForm("AddEditOutcome", "Student", new { id = Model.Experience.Id }, FormMethod.Post))
@@ -153,7 +163,7 @@
         <div class="modal-content">
           
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
                 <i class="icon-add"></i>
                 <h3 id="supporting-work-label">Add supporting work</h3>
             </div>
@@ -192,6 +202,39 @@
         </div>
     </div>
 </div>
+
+<!--Modal for Delete-->
+<div id="deletion" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="supporting-work-label" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                <i class="icon-trash"></i>
+                <h3 id="supporting-work-label">Delete files</h3>
+            </div>
+            @using (Html.BeginForm("AddSupportingWork", "Student", new { id = Model.Experience.Id }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <div class="modal-body">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" id="work-type" name="type" value="photo" />
+                    <fieldset id="supporting-work-fields">
+                        <div id="work-file" class="form-group work-optional">
+                            <label>Delete File</label>
+                            <input type="file" name="workFile" class="form-control" />
+                            <span id="upload-error" class="field-validation-error" style="display:none;"></span>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="modal-footer">
+                    <input type="submit" class="btn btn-danger" value="Delete Work" />
+                    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
 
 @section AdditionalScripts
 {
