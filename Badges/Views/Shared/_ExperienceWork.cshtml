@@ -7,7 +7,7 @@
         	@* <div class="col-md-4"> *@
 	            <div class="@work.Type work-item-box">
 	                @Html.Partial("_ViewWork", work)
-	                <p>@work.Description<br />
+	                <p class="work-desc">@work.Description<br />
                         <a href="#edit">
                             <i class="icon-edit"></i>
                         </a>
@@ -15,7 +15,6 @@
                             <i class="icon-remove"></i>
                         </a>
                     </p>
-                    <div></div>
 	            </div>
             @* </div> *@
         }
