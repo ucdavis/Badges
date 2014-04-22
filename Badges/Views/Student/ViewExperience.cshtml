@@ -74,8 +74,7 @@
                 </li>
 
                 <li>
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-                    <a href="#deletion" data-work="delete" data-helptext="Delete photo, video, or audio file."
+                    <a href="#delete-experience" data-work="delete" data-helptext="Delete photo, video, or audio file."
                        data-toggle="modal" class="btn btn-default">
                         <i class="icon-trash icon-2x"></i>
                         <span>Delete</span>
@@ -204,30 +203,21 @@
 </div>
 
 <!--Modal for Delete-->
-<div id="deletion" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="supporting-work-label" aria-hidden="true">
+<div id="delete-experience" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="supporting-work-label" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-                <i class="icon-trash"></i>
-                <h3 id="supporting-work-label">Delete files</h3>
+                <h3 id="supporting-work-label">Delete Experience</h3>
             </div>
-            @using (Html.BeginForm("AddSupportingWork", "Student", new { id = Model.Experience.Id }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+            @using (Html.BeginForm("DeleteExperience", "Student", new { id = Model.Experience.Id }, FormMethod.Get, new { enctype = "multipart/form-data" }))
             {
                 <div class="modal-body">
                     @Html.AntiForgeryToken()
-                    <input type="hidden" id="work-type" name="type" value="photo" />
-                    <fieldset id="supporting-work-fields">
-                        <div id="work-file" class="form-group work-optional">
-                            <label>Delete File</label>
-                            <input type="file" name="workFile" class="form-control" />
-                            <span id="upload-error" class="field-validation-error" style="display:none;"></span>
-                        </div>
-                    </fieldset>
+                    This will delete all files associated with the experience and is not reversable!
                 </div>
                 <div class="modal-footer">
-                    <input type="submit" class="btn btn-danger" value="Delete Work" />
+                    <input type="submit" class="btn btn-danger" value="Delete Experience" />
                     <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
                 </div>
             }
