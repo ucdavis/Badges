@@ -110,6 +110,28 @@ namespace Badges.Controllers
             return View(model);
         }
 
+        [HttpPost]
+        public ActionResult DeleteExperience(Experience experience, HttpPostedFileBase coverImage, Guid id, Guid expId)
+        {
+            var exp =
+                RepositoryFactory.ExperienceRepository.Queryable.SingleOrDefault(
+                    x => x.Creator.Identifier == CurrentUser.Identity.Name);
+
+            if (exp == null)
+            {
+                return new HttpNotFoundResult("Could not find the requested experience");
+            }
+
+            var uploadedFiles = exp.SupportingWorks.Single(x => x.Id == expId);
+
+            exp.SupportingWorks.Remove(uploadedFiles);
+            exp.SetModified();
+
+            RepositoryFactory.ExperienceRepository.EnsurePersistent(exp);
+
+            return RedirectToAction("ViewExperience", "Student", new { id });
+        }
+
         public ActionResult EditExperience(Guid id)
         {
             var experience =

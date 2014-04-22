@@ -36,25 +36,30 @@
         {
             <div class="col-md-6">
                 <div class="menuitem">
-                    <a href="@Url.Action("ViewExperience", "Student", new { id = experience.Id, area = string.Empty })" class="cover">
-                    <img src="@experience.CoverImageUrl" alt="Experience Cover Photo" />
-                    </a>
-                    <div class="details">
-                        <div class="row">
-                        <div class="type circlepic raised col-md-3">
-                            <div class="circle">
-                                <i class="icon-flag"></i>
-                            </div><!--/.circle-->
-                            <span class="name">Type type</span>
-                        </div><!--/.type-->
-                        <div class="text col-md-8">
-                            <h3>@Html.ActionLink(experience.Name, "ViewExperience", "Student", new { id = experience.Id}, null)</h3>
-                            <p>@experience.Description</p>
-                            <a href="@Url.Action("ViewExperience", "Student", new { id = experience.Id, area = string.Empty })" class="footer">View full details &raquo;</a>
+                        <a href="@Url.Action("ViewExperience", "Student", new { id = experience.Id, area = string.Empty })" class="cover">
+                            <img src="@experience.CoverImageUrl" alt="Experience Cover Photo" />
+                        </a>
+                        <div class="details">
+                            <div class="row">
+                                <div class="type circlepic raised col-md-3">
+                                    <div class="circle">
+                                        <i class="icon-flag"></i>
+                                    </div><!--/.circle-->
+                                    <div class="trash">
+                                        <button type="submit" class="btn btn-link btn-xs" onclick="return confirm('Are you sure you want to remove this experience?');">
+                                        <a href="@Url.Action("ViewExperience", "Student", new { id = experience.Id, area = string.Empty })" class="footer">Delete </a>                         
+                                        <i class="icon-trash"></i>
+                                    </div><!---Delete Experience-->
+                                        <span class="name">Type type</span>
+                                </div><!--/.type-->
+                                <div class="text col-md-8">
+                                    <h3>@Html.ActionLink(experience.Name, "ViewExperience", "Student", new { id = experience.Id }, null)</h3>
+                                    <p>@experience.Description</p>
+                                    <a href="@Url.Action("ViewExperience", "Student", new { id = experience.Id, area = string.Empty })" class="footer">View full details &raquo;</a>
+                                </div>
+                            </div>
                         </div>
-                        </div>
-                    </div>
-                </div>
+</div>
             </div>
         }
     </div>
