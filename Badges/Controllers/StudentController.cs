@@ -110,26 +110,23 @@ namespace Badges.Controllers
             return View(model);
         }
 
-        [HttpPost]
-        public ActionResult DeleteExperience(Experience experience, HttpPostedFileBase coverImage, Guid id, Guid expId)
+        public ActionResult DeleteExperience(Guid id)
         {
-            var exp =
-                RepositoryFactory.ExperienceRepository.Queryable.SingleOrDefault(
-                    x => x.Creator.Identifier == CurrentUser.Identity.Name);
+            var experience = RepositoryFactory.ExperienceRepository.GetNullableById(id);
 
-            if (exp == null)
+            if (experience == null)
             {
                 return new HttpNotFoundResult("Could not find the requested experience");
             }
-
-            var uploadedFiles = exp.SupportingWorks.Single(x => x.Id == expId);
-
-            exp.SupportingWorks.Remove(uploadedFiles);
-            exp.SetModified();
-
-            RepositoryFactory.ExperienceRepository.EnsurePersistent(exp);
-
-            return RedirectToAction("ViewExperience", "Student", new { id });
+            experience.ExperienceOutcomes.Clear();
+            var fulfillments = RepositoryFactory.BadgeFulfillmentRepository.Queryable.Where(x => x.Experience.Id.Equals(experience.Id));
+            foreach (var fulfillment in fulfillments) {
+                fulfillment.Experience = null;
+                RepositoryFactory.BadgeFulfillmentRepository.EnsurePersistent(fulfillment);
+            }
+            RepositoryFactory.ExperienceRepository.EnsurePersistent(experience);
+            RepositoryFactory.ExperienceRepository.Remove(experience);
+            return RedirectToAction("Index");
         }
 
         public ActionResult EditExperience(Guid id)
