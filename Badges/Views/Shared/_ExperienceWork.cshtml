@@ -8,10 +8,7 @@
 	            <div class="@work.Type work-item-box">
 	                @Html.Partial("_ViewWork", work)
 	                <p class="work-desc">@work.Description<br />
-                        <a href="#edit">
-                            <i class="icon-edit"></i>
-                        </a>
-                        <a href="#delete">
+                        <a href="@Url.Action("DeleteSupportingWork", new { experienceId = Model.Experience.Id, fileId = work.Id})" >
                             <i class="icon-remove"></i>
                         </a>
                     </p>
