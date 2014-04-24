@@ -129,27 +129,6 @@ namespace Badges.Controllers
             return RedirectToAction("Portfolio", "Student");
         }
 
-        public ActionResult DeleteSupportingWork(Guid experienceId, Guid fileId)
-        {
-            var file = RepositoryFactory.SupportingWorkRepository.GetNullableById(fileId);
-            var experience = RepositoryFactory.ExperienceRepository.Queryable.SingleOrDefault(
-                    x => x.Id == experienceId && x.Creator.Identifier == CurrentUser.Identity.Name);
-
-            if (file == null || experience == null)
-            {
-                return new HttpNotFoundResult("Could not find the requested supporting work file or experience.");
-            }
-
-            experience.SupportingWorks.Remove(file);
-            experience.SetModified();
-            RepositoryFactory.ExperienceRepository.EnsurePersistent(experience);
-
-            RepositoryFactory.SupportingWorkRepository.Remove(file);
-            RepositoryFactory.SupportingWorkRepository.EnsurePersistent(file);
-
-            return RedirectToAction("ViewExperience", "Student", new { experienceId });
-        }
-
         public ActionResult EditExperience(Guid id)
         {
             var experience =
