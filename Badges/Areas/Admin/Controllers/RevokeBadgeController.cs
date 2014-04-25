@@ -59,10 +59,8 @@ namespace Badges.Areas.Admin.Controllers
 
             if (badgeSubmission == null) return HttpNotFound();
 
-            badgeSubmission.Submitted = false;
-            badgeSubmission.Approved = false;
+            RepositoryFactory.BadgeSubmissionRepository.Remove(badgeSubmission);
 
-            RepositoryFactory.BadgeSubmissionRepository.EnsurePersistent(badgeSubmission);
             // TODO: Give a notification to the user whose badge was revoked
             Message = "The badge has been revoked.";
             return RedirectToAction("Index");
