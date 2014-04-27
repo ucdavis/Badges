@@ -27,7 +27,7 @@
         {
             <tr>
                 <td>
-                    <a href="@Url.Action("Delete", "Admin/DeleteBadge", new { area = string.Empty, id = badge.Id })"><i class="icon-check"></i>Delete</a>
+                    <a class="delete-badge-link" href="@Url.Action("Delete", "Admin/DeleteBadge", new { area = string.Empty, id = badge.Id })"><i class="icon-check"></i>Delete</a>
                 </td>
                 <td>@badge.Name</td>
                 <td><img class="img-thumbnail" src="@badge.ImageUrl" height="120" width="120" /></td>
@@ -37,3 +37,13 @@
         }
     </tbody>
 </table>
+
+@section AdditionalScripts {
+    <script>
+        $(function () {
+            $(".delete-badge-link").on('click', function () {
+                return confirm('Are you sure you want to delete this badge?');
+            });
+        });
+    </script>
+}
