@@ -641,7 +641,7 @@ input#cover-image, input#cover-image[type="file"] {
     padding: 0.75em 0;
     vertical-align: bottom;
     float: left; }
-  #work-container .link a {
+  #work-container .link a.target {
     background: #234a5a;
     color: #fff;
     text-transform: uppercase;
@@ -660,20 +660,18 @@ input#cover-image, input#cover-image[type="file"] {
   /*#work-container .link p {}*/
   #work-container .file {
     padding-bottom: .25em; }
-    #work-container .file a {
+    #work-container .file a.target {
       background: #783032;
       color: #fff;
       font-weight: 500;
       font-size: 1.75em;
       display: block;
       padding: 1em; }
-    #work-container .file i {
+    #work-container .file i.target {
       color: rgba(255, 255, 255, 0.25);
       display: block;
       text-align: center;
       padding-top: .5em; }
-    /*#work-container .file p {
-      display: none; }*/
   #work-container.work .row div.text.work-item-box {
     background: #b1693d; }
   #work-container .text h4 {
@@ -1176,3 +1174,12 @@ input#cover-image, input#cover-image[type="file"] {
     -moz-transition: 500ms linear 0s;
     -o-transition: 500ms linear 0s;
     transition: 500ms linear 0s; }
+
+.pad-horiz-10 {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.modal-body {
+    background-color: #FFFFFF;
+}

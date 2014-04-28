@@ -7,11 +7,14 @@
         	@* <div class="col-md-4"> *@
 	            <div class="@work.Type work-item-box">
 	                @Html.Partial("_ViewWork", work)
-	                <p class="work-desc">@work.Description<br />
-                        <a href="@Url.Action("DeleteWorkFile", "Experience", new { area=string.Empty, id = work.Id})" >
-                            <i class="icon-remove"></i>
-                        </a>
-                    </p>
+                    @if (Model.Experience.Creator.Identifier == User.Identity.Name)
+                    {
+                        <p class="work-desc">
+                            <a href="@Url.Action("DeleteWorkFile", "Experience", new { area=string.Empty, id = work.Id})" >
+                                <i class="icon-remove"></i> Delete
+                            </a>
+                        </p>
+                    }
 	            </div>
             @* </div> *@
         }
