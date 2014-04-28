@@ -45,7 +45,8 @@ else
                         <div class="alert alert-success">
                             <h4>Awarded on @string.Format("{0:d}", item.AwardedOn)</h4>
                             <p>
-                                <a href="@Url.Action("Revoke", "Admin/RevokeBadge", new {area = string.Empty, id = item.Id})">Revoke Badge</a>
+                                <a class="revoke-badge-link" href="@Url.Action("Revoke", "Admin/RevokeBadge", new {area = string.Empty, id = item.Id})">Revoke Badge</a>
+
                             </p>
                         </div>
                     <p>
@@ -57,3 +58,13 @@ else
         }
     </div>
 </div>
+
+@section AdditionalScripts {
+    <script>
+        $(function () {
+            $(".revoke-badge-link").on('click', function () {
+                return confirm('Are you sure you want to revoke this badge?');
+            });
+        });
+    </script>
+}
