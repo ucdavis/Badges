@@ -15,9 +15,9 @@
                 <li id="nav-home">@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { title = "Home" } )</li>
                 @if (User.Identity.IsAuthenticated && User.IsInRole(Badges.Core.Domain.RoleNames.Student))
                 {
-                    <li class="nav-add">@Html.ActionLink("Add Experience", "AddExperience", "Student", new { title = "Add Experience" })</li>
-                    <li class="nav-view">@Html.ActionLink("Portfolio", "Portfolio", "Student", new {title = "Portfolio" })</li>
-                    <li class="nav-badges">@Html.ActionLink("Badge Studio", "Index", "Badge", new { title = "Badge Studio" })</li>
+                    <li class="nav-add">@Html.ActionLink("Add Experience", "AddExperience", "Student", new { area = "" }, new { title = "Add Experience" })</li>
+                    <li class="nav-view">@Html.ActionLink("Portfolio", "Portfolio", "Student", new { area = "" }, new { title = "Portfolio" })</li>
+                    <li class="nav-badges">@Html.ActionLink("Badge Studio", "Index", "Badge", new { area = "" }, new { title = "Badge Studio" })</li>
                 }
                 @if (User.Identity.IsAuthenticated && User.IsInRole(Badges.Core.Domain.RoleNames.Administrator))
                 {
