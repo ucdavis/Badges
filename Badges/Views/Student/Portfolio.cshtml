@@ -45,14 +45,18 @@
                                     <div class="circle">
                                         <i class="icon-flag"></i>
                                     </div><!--/.circle-->
-                                    <a href="@Url.Action("DeleteExperience", "Student", new { id = experience.Id, area = string.Empty })" class="btn-mini" onclick="return confirm('Are you sure you want to delete this experience?');">
-                                        <i class="icon-trash"></i> Delete
+                                    @if (experience.Creator.Identifier == User.Identity.Name)
+                                    {
+                                    <a href="#delete-experience-@experience.Id" data-work="delete" data-helptext="Delete this experience"
+                                       data-toggle="modal" class="btn-mini">
+                                        <i class="icon-trash icon"></i> Delete
                                     </a>
                                     <br />    
                                     <a href="@Url.Action("EditExperience", "Student", new { id = experience.Id, area = string.Empty })" class="btn-mini">
                                         <i class="icon-pencil"></i> Edit
                                     </a>
                                     <br />
+                                    }
                                         <span class="name">Type type</span>
                                 </div><!--/.type-->
                                 <div class="text col-md-8">
@@ -67,3 +71,31 @@
         }
     </div>
 </div>
+
+@foreach (var experience in Model)
+{
+    if (experience.Creator.Identifier == User.Identity.Name) { 
+        <!--Modal for Delete-->
+        <div id="delete-experience-@experience.Id" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="supporting-work-label" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                        <h3 id="supporting-work-label">Delete Experience</h3>
+                    </div>
+                    @using (Html.BeginForm("DeleteExperience", "Student", new { id = experience.Id }, FormMethod.Get, new { enctype = "multipart/form-data" }))
+                    {
+                        <div class="modal-body">
+                            @Html.AntiForgeryToken()
+                            This will delete all files associated with the experience and is not reversable!
+                        </div>
+                        <div class="modal-footer">
+                            <input type="submit" class="btn btn-danger" value="Delete Experience" />
+                            <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+}
