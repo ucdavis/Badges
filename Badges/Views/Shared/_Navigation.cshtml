@@ -19,10 +19,6 @@
                     <li class="nav-view">@Html.ActionLink("Portfolio", "Portfolio", "Student", new { area = "" }, new { title = "Portfolio" })</li>
                     <li class="nav-badges">@Html.ActionLink("Badge Studio", "Index", "Badge", new { area = "" }, new { title = "Badge Studio" })</li>
                 }
-                @if (User.Identity.IsAuthenticated && User.IsInRole(Badges.Core.Domain.RoleNames.Administrator))
-                {
-                    <li id="nav-admin">@Html.ActionLink("Admin", "Index","Landing", new { area = "admin"}, null)</li>
-                }
             </ul>
             @if (User.Identity.IsAuthenticated)
             {
