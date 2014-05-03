@@ -36,6 +36,7 @@ namespace Badges.Services
 
         public void NotifyAdministrators(string message)
         {
+            /*
             var adminEmails =
                 _repositoryFactory.UserRepository.Queryable.Where(x => x.Roles.Any(r => r.Id == RoleNames.Administrator))
                                   .Select(x => x.Profile.Email).ToList();
@@ -47,6 +48,19 @@ namespace Badges.Services
                 smtp.Send("badges-noreply@ucdavis.edu", string.Join(";", adminEmails), "Badges Admin Notification",
                           message);
             }
+             * */
+            var administrators = _repositoryFactory.UserRepository.Queryable.Where(x => x.Roles.Any(r => r.Id == RoleNames.Administrator));
+            foreach (var admin in administrators)
+            {
+                _repositoryFactory.NotificationRepository.EnsurePersistent(new Notification
+                {
+                    Created = DateTime.UtcNow,
+                    Pending = true,
+                    To = admin,
+                    Message = message
+                });
+            }
+            
         }
     }
 }
