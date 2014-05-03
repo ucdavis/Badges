@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "My Notifications";
+}
+<div class="col-md-10 mountain-view">
+    <span class="header-text">Your recent notifications</span>
+</div>
+<div class="recent">
+    <table>
+        <tbody>
+            <tr>
+                <th><h4>Message</h4></th>
+                <th colspan="2"><em>Recieved on</em></th>
+            </tr>
+            @foreach (var notification in Model)
+            {
+                <tr>
+                    <td class="message-info @((notification.Pending) ? "notification-pending" : "")">@notification.Message</td>
+                    <td><em>@string.Format("{0:d}", notification.Created)</em></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+

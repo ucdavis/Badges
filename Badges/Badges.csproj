@@ -233,6 +233,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InstructorController.cs" />
     <Compile Include="Controllers\JsonController.cs" />
+    <Compile Include="Controllers\NotificationsController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\PublicController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
@@ -639,6 +640,7 @@
     <Content Include="Views\Shared\_ExperienceWork.cshtml" />
     <Content Include="Views\Shared\_ExperienceOutcomesFeedback.cshtml" />
     <Content Include="Views\Student\DeleteExperience.cshtml.cshtml" />
+    <Content Include="Views\Notifications\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\files\" />
