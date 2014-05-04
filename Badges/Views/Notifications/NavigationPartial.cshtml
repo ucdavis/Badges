@@ -1,0 +1,19 @@
+﻿@{
+    ViewBag.Title = "NavigationPartial";
+    Layout = null;
+}
+
+@if (Model.UnreadNotificationCount > 0)
+{
+    <span class="unread">@Model.UnreadNotificationCount</span>
+}
+
+<div id="notifications-preview">
+    @foreach (var notification in Model.RecentNotifications)
+    {
+        <div class="notification">@notification.Message</div>
+    }
+    <span class="all-notifications">
+        @Html.ActionLink("View all notifications", "Index", "Notifications", new { area = "" }, new { title = "Notifications" })
+    </span>
+</div>

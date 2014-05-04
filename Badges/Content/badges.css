@@ -436,10 +436,10 @@ textarea.form-control {
     background-color: #d03030;
 }
 
-.navbar-nav > li.nav-notifications .notifications-preview:before {
+.navbar-nav > li.nav-notifications #notifications-preview:before {
     content: " ";
     position: relative;
-    display:block;
+    display: block;
     width: 0; 
 	height: 0; 
 	border-left: 10px solid transparent;
@@ -450,18 +450,22 @@ textarea.form-control {
     z-index: 20;
 }
 
-.navbar-nav > li.nav-notifications .notifications-preview {
+.navbar-nav > li.nav-notifications #notifications-preview {
     position: absolute;
-    left: 30px;
-    top: 30px;
-    display: block;
+    left: 7px;
+    top: 48px;
+    display: none;
     width: 300px;
     background-color: #fff;
     box-shadow: 0px 4px 10px #333333;
     padding: 5px;
 }
 
-.navbar-nav > li.nav-notifications .notifications-preview > .all-notifications {
+.navbar-nav > li.nav-notifications #notifications-preview .notification {
+    border-bottom: 1px solid #ddd;
+}
+
+.navbar-nav > li.nav-notifications #notifications-preview > .all-notifications {
     background: #b26a3d;
     padding: 5px;
     margin: -5px;
@@ -472,12 +476,12 @@ textarea.form-control {
     text-align: center;
 }
 
-.navbar-nav > li.nav-notifications .notifications-preview > .all-notifications a {
+.navbar-nav > li.nav-notifications #notifications-preview > .all-notifications a {
     color: white;
     text-decoration: none;
 }
 
-.navbar-nav > li.nav-notifications .notifications-preview > .all-notifications:hover a {
+.navbar-nav > li.nav-notifications #notifications-preview > .all-notifications:hover a {
     color:rgba(255, 255, 255, 0.3);
 }
 

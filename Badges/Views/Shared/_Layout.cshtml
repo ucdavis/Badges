@@ -86,6 +86,14 @@
                 var controller = '@ViewContext.RouteData.Values["controller"].ToString().ToLower()';
                 $("#nav-" + controller).addClass("active");
             });
+
+            $('#expand-notifications').on("click", function () {
+                $('#notifications-preview').slideToggle(250, function () {
+                    if ($(this).is(":visible") == false) {
+                        $(".nav-notifications > .unread").remove();
+                    }
+                });
+            });
         </script>
     </body>
 </html>

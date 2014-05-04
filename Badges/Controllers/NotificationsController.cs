@@ -1,4 +1,6 @@
-﻿using Badges.Core.Repositories;
+﻿using Badges.Core.Domain;
+using Badges.Core.Repositories;
+using Badges.Models.Shared;
 using System;
 using System.Linq;
 using System.Web.Mvc;
@@ -23,5 +25,29 @@ namespace Badges.Controllers
             return View(notificationsList.ToList());
         }
 
+        // Auth: Administrators, Instructors, Students
+        // Displays a partial view for the navigation bar's drop down list of notifications
+        // Should only be used in PartialRequests
+        public ActionResult NavigationPartial()
+        {
+            var unreadNotifications = RepositoryFactory.NotificationRepository.Queryable
+                                                  .Where(x => x.To.Identifier == CurrentUser.Identity.Name).Take(15);
+
+            Notification[] recentNotifications = null;
+            if (unreadNotifications.Count() > 0)
+            {
+                recentNotifications = RepositoryFactory.NotificationRepository.Queryable
+                                                  .Where(x => x.To.Identifier == CurrentUser.Identity.Name)
+                                                  .Where(x => x.Pending == true).ToArray();
+            }
+
+            var model = new NotificationsPartialModel
+            {
+                UnreadNotificationCount = unreadNotifications.Count(),
+                RecentNotifications = recentNotifications
+            };
+
+            return View(model);
+        }
     }
 }
