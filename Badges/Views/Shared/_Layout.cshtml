@@ -90,7 +90,7 @@
             $('#expand-notifications').on("click", function () {
                 $('#notifications-preview').slideToggle(250, function () {
                     if ($(this).is(":visible") == false) {
-                        $(".nav-notifications > .unread").remove();
+                        $(".nav-notifications > .unread").addClass("animated bounceOut")
                     }
                 });
             });

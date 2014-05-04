@@ -20,7 +20,9 @@ namespace Badges.Controllers
         // GET: /Notifications/
         public ActionResult Index()
         {
-            var notificationsList = RepositoryFactory.NotificationRepository.Queryable.Where(x => x.To.Identifier == CurrentUser.Identity.Name);
+            var notificationsList = RepositoryFactory.NotificationRepository.Queryable
+                                                    .Where(x => x.To.Identifier == CurrentUser.Identity.Name)
+                                                    .OrderByDescending(x => x.Created);
 
             return View(notificationsList.ToList());
         }
@@ -31,14 +33,14 @@ namespace Badges.Controllers
         public ActionResult NavigationPartial()
         {
             var unreadNotifications = RepositoryFactory.NotificationRepository.Queryable
-                                                  .Where(x => x.To.Identifier == CurrentUser.Identity.Name).Take(15);
+                                                  .Where(x => x.To.Identifier == CurrentUser.Identity.Name)
+                                                  .OrderByDescending(x => x.Created)
+                                                  .Take(15);
 
             Notification[] recentNotifications = null;
             if (unreadNotifications.Count() > 0)
             {
-                recentNotifications = RepositoryFactory.NotificationRepository.Queryable
-                                                  .Where(x => x.To.Identifier == CurrentUser.Identity.Name)
-                                                  .Where(x => x.Pending == true).ToArray();
+                recentNotifications = unreadNotifications.ToArray();
             }
 
             var model = new NotificationsPartialModel
