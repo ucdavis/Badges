@@ -88,11 +88,23 @@
             });
 
             $('#expand-notifications').on("click", function () {
-                $('#notifications-preview').slideToggle(250, function () {
+                $('#notifications-preview').stop(true, false).slideToggle(250, function () {
                     if ($(this).is(":visible") == false) {
                         $(".nav-notifications > .unread").addClass("animated bounceOut")
                     }
                 });
+            });
+
+            $(document).mouseup(function (e) {
+                var container = $("#notifications-preview");
+
+                if (!container.is(e.target) && container.has(e.target).length === 0 && !$("#expand-notifications").is(e.target)) {
+                    container.stop(true, false).slideUp(250, function () {
+                        if ($(this).is(":visible") == false) {
+                            $(".nav-notifications > .unread").addClass("animated bounceOut")
+                        }
+                    });
+                }
             });
         </script>
     </body>

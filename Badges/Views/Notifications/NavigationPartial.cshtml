@@ -9,9 +9,9 @@
 }
 
 <div id="notifications-preview">
-    @foreach (var notification in Model.RecentNotifications)
+        @foreach (var notification in Model.RecentNotifications)
     {
-        <div class="notification">@notification.Message</div>
+        <a class="notification  @((notification.Pending) ? "notification-pending" : "")" href="@Url.Action("View", "Notifications", new {id = notification.Id})">@notification.Message</a>
     }
     <span class="all-notifications">
         @Html.ActionLink("View all notifications", "Index", "Notifications", new { area = "" }, new { title = "Notifications" })

@@ -37,15 +37,11 @@ namespace Badges.Controllers
                                                   .Where(x => x.Pending)
                                                   .OrderByDescending(x => x.Created);
 
-            Notification[] recentNotifications = null;
-            if (unreadNotifications.Count() > 0)
-            {
-                recentNotifications = RepositoryFactory.NotificationRepository.Queryable
+            Notification[] recentNotifications = RepositoryFactory.NotificationRepository.Queryable
                                                   .Where(x => x.To.Identifier == CurrentUser.Identity.Name)
                                                   .OrderByDescending(x => x.Created)
                                                   .Take(15)
                                                   .ToArray();
-            }
 
             var model = new NotificationsPartialModel
             {
