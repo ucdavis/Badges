@@ -420,6 +420,67 @@ textarea.form-control {
 .navbar-nav > li.nav-notifications > a {
   background-position: -220px 0px; }
 
+.navbar-nav > li.nav-notifications .unread {
+    position: absolute;
+    display: block;
+    z-index: 10;
+    right: 0;
+    top: 0;
+    width: 30px;
+    height: 30px;
+    border-radius: 24px;
+    padding: 5px;
+    text-align: center;
+    font-weight: 700;
+    color: white;
+    background-color: #d03030;
+}
+
+.navbar-nav > li.nav-notifications .notifications-preview:before {
+    content: " ";
+    position: relative;
+    display:block;
+    width: 0; 
+	height: 0; 
+	border-left: 10px solid transparent;
+	border-right: 10px solid transparent;
+	border-bottom: 10px solid white;
+    margin-top: -15px;
+    margin-left: 19px;
+    z-index: 20;
+}
+
+.navbar-nav > li.nav-notifications .notifications-preview {
+    position: absolute;
+    left: 30px;
+    top: 30px;
+    display: block;
+    width: 300px;
+    background-color: #fff;
+    box-shadow: 0px 4px 10px #333333;
+    padding: 5px;
+}
+
+.navbar-nav > li.nav-notifications .notifications-preview > .all-notifications {
+    background: #b26a3d;
+    padding: 5px;
+    margin: -5px;
+    margin-top: 5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    display: block;
+    text-align: center;
+}
+
+.navbar-nav > li.nav-notifications .notifications-preview > .all-notifications a {
+    color: white;
+    text-decoration: none;
+}
+
+.navbar-nav > li.nav-notifications .notifications-preview > .all-notifications:hover a {
+    color:rgba(255, 255, 255, 0.3);
+}
+
 .navbar-fixed-top.navbar-inverse .navbar-nav > .active > a,
 .navbar-fixed-top.navbar-inverse .navbar-nav > .active > a:hover,
 .navbar-inverse .navbar-nav > .active > a:focus {

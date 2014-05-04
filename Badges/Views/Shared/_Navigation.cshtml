@@ -19,7 +19,24 @@
                     <li class="nav-view">@Html.ActionLink("Portfolio", "Portfolio", "Student", new { area = "" }, new { title = "Portfolio" })</li>
                     <li class="nav-badges">@Html.ActionLink("Badge Studio", "Index", "Badge", new { area = "" }, new { title = "Badge Studio" })</li>
                 }
-                <li class="nav-notifications">@Html.ActionLink("Notifications", "Index", "Notifications", new { area = "" }, new { title = "Notifications" })</li>
+                @if (Model.UnreadNotificationCount > 0)
+                {
+                    <li class="nav-notifications"><span class="unread">@Model.UnreadNotificationCount</span>@Html.ActionLink("Notifications", "Index", "Notifications", new { area = "" }, new { title = "Notifications" })
+                        <div class="notifications-preview">
+                            @foreach (var notification in Model.RecentNotifications) {
+                                <div>@notification.Message</div>
+                            }
+                            <span class="all-notifications">
+                                @Html.ActionLink("View all notifications", "Index", "Notifications", new { area = "" }, new { title = "Notifications" })
+                            </span>
+                        </div>
+                    </li>
+                }
+                else
+                {
+                    <li class="nav-notifications">@Html.ActionLink("Notifications", "Index", "Notifications", new { area = "" }, new { title = "Notifications" })</li>
+                }
+                
             </ul>
             @if (User.Identity.IsAuthenticated)
             {

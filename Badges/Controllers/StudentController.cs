@@ -45,10 +45,24 @@ namespace Badges.Controllers
                                                   .OrderByDescending(x => x.ResponseDate)
                                                   .Take(5);
 
+            var unreadNotifications = RepositoryFactory.NotificationRepository.Queryable
+                                                  .Where(x => x.To.Identifier == CurrentUser.Identity.Name)
+                                                  .Where(x => x.Pending == true).Take(15);
+
+            Notification[] recentNotifications = null;
+            if (unreadNotifications.Count() > 0)
+            {
+                recentNotifications = RepositoryFactory.NotificationRepository.Queryable
+                                                  .Where(x => x.To.Identifier == CurrentUser.Identity.Name)
+                                                  .Where(x => x.Pending == true).ToArray();
+            }
+
             var model = new StudentIndexModel
                 {
                     Experiences = recentExperiences.ToArray(),
-                    Feedback = recentFeedback.ToArray()
+                    Feedback = recentFeedback.ToArray(),
+                    UnreadNotificationCount = unreadNotifications.Count(),
+                    RecentNotifications = recentNotifications
                 };
 
             return View(model);

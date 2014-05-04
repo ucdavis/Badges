@@ -7,5 +7,9 @@ namespace Badges.Models.Student
         public Experience[] Experiences { get; set; }
 
         public FeedbackRequest[] Feedback { get; set; }
+
+        public int UnreadNotificationCount { get; set; }
+
+        public Notification[] RecentNotifications { get; set; }
     }
 }
