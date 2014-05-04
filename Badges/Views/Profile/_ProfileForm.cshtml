@@ -70,7 +70,7 @@
                 </div>
             </div>
         </div><!--/.row-->
-        @if (!User.IsInRole("I"))
+        @if (!User.IsInRole("I") && !User.IsInRole("A"))
         {
         <div class="row">
             <div class="helptext col-md-4">

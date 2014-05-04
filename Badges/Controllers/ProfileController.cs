@@ -125,7 +125,7 @@ namespace Badges.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(Profile profile, bool isInstructor, string roles, HttpPostedFileBase image)
+        public ActionResult Edit(Profile profile, string roles, HttpPostedFileBase image, bool isInstructor = false)
         {
             var userProfileToEdit =
                 RepositoryFactory.UserRepository.Queryable.SingleOrDefault(
@@ -149,12 +149,16 @@ namespace Badges.Controllers
 
             RepositoryFactory.UserRepository.EnsurePersistent(userProfileToEdit);
 
-            // See if they requested to be an instructor
-            if (isInstructor)
+            if (CurrentUser.IsInRole(RoleNames.Student))
             {
-                // Notify admins
-                _notificationService.NotifyAdministrators(profile.DisplayName + " (" + profile.Email + ") requested Instructor permissions.");
+                // See if they requested to be an instructor
+                if (isInstructor)
+                {
+                    // Notify admins
+                    _notificationService.NotifyAdministrators(profile.DisplayName + " (" + profile.Email + ") requested Instructor permissions.");
+                }
             }
+            
 
             Message = "Your profile changes were successful";
 
