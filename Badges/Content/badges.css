@@ -273,6 +273,13 @@ textarea.form-control {
   min-height: 200px;
   font-size: 1.5em; }
 
+input[type="radio"].form-control {
+    display: inline;
+    width:30px;
+    float: left;
+    height: 30px;
+}
+
 .container.form .form-control.required:after {
   content: ' *';
   color: #783032; }
