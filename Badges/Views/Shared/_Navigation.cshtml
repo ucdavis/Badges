@@ -22,7 +22,7 @@
                 
                 <li class="nav-notifications">
                     <a id="expand-notifications" href="#"></a>
-                    @{Html.RenderAction("NavigationPartial", "Notifications");}
+                    @{Html.RenderAction("NavigationPartial", "Notifications", new { area = string.Empty });}
                 </li>
             </ul>
             @if (User.Identity.IsAuthenticated)
