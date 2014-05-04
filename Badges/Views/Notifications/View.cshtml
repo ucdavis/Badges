@@ -1,0 +1,10 @@
+﻿@{
+    ViewBag.Title = "View";
+}
+<h2>View Notification</h2>
+
+@Model.Notification.Message
+
+<div>
+    Sent on <em>@string.Format("{0:d}", Model.Notification.Created)</em>
+</div>

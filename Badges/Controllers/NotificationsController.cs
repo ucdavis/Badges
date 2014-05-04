@@ -34,19 +34,46 @@ namespace Badges.Controllers
         {
             var unreadNotifications = RepositoryFactory.NotificationRepository.Queryable
                                                   .Where(x => x.To.Identifier == CurrentUser.Identity.Name)
-                                                  .OrderByDescending(x => x.Created)
-                                                  .Take(15);
+                                                  .Where(x => x.Pending)
+                                                  .OrderByDescending(x => x.Created);
 
             Notification[] recentNotifications = null;
             if (unreadNotifications.Count() > 0)
             {
-                recentNotifications = unreadNotifications.ToArray();
+                recentNotifications = RepositoryFactory.NotificationRepository.Queryable
+                                                  .Where(x => x.To.Identifier == CurrentUser.Identity.Name)
+                                                  .OrderByDescending(x => x.Created)
+                                                  .Take(15)
+                                                  .ToArray();
             }
 
             var model = new NotificationsPartialModel
             {
                 UnreadNotificationCount = unreadNotifications.Count(),
                 RecentNotifications = recentNotifications
+            };
+
+            return View(model);
+        }
+
+        // Auth: Administrators, Instructors, Students
+        // Displays the entirety of the notification 
+        public ActionResult View(Guid id)
+        {
+            var notification = RepositoryFactory.NotificationRepository.Queryable
+                                                    .SingleOrDefault(x => x.Id == id);
+
+            if (notification == null)
+            {
+                return new HttpNotFoundResult();
+            }
+
+            notification.Pending = false;
+            RepositoryFactory.NotificationRepository.EnsurePersistent(notification);
+
+            var model = new NotificationViewModel
+            {
+                Notification = notification
             };
 
             return View(model);

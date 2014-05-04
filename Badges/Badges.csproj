@@ -251,6 +251,7 @@
     <Compile Include="Models\Services\BlobResult.cs" />
     <Compile Include="Models\Shared\Class1.cs" />
     <Compile Include="Models\Shared\NotificationsPartialModel.cs" />
+    <Compile Include="Models\Shared\NotificationViewModel.cs" />
     <Compile Include="Models\Student\ExperienceEditModel.cs" />
     <Compile Include="Models\Shared\ExperienceViewModel.cs" />
     <Compile Include="Models\Student\StudentIndexModel.cs" />
@@ -644,6 +645,7 @@
     <Content Include="Views\Student\DeleteExperience.cshtml.cshtml" />
     <Content Include="Views\Notifications\Index.cshtml" />
     <Content Include="Views\Notifications\NavigationPartial.cshtml" />
+    <Content Include="Views\Notifications\View.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\files\" />
