@@ -242,7 +242,6 @@
     </Compile>
     <Compile Include="Helpers\ElmahHandledErrorLoggerFilter.cs" />
     <Compile Include="Helpers\ImageHelper.cs" />
-    <Compile Include="Helpers\PartialRequest.cs" />
     <Compile Include="Models\Badge\BadgeAddModel.cs" />
     <Compile Include="Models\Badge\BadgeApplicationModel.cs" />
     <Compile Include="Models\Badge\BadgeAssociatedWorkModel.cs" />
@@ -269,6 +268,7 @@
     </Content>
     <Content Include="App_Readme\Elmah.txt" />
     <Content Include="Content\badges.css" />
+    <Content Include="Content\animate.css" />
     <Content Include="Content\bootstrap-custom.css" />
     <Content Include="Content\bootstrap-datepicker.css" />
     <Content Include="Content\bootstrap-responsive.css" />
