@@ -79,9 +79,12 @@
             </div>
             <div class="goals col-md-8">
                 <h3>Are you an instructor?</h3>
-                
-                    @Html.RadioButtonFor(x => x.isInstructor, true, new { @class = "form-control" }) Yes, I am an instructor <br />
-                    @Html.RadioButtonFor(x => x.isInstructor, false, new { @class = "form-control" }) No, I am not an instructor
+                    <div class="clearfix">
+                        @Html.RadioButtonFor(x => x.isInstructor, true, new { @class = "form-control" }) <h4>Yes, I am an instructor</h4>
+                    </div>
+                    <div class="clearfix">
+                        @Html.RadioButtonFor(x => x.isInstructor, false, new { @class = "form-control" }) <h4>No, I am not an instructor</h4>
+                    </div>
                 
             </div>
         </div><!--/.row-->
