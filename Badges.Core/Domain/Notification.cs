@@ -11,6 +11,7 @@ namespace Badges.Core.Domain
         public virtual DateTime Created { get; set; }
 
         public virtual string Message { get; set; }
+        public virtual string Title { get; set; }
     }
 
     public class NotificationMap : ClassMap<Notification>
@@ -22,6 +23,7 @@ namespace Badges.Core.Domain
             Map(x => x.Pending).Not.Nullable();
             Map(x => x.Created).Not.Nullable();
             Map(x => x.Message).StringMaxLength();
+            Map(x => x.Title).StringMaxLength();
 
             References(x => x.To).Not.Nullable();
         }
