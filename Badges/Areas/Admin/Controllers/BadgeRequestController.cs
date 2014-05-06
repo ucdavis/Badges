@@ -59,7 +59,7 @@ namespace Badges.Areas.Admin.Controllers
 
             Message = "The badge was successfully approved and can now be earned by students";
 
-            _notificationService.Notify(badge.Creator, "Congratulations, your badge was approved!");
+            _notificationService.Notify(badge.Creator, "Your badge design has been approved", "Congratulations, your \"" + badge.Name + "\" badge was approved!");
             RepositoryFactory.BadgeRepository.EnsurePersistent(badge);
 
             return RedirectToAction("Index");
@@ -76,7 +76,7 @@ namespace Badges.Areas.Admin.Controllers
             
             Message = "The badge has been denied and deleted from the system";
 
-            _notificationService.Notify(badge.Creator, reason);
+            _notificationService.Notify(badge.Creator, "Your badge design has been rejected", "Sorry, your \"" + badge.Name + "\" badge was rejected for the following reason: " + reason);
             RepositoryFactory.BadgeRepository.Remove(badge);
 
             return RedirectToAction("Index");

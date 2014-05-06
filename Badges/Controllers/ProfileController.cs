@@ -155,7 +155,7 @@ namespace Badges.Controllers
                 if (isInstructor)
                 {
                     // Notify admins
-                    _notificationService.NotifyAdministrators(profile.DisplayName + " (" + profile.Email + ") requested Instructor permissions.");
+                    _notificationService.NotifyAdministrators("New instructor request", profile.DisplayName + " (" + profile.Email + ") requested Instructor permissions.");
                 }
             }
             

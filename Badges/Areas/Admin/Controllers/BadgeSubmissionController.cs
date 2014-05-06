@@ -66,10 +66,10 @@ namespace Badges.Areas.Admin.Controllers
             badgeSubmission.Approved = true;
             badgeSubmission.AwardedOn = DateTime.UtcNow;
 
-            _notificationService.Notify(badgeSubmission.Creator, "Congratulations, you have been awarded a new badge");
+            _notificationService.Notify(badgeSubmission.Creator, "Your badge request has been approved", "Congratulations, you have been awarded the \"" + badgeSubmission.Badge.Name + "\" badge!");
             RepositoryFactory.BadgeSubmissionRepository.EnsurePersistent(badgeSubmission);
 
-            Message = "The badge has been awarded and some day the student will be notified....";
+            Message = "The badge request has been approved and a notification has been sent to the student.";
             return RedirectToAction("Index");
         }
 
@@ -81,10 +81,10 @@ namespace Badges.Areas.Admin.Controllers
 
             badgeSubmission.Submitted = false;
 
-            _notificationService.Notify(badgeSubmission.Creator, reason);
+            _notificationService.Notify(badgeSubmission.Creator, "Your badge request has been denied", "Sorry, your request for the \"" + badgeSubmission.Badge.Name + "\" badge has been denied for the following reason: " + reason);
             RepositoryFactory.BadgeSubmissionRepository.EnsurePersistent(badgeSubmission);
 
-            Message = "The badge has been sent back for changes and eventually the student will be notified....";
+            Message = "The badge request has been denied and a notification has been sent to the student.";
             return RedirectToAction("Index");
         }
     }
