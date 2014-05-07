@@ -10,8 +10,8 @@ namespace Badges.Services
 {
     public interface INotificationService
     {
-        void Notify(User user, string title, string message);
-        void NotifyAdministrators(string title, string message);
+        void Notify(User user, User from, string title, string message, string actionLink);
+        void NotifyAdministrators(string title, string message, User from, string actionUrl);
     }
 
     public class NotificationService : INotificationService
@@ -23,19 +23,21 @@ namespace Badges.Services
             _repositoryFactory = repositoryFactory;
         }
 
-        public void Notify(User user, string title, string message)
+        public void Notify(User user, User from, string title, string message, string actionLink)
         {
             _repositoryFactory.NotificationRepository.EnsurePersistent(new Notification
                 {
                     Created = DateTime.UtcNow,
                     Pending = true,
                     To = user,
+                    From = from,
                     Title = title,
-                    Message = message
+                    Message = message,
+                    ActionURL = actionLink
                 });
         }
 
-        public void NotifyAdministrators(string title, string message)
+        public void NotifyAdministrators(string title, string message, User from, string actionUrl)
         {
             /*
             var adminEmails =
@@ -58,6 +60,8 @@ namespace Badges.Services
                     Created = DateTime.UtcNow,
                     Pending = true,
                     To = admin,
+                    From = from,
+                    ActionURL = actionUrl,
                     Title = title,
                     Message = message
                 });

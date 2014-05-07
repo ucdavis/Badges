@@ -1259,8 +1259,9 @@ input#cover-image, input#cover-image[type="file"] {
     background-position: center left;
     width: 100%;
     height: 100px;
-    
+    position: relative;
     z-index: -1;
+    margin-bottom: 10px;
     border: 3px solid white;
 }
 
@@ -1317,4 +1318,15 @@ input#cover-image, input#cover-image[type="file"] {
 
 #notifications-preview .notification:hover {
     background-color: #efefef;
+}
+
+.notification-message {
+    background: #ffffff;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.action-link {
+    background-color: #1b7694;
+    color: #FFFFFF;
 }

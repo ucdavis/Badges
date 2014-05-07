@@ -8,6 +8,7 @@ using Badges.Core.Repositories;
 using UCDArch.Core.PersistanceSupport;
 using UCDArch.Core.Utils;
 using Badges.Services;
+using Badges.Helpers;
 
 namespace Badges.Areas.Admin.Controllers
 {
@@ -66,7 +67,10 @@ namespace Badges.Areas.Admin.Controllers
             badgeSubmission.Approved = true;
             badgeSubmission.AwardedOn = DateTime.UtcNow;
 
-            _notificationService.Notify(badgeSubmission.Creator, "Your badge request has been approved", "Congratulations, you have been awarded the \"" + badgeSubmission.Badge.Name + "\" badge!");
+            _notificationService.Notify(badgeSubmission.Creator, AuthenticatedUser,
+                "Your badge request has been approved", 
+                "Congratulations, you have been awarded the \"" + badgeSubmission.Badge.Name + "\" badge!",
+                ActionLinkHelper.ActionLink(Url.Action("MyBadges", "Badge", new { area = string.Empty }), "View your badges"));
             RepositoryFactory.BadgeSubmissionRepository.EnsurePersistent(badgeSubmission);
 
             Message = "The badge request has been approved and a notification has been sent to the student.";
@@ -81,7 +85,10 @@ namespace Badges.Areas.Admin.Controllers
 
             badgeSubmission.Submitted = false;
 
-            _notificationService.Notify(badgeSubmission.Creator, "Your badge request has been denied", "Sorry, your request for the \"" + badgeSubmission.Badge.Name + "\" badge has been denied for the following reason: " + reason);
+            _notificationService.Notify(badgeSubmission.Creator, AuthenticatedUser,
+                "Your badge request has been denied", 
+                "Sorry, your request for the \"" + badgeSubmission.Badge.Name + "\" badge has been denied for the following reason: " + reason,
+                null);
             RepositoryFactory.BadgeSubmissionRepository.EnsurePersistent(badgeSubmission);
 
             Message = "The badge request has been denied and a notification has been sent to the student.";

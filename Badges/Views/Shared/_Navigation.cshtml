@@ -20,9 +20,9 @@
                     <li class="nav-badges">@Html.ActionLink("Badge Studio", "Index", "Badge", new { area = "" }, new { title = "Badge Studio" })</li>
                 }
                 
-                <li class="nav-notifications">
+                <li class="nav-notifications" id="notification-container">
                     <a id="expand-notifications" href="#" title="Notifications"></a>
-                    @{Html.RenderAction("NavigationPartial", "Notifications", new { area = string.Empty });}
+                    
                 </li>
             </ul>
             @if (User.Identity.IsAuthenticated)

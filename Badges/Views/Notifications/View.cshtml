@@ -1,10 +1,19 @@
 ﻿@{
     ViewBag.Title = "View";
 }
-<h2>View Notification</h2>
+<div class="mountain-view">
+    <span class="header-text">@Model.Notification.Title</span>
+</div>
 
-@Model.Notification.Message
+<div class="notification-message">
+    <p>
+    @Model.Notification.Message
+    </p>
+    <span>Sent on <em>@string.Format("{0:d}", Model.Notification.Created)</em> from @Model.Notification.From.Profile.DisplayName</span>
+</div>
 
 <div>
-    Sent on <em>@string.Format("{0:d}", Model.Notification.Created)</em>
+@Html.Raw(Model.Notification.ActionURL)
 </div>
+
+

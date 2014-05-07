@@ -14,6 +14,7 @@ using SoundInTheory.DynamicImage.Fluent;
 using UCDArch.Testing.Fakes;
 using UCDArch.Web.Attributes;
 using Badges.Services;
+using Badges.Helpers;
 
 namespace Badges.Controllers
 {
@@ -155,7 +156,10 @@ namespace Badges.Controllers
                 if (isInstructor)
                 {
                     // Notify admins
-                    _notificationService.NotifyAdministrators("New instructor request", profile.DisplayName + " (" + profile.Email + ") requested Instructor permissions.");
+                    _notificationService.NotifyAdministrators("New instructor request",
+                        profile.DisplayName + " (" + profile.Email + ") requested Instructor permissions.",
+                        AuthenticatedUser,
+                        ActionLinkHelper.ActionLink(Url.Action("MyBadges", "Badge", new { area = string.Empty}), "Earn the badge"));
                 }
             }
             
