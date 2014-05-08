@@ -30,11 +30,11 @@ namespace Badges.Areas.Admin.Controllers
             return View(users.ToList());
         }
 
-        public ActionResult GrantInstructorPermissions(string name)
+        public ActionResult GrantInstructorPermissions(string id)
         {
             var userProfileToEdit =
                 RepositoryFactory.UserRepository.Queryable.SingleOrDefault(
-                    x => x.Identifier == name);
+                    x => x.Identifier == id);
 
             if (userProfileToEdit == null)
             {
