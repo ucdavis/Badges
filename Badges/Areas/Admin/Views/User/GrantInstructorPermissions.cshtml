@@ -1,0 +1,18 @@
+﻿@{
+    ViewBag.Title = "GrantInstructorPermissions";
+}
+
+<div class="mountain-view">
+    <span class="header-text">@Model.Header</span>
+</div>
+
+<div class="notification-message">
+    <p>
+        @Model.Message
+    </p>
+</div>
+
+<div>
+    <a href="@Url.Action("Index", "Notifications", new { area = string.Empty })" class="btn action-link">Return to your notifications</a>
+</div>
+

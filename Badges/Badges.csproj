@@ -519,6 +519,7 @@
     <Content Include="Areas\Admin\Views\RevokeBadge\index.cshtml" />
     <Content Include="Areas\Admin\Views\RevokeBadge\ViewBadges.cshtml" />
     <Content Include="Areas\Admin\Views\DeleteBadge\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\User\GrantInstructorPermissions.cshtml" />
     <None Include="Properties\PublishProfiles\asibadges.pubxml" />
     <None Include="Properties\PublishProfiles\badges.pubxml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />

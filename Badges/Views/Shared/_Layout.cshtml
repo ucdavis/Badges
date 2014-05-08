@@ -88,11 +88,7 @@
             });
 
             $('#expand-notifications').on("click", function () {
-                $('#notifications-preview').stop(true, false).slideToggle(250, function () {
-                    if ($(this).is(":visible") == false) {
-                        $(".nav-notifications > .unread").addClass("animated bounceOut")
-                    }
-                });
+                $('#notifications-preview').stop(true, false).slideToggle(250);
             });
 
             $(document).mouseup(function (e) {
