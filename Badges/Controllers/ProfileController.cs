@@ -159,7 +159,7 @@ namespace Badges.Controllers
                     _notificationService.NotifyAdministrators("New instructor request",
                         profile.DisplayName + " (" + profile.Email + ") requested Instructor permissions.",
                         AuthenticatedUser,
-                        ActionLinkHelper.ActionLink(Url.Action("GrantInstructorPermissions", "User", new { area = string.Empty, name = CurrentUser.Identity.Name}), "Grant instructor permissions"));
+                        ActionLinkHelper.ActionLink(Url.Action("GrantInstructorPermissions", "User", new { area = "Admin", id = CurrentUser.Identity.Name}), "Grant instructor permissions"));
                 }
             }
             
