@@ -6,6 +6,7 @@ namespace Badges.Models.Shared
     {
         public int UnreadNotificationCount { get; set; }
 
-        public Notification[] RecentNotifications { get; set; }
+        // Re-enable if the notification dropdown is to be reintroduced
+        //public Notification[] RecentNotifications { get; set; }
     }
 }

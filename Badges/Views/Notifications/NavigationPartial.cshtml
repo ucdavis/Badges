@@ -8,10 +8,12 @@
     <span class="unread animated bounceIn" >@Model.UnreadNotificationCount</span>
 }
 
-<div id="notifications-preview">
-        @foreach (var notification in Model.RecentNotifications)
-    {
-        <a class="notification  @((notification.Pending) ? "notification-pending" : "")" href="@Url.Action("View", "Notifications", new {id = notification.Id})">@notification.Title</a>
-    }
-   @Html.ActionLink("View all notifications", "Index", "Notifications", new { area = "" }, new { @class = "all-notifications", title = "Notifications" })
-</div>
+@* Re-enable if the notification drop down is to be re-introduced
+    <div id="notifications-preview">
+            @foreach (var notification in Model.RecentNotifications)
+        {
+            <a class="notification  @((notification.Pending) ? "notification-pending" : "")" href="@Url.Action("View", "Notifications", new {id = notification.Id})">@notification.Title</a>
+        }
+       @Html.ActionLink("View all notifications", "Index", "Notifications", new { area = "" }, new { @class = "all-notifications", title = "Notifications" })
+    </div>
+*@

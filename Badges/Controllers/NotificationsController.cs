@@ -37,16 +37,19 @@ namespace Badges.Controllers
                                                   .Where(x => x.Pending)
                                                   .OrderByDescending(x => x.Created);
 
-            Notification[] recentNotifications = RepositoryFactory.NotificationRepository.Queryable
-                                                  .Where(x => x.To.Identifier == CurrentUser.Identity.Name)
-                                                  .OrderByDescending(x => x.Created)
-                                                  .Take(15)
-                                                  .ToArray();
+            // Re-enable if the notification dropdown is going to be re-introduced
+            //Notification[] recentNotifications = RepositoryFactory.NotificationRepository.Queryable
+            //                                      .Where(x => x.To.Identifier == CurrentUser.Identity.Name)
+            //                                      .OrderByDescending(x => x.Created)
+            //                                      .Take(15)
+            //                                      .ToArray();
 
             var model = new NotificationsPartialModel
             {
-                UnreadNotificationCount = unreadNotifications.Count(),
-                RecentNotifications = recentNotifications
+                UnreadNotificationCount = unreadNotifications.Count()
+
+                // Re-enable if the notification dropdown is going to be re-introduced
+                //RecentNotifications = recentNotifications
             };
 
             return View(model);

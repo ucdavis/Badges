@@ -86,18 +86,6 @@
                 var controller = '@ViewContext.RouteData.Values["controller"].ToString().ToLower()';
                 $("#nav-" + controller).addClass("active");
             });
-
-            $('#expand-notifications').on("click", function () {
-                $('#notifications-preview').stop(true, false).slideToggle(250);
-            });
-
-            $(document).mouseup(function (e) {
-                var container = $("#notifications-preview");
-
-                if (!container.is(e.target) && container.has(e.target).length === 0 && !$("#expand-notifications").is(e.target)) {
-                    container.stop(true, false).slideUp(250);
-                }
-            });
             
             $(document).ready(function () {
                 $.get("@Url.Action("NavigationPartial", "Notifications", new { area = string.Empty })", function(data) {

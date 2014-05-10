@@ -20,10 +20,11 @@
                     <li class="nav-badges">@Html.ActionLink("Badge Studio", "Index", "Badge", new { area = "" }, new { title = "Badge Studio" })</li>
                 }
                 
-                <li class="nav-notifications" id="notification-container">
-                    <a id="expand-notifications" href="#" title="Notifications"></a>
-                    
-                </li>
+                @if (User.Identity.IsAuthenticated) { 
+                    <li class="nav-notifications" id="notification-container">
+                        <a id="expand-notifications" href="@Url.Action("Index", "Notifications", new {area = ""})" title="Notifications"></a>
+                    </li>
+                }
             </ul>
             @if (User.Identity.IsAuthenticated)
             {
