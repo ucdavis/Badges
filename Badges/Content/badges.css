@@ -1292,18 +1292,22 @@ input#cover-image, input#cover-image[type="file"] {
     left: 0;
 }
 
-.recent .notification-pending, #notifications-preview .notification.notification-pending {
-    background: -moz-linear-gradient(-45deg,  rgba(238,255,153,1) 0%, rgba(255,255,255,0) 100%); /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,rgba(238,255,153,1)), color-stop(100%,rgba(255,255,255,0))); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(-45deg,  rgba(238,255,153,1) 0%,rgba(255,255,255,0) 100%); /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(-45deg,  rgba(238,255,153,1) 0%,rgba(255,255,255,0) 100%); /* Opera 11.10+ */
-    background: -ms-linear-gradient(-45deg,  rgba(238,255,153,1) 0%,rgba(255,255,255,0) 100%); /* IE10+ */
-    background: linear-gradient(135deg,  rgba(238,255,153,1) 0%,rgba(255,255,255,0) 100%); /* W3C */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeff99', endColorstr='#00ffffff',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+.recent .notification-pending a:before, #notifications-preview .notification-pending a:before {
+    content: url("img/notification-pending.png");
+    padding-left: 10px;
+    padding-right: 10px;
+}
 
-    padding: 5px;
-    font-weight: 700;
-    border-bottom: 3px solid #d4ac0e;
+.recent .notification a:before, #notifications-preview .notification-pending a:before {
+    content: url("img/notification-read.png");
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-top: 10px;
+}
+
+.recent .notification {
+    vertical-align: middle;
+    line-height: 40px;
 }
 
 #notifications-preview .notification {

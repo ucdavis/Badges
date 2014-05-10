@@ -15,7 +15,7 @@
             @foreach (var notification in Model)
             {
                 <tr>
-                    <td class="message-info @((notification.Pending) ? "notification-pending" : "")"><a href="@Url.Action("View", "Notifications", new {id = notification.Id})">@notification.Message</a></td>
+                    <td class="message-info @((notification.Pending) ? "notification-pending" : "notification")"><a href="@Url.Action("View", "Notifications", new {id = notification.Id})">@notification.Message</a></td>
                     <td><em>@string.Format("{0:d}", notification.Created)</em></td>
                     <td><em>@notification.From.Profile.DisplayName</em></td>
                 </tr>
