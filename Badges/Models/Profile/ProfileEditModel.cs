@@ -7,5 +7,6 @@ namespace Badges.Models.Profile
     {
         public Core.Domain.Profile Profile { get; set; }
         public IList<Role> Roles { get; set; }
+        public bool isInstructor { get; set; }
     }
 }

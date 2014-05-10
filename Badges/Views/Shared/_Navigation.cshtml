@@ -6,7 +6,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="/">
                 <img src="@Url.Content("~/Content/img/logo-safs.png")" alt="UC Davis Sustainable Agriculture and Food Systems" />
             </a>
         </div>
@@ -15,13 +15,15 @@
                 <li id="nav-home">@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { title = "Home" } )</li>
                 @if (User.Identity.IsAuthenticated && User.IsInRole(Badges.Core.Domain.RoleNames.Student))
                 {
-                    <li class="nav-add">@Html.ActionLink("Add Experience", "AddExperience", "Student", new { title = "Add Experience" })</li>
-                    <li class="nav-view">@Html.ActionLink("Portfolio", "Portfolio", "Student", new {title = "Portfolio" })</li>
-                    <li class="nav-badges">@Html.ActionLink("Badge Studio", "Index", "Badge", new { title = "Badge Studio" })</li>
+                    <li class="nav-add">@Html.ActionLink("Add Experience", "AddExperience", "Student", new { area = "" }, new { title = "Add Experience" })</li>
+                    <li class="nav-view">@Html.ActionLink("Portfolio", "Portfolio", "Student", new { area = "" }, new { title = "Portfolio" })</li>
+                    <li class="nav-badges">@Html.ActionLink("Badge Studio", "Index", "Badge", new { area = "" }, new { title = "Badge Studio" })</li>
                 }
-                @if (User.Identity.IsAuthenticated && User.IsInRole(Badges.Core.Domain.RoleNames.Administrator))
-                {
-                    <li id="nav-admin">@Html.ActionLink("Admin", "Index","Landing", new { area = "admin"}, null)</li>
+                
+                @if (User.Identity.IsAuthenticated) { 
+                    <li class="nav-notifications" id="notification-container">
+                        <a id="expand-notifications" href="@Url.Action("Index", "Notifications", new {area = ""})" title="Notifications"></a>
+                    </li>
                 }
             </ul>
             @if (User.Identity.IsAuthenticated)

@@ -48,7 +48,7 @@ namespace Badges.Controllers
             var model = new StudentIndexModel
                 {
                     Experiences = recentExperiences.ToArray(),
-                    Feedback = recentFeedback.ToArray()
+                    Feedback = recentFeedback.ToArray(),
                 };
 
             return View(model);
@@ -108,6 +108,25 @@ namespace Badges.Controllers
             var model = GetEditModel(experience);
 
             return View(model);
+        }
+
+        public ActionResult DeleteExperience(Guid id)
+        {
+            var experience = RepositoryFactory.ExperienceRepository.GetNullableById(id);
+
+            if (experience == null)
+            {
+                return new HttpNotFoundResult("Could not find the requested experience");
+            }
+            experience.ExperienceOutcomes.Clear();
+            var fulfillments = RepositoryFactory.BadgeFulfillmentRepository.Queryable.Where(x => x.Experience.Id.Equals(experience.Id));
+            foreach (var fulfillment in fulfillments) {
+                fulfillment.Experience = null;
+                RepositoryFactory.BadgeFulfillmentRepository.EnsurePersistent(fulfillment);
+            }
+            RepositoryFactory.ExperienceRepository.EnsurePersistent(experience);
+            RepositoryFactory.ExperienceRepository.Remove(experience);
+            return RedirectToAction("Portfolio", "Student");
         }
 
         public ActionResult EditExperience(Guid id)

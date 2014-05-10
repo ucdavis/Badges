@@ -49,7 +49,8 @@ namespace Badges.App_Start
                             .Include("~/Content/bootstrap/bootstrap.css")
                             .Include("~/Content/font-awesome.css")
                             .Include("~/Content/chosen.css")
-                            .Include("~/Content/badges.css"));
+                            .Include("~/Content/badges.css")
+                            .Include("~/Content/animate.css"));
 
             bundles.Add(new StyleBundle("~/Content/static")
                             .Include("~/Content/bootstrap/bootstrap.css")

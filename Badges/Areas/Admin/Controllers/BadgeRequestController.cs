@@ -7,6 +7,7 @@ using Badges.Core.Repositories;
 using UCDArch.Core.PersistanceSupport;
 using UCDArch.Core.Utils;
 using Badges.Services;
+using Badges.Helpers;
 
 namespace Badges.Areas.Admin.Controllers
 {
@@ -58,8 +59,12 @@ namespace Badges.Areas.Admin.Controllers
             badge.Approved = true;
 
             Message = "The badge was successfully approved and can now be earned by students";
+            _notificationService.Notify(badge.Creator, AuthenticatedUser, 
+                "Your badge design has been approved", 
+                "Congratulations, your \"" + badge.Name + "\" badge was approved!",
+                ActionLinkHelper.ActionLink(Url.Action("Earn", "Badge", new { area = string.Empty, id = badge.Id }), "Earn the badge"));
+                
 
-            _notificationService.Notify(badge.Creator, "Congratulations, your badge was approved!");
             RepositoryFactory.BadgeRepository.EnsurePersistent(badge);
 
             return RedirectToAction("Index");
@@ -76,7 +81,10 @@ namespace Badges.Areas.Admin.Controllers
             
             Message = "The badge has been denied and deleted from the system";
 
-            _notificationService.Notify(badge.Creator, reason);
+            _notificationService.Notify(badge.Creator, AuthenticatedUser, 
+                "Your badge design has been rejected", 
+                "Sorry, your \"" + badge.Name + "\" badge was rejected for the following reason: " + reason,
+                null);
             RepositoryFactory.BadgeRepository.Remove(badge);
 
             return RedirectToAction("Index");

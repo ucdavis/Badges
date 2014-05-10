@@ -26,8 +26,9 @@ namespace Badges.Areas.Admin.Controllers
          **/
         public ActionResult Index()
         {
-            // Display the list of students
-            var users = RepositoryFactory.UserRepository.Queryable.Where(x => x.Roles.Any(r => r.Id == RoleNames.Student));
+            // Display the list of students that have a badge
+            var users = RepositoryFactory.UserRepository.Queryable.Where(x => x.Roles.Any(r => r.Id == RoleNames.Student) && 
+                RepositoryFactory.BadgeSubmissionRepository.Queryable.Any(b => b.Creator.Identifier.Equals(x.Identifier)) );
             return View(users.ToList());
         }
 
@@ -42,7 +43,7 @@ namespace Badges.Areas.Admin.Controllers
             if (!RepositoryFactory.UserRepository.Queryable.Any(x => x.Identifier.Equals(id) && x.Roles.Any(r => r.Id == RoleNames.Student))) return HttpNotFound();
 
             // Display the granted badges of the given student
-            var badgesList = RepositoryFactory.BadgeSubmissionRepository.Queryable.Where(x => x.Creator.Identifier.Equals(id))
+            var badgesList = RepositoryFactory.BadgeSubmissionRepository.Queryable.Where(x => x.Creator.Identifier.Equals(id) && x.Approved)
                                  .OrderByDescending(x => x.CreatedOn).Fetch(x => x.Badge).ToList();
 
             return View(badgesList);

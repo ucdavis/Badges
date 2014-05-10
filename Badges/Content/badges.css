@@ -273,6 +273,14 @@ textarea.form-control {
   min-height: 200px;
   font-size: 1.5em; }
 
+input[type="radio"].form-control {
+    display: inline;
+    width:30px;
+    float: left;
+    height: 30px;
+    margin-right: 10px;
+}
+
 .container.form .form-control.required:after {
   content: ' *';
   color: #783032; }
@@ -416,6 +424,67 @@ textarea.form-control {
 
 .navbar-nav > li.nav-search > a {
   background-position: -176px 0px; }
+
+.navbar-nav > li.nav-notifications > a {
+  background-position: -220px 0px; }
+
+.navbar-nav > li.nav-notifications .unread {
+    position: absolute;
+    display: block;
+    z-index: 10;
+    right: 0;
+    top: 0;
+    width: 30px;
+    height: 30px;
+    border-radius: 24px;
+    padding: 5px;
+    text-align: center;
+    font-weight: 700;
+    color: white;
+    background-color: #d03030;
+}
+
+.navbar-nav > li.nav-notifications #notifications-preview:before {
+    content: " ";
+    position: relative;
+    display: block;
+    width: 0; 
+	height: 0; 
+	border-left: 10px solid transparent;
+	border-right: 10px solid transparent;
+	border-bottom: 10px solid white;
+    margin-top: -15px;
+    margin-left: 19px;
+    z-index: 20;
+}
+
+.navbar-nav > li.nav-notifications #notifications-preview {
+    position: absolute;
+    left: 7px;
+    top: 48px;
+    display: none;
+    width: 500px;
+    background-color: #fff;
+    box-shadow: 0px 4px 10px #333333;
+    padding: 5px;
+}
+
+.navbar-nav > li.nav-notifications #notifications-preview > .all-notifications {
+    background: #b26a3d;
+    padding: 5px;
+    margin: -5px;
+    margin-top: 5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    display: block;
+    text-align: center;
+    color: white;
+    text-decoration: none;
+}
+
+.navbar-nav > li.nav-notifications #notifications-preview > .all-notifications:hover {
+    color:rgba(255, 255, 255, 0.3);
+}
 
 .navbar-fixed-top.navbar-inverse .navbar-nav > .active > a,
 .navbar-fixed-top.navbar-inverse .navbar-nav > .active > a:hover,
@@ -641,7 +710,7 @@ input#cover-image, input#cover-image[type="file"] {
     padding: 0.75em 0;
     vertical-align: bottom;
     float: left; }
-  #work-container .link a {
+  #work-container .link a.target {
     background: #234a5a;
     color: #fff;
     text-transform: uppercase;
@@ -657,24 +726,21 @@ input#cover-image, input#cover-image[type="file"] {
     text-transform: none;
     letter-spacing: 0px;
     font-weight: 500; }
-  #work-container .link p {
-    display: none; }
+  /*#work-container .link p {}*/
   #work-container .file {
     padding-bottom: .25em; }
-    #work-container .file a {
+    #work-container .file a.target {
       background: #783032;
       color: #fff;
       font-weight: 500;
       font-size: 1.75em;
       display: block;
       padding: 1em; }
-    #work-container .file i {
+    #work-container .file i.target {
       color: rgba(255, 255, 255, 0.25);
       display: block;
       text-align: center;
       padding-top: .5em; }
-    #work-container .file p {
-      display: none; }
   #work-container.work .row div.text.work-item-box {
     background: #b1693d; }
   #work-container .text h4 {
@@ -687,8 +753,12 @@ input#cover-image, input#cover-image[type="file"] {
     padding: .5em 1em;
     margin-bottom: 0;
     font-size: 1.25em; }
-  #work-container .text p {
-    display: none; }
+  /*#work-container .text p {
+    display: none; }*/
+  #work-container .work-desc {
+      background: #fff;
+      color: #000;
+  }
   #work-container .photo img {
     max-width: 100%; }
   #work-container .audio {
@@ -1173,3 +1243,94 @@ input#cover-image, input#cover-image[type="file"] {
     -moz-transition: 500ms linear 0s;
     -o-transition: 500ms linear 0s;
     transition: 500ms linear 0s; }
+
+.pad-horiz-10 {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.modal-body {
+    background-color: #FFFFFF;
+}
+
+.mountain-view {
+    display: block;
+    background: url("img/bg-couchman.jpg") no-repeat;
+    background-position: center left;
+    width: 100%;
+    height: 100px;
+    position: relative;
+    z-index: -1;
+    margin-bottom: 10px;
+    border: 3px solid white;
+}
+
+.mountain-view .header-text {
+    position: absolute;
+    display: block;
+    left: 25px;
+    top: 25px;
+    z-index: 20;
+    padding: 15px;
+    background-color: #1b7694;
+    font-size: 1.5em;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    border: 0px none;
+    border-radius: 0px;
+    color: #ffffff;
+}
+
+.mountain-view:before {
+    content: " ";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 10;
+    top: 0;
+    left: 0;
+}
+
+.recent .notification-pending a:before, #notifications-preview .notification-pending a:before {
+    content: url("img/notification-pending.png");
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.recent .notification a:before, #notifications-preview .notification-pending a:before {
+    content: url("img/notification-read.png");
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-top: 10px;
+}
+
+.recent .notification {
+    vertical-align: middle;
+    line-height: 40px;
+}
+
+#notifications-preview .notification {
+    margin-left: -5px;
+    margin-right: -5px;
+    padding: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
+    border-bottom: 1px solid #ddd;
+    display:block;
+}
+
+#notifications-preview .notification:hover {
+    background-color: #efefef;
+}
+
+.notification-message {
+    background: #ffffff;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.action-link {
+    background-color: #1b7694;
+    color: #FFFFFF;
+}
