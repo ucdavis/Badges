@@ -9,13 +9,15 @@
         <tbody>
             <tr>
                 <th><h3>Message</h3></th>
-                <th colspan="2"><em>Recieved on</em></th>
+                <th><em>Recieved on</em></th>
+                <th><em>From</em></th>
             </tr>
             @foreach (var notification in Model)
             {
                 <tr>
                     <td class="message-info @((notification.Pending) ? "notification-pending" : "")"><a href="@Url.Action("View", "Notifications", new {id = notification.Id})">@notification.Message</a></td>
                     <td><em>@string.Format("{0:d}", notification.Created)</em></td>
+                    <td><em>@notification.From.Profile.DisplayName</em></td>
                 </tr>
             }
         </tbody>
