@@ -215,6 +215,8 @@
     <Compile Include="Areas\Admin\Controllers\BadgeCategoryController.cs" />
     <Compile Include="Areas\Admin\Controllers\BadgeRequestController.cs" />
     <Compile Include="Areas\Admin\Controllers\BadgeSubmissionController.cs" />
+    <Compile Include="Areas\Admin\Controllers\DeleteBadgeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\RevokeBadgeController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
     <Compile Include="Areas\Admin\Controllers\ExperienceTypeController.cs" />
     <Compile Include="Areas\Admin\Controllers\InstructorController.cs" />
@@ -231,12 +233,14 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InstructorController.cs" />
     <Compile Include="Controllers\JsonController.cs" />
+    <Compile Include="Controllers\NotificationsController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\PublicController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\ActionLinkHelper.cs" />
     <Compile Include="Helpers\ElmahHandledErrorLoggerFilter.cs" />
     <Compile Include="Helpers\ImageHelper.cs" />
     <Compile Include="Models\Badge\BadgeAddModel.cs" />
@@ -247,6 +251,8 @@
     <Compile Include="Models\Public\BadgeViewModel.cs" />
     <Compile Include="Models\Services\BlobResult.cs" />
     <Compile Include="Models\Shared\Class1.cs" />
+    <Compile Include="Models\Shared\NotificationsPartialModel.cs" />
+    <Compile Include="Models\Shared\NotificationViewModel.cs" />
     <Compile Include="Models\Student\ExperienceEditModel.cs" />
     <Compile Include="Models\Shared\ExperienceViewModel.cs" />
     <Compile Include="Models\Student\StudentIndexModel.cs" />
@@ -264,6 +270,7 @@
     </Content>
     <Content Include="App_Readme\Elmah.txt" />
     <Content Include="Content\badges.css" />
+    <Content Include="Content\animate.css" />
     <Content Include="Content\bootstrap-custom.css" />
     <Content Include="Content\bootstrap-datepicker.css" />
     <Content Include="Content\bootstrap-responsive.css" />
@@ -509,6 +516,10 @@
     <Content Include="Areas\Admin\Views\Outcome\_OutcomeForm.cshtml" />
     <Content Include="Areas\Admin\Views\Outcome\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\User\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\RevokeBadge\index.cshtml" />
+    <Content Include="Areas\Admin\Views\RevokeBadge\ViewBadges.cshtml" />
+    <Content Include="Areas\Admin\Views\DeleteBadge\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\User\GrantInstructorPermissions.cshtml" />
     <None Include="Properties\PublishProfiles\asibadges.pubxml" />
     <None Include="Properties\PublishProfiles\badges.pubxml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
@@ -633,6 +644,10 @@
     <Content Include="Views\Public\Criteria.cshtml" />
     <Content Include="Views\Shared\_ExperienceWork.cshtml" />
     <Content Include="Views\Shared\_ExperienceOutcomesFeedback.cshtml" />
+    <Content Include="Views\Student\DeleteExperience.cshtml.cshtml" />
+    <Content Include="Views\Notifications\Index.cshtml" />
+    <Content Include="Views\Notifications\NavigationPartial.cshtml" />
+    <Content Include="Views\Notifications\View.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\files\" />

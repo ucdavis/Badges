@@ -1,0 +1,70 @@
+﻿@model List<Badges.Core.Domain.BadgeSubmission>
+
+@{
+    ViewBag.Title = "ViewBadges";
+}
+
+@if (@Model.Any())
+{
+    <h2>@Model.First().Creator.Profile.DisplayName's Badges</h2>
+}
+else
+{
+    <h2>No badges found</h2>
+}
+
+<div class="row">
+    <div class="col-md-2">
+        <div class="row well">
+            <label>Filter by Category</label>
+            <ul>
+                <li>Category1</li>
+                <li>Category2</li>
+                <li>Category3</li>
+            </ul>
+        </div>
+        <div class="row well">
+            <form>
+                <div class="form-group">
+                    <input type="search" class="form-control" placeholder="Search" />
+                </div>
+            </form>
+        </div>
+    </div>
+    <div id="badges" class="col-md-10">
+        @foreach (var item in Model)
+        {
+            <div class="media">
+                <span class="pull-left">
+                    <img class="media-object" alt="Badge Icon" src="@item.Badge.ImageUrl" style="width: 120px; height: 120px;">
+                </span>
+                <div class="media-body">
+                    <h4 class="media-heading">
+                        <a href="@Url.Action("Earn", "Badge", new {area = string.Empty, id = item.Badge.Id})">@item.Badge.Name</a>
+                    </h4>
+                        <div class="alert alert-success">
+                            <h4>Awarded on @string.Format("{0:d}", item.AwardedOn)</h4>
+                            <p>
+                                <a class="revoke-badge-link" href="@Url.Action("Revoke", "Admin/RevokeBadge", new {area = string.Empty, id = item.Id})">Revoke Badge</a>
+
+                            </p>
+                        </div>
+                    <p>
+                        @item.Badge.Description
+                    </p>
+                </div>
+            </div>
+            <hr />
+        }
+    </div>
+</div>
+
+@section AdditionalScripts {
+    <script>
+        $(function () {
+            $(".revoke-badge-link").on('click', function () {
+                return confirm('Are you sure you want to revoke this badge?');
+            });
+        });
+    </script>
+}

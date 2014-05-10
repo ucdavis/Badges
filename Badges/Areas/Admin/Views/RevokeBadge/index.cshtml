@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Badges.Core.Domain.User>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Select a student</h2>
+
+<table class="table table-striped table-hover">
+    <thead>
+        <tr>
+            <th>
+                Student
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Where(x => x.Identifier != User.Identity.Name))
+        {
+            <tr>
+                <td>
+                    @item.Profile.DisplayName (@item.Identifier)
+                </td>
+                <td>
+                    <a href='@Url.Action("ViewBadges", "Admin/RevokeBadge", new {area = string.Empty, id = @item.Identifier })'>Inspect awarded badges</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
