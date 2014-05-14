@@ -70,12 +70,12 @@
             self.work = experience.Work;
 
             self.associateExperience = function(exp) {
-                var fulfillment = new badges.Fulfillment({ Details: exp.name, WorkId: exp.id, ExperienceId: exp.id, WorkType: 'experience' });
+                var fulfillment = new badges.Fulfillment({ Details: exp.name, WorkId: exp.id, ExperienceId: exp.id, CoverImageUrl: exp.coverImageUrl, WorkType: 'experience' });
                 badges.Associate.associateWithCurrentCriterion(fulfillment);
             };
             
             self.associateWork = function (work) {
-                var fulfillment = new badges.Fulfillment({ Details: work.Description, WorkId: work.Id, ExperienceId: work.experienceId, WorkType: 'work', SupportType: work.Type });
+                var fulfillment = new badges.Fulfillment({ Details: work.Description, WorkId: work.Id, ExperienceId: work.experienceId, CoverImageUrl: work.coverImageUrl, WorkType: 'work', SupportType: work.Type });
                 badges.Associate.associateWithCurrentCriterion(fulfillment);
             };
         };
@@ -96,6 +96,7 @@
             self.comment = fulfillment.Comment;
             self.details = fulfillment.Details;
             self.experienceid = fulfillment.ExperienceId;
+            self.coverImageUrl = fulfillment.CoverImageUrl;
             self.workid = fulfillment.WorkId;
             self.worktype = fulfillment.WorkType;
             self.type = fulfillment.SupportType;
