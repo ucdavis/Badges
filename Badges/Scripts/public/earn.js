@@ -107,7 +107,7 @@
             self.id = criterion.Criteria.Id;
             self.details = criterion.Criteria.Details;
             
-            self.fulfillments = ko.observableArray([]);
+            self.fulfillments = ko.observableArray();
 
             self.addFulfillment = function(fulfillment) {
                 self.fulfillments.push(new badges.Fulfillment(fulfillment));
@@ -140,7 +140,16 @@
 
             self.associateWithCurrentCriterion = function(fulfillment) {
                 var currentCriterion = self.selectedCriterion();
-                currentCriterion.fulfillments.push(fulfillment);
+
+                if (ko.utils.arrayFirst(currentCriterion.fulfillments(), function (item) {
+                    if (item.workid == fulfillment.workid) {
+                        return 1;
+                    }
+                }) == null) {
+                    currentCriterion.fulfillments.push(fulfillment);
+                } else {
+                    toastr.info("You've already added that experience!", "Uh-Oh!")
+                }
 
                 recomputeAssociationsIsotope();
             };

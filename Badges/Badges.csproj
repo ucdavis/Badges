@@ -404,6 +404,8 @@
     <Content Include="Content\jquery.Jcrop.css" />
     <Content Include="Content\jquery.Jcrop.min.css" />
     <Content Include="Content\static.css" />
+    <Content Include="Content\toastr.css" />
+    <Content Include="Content\toastr.min.css" />
     <Content Include="Content\typeahead-bootstrap.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -496,6 +498,8 @@
     <Content Include="Scripts\public\badgecreate.js" />
     <Content Include="Scripts\public\earn.js" />
     <Content Include="Scripts\public\modifyexperience.js" />
+    <Content Include="Scripts\toastr.js" />
+    <Content Include="Scripts\toastr.min.js" />
     <Content Include="Views\Shared\EditorTemplates\String.cshtml" />
     <Content Include="Areas\Admin\Views\Instructor\_InstructorForm.cshtml" />
     <Content Include="Areas\Admin\Views\Instructor\Edit.cshtml" />
