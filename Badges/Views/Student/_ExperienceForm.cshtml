@@ -1,5 +1,18 @@
 ﻿@model Badges.Models.Student.ExperienceEditModel
 
+@section AdditionalScripts {
+    <script>
+        function launchCropper(url) {
+            alert("url is " + url);
+        }
+
+        $(function () {
+            alert("url");
+            $("#cover-image").attr("onchange", "launchCropper(this.value)")
+        });
+    </script>
+}
+
 <fieldset>
 <div class="row">
     <legend class="intro col-md-7">The heart of our system is to reflect on your experiences in the field, around campus, and anywhere you find learning. Record your experience below.</legend>
@@ -40,7 +53,7 @@
             else
             {
                 <img id="cover-preview" src="@Model.Experience.CoverImageUrl" alt="cover photo" style="display: block;" />
-                <input type="file" id="cover-image" class="form-control" name="CoverImage" accept="image/*" placeholder="Replace Cover Photo"/>
+                <input type="file" id="cover-image" class="form-control" name="CoverImage" accept="image/*" onchange="launchCropper(this.value)" placeholder="Replace Cover Photo" />
 
             }
         </div>
