@@ -4,60 +4,53 @@
     ViewBag.Title = "Badges";
 }
 
-<h3>
-    Viewing the badge <strong>@Model.BadgeSubmission.Badge.Name</strong> awarded to <strong>@Model.CreatorProfile.DisplayName</strong> on <em>@string.Format("{0:d}", Model.BadgeSubmission.AwardedOn)</em>
-</h3>
+<div class="container">
+    <h2>
 
-<span class="pull-left">
-    <img class="media-object" alt="Badge Icon" src="@Model.BadgeSubmission.Badge.ImageUrl" style="width: 120px; height: 120px;">
-</span>
-
-<div class="badge-desc media-body">
-    <h3 class="media-heading">@Model.Badge.Name</h3>
-    <p>@Model.Badge.Description</p>
+        Viewing the badge: <strong>@Model.BadgeSubmission.Badge.Name</strong> awarded to <strong>@Model.CreatorProfile.DisplayName</strong> on <em>@string.Format("{0:d}", Model.BadgeSubmission.AwardedOn)</em>
+        <br><br />
+    </h2>
 </div>
+<div id="work-container" class="container work">
+    <div class="row">
+        <span class="pull-left">
+            <img class="media-object" alt="Badge Icon" src="@Model.BadgeSubmission.Badge.ImageUrl" style="width: 120px; height: 120px;">
+        </span>
 
-<div class="col-md-9">
-    <h3>Evidence for the <span class="badge-title">@Model.Badge.Name</span></h3>
-    <p class="helptext">For each criterion that this badge required, here are the supporting experiences or specific works.</p>
-</div>
-
-<div class="row">
-    <div id="badge-criteria" class="col-md-12" data-bind="foreach: criteria">
-        <div class="row criterion">
-            <div class="col-md-3">
-                <div class="associated-work-container">
-                    <h4>#<span data-bind="html: $index() + 1"></span></h4>
-                    <blockquote><p data-bind="html: details"></p></blockquote>
-                    <input type="hidden" data-bind="value: id, attr: {name: 'criterion[' + $index() + '].Id' }" />
-
-                    <div class="form-actions">
-                        <a href="#associate-work" data-toggle="modal" data-bind="click: function (data) { $root.associateWork($index(), data) }" class="btn btn-success associate-modal"><i class="icon-plus"></i> Add Work</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-9">
-                <div class="associated-work-items">
-                    <div class="associated-work" data-bind="foreach: fulfillments">
-                        <div class="work-item">
-                            <img data-bind="attr:{src: coverImageUrl}" alt="" />
-                            <h4 data-bind="html: details"></h4>
-                            <input type="hidden" data-bind="value: workid, attr: { name: 'criterion[' + $parentContext.$index() + '].work[' + $index() + '].' + worktype }" />
-                            <input type="text" placeholder="Comments" data-bind="value: comment, attr: { name: 'criterion['+ $index() +'].work['+ $index() +'].comment' }" />
-                            <div class="work-actions">
-                                <a href="view" class="view" target="_blank" data-bind="attr: { href: '@(Html.Raw(Url.Action("ViewExperience", "Student", new { area = string.Empty })))/' + experienceid }"><i class="icon-eye-open"></i></a>
-                                <a href="comment" class="comment"><i class="icon-comment"></i></a>
-                                <a href="delete" class="delete" data-bind="click: $parent.removeFulfillment"><i class="icon-trash"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="no-work-til-brooklyn" data-bind="visible: fulfillments().length === 0">
-                        <h3>Nothing to see here</h3>
-                        <p>Get started associating work and experiences with that big green button to the left there.</p>
-                    </div>
-                </div>
-            </div>
+        <div class="container work">
+            <h3 class="media-heading">@Model.Badge.Name</h3>
+            <p>@Model.Badge.Description</p>
         </div>
     </div>
 </div>
 
+<div class="col-md-12">
+    <center>
+        <h3>Evidence for the <span class="badge-title">@Model.Badge.Name</span></h3>
+        <p class="helptext">For each criterion that this badge required, here are the supporting experiences or specific works.</p>
+    </center>
+</div>
+
+<div id="work-container" class="container work">
+    <div class="row">
+        @foreach (var exp in Model.Experiences)
+        {
+           <center> <h2> Here is the supporting work from <strong>" @exp.Name"</strong> </h2></center> <br><br />
+            if (exp.SupportingWorks == null)
+            {
+                <h3> No work to display!</h3>
+            }
+            else { 
+                foreach (var work in exp.SupportingWorks)
+                {
+                    @* <div class="col-md-4"> *@
+                    <div class="@work.Type work-item-box">
+                        @Html.Partial("_ViewWork", work)
+
+                    </div>
+                    @* </div> *@
+                }
+            }
+        }
+    </div>
+</div>
