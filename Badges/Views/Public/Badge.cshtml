@@ -6,8 +6,9 @@
 
 <div class="container">
     <h2>
-
-        Viewing the badge: <strong>@Model.BadgeSubmission.Badge.Name</strong> awarded to <strong>@Model.CreatorProfile.DisplayName</strong> on <em>@string.Format("{0:d}", Model.BadgeSubmission.AwardedOn)</em>
+        <center>
+            Viewing the badge: <strong>@Model.BadgeSubmission.Badge.Name</strong> awarded to <strong>@Model.CreatorProfile.DisplayName</strong> on <em>@string.Format("{0:d}", Model.BadgeSubmission.AwardedOn)</em>
+        </center>
         <br><br />
     </h2>
 </div>
@@ -35,7 +36,7 @@
     <div class="row">
         @foreach (var exp in Model.Experiences)
         {
-           <center> <h2> Here is the supporting work from <strong>" @exp.Name"</strong> </h2></center> <br><br />
+            <h2> Here is the supporting work from <strong>" @exp.Name"</strong> </h2><br><br />
             if (exp.SupportingWorks == null)
             {
                 <h3> No work to display!</h3>
