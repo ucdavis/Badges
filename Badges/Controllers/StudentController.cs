@@ -90,13 +90,13 @@ namespace Badges.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddExperience(Experience experience, HttpPostedFileBase coverImage)
+        public ActionResult AddExperience(Experience experience, HttpPostedFileBase coverImage, string queryString)
         {
             if (ModelState.IsValid)
             {
                 if (coverImage != null)
                 {
-                    experience.CoverImageUrl = CropAndSave(coverImage, CoverPictureWidth, CoverPictureHeight);
+                    experience.CoverImageUrl = CropAndSave(coverImage, queryString);
                 }
 
                 RepositoryFactory.ExperienceRepository.EnsurePersistent(experience);
@@ -146,7 +146,7 @@ namespace Badges.Controllers
         }
 
         [HttpPost]
-        public ActionResult EditExperience(Guid id, Experience experience, HttpPostedFileBase coverImage)
+        public ActionResult EditExperience(Guid id, Experience experience, HttpPostedFileBase coverImage, string queryString)
         {
             var experienceToEdit =
                 RepositoryFactory.ExperienceRepository.Queryable.SingleOrDefault(
@@ -164,7 +164,7 @@ namespace Badges.Controllers
             {
                 if (coverImage != null)
                 {
-                    experienceToEdit.CoverImageUrl = CropAndSave(coverImage, CoverPictureWidth, CoverPictureHeight);
+                    experienceToEdit.CoverImageUrl = CropAndSave(coverImage, queryString);
                 }
 
                 experienceToEdit.LastModified = DateTime.UtcNow;
@@ -362,9 +362,9 @@ namespace Badges.Controllers
         /// <param name="width"></param>
         /// <param name="height"></param>
         /// <returns></returns>
-        private string CropAndSave(HttpPostedFileBase image, int width, int height)
+        private string CropAndSave(HttpPostedFileBase image, string queryString)
         {
-            var cropResizer = new ResizeSettings(width, height, FitMode.Crop, null);
+            var cropResizer = new ResizeSettings(queryString);
 
             using (var stream = new MemoryStream())
             {
