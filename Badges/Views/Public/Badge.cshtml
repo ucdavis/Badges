@@ -3,71 +3,88 @@
 @{
     ViewBag.Title = "Badges";
 }
-<!---<div id="work-container" class="container work ">-->
+<!--title and badge description-->
 <div class="alert bordercolor1">
-
-
-<!--<div class="alert alert-success "> -->
     <h2>
         <center>
             <strong>@Model.BadgeSubmission.Badge.Name</strong> was awarded to <strong>@Model.CreatorProfile.DisplayName</strong> on <em>@string.Format("{0:d}", Model.BadgeSubmission.AwardedOn)</em>
         </center>
-        
     </h2>
-
     <center>
         <div class="row">
-            <!--<span class="pull-center">-->
             <img class="media-object" alt="Badge Icon" src="@Model.BadgeSubmission.Badge.ImageUrl" style="width: 200px; height: 200px;">
-            <!--</span>-->
             <div class="alert bordercolor1">
                 <div class="container work">
                     <h3 class="media-heading">@Model.Badge.Name</h3>
                     <font color="grey"><p>@Model.Badge.Description</p></font>
-</div>
+                </div>
             </div>
     </center>
 </div>
-
 <div class=" alert border">
     <div class="col-md-12">
         <center>
-            <h3>Evidence for the <span class="badge-title">@Model.Badge.Name</span></h3>
+            <h3>Evidence for the <span class="badge-title">@Model.Badge.Name</span> badge!</h3>
             <p class="helptext">For each criterion that this badge required, here are the supporting experiences or specific works.</p>
         </center>
     </div>
 </div>
 
+
+<!--displaying the evidence-->
 <hr style="border: 3px outset #595955;">
 <div id="work-container" class="container work">
-    <div class="row">
-
-if(Model.Experiences.Any()){
-        
+    <div class="row">  
         @foreach (var exp in Model.Experiences)
-{
-    <div class=" alert alert-warning">
-       <h2> Here is the supporting work from <strong>" @exp.Name"</strong> </h2><br><br />
-        <img class="media-object" alt="Badge Icon" src="@exp.CoverImageUrl" style="width: 1170px; height:425px;"><br><br />
-
-
-       @if (exp.SupportingWorks == null)
         {
-             <h3> No work to display!</h3>
-        }
-        else {
-            foreach (var work in exp.SupportingWorks)
-            {
-                @* <div class="col-md-4"> *@
-                <div class="@work.Type work-item-box">
-                    @Html.Partial("_ViewWork", work)
+            if (exp != null) {
+                <h2> Here is the supporting work from <strong>" @exp.Name"</strong> </h2><br><br />
+                <img class="media-object" alt="Badge Icon" src="@exp.CoverImageUrl" style="width: 1170px; height:425px;"><br><br />
+                    foreach (var work in exp.SupportingWorks)
+                    {
+                        @* <div class="col-md-4"> *@
+                        <div class="@work.Type work-item-box">
+                            @Html.Partial("_ViewWork", work)
+                        </div>
+                        @* </div> *@
+                    }
+                    foreach (var sWork in Model.Work)
+                     {
+                         if (sWork != null)
+                         {
+                             @* <div class="col-md-4"> *@
+                            <div class="@sWork.Type work-item-box">
+                                @Html.Partial("_ViewWork", sWork)
 
-                </div>
-                @* </div> *@
+                            </div>
+                            @* </div> *@
+                         }
+                     }
+             }
+            else
+            {
+                 foreach (var sWork in Model.Work)
+                 {
+                     if (sWork != null)
+                     {
+                         @* <div class="col-md-4"> *@
+                        <div class="@sWork.Type work-item-box">
+                            @Html.Partial("_ViewWork", sWork)
+
+                        </div>
+                        @* </div> *@
+
+
+                     }
+                     else
+                     {
+                        <div class="alert alert-error ">
+                            <h3>No supporting work or experience!</h3>
+                        </div>
+                     }
+                 }
             }
         }
-    </div>
-}
     </div>
 </div>
 
