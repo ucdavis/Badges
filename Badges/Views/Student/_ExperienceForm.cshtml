@@ -1,9 +1,6 @@
 ﻿@model Badges.Models.Student.ExperienceEditModel
 
-@Scripts.Render("~/bundles/jquery")
-@Scripts.Render("~/bundles/jqueryval")
-<script src="@Url.Content("~/Scripts/jquery.Jcrop.js")" type="text/javascript"></script>
-<link rel="stylesheet" href="@Url.Content("~/Content/jquery.Jcrop.css")" type="text/css" />
+
 <script>
     var update = function (coords) {
         var path = $('#cover-preview').attr('src'); if (path.indexOf('?') > 0) path = path.substr(0, path.indexOf('?'));
@@ -16,27 +13,6 @@
         //Now, update the link 'href' (you could update a hidden field just as easily)
         $("#cropresult").attr('value', querystring);
     }
-    function launchCropper(url) {
-        var oFile = $("#cover-image")[0].files[0];
-        var sandbox = document.getElementById("sandbox");
-        sandbox.src = window.URL.createObjectURL(oFile);/*
-        sandbox.onload = function (e) {
-            window.URL.revokeObjectURL(this.src);
-        };*/
-        jcrop_api.setImage(sandbox.src);
-
-        $('#cropwindow').modal();
-    }
-
-    $(function () {
-        $("#cover-image").attr("onchange", "launchCropper(this.value)")
-    });
-    var jcrop_api;
-    jQuery(function ($) {
-
-        jcrop_api = $.Jcrop('#sandbox', {onChange: update, aspectRatio : 3.44});
-
-    });
 </script>
 
 
@@ -51,7 +27,9 @@
 
                 <div class="modal-body">
                     <p>Crop your image</p>
-                    <img id="sandbox" />
+                    <div id="sandbox" class="fluid">
+                        <img id="cropme" class="fluid" />
+                    </div>
                     <input id="cropresult" type="hidden" name="QueryString" />
                 </div>
                 <div class="modal-footer">

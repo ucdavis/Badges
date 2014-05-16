@@ -25,6 +25,7 @@
     @Scripts.Render("~/bundles/typeahead")
     @Scripts.Render("~/bundles/datepicker")
     @Scripts.Render("~/bundles/modifyexperience")
+    @Scripts.Render("~/bundles/jcrop")
     <script type="text/javascript"
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCNUxAy26HeRg-YRsD541p5M-5xgh4vOJA&sensor=true">
     </script>
@@ -37,6 +38,17 @@
             });
             
             Badges.init();
+        });
+
+        function launchCropper(url) {
+            var oFile = $("#cover-image")[0].files[0];
+            $('#cropwindow').modal();
+            $('#cropme').attr("src", window.URL.createObjectURL(oFile));
+            $('#cropme').Jcrop({boxWidth: 540, boxHeight: 600});
+        }
+
+        $(function () {
+            $("#cover-image").attr("onchange", "launchCropper(this.value)")
         });
     </script>
 }

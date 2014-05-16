@@ -1334,3 +1334,7 @@ input#cover-image, input#cover-image[type="file"] {
     background-color: #1b7694;
     color: #FFFFFF;
 }
+
+.fluid {
+    max-width: 100%;
+}

@@ -510,6 +510,8 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\public\badgecreate.js" />
     <Content Include="Scripts\public\earn.js" />
+    <Content Include="Scripts\public\jquery.Jcrop.js" />
+    <Content Include="Scripts\public\jquery.Jcrop.min.js" />
     <Content Include="Scripts\public\modifyexperience.js" />
     <Content Include="Scripts\toastr.js" />
     <Content Include="Scripts\toastr.min.js" />
