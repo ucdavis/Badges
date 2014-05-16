@@ -3,55 +3,77 @@
 @{
     ViewBag.Title = "Badges";
 }
+<!---<div id="work-container" class="container work ">-->
+<div class="alert bordercolor1">
 
-<div class="container">
+
+<!--<div class="alert alert-success "> -->
     <h2>
         <center>
-            Viewing the badge: <strong>@Model.BadgeSubmission.Badge.Name</strong> awarded to <strong>@Model.CreatorProfile.DisplayName</strong> on <em>@string.Format("{0:d}", Model.BadgeSubmission.AwardedOn)</em>
+            <strong>@Model.BadgeSubmission.Badge.Name</strong> was awarded to <strong>@Model.CreatorProfile.DisplayName</strong> on <em>@string.Format("{0:d}", Model.BadgeSubmission.AwardedOn)</em>
         </center>
-        <br><br />
+        
     </h2>
-</div>
-<div id="work-container" class="container work">
-    <div class="row">
-        <span class="pull-left">
-            <img class="media-object" alt="Badge Icon" src="@Model.BadgeSubmission.Badge.ImageUrl" style="width: 120px; height: 120px;">
-        </span>
 
-        <div class="container work">
-            <h3 class="media-heading">@Model.Badge.Name</h3>
-            <p>@Model.Badge.Description</p>
-        </div>
-    </div>
-</div>
-
-<div class="col-md-12">
     <center>
-        <h3>Evidence for the <span class="badge-title">@Model.Badge.Name</span></h3>
-        <p class="helptext">For each criterion that this badge required, here are the supporting experiences or specific works.</p>
+        <div class="row">
+            <!--<span class="pull-center">-->
+            <img class="media-object" alt="Badge Icon" src="@Model.BadgeSubmission.Badge.ImageUrl" style="width: 200px; height: 200px;">
+            <!--</span>-->
+            <div class="alert bordercolor1">
+                <div class="container work">
+                    <h3 class="media-heading">@Model.Badge.Name</h3>
+                    <font color="grey"><p>@Model.Badge.Description</p></font>
+</div>
+            </div>
     </center>
 </div>
 
+<div class=" alert border">
+    <div class="col-md-12">
+        <center>
+            <h3>Evidence for the <span class="badge-title">@Model.Badge.Name</span></h3>
+            <p class="helptext">For each criterion that this badge required, here are the supporting experiences or specific works.</p>
+        </center>
+    </div>
+</div>
+
+<hr style="border: 3px outset #595955;">
 <div id="work-container" class="container work">
     <div class="row">
-        @foreach (var exp in Model.Experiences)
-        {
-            <h2> Here is the supporting work from <strong>" @exp.Name"</strong> </h2><br><br />
-            if (exp.SupportingWorks == null)
-            {
-                <h3> No work to display!</h3>
-            }
-            else { 
-                foreach (var work in exp.SupportingWorks)
-                {
-                    @* <div class="col-md-4"> *@
-                    <div class="@work.Type work-item-box">
-                        @Html.Partial("_ViewWork", work)
 
-                    </div>
-                    @* </div> *@
-                }
+if(Model.Experiences.Any()){
+        
+        @foreach (var exp in Model.Experiences)
+{
+    <div class=" alert alert-warning">
+       <h2> Here is the supporting work from <strong>" @exp.Name"</strong> </h2><br><br />
+        <img class="media-object" alt="Badge Icon" src="@exp.CoverImageUrl" style="width: 1170px; height:425px;"><br><br />
+
+
+       @if (exp.SupportingWorks == null)
+        {
+             <h3> No work to display!</h3>
+        }
+        else {
+            foreach (var work in exp.SupportingWorks)
+            {
+                @* <div class="col-md-4"> *@
+                <div class="@work.Type work-item-box">
+                    @Html.Partial("_ViewWork", work)
+
+                </div>
+                @* </div> *@
             }
         }
     </div>
+}
+    </div>
 </div>
+
+
+
+
+
+
+

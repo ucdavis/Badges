@@ -771,6 +771,12 @@ input#cover-image, input#cover-image[type="file"] {
       top: -8px;
       height: 38px; }
 
+/* Header for the top of the page */
+    .bordercolor1 {  
+      color: #FFFFFF;
+      background-color: #FFFFFF;
+      border-color: #FFFFFF;}
+
 /* ---- Can these go in the above nest too? ----- */
 .work .row div {
   background: #fff;
