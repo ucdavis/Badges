@@ -18,8 +18,8 @@ namespace Badges.Controllers
     [Authorize(Roles=RoleNames.Student)]
     public class StudentController : ApplicationController
     {
-        private const int CoverPictureWidth = 1050;
-        private const int CoverPictureHeight = 350;
+        const int COVER_PICTURE_WIDTH = 1050;
+        const int COVER_PICTURE_HEIGHT = 350;
 
         private readonly IUserService _userService;
         private readonly IFileService _fileService;
@@ -384,7 +384,8 @@ namespace Badges.Controllers
                 User = _userService.GetCurrent(),
                 Experience = experience,
                 Instructors = RepositoryFactory.InstructorRepository.GetAll(),
-                ExperienceTypes = RepositoryFactory.ExperienceTypeRepository.GetAll()
+                ExperienceTypes = RepositoryFactory.ExperienceTypeRepository.GetAll(),
+                CoverPictureAspectRatio = Math.Truncate((1.0 * COVER_PICTURE_WIDTH / COVER_PICTURE_HEIGHT * 100) / 100)
             };
         }
     }
