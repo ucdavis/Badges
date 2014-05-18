@@ -385,7 +385,7 @@ namespace Badges.Controllers
                 Experience = experience,
                 Instructors = RepositoryFactory.InstructorRepository.GetAll(),
                 ExperienceTypes = RepositoryFactory.ExperienceTypeRepository.GetAll(),
-                CoverPictureAspectRatio = Math.Truncate((1.0 * COVER_PICTURE_WIDTH / COVER_PICTURE_HEIGHT * 100) / 100)
+                CoverPictureAspectRatio = Math.Truncate(1.0 * COVER_PICTURE_WIDTH / COVER_PICTURE_HEIGHT * 100) / 100
             };
         }
     }

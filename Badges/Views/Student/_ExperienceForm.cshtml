@@ -1,21 +1,5 @@
 ﻿@model Badges.Models.Student.ExperienceEditModel
 
-
-<script>
-    var update = function (coords) {
-        var path = $('#cover-preview').attr('src'); if (path.indexOf('?') > 0) path = path.substr(0, path.indexOf('?'));
-        if (parseInt(coords.w) <= 0 || parseInt(coords.h) <= 0) return; //Require valid width and height
-
-        //Build the URL based on the coordiantes. The resizing module will handle everything else.
-        var querystring = 'crop=(' + coords.x + ',' + coords.y + ',' + coords.x2 + ',' + coords.y2 +
-        ')&cropxunits=' + $('#sandbox').width() + '&cropyunits=' + $('#sandbox').height();
-
-        //Now, update the link 'href' (you could update a hidden field just as easily)
-        $("#cropresult").attr('value', querystring);
-    }
-</script>
-
-
 <!-- Modal -->
 <div id="cropwindow" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="feedback-label" aria-hidden="true">
     <div class="modal-dialog">
@@ -26,14 +10,12 @@
             </div>
 
                 <div class="modal-body">
-                    <p>Crop your image</p>
-                    <div id="sandbox" class="fluid">
-                        <img id="cropme" class="fluid" />
-                    </div>
+                    <p>Crop your image:</p>
+                        <img id="sandbox" />
                     <input id="cropresult" type="hidden" name="QueryString" />
                 </div>
                 <div class="modal-footer">
-                    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+                    <button class="btn" data-dismiss="modal" aria-hidden="true" onclick="deb()">Close</button>
                 </div>
 
         </div>
