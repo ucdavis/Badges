@@ -61,7 +61,7 @@ namespace Badges.Areas.Admin.Controllers
 
             // Notify the user that they are now an instructor
             _notificationService.Notify(userProfileToEdit, AuthenticatedUser, 
-                "You are now have instructor privileges", 
+                "You now have instructor privileges!", 
                 "Congratulations! You have been verified as an instructor and have been granted elevated instructor permissions.",
                 null);
 
