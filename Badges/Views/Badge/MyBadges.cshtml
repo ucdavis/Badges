@@ -19,7 +19,7 @@
         <div class="row well">
             <form>
                 <div class="form-group">
-                    <input type="search" class="form-control" placeholder="Search"/>
+                    <input type="search" class="form-control" placeholder="Search" />
                 </div>
             </form>
         </div>
@@ -28,7 +28,7 @@
         @foreach (var item in Model)
         {
             <div class="media">
-                <span class="pull-left" >
+                <span class="pull-left">
                     <img class="media-object" alt="Badge Icon" src="@item.Badge.ImageUrl" style="width: 120px; height: 120px;">
                 </span>
                 <div class="media-body">
@@ -63,27 +63,27 @@
                                 </a>
                             </p>
                         </div>
-                        
+
                     }
                     <p>
                         @item.Badge.Description
                     </p>
                 </div>
             </div>
-            <hr/>
+            <hr />
         }
     </div>
 </div>
 
 @section AdditionalScripts
 {
-    <script src="http://beta.openbadges.org/issuer.js"></script>   
-    
+    <script src="http://beta.openbadges.org/issuer.js"></script>
+
     <script>
         $(function () {
             var assertionBaseUrl = '@Html.Raw(Url.Action("UserBadge", "Assertion", null, Context.Request.Url.Scheme))';
 
-            $("#badges").on('click', '.badge-push', function(e) {
+            $("#badges").on('click', '.badge-push', function (e) {
                 e.preventDefault();
                 var url = assertionBaseUrl + '/' + this.getAttribute('data-submission');
 
