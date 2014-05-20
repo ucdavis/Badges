@@ -772,7 +772,7 @@ input#cover-image, input#cover-image[type="file"] {
       height: 38px; }
 
 /* Header for the top of the page */
-    .bordercolor1 {  
+    .whitefill {  
       color: #FFFFFF;
       background-color: #FFFFFF;
       border-color: #FFFFFF;}

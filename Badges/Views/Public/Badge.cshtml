@@ -4,7 +4,7 @@
     ViewBag.Title = "Badges";
 }
 <!--title and badge description-->
-<div class="alert bordercolor1">
+<div class="alert whitefill">
     <center>
         <h2>
             <strong>@Model.BadgeSubmission.Badge.Name</strong> was awarded to <strong>@Model.CreatorProfile.DisplayName</strong> on <em>@string.Format("{0:d}", Model.BadgeSubmission.AwardedOn)</em>
@@ -12,7 +12,7 @@
         </h2>
         <div class="row">
             <img class="media-object" alt="Badge Icon" src="@Model.BadgeSubmission.Badge.ImageUrl" style="width: 200px; height: 200px;">
-            <div class="alert bordercolor1">
+            <div class="alert whitefill">
                 <div class="container work">
                     <h3 class="media-heading">@Model.Badge.Name</h3>
                     <font color="grey"><p>@Model.Badge.Description</p></font>
