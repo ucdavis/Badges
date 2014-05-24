@@ -60,7 +60,6 @@
             $("#sandbox").load(function () {
                 var v=new Image();
                 v.src = $("#sandbox").attr("src");
-                alert(v.width);
                 imageWidth = v.width;
                 imageHeight = v.height;
                 $('#sandbox').Jcrop({ onChange: update, aspectRatio: @Model.CoverPictureAspectRatio, boxWidth: 540, boxHeight: 600 });
