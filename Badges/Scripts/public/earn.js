@@ -148,7 +148,7 @@
                 }) == null) {
                     currentCriterion.fulfillments.push(fulfillment);
                 } else {
-                    toastr.info("You've already added that experience!", "Uh-Oh!")
+                    toastr.info("You've already added that!", "Uh-Oh!")
                 }
 
                 recomputeAssociationsIsotope();

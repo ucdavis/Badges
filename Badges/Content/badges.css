@@ -657,9 +657,11 @@ input#cover-image, input#cover-image[type="file"] {
 #add-work {
   background: #4b955b;
   padding-bottom: 10px;
-  margin: auto; }
+  width: 100%;
+  display: block;
+}
   #add-work li a {
-    width: 135px;
+    /*width: 135px;*/
     height: 60px;
     margin-right: 20px; }
   #add-work li i {
@@ -668,7 +670,7 @@ input#cover-image, input#cover-image[type="file"] {
     font-size: 1.25em; }
   #add-work .btn {
     font-size: 1.25em;
-    margin: 10px 10px 0 10px; }
+    margin: 10px 20px 0 10px; }
   #add-work .btn-default {
     border: 3px solid #7fb48b;
     color: #fff;
@@ -770,6 +772,12 @@ input#cover-image, input#cover-image[type="file"] {
       position: relative;
       top: -8px;
       height: 38px; }
+
+/* Header for the top of the page */
+    .whitefill {  
+      color: #FFFFFF;
+      background-color: #FFFFFF;
+      border-color: #FFFFFF;}
 
 /* ---- Can these go in the above nest too? ----- */
 .work .row div {
@@ -1009,7 +1017,7 @@ input#cover-image, input#cover-image[type="file"] {
   .criterion .work-item a {
     color: #fff;
     display: inline-block;
-    width: 32.4%;
+    width: 49.2%;
     text-align: center;
     height: 40px;
     font-size: 1.35em;
@@ -1337,4 +1345,17 @@ input#cover-image, input#cover-image[type="file"] {
 
 .fluid {
     max-width: 100%;
+}
+
+.container .jumbotron.experience {
+    padding-right: 15px;
+    padding-left: 0px;
+}
+
+.navbar-collapse.collapse-wide {
+    margin-left: 0;
+    margin-right: 0;
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
 }

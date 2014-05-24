@@ -3,11 +3,73 @@
 @{
     ViewBag.Title = "Badges";
 }
+<!--title and badge description-->
+<div class="alert whitefill">
+    <center>
+        <h2>
+            <strong>@Model.BadgeSubmission.Badge.Name</strong> was awarded to <strong>@Model.CreatorProfile.DisplayName</strong> on <em>@string.Format("{0:d}", Model.BadgeSubmission.AwardedOn)</em>
 
-<h3>
-    Viewing the badge <strong>@Model.BadgeSubmission.Badge.Name</strong> awarded to <strong>@Model.CreatorProfile.DisplayName</strong> on <em>@string.Format("{0:d}", Model.BadgeSubmission.AwardedOn)</em>
-</h3>
+        </h2>
+        <div class="row">
+            <img class="media-object" alt="Badge Icon" src="@Model.BadgeSubmission.Badge.ImageUrl" style="width: 200px; height: 200px;">
+            <div class="alert whitefill">
+                <div class="container work">
+                    <h3 class="media-heading">@Model.Badge.Name</h3>
+                    <font color="grey"><p>@Model.Badge.Description</p></font>
+                </div>
+            </div>
+        </div>
+    </center>
+    <div class="col-md-12">
+        <center>
+            <h3>Evidence for the <span class="badge-title">@Model.Badge.Name</span> badge!</h3>
+            <p class="helptext">For each criterion that this badge required, here are the supporting experiences or specific works.</p>
+        </center>
+    </div>
+</div>
 
-<p>
-    TODO: looks like the view experience page sorta
-</p>
+<!--displaying the evidence-->
+<hr style="border: 3px outset #595955;">
+<div id="work-container" class="container work">
+    <div class="row">
+        @foreach (var req in Model.BadgeSubmission.Badge.BadgeCriterias)
+        {
+            <h2> Here the evidence for the criteria <strong>" @req.Details"</strong> </h2><br><br/>
+            foreach(var fulfilment in Model.BadgeSubmission.BadgeFulfillments)
+            {
+                
+                if(fulfilment.BadgeCriteria.Id == req.Id)
+                {
+                    if(fulfilment.Experience != null)
+                    {
+                        <div class="work-item">
+                         <img src=" @fulfilment.Experience.CoverImageUrl" alt="" />
+                         <h3 >@fulfilment.Experience.Name</h3>
+                            <a href="@Url.Action("ViewExperience", "Student", new { id = fulfilment.Experience.Id, area = string.Empty })" class="footer">View full details &raquo;</a>
+
+
+
+                        </div>
+                        
+                    }
+                    else
+                    {
+                              @* <div class="col-md-4"> *@
+                            <div class="@fulfilment.SupportingWork.Type work-item-box">
+                                @Html.Partial("_ViewWork", fulfilment.SupportingWork)
+
+                            </div>
+                            @* </div> *@
+                    
+                    }
+
+                    
+                }
+                
+            }
+            
+
+
+        }
+   </div>
+</div>

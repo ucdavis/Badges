@@ -66,7 +66,7 @@
                                         <input type="text" placeholder="Comments" data-bind="value: comment, attr: { name: 'criterion['+ $index() +'].work['+ $index() +'].comment' }" />
                                         <div class="work-actions">
                                             <a href="view" class="view" target="_blank" data-bind="attr: { href: '@(Html.Raw(Url.Action("ViewExperience", "Student", new { area = string.Empty })))/' + experienceid }"><i class="icon-eye-open"></i></a>
-                                            <a href="comment" class="comment"><i class="icon-comment"></i></a>
+                                            @*Re introduce when the comment function is working... <a href="comment" class="comment"><i class="icon-comment"></i></a>*@
                                             <a href="delete" class="delete" data-bind="click: $parent.removeFulfillment"><i class="icon-trash"></i></a>
                                         </div>
                                     </div>
