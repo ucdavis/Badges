@@ -25,6 +25,7 @@
     @Scripts.Render("~/bundles/typeahead")
     @Scripts.Render("~/bundles/datepicker")
     @Scripts.Render("~/bundles/modifyexperience")
+    @Scripts.Render("~/bundles/jcrop")
     <script type="text/javascript"
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCNUxAy26HeRg-YRsD541p5M-5xgh4vOJA&sensor=true">
     </script>
@@ -38,5 +39,38 @@
             
             Badges.init();
         });
+
+        var imageWidth, imageHeight;
+
+        var update = function (coords) {
+            if (parseInt(coords.w) <= 0 || parseInt(coords.h) <= 0) return; //Require valid width and height
+
+            //Build the querystring based on the coordiantes. The resizing module will handle everything else.
+            var querystring = 'crop=(' + coords.x + ',' + coords.y + ',' + coords.x2 + ',' + coords.y2 +
+            ')&cropxunits=' + imageWidth + '&cropyunits=' + imageHeight;
+
+            // Put the query string as the value of a hidden <input>
+            $("#cropresult").attr('value', querystring);
+        }
+
+        function launchCropper(url) {
+            var oFile = $("#cover-image")[0].files[0];
+            $('#cropwindow').modal();
+            $('#sandbox').attr("src", window.URL.createObjectURL(oFile));
+            $("#sandbox").load(function () {
+                var v=new Image();
+                v.src = $("#sandbox").attr("src");
+                alert(v.width);
+                imageWidth = v.width;
+                imageHeight = v.height;
+                $('#sandbox').Jcrop({ onChange: update, aspectRatio: @Model.CoverPictureAspectRatio, boxWidth: 540, boxHeight: 600 });
+            })
+        }
+
+        $(function () {
+            $("#cover-image").attr("onchange", "launchCropper(this.value)")
+        });
     </script>
+
+
 }

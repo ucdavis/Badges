@@ -9,5 +9,6 @@ namespace Badges.Models.Student
         public Experience Experience { get; set; }
         public IList<ExperienceType> ExperienceTypes { get; set; }
         public IList<Instructor> Instructors { get; set; }
+        public double CoverPictureAspectRatio { get; set; }
     }
 }

@@ -1,5 +1,27 @@
 ﻿@model Badges.Models.Student.ExperienceEditModel
 
+<!-- Modal -->
+<div id="cropwindow" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="feedback-label" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3>Crop image</h3>
+            </div>
+
+                <div class="modal-body">
+                    <p>Crop your image:</p>
+                        <img id="sandbox" />
+                    <input id="cropresult" type="hidden" name="QueryString" />
+                </div>
+                <div class="modal-footer">
+                    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+                </div>
+
+        </div>
+    </div>
+</div>
+
 <fieldset>
 <div class="row">
     <legend class="intro col-md-7">The heart of our system is to reflect on your experiences in the field, around campus, and anywhere you find learning. Record your experience below.</legend>
@@ -35,12 +57,12 @@
             @if (string.IsNullOrWhiteSpace(Model.Experience.CoverImageUrl))
             {
                 <img id="cover-preview" src="http://f.cl.ly/items/373L0L3w163g3A2o3h0c/exp-placeholder.jpg" alt="cover photo" style="display: block;" />
-                <input type="file" id="cover-image" class="form-control" name="CoverImage" accept="image/*" placeholder="Upload Cover Photo" data-val="true" data-val-required="Cover photo is required" />        
+    <input type="file" id="cover-image" class="form-control" accept="image/*" name="CoverImage" placeholder="Upload Cover Photo" />
             }
             else
             {
                 <img id="cover-preview" src="@Model.Experience.CoverImageUrl" alt="cover photo" style="display: block;" />
-                <input type="file" id="cover-image" class="form-control" name="CoverImage" accept="image/*" placeholder="Replace Cover Photo"/>
+    <input type="file" id="cover-image" class="form-control" accept="image/*" name="CoverImage" onchange="launchCropper(this.value)" placeholder="Replace Cover Photo" />
 
             }
         </div>

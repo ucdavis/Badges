@@ -18,8 +18,8 @@ namespace Badges.Controllers
     [Authorize(Roles=RoleNames.Student)]
     public class StudentController : ApplicationController
     {
-        private const int CoverPictureWidth = 1050;
-        private const int CoverPictureHeight = 350;
+        const int COVER_PICTURE_WIDTH = 1050;
+        const int COVER_PICTURE_HEIGHT = 350;
 
         private readonly IUserService _userService;
         private readonly IFileService _fileService;
@@ -90,13 +90,13 @@ namespace Badges.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddExperience(Experience experience, HttpPostedFileBase coverImage)
+        public ActionResult AddExperience(Experience experience, HttpPostedFileBase coverImage, string queryString)
         {
             if (ModelState.IsValid)
             {
                 if (coverImage != null)
                 {
-                    experience.CoverImageUrl = CropAndSave(coverImage, CoverPictureWidth, CoverPictureHeight);
+                    experience.CoverImageUrl = CropAndSave(coverImage, queryString);
                 }
 
                 RepositoryFactory.ExperienceRepository.EnsurePersistent(experience);
@@ -146,7 +146,7 @@ namespace Badges.Controllers
         }
 
         [HttpPost]
-        public ActionResult EditExperience(Guid id, Experience experience, HttpPostedFileBase coverImage)
+        public ActionResult EditExperience(Guid id, Experience experience, HttpPostedFileBase coverImage, string queryString)
         {
             var experienceToEdit =
                 RepositoryFactory.ExperienceRepository.Queryable.SingleOrDefault(
@@ -164,7 +164,7 @@ namespace Badges.Controllers
             {
                 if (coverImage != null)
                 {
-                    experienceToEdit.CoverImageUrl = CropAndSave(coverImage, CoverPictureWidth, CoverPictureHeight);
+                    experienceToEdit.CoverImageUrl = CropAndSave(coverImage, queryString);
                 }
 
                 experienceToEdit.LastModified = DateTime.UtcNow;
@@ -362,9 +362,9 @@ namespace Badges.Controllers
         /// <param name="width"></param>
         /// <param name="height"></param>
         /// <returns></returns>
-        private string CropAndSave(HttpPostedFileBase image, int width, int height)
+        private string CropAndSave(HttpPostedFileBase image, string queryString)
         {
-            var cropResizer = new ResizeSettings(width, height, FitMode.Crop, null);
+            var cropResizer = new ResizeSettings(queryString);
 
             using (var stream = new MemoryStream())
             {
@@ -384,7 +384,8 @@ namespace Badges.Controllers
                 User = _userService.GetCurrent(),
                 Experience = experience,
                 Instructors = RepositoryFactory.InstructorRepository.GetAll(),
-                ExperienceTypes = RepositoryFactory.ExperienceTypeRepository.GetAll()
+                ExperienceTypes = RepositoryFactory.ExperienceTypeRepository.GetAll(),
+                CoverPictureAspectRatio = Math.Truncate(1.0 * COVER_PICTURE_WIDTH / COVER_PICTURE_HEIGHT * 100) / 100
             };
         }
     }

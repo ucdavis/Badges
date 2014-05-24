@@ -1343,6 +1343,10 @@ input#cover-image, input#cover-image[type="file"] {
     color: #FFFFFF;
 }
 
+.fluid {
+    max-width: 100%;
+}
+
 .container .jumbotron.experience {
     padding-right: 15px;
     padding-left: 0px;
