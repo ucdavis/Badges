@@ -1,6 +1,8 @@
 ﻿using Badges.Controllers;
 using Badges.Core.Domain;
 using Badges.Core.Repositories;
+using Badges.Helpers;
+using Badges.Services;
 using System;
 using System.Linq;
 using System.Web.Mvc;
@@ -15,9 +17,13 @@ namespace Badges.Areas.Admin.Controllers
     [Authorize(Roles = RoleNames.Administrator)]
     public class RevokeBadgeController : ApplicationController
     {
+        private readonly INotificationService _notificationService;
+
         /** Default constructor **/
-        public RevokeBadgeController(IRepositoryFactory repositoryFactory) : base(repositoryFactory)
+        public RevokeBadgeController(IRepositoryFactory repositoryFactory, INotificationService notificationService)
+            : base(repositoryFactory)
         {
+            _notificationService = notificationService;
         }
 
         // GET: /Admin/RevokeBadge/
@@ -62,7 +68,11 @@ namespace Badges.Areas.Admin.Controllers
 
             RepositoryFactory.BadgeSubmissionRepository.Remove(badgeSubmission);
 
-            // TODO: Give a notification to the user whose badge was revoked
+            _notificationService.Notify(badgeSubmission.Creator, AuthenticatedUser,
+                "Your badge has been revoked!",
+                "Unforuntately, the \"" + badgeSubmission.Badge.Name + "\" badge has been revoked from you.",
+                ActionLinkHelper.ActionLink(Url.Action("MyBadges", "Badge", new { area = string.Empty }), "View your badges"));
+
             Message = "The badge has been revoked.";
             return RedirectToAction("Index");
         }
