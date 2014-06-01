@@ -1,7 +1,9 @@
 ﻿using Badges.Controllers;
 using Badges.Core.Domain;
 using Badges.Core.Repositories;
+using Badges.Services;
 using System;
+using System.Collections;
 using System.Linq;
 using System.Web.Mvc;
 using UCDArch.Core.PersistanceSupport;
@@ -15,9 +17,12 @@ namespace Badges.Areas.Admin.Controllers
     [Authorize(Roles = RoleNames.Administrator)]
     public class DeleteBadgeController : ApplicationController
     {
+        private readonly INotificationService _notificationService;
+
         /** Default constructor **/
-        public DeleteBadgeController(IRepositoryFactory repositoryFactory) : base(repositoryFactory)
+        public DeleteBadgeController(IRepositoryFactory repositoryFactory, INotificationService notificationService) : base(repositoryFactory)
         {
+            _notificationService = notificationService;
         }
 
         // GET: /Admin/DeleteBadge/
@@ -48,13 +53,17 @@ namespace Badges.Areas.Admin.Controllers
             foreach (var submission in submissionsToDelete)
             {
                 RepositoryFactory.BadgeSubmissionRepository.Remove(submission);
+                // Notify user of revoked badge
+                _notificationService.Notify(submission.Creator, RepositoryFactory.UserRepository.Queryable.Single(x => x.Identifier == CurrentUser.Identity.Name), "A badge you earned has been deleted", "The \"" + badge.Name + "\" badge you earned has been removed from the system. It is no longer attainable, and it has been revoked from all users who earned it.", null);
             }
 
             // Delete the badge itself
             RepositoryFactory.BadgeRepository.Remove(badge);
 
             Message = "The badge was successfully deleted and revoked from all students who earned it.";
-            // TODO: Notify the badge creator and/or students who had earned the badge
+
+            // Notify badge creator
+            _notificationService.Notify(badge.Creator, RepositoryFactory.UserRepository.Queryable.Single(x => x.Identifier == CurrentUser.Identity.Name), "A badge you designed has been deleted", "The \"" + badge.Name + "\" badge you created has been removed from the system. It is no longer attainable, and it has been revoked from all users who earned it.", null);
 
             return RedirectToAction("Index");
         }
