@@ -1318,6 +1318,10 @@ input#cover-image, input#cover-image[type="file"] {
     line-height: 40px;
 }
 
+.recent.table {
+    display: table;
+}
+
 #notifications-preview .notification {
     margin-left: -5px;
     margin-right: -5px;
