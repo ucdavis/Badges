@@ -36,26 +36,66 @@
         {
             <div class="col-md-6">
                 <div class="menuitem">
-                    <a href="@Url.Action("ViewExperience", "Student", new { id = experience.Id, area = string.Empty })" class="cover">
-                    <img src="@experience.CoverImageUrl" alt="Experience Cover Photo" />
-                    </a>
-                    <div class="details">
-                        <div class="row">
-                        <div class="type circlepic raised col-md-3">
-                            <div class="circle">
-                                <i class="icon-flag"></i>
-                            </div><!--/.circle-->
-                            <span class="name">Type type</span>
-                        </div><!--/.type-->
-                        <div class="text col-md-8">
-                            <h3>@Html.ActionLink(experience.Name, "ViewExperience", "Student", new { id = experience.Id}, null)</h3>
-                            <p>@experience.Description</p>
-                            <a href="@Url.Action("ViewExperience", "Student", new { id = experience.Id, area = string.Empty })" class="footer">View full details &raquo;</a>
+                        <a href="@Url.Action("ViewExperience", "Student", new { id = experience.Id, area = string.Empty })" class="cover">
+                            <img src="@experience.CoverImageUrl" alt="Experience Cover Photo" />
+                        </a>
+                        <div class="details">
+                            <div class="row">
+                                <div class="type circlepic raised col-md-3">
+                                    <div class="circle">
+                                        <i class="icon-flag"></i>
+                                    </div><!--/.circle-->
+                                    @if (experience.Creator.Identifier == User.Identity.Name)
+                                    {
+                                    <a href="#delete-experience-@experience.Id" data-work="delete" data-helptext="Delete this experience"
+                                       data-toggle="modal" class="btn-mini">
+                                        <i class="icon-trash icon"></i> Delete
+                                    </a>
+                                    <br />    
+                                    <a href="@Url.Action("EditExperience", "Student", new { id = experience.Id, area = string.Empty })" class="btn-mini">
+                                        <i class="icon-pencil"></i> Edit
+                                    </a>
+                                    <br />
+                                    }
+                                        <span class="name">Type type</span>
+                                </div><!--/.type-->
+                                <div class="text col-md-8">
+                                    <h3>@Html.ActionLink(experience.Name, "ViewExperience", "Student", new { id = experience.Id }, null)</h3>
+                                    <p>@experience.Description</p>
+                                    <a href="@Url.Action("ViewExperience", "Student", new { id = experience.Id, area = string.Empty })" class="footer">View full details &raquo;</a>
+                                </div>
+                            </div>
                         </div>
-                        </div>
-                    </div>
-                </div>
+</div>
             </div>
         }
     </div>
 </div>
+
+@foreach (var experience in Model)
+{
+    if (experience.Creator.Identifier == User.Identity.Name) { 
+        <!--Modal for Delete-->
+        <div id="delete-experience-@experience.Id" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="supporting-work-label" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                        <h3 id="supporting-work-label">Delete Experience</h3>
+                    </div>
+                    @using (Html.BeginForm("DeleteExperience", "Student", new { id = experience.Id }, FormMethod.Get, new { enctype = "multipart/form-data" }))
+                    {
+                        <div class="modal-body">
+                            @Html.AntiForgeryToken()
+                            This will delete all files associated with the experience and is not reversable!
+                        </div>
+                        <div class="modal-footer">
+                            <input type="submit" class="btn btn-danger" value="Delete Experience" />
+                            <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+}

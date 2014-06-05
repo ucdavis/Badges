@@ -10,8 +10,8 @@ namespace Badges.Services
 {
     public interface INotificationService
     {
-        void Notify(User user, string message);
-        void NotifyAdministrators(string message);
+        void Notify(User user, User from, string title, string message, string actionLink);
+        void NotifyAdministrators(string title, string message, User from, string actionUrl);
     }
 
     public class NotificationService : INotificationService
@@ -23,19 +23,23 @@ namespace Badges.Services
             _repositoryFactory = repositoryFactory;
         }
 
-        public void Notify(User user, string message)
+        public void Notify(User user, User from, string title, string message, string actionLink)
         {
             _repositoryFactory.NotificationRepository.EnsurePersistent(new Notification
                 {
                     Created = DateTime.UtcNow,
                     Pending = true,
                     To = user,
-                    Message = message
+                    From = from,
+                    Title = title,
+                    Message = message,
+                    ActionURL = actionLink
                 });
         }
 
-        public void NotifyAdministrators(string message)
+        public void NotifyAdministrators(string title, string message, User from, string actionUrl)
         {
+            /*
             var adminEmails =
                 _repositoryFactory.UserRepository.Queryable.Where(x => x.Roles.Any(r => r.Id == RoleNames.Administrator))
                                   .Select(x => x.Profile.Email).ToList();
@@ -47,6 +51,22 @@ namespace Badges.Services
                 smtp.Send("badges-noreply@ucdavis.edu", string.Join(";", adminEmails), "Badges Admin Notification",
                           message);
             }
+             * */
+            var administrators = _repositoryFactory.UserRepository.Queryable.Where(x => x.Roles.Any(r => r.Id == RoleNames.Administrator));
+            foreach (var admin in administrators)
+            {
+                _repositoryFactory.NotificationRepository.EnsurePersistent(new Notification
+                {
+                    Created = DateTime.UtcNow,
+                    Pending = true,
+                    To = admin,
+                    From = from,
+                    ActionURL = actionUrl,
+                    Title = title,
+                    Message = message
+                });
+            }
+            
         }
     }
 }

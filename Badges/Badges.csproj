@@ -68,9 +68,12 @@
     <Reference Include="Iesi.Collections">
       <HintPath>..\packages\Iesi.Collections.3.2.0.4000\lib\Net35\Iesi.Collections.dll</HintPath>
     </Reference>
-    <Reference Include="ImageResizer, Version=3.4.1.897, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="ImageResizer, Version=3.4.3.103, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\ImageResizer.3.4.1\lib\ImageResizer.dll</HintPath>
+      <HintPath>..\packages\ImageResizer.3.4.3\lib\ImageResizer.dll</HintPath>
+    </Reference>
+    <Reference Include="ImageResizer.Mvc">
+      <HintPath>..\packages\ImageResizer.Mvc.3.4.3\lib\ImageResizer.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Practices.ServiceLocation">
@@ -215,6 +218,8 @@
     <Compile Include="Areas\Admin\Controllers\BadgeCategoryController.cs" />
     <Compile Include="Areas\Admin\Controllers\BadgeRequestController.cs" />
     <Compile Include="Areas\Admin\Controllers\BadgeSubmissionController.cs" />
+    <Compile Include="Areas\Admin\Controllers\DeleteBadgeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\RevokeBadgeController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
     <Compile Include="Areas\Admin\Controllers\ExperienceTypeController.cs" />
     <Compile Include="Areas\Admin\Controllers\InstructorController.cs" />
@@ -231,12 +236,14 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InstructorController.cs" />
     <Compile Include="Controllers\JsonController.cs" />
+    <Compile Include="Controllers\NotificationsController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\PublicController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\ActionLinkHelper.cs" />
     <Compile Include="Helpers\ElmahHandledErrorLoggerFilter.cs" />
     <Compile Include="Helpers\ImageHelper.cs" />
     <Compile Include="Models\Badge\BadgeAddModel.cs" />
@@ -247,6 +254,8 @@
     <Compile Include="Models\Public\BadgeViewModel.cs" />
     <Compile Include="Models\Services\BlobResult.cs" />
     <Compile Include="Models\Shared\Class1.cs" />
+    <Compile Include="Models\Shared\NotificationsPartialModel.cs" />
+    <Compile Include="Models\Shared\NotificationViewModel.cs" />
     <Compile Include="Models\Student\ExperienceEditModel.cs" />
     <Compile Include="Models\Shared\ExperienceViewModel.cs" />
     <Compile Include="Models\Student\StudentIndexModel.cs" />
@@ -264,6 +273,7 @@
     </Content>
     <Content Include="App_Readme\Elmah.txt" />
     <Content Include="Content\badges.css" />
+    <Content Include="Content\animate.css" />
     <Content Include="Content\bootstrap-custom.css" />
     <Content Include="Content\bootstrap-datepicker.css" />
     <Content Include="Content\bootstrap-responsive.css" />
@@ -397,6 +407,8 @@
     <Content Include="Content\jquery.Jcrop.css" />
     <Content Include="Content\jquery.Jcrop.min.css" />
     <Content Include="Content\static.css" />
+    <Content Include="Content\toastr.css" />
+    <Content Include="Content\toastr.min.css" />
     <Content Include="Content\typeahead-bootstrap.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -405,6 +417,9 @@
     <Content Include="Scripts\bootstrap-datepicker.js" />
     <Content Include="Scripts\Chosen\chosen.jquery.js" />
     <Content Include="Scripts\Chosen\chosen.jquery.min.js" />
+    <None Include="Scripts\jquery-2.1.1.intellisense.js" />
+    <Content Include="Scripts\jquery-2.1.1.js" />
+    <Content Include="Scripts\jquery-2.1.1.min.js" />
     <Content Include="Scripts\jquery.isotope.min.js" />
     <Content Include="Scripts\DataTables-1.9.4\docs\media\js\doc.js" />
     <Content Include="Scripts\DataTables-1.9.4\docs\media\js\jquery.js" />
@@ -486,9 +501,20 @@
     <Content Include="Areas\Admin\Views\Organization\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Instructor\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Instructor\Create.cshtml" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\public\badgecreate.js" />
     <Content Include="Scripts\public\earn.js" />
+    <Content Include="Scripts\public\jquery.Jcrop.js" />
+    <Content Include="Scripts\public\jquery.Jcrop.min.js" />
     <Content Include="Scripts\public\modifyexperience.js" />
+    <Content Include="Scripts\toastr.js" />
+    <Content Include="Scripts\toastr.min.js" />
     <Content Include="Views\Shared\EditorTemplates\String.cshtml" />
     <Content Include="Areas\Admin\Views\Instructor\_InstructorForm.cshtml" />
     <Content Include="Areas\Admin\Views\Instructor\Edit.cshtml" />
@@ -509,22 +535,16 @@
     <Content Include="Areas\Admin\Views\Outcome\_OutcomeForm.cshtml" />
     <Content Include="Areas\Admin\Views\Outcome\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\User\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\RevokeBadge\index.cshtml" />
+    <Content Include="Areas\Admin\Views\RevokeBadge\ViewBadges.cshtml" />
+    <Content Include="Areas\Admin\Views\DeleteBadge\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\User\GrantInstructorPermissions.cshtml" />
     <None Include="Properties\PublishProfiles\asibadges.pubxml" />
     <None Include="Properties\PublishProfiles\badges.pubxml" />
-    <None Include="Scripts\jquery-1.9.1.intellisense.js" />
-    <Content Include="Scripts\jquery-1.9.1.js" />
-    <Content Include="Scripts\jquery-1.9.1.min.js" />
-    <Content Include="Scripts\jquery-1.9.1.min.map" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-2.1.1.min.map" />
     <Content Include="Scripts\jquery.isotope.js" />
     <Content Include="Scripts\jquery.Jcrop.js" />
     <Content Include="Scripts\jquery.Jcrop.min.js" />
-    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
-    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
-    <Content Include="Scripts\jquery.validate.js" />
-    <Content Include="Scripts\jquery.validate.min.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\knockout-2.2.0.debug.js" />
     <Content Include="Scripts\knockout-2.2.0.js" />
     <Content Include="Scripts\locales\bootstrap-datepicker.bg.js" />
@@ -633,6 +653,10 @@
     <Content Include="Views\Public\Criteria.cshtml" />
     <Content Include="Views\Shared\_ExperienceWork.cshtml" />
     <Content Include="Views\Shared\_ExperienceOutcomesFeedback.cshtml" />
+    <Content Include="Views\Student\DeleteExperience.cshtml.cshtml" />
+    <Content Include="Views\Notifications\Index.cshtml" />
+    <Content Include="Views\Notifications\NavigationPartial.cshtml" />
+    <Content Include="Views\Notifications\View.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\files\" />

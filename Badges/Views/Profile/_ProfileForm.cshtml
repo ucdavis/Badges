@@ -70,17 +70,38 @@
                 </div>
             </div>
         </div><!--/.row-->
+        @if (!User.IsInRole("I") && !User.IsInRole("A"))
+        {
         <div class="row">
             <div class="helptext col-md-4">
                 <div class="row">
                 <i class="icon-info-sign col-md-3"></i>
-                <p class="col-md-8">What is your relationship to ASI? Are you a student or instructor?</p>
+                <p class="col-md-8">What is your relationship to ASI?</p>
+                </div>
+            </div>
+            <div class="goals col-md-8">
+                <h3>Are you an instructor?</h3>
+                    <div class="clearfix">
+                        @Html.RadioButtonFor(x => x.isInstructor, true, new { @class = "form-control" }) <h4>Yes, I am an instructor</h4>
+                    </div>
+                    <div class="clearfix">
+                        @Html.RadioButtonFor(x => x.isInstructor, false, new { @class = "form-control" }) <h4>No, I am not an instructor</h4>
+                    </div>
+                
+            </div>
+        </div><!--/.row-->   
+        }
+        <div class="row">
+            <div class="helptext col-md-4">
+                <div class="row">
+                    <i class="icon-info-sign col-md-3"></i>
+                    <p class="col-md-8">Debug remove me</p>
                 </div>
             </div>
             <div class="goals col-md-8">
                 <h3>Your account type</h3>
                 <div class="form-group">
-                    @this.Select("Roles").Options(Model.Roles, x=>x.Id, x=>x.Name).Class("form-control requried")
+                    @this.Select("Roles").Options(Model.Roles, x => x.Id, x => x.Name).Class("form-control requried")
                     @Html.ValidationMessageFor(x => x.Roles)
                 </div>
             </div>

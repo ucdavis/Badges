@@ -37,6 +37,9 @@ namespace Badges.App_Start
             bundles.Add(new ScriptBundle("~/bundles/isotope")
                             .Include("~/Scripts/jquery.isotope.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/toastr")
+                .Include("~/Scripts/toastr.js"));
+
             // Note: Including bootstrap responsive-- comment it out if you don't need responsive css
             //Also using custom theme build of bootstrap (bootstrap-custom).  Replace with bootstrap.css for default
             //bundles.Add(new StyleBundle("~/Content/styles")
@@ -49,7 +52,10 @@ namespace Badges.App_Start
                             .Include("~/Content/bootstrap/bootstrap.css")
                             .Include("~/Content/font-awesome.css")
                             .Include("~/Content/chosen.css")
-                            .Include("~/Content/badges.css"));
+                            .Include("~/Content/badges.css")
+                            .Include("~/Content/animate.css")
+                            .Include("~/Content/toastr.css")
+                            .Include("~/Content/jquery.Jcrop.css"));
 
             bundles.Add(new StyleBundle("~/Content/static")
                             .Include("~/Content/bootstrap/bootstrap.css")
@@ -74,6 +80,7 @@ namespace Badges.App_Start
             bundles.Add(new ScriptBundle("~/bundles/modifyexperience").Include("~/Scripts/public/modifyexperience.js"));
             bundles.Add(new ScriptBundle("~/bundles/badgecreate").Include("~/Scripts/public/badgecreate.js"));
             bundles.Add(new ScriptBundle("~/bundles/earn").Include("~/Scripts/public/earn.js"));
+            bundles.Add(new ScriptBundle("~/bundles/jcrop").Include("~/Scripts/public/jquery.Jcrop.js"));
         }
     }
 }

@@ -39,5 +39,27 @@ namespace Badges.Controllers
 
             return File(file.Content, work.ContentType, work.Name);
         }
+
+        public ActionResult DeleteWorkFile(Guid id)
+        {
+            var file = RepositoryFactory.SupportingWorkRepository.GetNullableById(id);
+
+            if (file == null)
+            {
+                return new HttpNotFoundResult("Could not find the requested supporting work file or experience.");
+            }
+
+            var experience = file.Experience;
+            experience.SupportingWorks.Remove(file);
+            experience.SetModified();
+            RepositoryFactory.ExperienceRepository.EnsurePersistent(experience);
+            if (file.ContentId != null)
+            {
+                _fileService.Delete(file.ContentId.Value);
+                file.ContentId = null;
+            }
+
+            return RedirectToAction("ViewExperience", "Student", new { area = string.Empty, id = file.Experience.Id });
+        }
     }
 }

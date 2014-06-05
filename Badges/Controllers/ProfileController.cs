@@ -14,6 +14,7 @@ using SoundInTheory.DynamicImage.Fluent;
 using UCDArch.Testing.Fakes;
 using UCDArch.Web.Attributes;
 using Badges.Services;
+using Badges.Helpers;
 
 namespace Badges.Controllers
 {
@@ -21,12 +22,14 @@ namespace Badges.Controllers
     public class ProfileController : ApplicationController
     {
         private readonly IFileService _fileService;
+        private readonly INotificationService _notificationService;
         private const int ProfilePictureWidth = 300;
         private const int ProfilePictureHeight = 300;
 
-        public ProfileController(IRepositoryFactory repositoryFactory, IFileService fileService) : base(repositoryFactory)
+        public ProfileController(IRepositoryFactory repositoryFactory, IFileService fileService, INotificationService notificationService) : base(repositoryFactory)
         {
             _fileService = fileService;
+            _notificationService = notificationService;
         }
 
         public ActionResult Picture()
@@ -123,7 +126,7 @@ namespace Badges.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(Profile profile, string roles, HttpPostedFileBase image)
+        public ActionResult Edit(Profile profile, string roles, HttpPostedFileBase image, bool isInstructor = false)
         {
             var userProfileToEdit =
                 RepositoryFactory.UserRepository.Queryable.SingleOrDefault(
@@ -146,6 +149,20 @@ namespace Badges.Controllers
             userProfileToEdit.Roles.Add(RepositoryFactory.RoleRepository.GetById(roles));
 
             RepositoryFactory.UserRepository.EnsurePersistent(userProfileToEdit);
+
+            if (CurrentUser.IsInRole(RoleNames.Student))
+            {
+                // See if they requested to be an instructor
+                if (isInstructor)
+                {
+                    // Notify admins
+                    _notificationService.NotifyAdministrators("New instructor request",
+                        profile.DisplayName + " (" + profile.Email + ") requested Instructor permissions.",
+                        AuthenticatedUser,
+                        ActionLinkHelper.ActionLink(Url.Action("GrantInstructorPermissions", "User", new { area = "Admin", id = CurrentUser.Identity.Name}), "Grant instructor permissions"));
+                }
+            }
+            
 
             Message = "Your profile changes were successful";
 

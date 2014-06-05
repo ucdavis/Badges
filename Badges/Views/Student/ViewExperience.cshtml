@@ -1,4 +1,4 @@
-﻿@model Badges.Models.Shared.ExperienceViewModel
+﻿    @model Badges.Models.Shared.ExperienceViewModel
 
 @{
     ViewBag.Title = "View Experience";
@@ -33,7 +33,7 @@
                 @Html.Action("ViewProfileImage", "Profile")
             </div>
         </div> -->
-        <div class="collapse navbar-collapse">
+        <div class="collapse navbar-collapse collapse-wide">
             <ul id="add-work" class="nav navbar-nav btn-toolbar">
                 <li>
                     <a href="#supporting-work" data-work="text" data-helptext="Enter some text related to your experience" data-toggle="modal" class="btn btn-default">
@@ -84,7 +84,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
                 <h3 id="outcome-label">Add Outcome</h3>
             </div>
             @using (Html.BeginForm("AddEditOutcome", "Student", new { id = Model.Experience.Id }, FormMethod.Post))
@@ -144,7 +144,7 @@
                 </div>
             }
         </div>
-    </div>
+    </div> 
 </div>
 
 <!-- Modal -->
@@ -153,7 +153,7 @@
         <div class="modal-content">
           
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
                 <i class="icon-add"></i>
                 <h3 id="supporting-work-label">Add supporting work</h3>
             </div>

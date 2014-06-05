@@ -69,6 +69,7 @@
         @Scripts.Render("~/bundles/jqueryval")
         @Scripts.Render("~/bundles/bootstrap")
         @Scripts.Render("~/bundles/chosen")
+        @Scripts.Render("~/bundles/toastr")
         
         @*<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>*@
         
@@ -86,6 +87,26 @@
                 var controller = '@ViewContext.RouteData.Values["controller"].ToString().ToLower()';
                 $("#nav-" + controller).addClass("active");
             });
+            
+            $(document).ready(function () {
+                $.get("@Url.Action("NavigationPartial", "Notifications", new { area = string.Empty })", function(data) {
+                    $("#notification-container").append(data);
+                });
+            });
+
+            toastr.options = {
+                "closeButton": true,
+                "debug": false,
+                "positionClass": "toast-top-full-width",
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "2000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
         </script>
     </body>
 </html>

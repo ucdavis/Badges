@@ -1,0 +1,49 @@
+﻿@model System.Linq.IQueryable<Badges.Core.Domain.Badge>
+
+@{
+    ViewBag.Title = "Badge Requests";
+}
+
+<h2>Approved Badges</h2>
+
+<table class="table table-striped table-hover">
+    <thead>
+        <tr>
+            <th></th>
+            <th>
+                Name
+            </th>
+            <th>Image</th>
+            <th>
+                Created By
+            </th>
+            <th>
+                Created On
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var badge in Model)
+        {
+            <tr>
+                <td>
+                    <a class="delete-badge-link" href="@Url.Action("Delete", "Admin/DeleteBadge", new { area = string.Empty, id = badge.Id })"><i class="icon-check"></i>Delete</a>
+                </td>
+                <td>@badge.Name</td>
+                <td><img class="img-thumbnail" src="@badge.ImageUrl" height="120" width="120" /></td>
+                <td>@badge.Creator.Profile.DisplayName</td>
+                <td>@badge.CreatedOn</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section AdditionalScripts {
+    <script>
+        $(function () {
+            $(".delete-badge-link").on('click', function () {
+                return confirm('Are you sure you want to delete this badge?');
+            });
+        });
+    </script>
+}

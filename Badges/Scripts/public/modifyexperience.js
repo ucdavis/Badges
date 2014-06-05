@@ -38,6 +38,7 @@
             if (!file.type.match(/image.*/)) {
                 alert("only images, please");
             }
+            
 
             var img = document.getElementById("cover-preview");
             img.src = window.URL.createObjectURL(file);
